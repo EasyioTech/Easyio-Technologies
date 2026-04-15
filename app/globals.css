@@ -1,26 +1,189 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --radius: 2.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 2%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply antialiased;
+  }
+
+  ::selection {
+    @apply bg-zinc-950 text-white dark:bg-white dark:text-zinc-950;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .heading-1 {
+    @apply text-5xl md:text-[8rem] font-bold tracking-tight text-zinc-900 dark:text-white leading-[0.85] uppercase;
+  }
+  
+  .heading-2 {
+    @apply text-4xl md:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white uppercase leading-[0.9] mb-8;
+  }
+
+  .heading-3 {
+    @apply text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white uppercase leading-tight;
+  }
+
+  .btn-primary {
+    @apply h-14 md:h-16 px-8 md:px-12 bg-zinc-950 dark:bg-white text-white dark:text-black font-bold text-[10px] md:text-xs tracking-[0.3em] uppercase rounded-2xl md:rounded-3xl hover:scale-105 active:scale-95 transition-all shadow-xl dark:shadow-none flex items-center justify-center gap-3;
+  }
+
+  .btn-secondary {
+    @apply h-14 md:h-16 px-8 md:px-12 bg-white dark:bg-zinc-900/50 text-zinc-950 dark:text-white border border-zinc-200 dark:border-zinc-800 font-bold text-[10px] md:text-xs tracking-[0.3em] uppercase rounded-2xl md:rounded-3xl hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex items-center justify-center gap-3;
+  }
+
+  .card-base {
+    @apply rounded-[3rem] bg-white dark:bg-zinc-950/50 border border-zinc-100 dark:border-zinc-900 transition-all duration-700 relative overflow-hidden;
+  }
+
+  .card-hover {
+    @apply hover:border-zinc-300 dark:hover:border-zinc-800 shadow-sm hover:shadow-2xl hover:shadow-zinc-200/50 dark:hover:shadow-none transition-all duration-700;
+  }
+
+  .text-reveal-container {
+    @apply overflow-hidden inline-flex flex-wrap;
+  }
+
+  .text-reveal-word {
+    @apply inline-block;
+  }
+}
+
+@layer utilities {
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  .pause-marquee:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  /* Custom Scrollbar for high-fidelity feel */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-white dark:bg-zinc-950;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-200 dark:bg-zinc-800 rounded-full border-4 border-solid border-white dark:border-zinc-950 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-all;
+  }
+
+  /* Custom Selection */
+  ::selection {
+    @apply bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900;
+  }
+
+  /* Noise Overlay utility for texture */
+  .noise-bg {
+    position: relative;
+  }
+  .noise-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* Hide scrollbar while keeping scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
 }
