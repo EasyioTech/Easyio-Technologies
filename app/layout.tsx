@@ -29,8 +29,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://easyiotech.com"),
 };
 
-import { ThemeProvider } from "@/components/providers/theme-provider";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,19 +37,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
     >
-      <body className="min-h-screen bg-background text-foreground transition-colors">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          storageKey="theme"
-        >
-          {children}
-        </ThemeProvider>
+      <body className="min-h-screen bg-zinc-950 text-zinc-50">
+        {children}
       </body>
     </html>
   );

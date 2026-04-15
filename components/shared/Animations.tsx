@@ -29,7 +29,7 @@ export const TextReveal = ({ children, delay = 0, className = "" }: { children: 
   );
 };
 
-export const FadeIn = ({ children, delay = 0, direction = 'up' }: { children: ReactNode, delay?: number, direction?: 'up' | 'down' | 'left' | 'right' }) => {
+export const FadeIn = ({ children, delay = 0, direction = 'up', className = "" }: { children: ReactNode, delay?: number, direction?: 'up' | 'down' | 'left' | 'right', className?: string }) => {
   const directions = {
     up: { y: 20 },
     down: { y: -20 },
@@ -39,6 +39,7 @@ export const FadeIn = ({ children, delay = 0, direction = 'up' }: { children: Re
 
   return (
     <motion.div
+      className={className}
       initial={{ opacity: 0, ...directions[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true }}
@@ -49,10 +50,13 @@ export const FadeIn = ({ children, delay = 0, direction = 'up' }: { children: Re
   );
 };
 
-export const Marquee = ({ children, reverse = false, pauseOnHover = true, className = "" }: { children: ReactNode, reverse?: boolean, pauseOnHover?: boolean, className?: string }) => {
+export const Marquee = ({ children, reverse = false, pauseOnHover = true, className = "", speed = 30 }: { children: ReactNode, reverse?: boolean, pauseOnHover?: boolean, className?: string, speed?: number }) => {
   return (
     <div className={`overflow-hidden relative ${pauseOnHover ? 'pause-marquee' : ''} ${className}`}>
-      <div className={`flex w-max ${reverse ? 'flex-row-reverse' : 'flex-row'} animate-marquee`}>
+      <div 
+        className={`flex w-max ${reverse ? 'flex-row-reverse' : 'flex-row'} animate-marquee`}
+        style={{ animationDuration: `${speed}s` }}
+      >
         {children}
         {children}
       </div>

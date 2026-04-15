@@ -21,18 +21,18 @@ export default function Footer() {
               </span>
             </Link>
 
-            <p className="text-xl text-zinc-500 dark:text-zinc-500 font-medium italic transition-colors leading-relaxed max-w-sm">
+            <p className="text-xl text-zinc-600 dark:text-zinc-400 font-medium italic transition-colors leading-relaxed max-w-sm">
                 Architecting high-fidelity business systems with absolute precision. We don't build software; we engineer destiny.
             </p>
 
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-700">
+              <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400">
                 <Mail className="w-3 h-3" />
                 <a href={`mailto:${siteConfig.email.contact}`} className="hover:text-zinc-950 dark:hover:text-white transition-colors">
                   {siteConfig.email.contact}
                 </a>
               </div>
-              <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-700">
+              <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400">
                 <MapPin className="w-3 h-3" />
                 <span>{siteConfig.location}</span>
               </div>
@@ -49,7 +49,7 @@ export default function Footer() {
                   <ul className="space-y-6">
                     {section.links.map((link) => (
                       <li key={link.label}>
-                        <Link href={link.href} className="text-sm font-medium text-zinc-500 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-white hover:italic transition-all inline-block hover:translate-x-1">
+                        <Link href={link.href} className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:italic transition-all inline-block hover:translate-x-1">
                           {link.label}
                         </Link>
                       </li>
@@ -62,7 +62,7 @@ export default function Footer() {
 
         {/* Tactical Base */}
         <div className="mt-40 pt-20 border-t border-zinc-100 dark:border-zinc-900 transition-colors flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-700 italic">
+            <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400 italic">
                 <span>&copy; {siteConfig.year} Easyio Systems Portfolio</span>
                 <span className="w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-800" />
                 <span>Active Build: v.2.0.4</span>
@@ -81,7 +81,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-2"
                 >
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-500 group-hover:text-zinc-950 dark:group-hover:text-white transition-all underline decoration-transparent group-hover:decoration-current">
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-all underline decoration-transparent group-hover:decoration-current">
                     {social.name}
                   </span>
                 </a>
