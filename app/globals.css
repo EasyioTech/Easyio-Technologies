@@ -84,8 +84,8 @@
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     @apply antialiased;
   }
 
@@ -108,11 +108,11 @@
   }
 
   .btn-primary {
-    @apply h-14 md:h-16 px-8 md:px-12 bg-zinc-950 dark:bg-white text-white dark:text-black font-bold text-[10px] md:text-xs tracking-[0.3em] uppercase rounded-2xl md:rounded-3xl hover:scale-105 active:scale-95 transition-all shadow-xl dark:shadow-none flex items-center justify-center gap-3;
+    @apply h-14 md:h-16 px-8 md:px-12 bg-zinc-950 dark:bg-white text-white dark:text-black font-bold text-[10px] md:text-xs tracking-[0.3em] uppercase rounded-2xl md:rounded-3xl hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-xl dark:shadow-none flex items-center justify-center gap-3 active:scale-95;
   }
 
   .btn-secondary {
-    @apply h-14 md:h-16 px-8 md:px-12 bg-white dark:bg-zinc-900/50 text-zinc-950 dark:text-white border border-zinc-200 dark:border-zinc-800 font-bold text-[10px] md:text-xs tracking-[0.3em] uppercase rounded-2xl md:rounded-3xl hover:border-zinc-400 dark:hover:border-zinc-600 transition-all flex items-center justify-center gap-3;
+    @apply h-14 md:h-16 px-8 md:px-12 bg-transparent dark:bg-zinc-900/50 text-zinc-950 dark:text-white border border-zinc-200 dark:border-zinc-800 font-bold text-[10px] md:text-xs tracking-[0.3em] uppercase rounded-2xl md:rounded-3xl hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all flex items-center justify-center gap-3;
   }
 
   .card-base {

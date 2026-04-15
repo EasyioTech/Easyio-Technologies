@@ -11,7 +11,7 @@ import {
 
 const projects = [
   {
-    title: "Enterprise Resource Planning (ERP)",
+    title: "Enterprise Resource Protocol (ERP)",
     short: "ERP System",
     desc: "A centralized orchestration core for multi-departmental resource synchronization and automated reporting.",
     tag: "Business Systems",
@@ -175,8 +175,8 @@ export default function Showcase() {
                   onClick={() => setActive(i)}
                   className={`group w-full text-left flex items-center justify-between p-6 rounded-l-none rounded-r-2xl transition-all duration-500 border-l-4 ${
                     active === i 
-                    ? "bg-zinc-950 dark:bg-white border-zinc-950 dark:border-white translate-x-3" 
-                    : "bg-transparent border-transparent hover:bg-zinc-100/50 dark:hover:bg-zinc-900/50"
+                    ? "bg-zinc-100 dark:bg-white border-zinc-950 dark:border-white translate-x-3" 
+                    : "bg-transparent border-transparent hover:bg-zinc-50 dark:hover:bg-zinc-900/50"
                   }`}
                 >
                   <div className="flex items-center gap-6">

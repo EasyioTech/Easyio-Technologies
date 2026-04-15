@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function PageWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative min-h-screen selection:bg-zinc-950 selection:text-white dark:selection:bg-white dark:selection:text-zinc-950 overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-hidden">
       {/* Background Infrastructure */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Architectural Grid */}
@@ -22,13 +22,13 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
-          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-zinc-200/50 dark:bg-zinc-900/10 blur-[120px] transition-colors duration-1000" 
+          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-zinc-100/30 dark:bg-zinc-900/10 blur-[120px] transition-colors duration-1000" 
         />
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: 0.5 }}
-          className="absolute bottom-[-5%] right-[-5%] w-[500px] h-[500px] rounded-full bg-zinc-100/50 dark:bg-zinc-900/10 blur-[100px] transition-colors duration-1000" 
+          className="absolute bottom-[-5%] right-[-5%] w-[500px] h-[500px] rounded-full bg-zinc-100/20 dark:bg-zinc-900/10 blur-[100px] transition-colors duration-1000" 
         />
       </div>
 

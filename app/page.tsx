@@ -76,10 +76,6 @@ export default function HomePage() {
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <Pricing />
-        </Suspense>
-
-        <Suspense fallback={<SectionLoader />}>
             <FAQ />
         </Suspense>
 
