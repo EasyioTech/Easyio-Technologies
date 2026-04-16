@@ -1,6 +1,5 @@
 import { getBlogPosts, getPostBySlug } from "@/lib/blog";
 import PostLayout from "@/components/sections/blog/PostLayout";
-import { serialize } from "next-mdx-remote/serialize";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/shared/JsonLd";
 import PageWrapper from "@/components/layout/PageWrapper";
@@ -40,8 +39,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
-  const mdxSource = await serialize(post.content);
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
@@ -61,7 +58,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <PageWrapper>
       <JsonLd data={jsonLd} />
-      <PostLayout post={post} mdxSource={mdxSource} />
+      <PostLayout post={post} />
     </PageWrapper>
   );
 }

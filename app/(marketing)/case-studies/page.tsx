@@ -1,71 +1,101 @@
-import { generateMetadata } from '@/lib/seo';
+import { Terminal, ArrowUpRight, Cpu, Zap, Globe, Shield } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
-import { PageHeader } from "@/components/shared/PageHeader";
-import { ProjectCard } from "@/components/sections/marketing/ProjectCard";
+import { TextReveal, FadeIn } from "@/components/shared/Animations";
 
-export const metadata = generateMetadata({
-  title: 'Case Studies | Easyio Technologies',
-  description: 'Proof of execution. Explore how we scale businesses in Kashmir and beyond through superior software engineering.',
-  keywords: [
-    'software projects kashmir',
-    'it case studies srinagar',
-    'easyio technologies portfolio',
-    'enterprise automation jammu and kashmir'
-  ],
-  canonicalUrl: 'https://easyiotech.com/case-studies',
-});
+export const metadata = {
+  title: "Proof of Execution | Easyio Engineering",
+  description: "Concrete outcomes for ambitious organizations. Explore our technical deployments in enterprise software, AI, and industrial automation.",
+  keywords: "software case studies kashmir, it projects srinagar, easyio portfolio, enterprise automation results"
+};
 
-const projects = [
+const technicalDeployments = [
   {
     title: "Sovereign ERP Protocol",
-    category: "Enterprise Software",
-    description: "Digital transformation for a leading regional manufacturer, reducing operational lag by 45%.",
-    metrics: [
-        { label: "Performance Boost", value: "+45%" },
-        { label: "Deployment Cycle", value: "2w" }
-    ],
-    href: "/case-studies/sovereign-erp",
+    category: "INDUSTRIAL_LOGIC",
+    desc: "Digital transformation for a leading regional manufacturer, reducing operational lag by 45%.",
+    slug: "sovereign-erp-protocol",
+    icon: Cpu
   },
   {
-    title: "Global Supply Distribution",
-    category: "Infrastructure",
-    description: "Go-based backend infrastructure for international logistics management.",
-    metrics: [
-        { label: "Request Latency", value: "14ms" },
-        { label: "System Uptime", value: "99.9%" }
-    ],
-    href: "/case-studies/supply-distribution",
+    title: "Global Supply Hub",
+    category: "DISTRIBUTED_SYSTEMS",
+    desc: "Go-based backend infrastructure for international logistics management with 99.9% uptime.",
+    slug: "global-supply-hub",
+    icon: Globe
   },
   {
-    title: "Next-Gen Fintech Core",
-    category: "Fintech",
-    description: "High-security cryptographic ledger for secure value transfer in the valley.",
-    metrics: [
-        { label: "Security Audit", value: "100/100" },
-        { label: "Throughput", value: "5k tps" }
-    ],
-    href: "/case-studies/fintech-core",
+    title: "Fintech Core Shield",
+    category: "FINTECH_SECURITY",
+    desc: "High-security cryptographic ledger for secure value transfer in volatile environments.",
+    slug: "fintech-core-shield",
+    icon: Shield
   }
 ];
 
 export default function CaseStudiesPage() {
   return (
     <PageWrapper>
-      <div className="min-h-screen pt-40 pb-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <PageHeader 
-            title="PROOF OF"
-            italicTitle="EXECUTION."
-            description="Concrete outcomes for ambitious organizations. We transform operational noise into architectural clarity."
-          />
+      <section className="py-24 md:py-40">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Header */}
+          <div className="max-w-4xl mb-32">
+            <FadeIn>
+              <div className="flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
+                <Terminal className="w-4 h-4 text-zinc-400" />
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">Execution_Vault</span>
+              </div>
+            </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-32">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.title} {...project} index={i} />
-            ))}
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 uppercase italic leading-[0.85]">
+              <TextReveal>Proof of</TextReveal> <br />
+              <TextReveal delay={0.2} className="text-zinc-400 dark:text-zinc-800">Execution</TextReveal>
+            </h1>
+
+            <FadeIn delay={0.4}>
+              <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed italic">
+                Concrete technical outcomes for the ambitious. We transform chaotic legacy logic into structured architectural clarity.
+              </p>
+            </FadeIn>
           </div>
+
+          {/* Project Gallery */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-40">
+             {technicalDeployments.map((p, i) => (
+                <FadeIn key={p.slug} delay={0.1 * i}>
+                   <div className="group border border-zinc-100 dark:border-zinc-900 rounded-[3rem] p-10 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm hover:border-zinc-950 dark:hover:border-white transition-all duration-700 h-full flex flex-col">
+                      <div className="flex justify-between items-start mb-12">
+                         <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 group-hover:bg-zinc-950 dark:group-hover:bg-white transition-all duration-700">
+                            <p.icon className="w-6 h-6 text-zinc-400 group-hover:text-white dark:group-hover:text-black transition-colors" />
+                         </div>
+                         <span className="text-[8px] font-mono font-black tracking-widest text-zinc-300 dark:text-zinc-700 uppercase">{p.category}</span>
+                      </div>
+                      
+                      <h3 className="text-3xl font-black uppercase tracking-tighter italic mb-6 text-zinc-950 dark:text-white group-hover:translate-x-2 transition-transform duration-700">
+                        {p.title}
+                      </h3>
+                      <p className="text-lg text-zinc-500 dark:text-zinc-400 font-medium italic mb-12 flex-grow leading-relaxed">
+                        {p.desc}
+                      </p>
+
+                      <a href={`/blog/${p.slug}`} className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.25em] text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-all">
+                        VIEW_FULL_MANIFEST <ArrowUpRight className="w-4 h-4 translate-x-1" />
+                      </a>
+                   </div>
+                </FadeIn>
+             ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <FadeIn>
+            <div className="p-12 md:p-24 border border-zinc-100 dark:border-zinc-900 rounded-[3rem] text-center bg-zinc-50/20 dark:bg-zinc-950/20">
+               <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic mb-12 text-zinc-950 dark:text-white">Ready to be the next <br /> <span className="text-zinc-400 dark:text-zinc-800">Operational Success?</span></h2>
+               <a href="/contact" className="inline-flex items-center gap-4 text-2xl font-black uppercase italic tracking-tighter group text-zinc-950 dark:text-white">
+                Initialize Consultation <ArrowUpRight className="w-8 h-8 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
+              </a>
+            </div>
+          </FadeIn>
         </div>
-      </div>
+      </section>
     </PageWrapper>
   );
 }

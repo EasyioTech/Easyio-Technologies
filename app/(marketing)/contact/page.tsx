@@ -1,91 +1,85 @@
-import { generateMetadata } from '@/lib/seo';
-import { Mail, MapPin } from 'lucide-react';
-import ContactForm from '@/components/sections/contact/ContactForm';
-import { siteConfig } from '@/config/site';
+import { Mail, MapPin, Terminal, Phone, Globe } from "lucide-react";
+import ContactForm from "@/components/sections/contact/ContactForm";
+import { siteConfig } from "@/config/site";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { TextReveal, FadeIn } from "@/components/shared/Animations";
 
-export const metadata = generateMetadata({
-  title: 'Contact Us',
-  description: 'Get in touch with Easyio Technologies. We\'d love to discuss your next project.',
-  canonicalUrl: 'https://easyiotech.com/contact',
-});
+export const metadata = {
+  title: "Contact | Easyio Engineering",
+  description: "Initialize your project with Easyio. High-fidelity architectural consultation for enterprise-scale software solutions.",
+  keywords: "software consultation srinagar, it support kashmir, build software srinagar, custom project estimation"
+};
 
 export default function ContactPage() {
   return (
     <PageWrapper>
-      <div className="min-h-screen pt-40 pb-24 px-6 bg-white dark:bg-zinc-950">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-32">
-            <h1 className="heading-1 mb-12">
-              <TextReveal>LET'S</TextReveal> <br />
-              <TextReveal delay={0.3} className="text-zinc-300 dark:text-zinc-800 italic">BUILD.</TextReveal>
-            </h1>
-            <FadeIn delay={0.6}>
-              <p className="text-2xl text-zinc-500 max-w-2xl mx-auto font-medium italic">
-                Have a project in mind? Our team at Easyio Technologies is ready to help scale your operations.
-              </p>
-            </FadeIn>
-          </div>
-
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-            {/* Form */}
-            <div className="lg:col-span-7">
-              <FadeIn delay={0.8}>
-                <div className="card-base p-10 lg:p-16">
-                  <ContactForm />
+      <section className="py-24 md:py-40">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-20">
+            {/* Left Side: Context & Info */}
+            <div className="lg:w-1/3 xl:w-2/5">
+              <FadeIn>
+                <div className="flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
+                  <Terminal className="w-4 h-4 text-zinc-400" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">Comm_Channel</span>
                 </div>
               </FadeIn>
+
+              <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 uppercase italic leading-[0.85]">
+                <TextReveal>Initialize</TextReveal> <br />
+                <TextReveal delay={0.2} className="text-zinc-400 dark:text-zinc-800">The Tunnel</TextReveal>
+              </h1>
+
+              <FadeIn delay={0.4}>
+                <p className="text-xl text-zinc-500 dark:text-zinc-400 leading-relaxed italic mb-16 max-w-md">
+                  We don't do "general inquiries." We engage in technical discourse. Use this channel to start your transition to sovereign engineering infrastructure.
+                </p>
+              </FadeIn>
+
+              <div className="space-y-12">
+                <FadeIn delay={0.6}>
+                  <div className="group border-l-2 border-zinc-100 dark:border-zinc-900 pl-8 transition-colors hover:border-zinc-950 dark:hover:border-white">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-700 mb-2 italic">Global Registry</div>
+                    <a href={`mailto:${siteConfig.email.contact}`} className="text-2xl font-black text-zinc-950 dark:text-white uppercase transition-all tracking-tighter">
+                      {siteConfig.email.contact}
+                    </a>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.7}>
+                  <div className="group border-l-2 border-zinc-100 dark:border-zinc-900 pl-8 transition-colors hover:border-zinc-950 dark:hover:border-white">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-700 mb-2 italic">Ops Command Central</div>
+                    <div className="text-2xl font-black text-zinc-950 dark:text-white uppercase tracking-tighter">
+                      {siteConfig.location}
+                    </div>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={0.8}>
+                  <div className="mt-12 opacity-40">
+                     <div className="flex items-center gap-4 px-4 py-2 rounded-lg border border-zinc-100 dark:border-zinc-900 w-fit">
+                        <div className="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white animate-pulse" />
+                        <span className="text-[8px] font-mono tracking-widest uppercase font-bold italic">REGISTRY_STREAM_CONNECTED</span>
+                     </div>
+                  </div>
+                </FadeIn>
+              </div>
             </div>
 
-            {/* Contact Info */}
-            <div className="lg:col-span-5 space-y-6">
-              <FadeIn delay={1.0}>
-                <div className="card-base p-10 lg:p-12">
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 dark:text-zinc-600 mb-12">
-                    Reach Out Directly
-                  </h3>
-                  <div className="space-y-12">
-                    <div className="flex gap-6 group">
-                      <div className="w-16 h-16 rounded-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center shrink-0 group-hover:bg-zinc-950 dark:group-hover:bg-white transition-all duration-700">
-                        <Mail className="w-6 h-6 text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-700 mb-2">Email</p>
-                        <a href={`mailto:${siteConfig.email.contact}`} className="text-2xl font-bold text-zinc-950 dark:text-white hover:italic transition-all">
-                          {siteConfig.email.contact}
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-6 group">
-                      <div className="w-16 h-16 rounded-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center shrink-0 group-hover:bg-zinc-950 dark:group-hover:bg-white transition-all duration-700">
-                        <MapPin className="w-6 h-6 text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-700 mb-2">Location</p>
-                        <p className="text-2xl font-bold text-zinc-950 dark:text-white">{siteConfig.location}</p>
-                      </div>
-                    </div>
+            {/* Right Side: The Form */}
+            <div className="flex-1">
+              <FadeIn delay={0.5}>
+                <div className="border border-zinc-100 dark:border-zinc-900 rounded-3xl lg:rounded-[3rem] bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm p-8 md:p-16 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-100/50 dark:bg-white/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000" />
+                  <div className="relative z-10">
+                    <ContactForm />
                   </div>
-                </div>
-              </FadeIn>
-
-              <FadeIn delay={1.2}>
-                <div className="card-base p-8 text-center flex flex-col items-center justify-center gap-6">
-                  <div className="flex items-center gap-4 px-6 py-2 rounded-full border border-zinc-100 dark:border-zinc-900">
-                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Global Online Status</span>
-                  </div>
-                  <p className="text-xl text-zinc-500 font-medium italic">
-                    Typical response time: &lt; 24 hours
-                  </p>
                 </div>
               </FadeIn>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </PageWrapper>
   );
 }

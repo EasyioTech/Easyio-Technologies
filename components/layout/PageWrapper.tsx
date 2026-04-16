@@ -22,13 +22,13 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
-          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-zinc-200/50 dark:bg-zinc-900/10 blur-[120px]"
+          className="absolute top-[-5%] left-[-5%] md:top-[-10%] md:left-[-10%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-zinc-200/50 dark:bg-zinc-900/10 blur-[80px] md:blur-[120px]"
         />
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2, delay: 0.5 }}
-          className="absolute bottom-[-5%] right-[-5%] w-[500px] h-[500px] rounded-full bg-zinc-100/50 dark:bg-zinc-900/10 blur-[100px]"
+          className="absolute bottom-[-5%] right-[-5%] w-[250px] h-[250px] md:w-[500px] md:h-[500px] rounded-full bg-zinc-100/50 dark:bg-zinc-900/10 blur-[60px] md:blur-[100px]"
         />
       </div>
 

@@ -61,18 +61,18 @@ export default function Footer() {
         </div>
 
         {/* Tactical Base */}
-        <div className="mt-40 pt-20 border-t border-zinc-100 dark:border-zinc-900 transition-colors flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="flex items-center gap-6 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400 italic">
-                <span>&copy; {siteConfig.year} Easyio Systems Portfolio</span>
-                <span className="w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-800" />
-                <span>Active Build: v.2.0.4</span>
+        <div className="mt-40 pt-20 border-t border-zinc-100 dark:border-zinc-900 transition-colors flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400 italic">
+                <span>&copy; {siteConfig.year} Easyio Technologies.</span>
+                <span className="hidden md:block w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-800" />
+                <span>High-Fidelity Engineering Protocol.</span>
             </div>
 
             <div className="flex items-center gap-8">
                 {[
                 { name: "Twitter", href: siteConfig.links.twitter },
                 { name: "LinkedIn", href: siteConfig.links.linkedin },
-                { name: "Github", href: siteConfig.links.instagram },
+                { name: "Github", href: siteConfig.links.github },
                 ].map((social) => (
                 <a
                   key={social.name}
@@ -90,8 +90,8 @@ export default function Footer() {
         </div>
 
         {/* Big Background Visual */}
-        <div className="mt-20 flex justify-center opacity-[0.03] dark:opacity-[0.01] pointer-events-none scale-150 transition-all select-none">
-            <h2 className="text-[20vw] font-black uppercase tracking-tighter leading-none italic select-none">EASYIO.</h2>
+        <div className="mt-20 flex justify-center opacity-[0.03] dark:opacity-[0.01] pointer-events-none scale-125 md:scale-150 transition-all select-none overflow-hidden">
+            <h2 className="text-[18vw] font-black uppercase tracking-tighter leading-none italic select-none">EASYIO.</h2>
         </div>
       </div>
     </footer>

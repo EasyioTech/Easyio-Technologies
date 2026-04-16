@@ -1,75 +1,101 @@
-import { generateMetadata } from '@/lib/seo';
 import PageWrapper from "@/components/layout/PageWrapper";
 import { TextReveal, FadeIn } from "@/components/shared/Animations";
+import { Terminal, Cpu, Shield, Zap, Globe, Activity } from "lucide-react";
 
-export const metadata = generateMetadata({
-  title: 'About Us',
-  description: 'Easyio Technologies: A frontier software lab building high-performance systems and next-generation business solutions.',
-  canonicalUrl: 'https://easyiotech.com/about',
-});
+export const metadata = {
+  title: "About | Easyio Engineering",
+  description: "Learn about Easyio's commitment to high-fidelity engineering and sovereign technical infrastructure.",
+  keywords: "software company srinagar, it services kashmir, easyio team, software engineering india"
+};
+
+const values = [
+  {
+    title: "Precision Engineering",
+    desc: "We don't tolerate debt. Every line of code is architected for zero-latency and maximum throughput.",
+    icon: Cpu
+  },
+  {
+    title: "Sovereign Infrastructure",
+    desc: "We build systems that give you total control over your data, free from vendor lock-in and legacy lag.",
+    icon: Shield
+  },
+  {
+    title: "Recursive Growth",
+    desc: "Our systems are designed to self-optimize and scale alongside your enterprise's complex needs.",
+    icon: Activity
+  }
+];
 
 export default function AboutPage() {
   return (
     <PageWrapper>
-      <div className="min-h-screen pt-40 pb-24 px-6 bg-white dark:bg-zinc-950">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-32">
-            <h1 className="heading-1 mb-12">
-              <TextReveal>FRONTIER</TextReveal> <br />
-              <TextReveal delay={0.3} className="text-zinc-300 dark:text-zinc-800 italic">SOFTWARE LAB.</TextReveal>
+      <section className="py-24 md:py-40">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Hero Section */}
+          <div className="max-w-4xl mb-32">
+            <FadeIn>
+              <div className="flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
+                <Terminal className="w-4 h-4 text-zinc-400" />
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">The_Protocol</span>
+              </div>
+            </FadeIn>
+            
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 uppercase italic leading-[0.85]">
+              <TextReveal>We Engineer</TextReveal> <br />
+              <TextReveal delay={0.2} className="text-zinc-400 dark:text-zinc-800">Operational Destiny</TextReveal>
             </h1>
-            <FadeIn delay={0.6}>
-              <p className="text-xl md:text-2xl text-zinc-500 font-medium leading-relaxed italic">
-                Easyio Technologies is a frontier software lab dedicated to building high-performance systems and next-generation business solutions. We specialize in custom software development, system architecture, performance optimization, and DevOps infrastructure.
+            
+            <FadeIn delay={0.4}>
+              <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed italic">
+                Easyio is a frontier software lab founded on the principle that business software should be as resilient as a bridge and as fast as light. We serve the enterprises that refuse to settle for generic solutions.
               </p>
             </FadeIn>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
-            <FadeIn delay={0.8}>
-              <div className="card-base h-full">
-                <h2 className="heading-3 mb-6 text-zinc-950 dark:text-white">OUR MISSION</h2>
-                <p className="text-zinc-500 font-medium leading-relaxed">
-                  To empower businesses with elegant, high-performance software solutions that scale. We believe technology should be a strategic advantage, not a burden.
-                </p>
-              </div>
-            </FadeIn>
+          {/* Core Values / Philosophy */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 mb-40">
+            {values.map((v, i) => (
+              <FadeIn key={v.title} delay={0.2 * i}>
+                <div className="group border-t border-zinc-100 dark:border-zinc-900 pt-12">
+                  <v.icon className="w-10 h-10 text-zinc-950 dark:text-white mb-8 transition-transform group-hover:scale-110" />
+                  <h3 className="text-2xl font-black uppercase tracking-tighter italic text-zinc-950 dark:text-white mb-6">
+                    {v.title}
+                  </h3>
+                  <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
+                    {v.desc}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
 
-            <FadeIn delay={1.0}>
-              <div className="card-base h-full">
-                <h2 className="heading-3 mb-6 text-zinc-950 dark:text-white">OUR APPROACH</h2>
-                <p className="text-zinc-500 font-medium leading-relaxed">
-                  We combine deep technical expertise with pragmatic business thinking. Every solution is tailored, tested, and built to last. Performance and scalability are non-negotiable.
+          {/* Secondary Content - The Srinagar Hub */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center border-t border-zinc-100 dark:border-zinc-900 pt-24">
+            <FadeIn>
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter italic leading-none text-zinc-950 dark:text-white">
+                Operating from the Valley of Deep Work.
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <div className="space-y-8">
+                <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                  Headquartered in Srinagar, Easyio leverages the geographic serenity of the region to foster "Deep Work"—uninterrupted states of intense engineering focus. This allows our team to solve architectural challenges that traditional, noise-heavy city labs often miss.
                 </p>
+                <div className="flex gap-12">
+                   <div>
+                      <div className="text-3xl font-black text-zinc-950 dark:text-white italic">2026</div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Founded_Reg</div>
+                   </div>
+                   <div>
+                      <div className="text-3xl font-black text-zinc-950 dark:text-white italic">99.9%</div>
+                      <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">SLA_Commit</div>
+                   </div>
+                </div>
               </div>
             </FadeIn>
           </div>
-
-          <FadeIn delay={1.2}>
-            <div className="card-base p-12 lg:p-20">
-              <h2 className="heading-2 mb-16 text-zinc-950 dark:text-white">THE EASYIO EDGE</h2>
-              <ul className="space-y-12">
-                {[
-                  { title: 'Performance First', desc: 'Every line of code is optimized. We measure, profile, and eliminate bottlenecks.' },
-                  { title: 'Modular Architecture', desc: 'Systems designed to evolve. Add features, scale independently, adapt to change.' },
-                  { title: 'Full Stack Expertise', desc: 'From frontend to infrastructure. We own the complete solution.' },
-                  { title: 'Security by Design', desc: 'Data protection, encryption, compliance. Built in from day one.' },
-                ].map((item, i) => (
-                  <li key={i} className="flex flex-col sm:flex-row gap-8 sm:items-start group">
-                    <div className="w-16 h-16 rounded-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center flex-shrink-0 font-bold text-2xl text-zinc-950 dark:text-white transition-all duration-700 group-hover:bg-zinc-950 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-black">
-                      {i + 1}
-                    </div>
-                    <div className="pt-2">
-                      <h3 className="font-bold text-2xl text-zinc-950 dark:text-white mb-4 uppercase tracking-tighter transition-colors">{item.title}</h3>
-                      <p className="text-xl text-zinc-500 font-medium leading-relaxed italic">{item.desc}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </FadeIn>
         </div>
-      </div>
+      </section>
     </PageWrapper>
   );
 }

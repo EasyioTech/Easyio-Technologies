@@ -19,14 +19,17 @@ import Pricing from "@/components/sections/home/Pricing";
 import MarqueeText from "@/components/sections/home/MarqueeText";
 
 export const metadata = generateMetadata({
-  title: "Easyio Technologies | High-Performance Software Engineering",
+  title: "Easyio Technologies | Best Software Engineering Company in Kashmir",
   description:
-    "We build scalable, mission-critical software systems for global enterprises. Focus on reliability, performance, and modern architecture.",
+    "The premier high-performance software engineering firm in Srinagar, Kashmir. We deliver industrial-grade ERP, AI, and enterprise automation protocols for global impact. Architecting the future of technical sovereignty.",
   keywords: [
-    "custom software development",
-    "enterprise software",
-    "scalable architecture",
-    "performance engineering",
+    "best software company in kashmir",
+    "software engineering srinagar",
+    "it services jammu and kashmir",
+    "enterprise software kashmir",
+    "easyio technologies kashmir",
+    "custom ai applications srinagar",
+    "high performance software firm"
   ],
   canonicalUrl: "https://easyiotech.com",
 });

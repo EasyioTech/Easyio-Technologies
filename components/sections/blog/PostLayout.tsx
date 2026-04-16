@@ -1,11 +1,8 @@
-'use client';
-
-import { motion } from "framer-motion";
 import { FadeIn, TextReveal } from "@/components/shared/Animations";
 import { BlogPost } from "@/lib/blog";
-import { ArrowLeft, Clock, Calendar, User, Share2 } from "lucide-react";
+import { ArrowLeft, Clock, User, Share2 } from "lucide-react";
 import Link from "next/link";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 // Custom MDX components to maintain the high-fidelity design
 const components = {
@@ -39,10 +36,9 @@ const components = {
 
 interface PostLayoutProps {
   post: BlogPost;
-  mdxSource: any;
 }
 
-export default function PostLayout({ post, mdxSource }: PostLayoutProps) {
+export default function PostLayout({ post }: PostLayoutProps) {
   return (
     <div className="bg-white dark:bg-zinc-950 min-h-screen pt-32 pb-24 transition-colors">
       <div className="container mx-auto px-6">
@@ -96,7 +92,7 @@ export default function PostLayout({ post, mdxSource }: PostLayoutProps) {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-20">
           <main className="prose prose-zinc dark:prose-invert max-w-none">
             <FadeIn delay={0.6}>
-              <MDXRemote {...mdxSource} components={components} />
+              <MDXRemote source={post.content} components={components} />
             </FadeIn>
           </main>
 
