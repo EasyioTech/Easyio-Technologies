@@ -55,14 +55,14 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-40 px-6 relative overflow-hidden bg-white dark:bg-zinc-950 transition-colors">
+    <section id="pricing" className="py-16 md:py-40 px-6 relative overflow-hidden bg-white dark:bg-zinc-950 transition-colors">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-32">
+        <div className="text-center mb-16 md:mb-32">
           <h2 className="heading-2 mb-8">
             <TextReveal>SELECT YOUR PROTOCOL.</TextReveal>
           </h2>
           <div className="max-w-2xl mx-auto">
-            <TextReveal delay={0.3} className="text-xl text-zinc-500 font-medium italic">
+            <TextReveal delay={0.3} className="text-lg md:text-xl text-zinc-500 font-medium italic">
               Transparent engineering paths designed for maximum Architectural Velocity.
             </TextReveal>
           </div>
@@ -71,37 +71,37 @@ export default function Pricing() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {plans.map((plan, i) => (
             <FadeIn key={i} delay={i * 0.1}>
-              <div className={`card-base card-hover p-12 flex flex-col h-full relative ${plan.popular ? 'bg-zinc-50 dark:bg-zinc-900 border-zinc-950 dark:border-zinc-200 z-10' : ''}`}>
+              <div className={`card-base card-hover p-8 md:p-12 flex flex-col h-full relative ${plan.popular ? 'bg-zinc-50 dark:bg-zinc-900 border-zinc-950 dark:border-zinc-200 z-10' : ''}`}>
                 {plan.popular && (
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-6 py-2 bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 text-[10px] font-black uppercase tracking-[0.4em] rounded-full shadow-lg">
                     MOST ACTIVE
                   </div>
                 )}
 
-                <div className="mb-10">
+                <div className="mb-8 md:mb-10">
                   <span className="text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-400 dark:text-zinc-600 mb-4 block">
                     {plan.name}
                   </span>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-6xl font-bold text-zinc-950 dark:text-white tracking-tighter">
+                    <span className="text-4xl md:text-6xl font-bold text-zinc-950 dark:text-white tracking-tighter">
                       {plan.price}
                     </span>
                     <span className="text-lg text-zinc-400 dark:text-zinc-700 font-medium italic">
                       {plan.interval}
                     </span>
                   </div>
-                  <p className="mt-8 text-zinc-500 font-medium leading-relaxed italic">
+                  <p className="mt-6 md:mt-8 text-zinc-500 font-medium leading-relaxed italic">
                     {plan.desc}
                   </p>
                 </div>
 
-                <div className="space-y-6 mb-12 flex-grow">
+                <div className="space-y-4 md:space-y-6 mb-8 md:mb-12 flex-grow">
                   {plan.features.map((f, j) => (
                     <div key={j} className="flex items-center gap-4">
                       <div className="w-5 h-5 rounded-full bg-white dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700 flex items-center justify-center shrink-0">
                         <Check className="w-3 h-3 text-zinc-950 dark:text-white" />
                       </div>
-                      <span className="text-sm font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-tight">
+                      <span className="text-sm font-bold text-zinc-600 dark:text-zinc-400 uppercase tracking-tight line-clamp-1">
                         {f}
                       </span>
                     </div>

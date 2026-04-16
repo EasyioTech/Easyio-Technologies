@@ -26,14 +26,14 @@ const marqueeItems = [...integrations, ...integrations, ...integrations];
 
 export default function Connectivity() {
   return (
-    <section className="py-24 md:py-32 bg-white dark:bg-zinc-950 overflow-hidden relative" id="connectivity">
+    <section className="py-16 md:py-32 bg-white dark:bg-zinc-950 overflow-hidden relative" id="connectivity">
       {/* Structural HUD Accents */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-200 dark:via-zinc-800 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-200 dark:via-zinc-800 to-transparent" />
 
       {/* Background Label */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center opacity-[0.03] dark:opacity-[0.07] pointer-events-none select-none">
-        <span className="text-[20vw] font-black italic uppercase tracking-tighter leading-none whitespace-nowrap">ECOSYSTEM</span>
+        <span className="text-[12vw] md:text-[20vw] font-black italic uppercase tracking-tighter leading-none whitespace-nowrap">ECOSYSTEM</span>
       </div>
 
       <div className="relative z-10 flex flex-col justify-center min-h-[40vh] md:min-h-[50vh]">
@@ -43,7 +43,7 @@ export default function Connectivity() {
           <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(0,0,0,0.02)_50%,transparent_100%)] dark:bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.03)_50%,transparent_100%)] z-20 pointer-events-none animate-pulse" />
 
           <motion.div
-            className="flex w-max gap-16 md:gap-24 items-center py-12 will-change-transform"
+            className="flex w-max gap-8 md:gap-24 items-center py-8 md:py-12 will-change-transform"
             style={{ transform: "translateZ(0)" }}
             animate={{ x: ["0%", "-33.333%"] }}
             transition={{
@@ -56,19 +56,19 @@ export default function Connectivity() {
               <div key={i} className="flex items-center gap-6 group cursor-default [backface-visibility:hidden]">
                 {/* Stylish Icon with Hidden Brand Color - Revealed on Hover */}
                 <div
-                  className="brand-icon-wrapper w-16 h-16 md:w-20 md:h-20 bg-zinc-950 dark:bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 group-hover:border-white/20 shadow-lg text-zinc-500"
+                  className="brand-icon-wrapper w-12 h-12 md:w-20 md:h-20 bg-zinc-950 dark:bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 group-hover:border-white/20 shadow-lg text-zinc-500"
                   style={{ "--brand-color": item.color } as any}
                 >
-                  <item.icon className="w-8 h-8 md:w-10 md:h-10 transition-colors duration-500" />
+                  <item.icon className="w-6 h-6 md:w-10 md:h-10 transition-colors duration-500" />
                 </div>
 
                 {/* GenZ Styled Text */}
-                <span className="text-6xl md:text-8xl font-black italic uppercase tracking-tighter text-zinc-950 dark:text-white transition-all duration-500 group-hover:translate-x-4 antialiased">
+                <span className="text-4xl md:text-8xl font-black italic uppercase tracking-tighter text-zinc-950 dark:text-white transition-all duration-500 group-hover:translate-x-4 antialiased">
                   {item.name}
                 </span>
 
                 {/* Separator Bullet */}
-                <div className="w-4 h-4 md:w-6 md:h-6 rotate-45 border-4 border-zinc-200 dark:border-zinc-800 ml-8 md:ml-12 group-hover:border-zinc-950 dark:group-hover:border-white transition-colors" />
+                <div className="w-3 h-3 md:w-6 md:h-6 rotate-45 border-2 md:border-4 border-zinc-200 dark:border-zinc-800 ml-4 md:ml-12 group-hover:border-zinc-950 dark:group-hover:border-white transition-colors" />
               </div>
             ))}
           </motion.div>

@@ -18,7 +18,7 @@ export default function Hero() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.05]);
 
   return (
-    <section ref={sectionRef} className="relative pt-44 pb-32 overflow-hidden bg-white dark:bg-zinc-950">
+    <section ref={sectionRef} className="relative pt-24 pb-16 md:pt-44 md:pb-32 overflow-hidden bg-white dark:bg-zinc-950">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center">
           {/* Frontier Badge */}
@@ -47,8 +47,8 @@ export default function Hero() {
           </div>
 
           {/* Subheading Narrative */}
-          <div className="max-w-4xl mx-auto mb-20">
-            <TextReveal delay={0.7} className="text-xl md:text-3xl text-zinc-500 font-medium italic">
+          <div className="max-w-4xl mx-auto mb-12 md:mb-20">
+            <TextReveal delay={0.7} className="text-base md:text-3xl text-zinc-500 font-medium italic">
               Easyio Technologies builds ultra-high-performance business systems. We help companies replace technical complexity with streamlined, scalable software that powers growth.
             </TextReveal>
           </div>
@@ -71,39 +71,39 @@ export default function Hero() {
           <FadeIn delay={1.2}>
             <motion.div 
               style={{ scale }}
-              className="mt-40 relative max-w-6xl mx-auto rounded-[3rem] border border-zinc-100 dark:border-zinc-900 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-3xl overflow-hidden aspect-[16/9] shadow-2xl dark:shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)] transition-all group p-1"
+              className="mt-16 md:mt-40 relative max-w-6xl mx-auto rounded-[2rem] md:rounded-[3rem] border border-zinc-100 dark:border-zinc-900 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-3xl overflow-hidden aspect-auto md:aspect-[16/9] shadow-2xl dark:shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)] transition-all group p-1"
             >
-              <div className="w-full h-full rounded-[2.8rem] bg-zinc-50 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-white/5 relative overflow-hidden flex flex-col">
+              <div className="w-full h-full rounded-[1.8rem] md:rounded-[2.8rem] bg-zinc-50 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-white/5 relative overflow-hidden flex flex-col">
                 {/* Header Bar */}
-                <div className="flex items-center justify-between px-8 py-4 border-b border-zinc-200/50 dark:border-white/5">
-                  <div className="flex gap-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800" />
+                <div className="flex items-center justify-between px-6 md:px-8 py-3 md:py-4 border-b border-zinc-200/50 dark:border-white/5">
+                  <div className="flex gap-1.5 md:gap-2">
+                    <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800" />
+                    <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800" />
+                    <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800" />
                   </div>
-                  <div className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-400">
+                  <div className="text-[7px] md:text-[9px] font-black uppercase tracking-[0.3em] text-zinc-400">
                     Stable Infrastructure // v.2.0
                   </div>
-                  <div className="w-10 h-0.5 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
+                  <div className="w-6 md:w-10 h-0.5 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
                 </div>
 
                 {/* Main Dashboard Area */}
-                <div className="flex-1 p-8 grid grid-cols-12 gap-8">
-                  {/* Left Column - Metrics */}
-                  <div className="col-span-4 flex flex-col gap-6">
-                    <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-100 dark:border-white/5 shadow-sm">
-                      <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">Data Throughput</div>
-                      <div className="text-3xl font-black text-zinc-950 dark:text-white tabular-nums">942.8 GB/s</div>
+                <div className="flex-1 p-4 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
+                  {/* Column - Metrics */}
+                  <div className="col-span-1 md:col-span-4 flex flex-col gap-4 md:gap-6">
+                    <div className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-100 dark:border-white/5 shadow-sm">
+                      <div className="text-[8px] md:text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">Data Throughput</div>
+                      <div className="text-xl md:text-3xl font-black text-zinc-950 dark:text-white tabular-nums">942.8 GB/s</div>
                       <div className="mt-4 h-1 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
                         <div className="h-full w-[85%] bg-zinc-900 dark:bg-white" />
                       </div>
                     </div>
-                    <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-100 dark:border-white/5 shadow-sm">
-                      <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">System Efficiency</div>
-                      <div className="text-3xl font-black text-zinc-950 dark:text-white tabular-nums">98.4%</div>
+                    <div className="p-4 md:p-6 rounded-2xl md:rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-100 dark:border-white/5 shadow-sm">
+                      <div className="text-[8px] md:text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">System Efficiency</div>
+                      <div className="text-xl md:text-3xl font-black text-zinc-950 dark:text-white tabular-nums">98.4%</div>
                       <div className="mt-4 flex gap-1">
                         {[40, 60, 45, 90, 65, 80, 75].map((h, i) => (
-                          <div key={i} className="flex-1 bg-zinc-100 dark:bg-zinc-800 rounded-sm relative h-12 overflow-hidden">
+                          <div key={i} className="flex-1 bg-zinc-100 dark:bg-zinc-800 rounded-sm relative h-8 md:h-12 overflow-hidden">
                             <div 
                               className="absolute bottom-0 w-full bg-zinc-300 dark:bg-zinc-700 transition-all duration-1000" 
                               style={{ height: `${h}%` }}
@@ -114,8 +114,8 @@ export default function Hero() {
                     </div>
                   </div>
 
-                  {/* Center/Right - Visual Component */}
-                  <div className="col-span-8 rounded-3xl bg-zinc-100/30 dark:bg-zinc-950/50 border border-dashed border-zinc-200 dark:border-zinc-800 flex items-center justify-center relative overflow-hidden group/viz">
+                  {/* Visual Component */}
+                  <div className="col-span-1 md:col-span-8 h-48 md:h-auto rounded-2xl md:rounded-3xl bg-zinc-100/30 dark:bg-zinc-950/50 border border-dashed border-zinc-200 dark:border-zinc-800 flex items-center justify-center relative overflow-hidden group/viz">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.02)_100%)] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.01)_0%,rgba(0,0,0,0)_100%)]" />
                     
                     {/* Abstract Grid Map */}
@@ -139,9 +139,9 @@ export default function Hero() {
                 </div>
 
                 {/* Footer Status */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full border border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md text-[9px] font-bold text-zinc-500 tracking-widest uppercase flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  All Systems Operational // High-Performance Standards Established
+                <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 px-4 md:px-6 py-1.5 md:py-2 rounded-full border border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md text-[7px] md:text-[9px] font-bold text-zinc-500 tracking-widest uppercase flex items-center gap-2 md:gap-3 whitespace-nowrap">
+                  <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  All Systems Operational // High-Performance
                 </div>
               </div>
             </motion.div>

@@ -145,7 +145,7 @@ export default function Showcase() {
   };
 
   return (
-    <section className="relative py-40 bg-white dark:bg-zinc-950 overflow-hidden" id="builds">
+    <section className="relative py-16 md:py-40 bg-white dark:bg-zinc-950 overflow-hidden" id="builds">
       {/* Universal Grid Overlay */}
       <div className="absolute inset-x-0 inset-y-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none select-none">
         <svg width="100%" height="100%">
@@ -228,7 +228,7 @@ export default function Showcase() {
           </div>
 
           {/* Right Side: Immersive HUD Window */}
-          <div className="lg:flex-1 relative min-h-[650px] lg:h-[800px]">
+          <div className="lg:flex-1 relative min-h-[500px] md:min-h-[650px] lg:h-[800px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -242,9 +242,9 @@ export default function Showcase() {
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 0.04, x: 0 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="absolute -top-12 -right-10 lg:-right-40 pointer-events-none select-none whitespace-nowrap z-0 overflow-hidden"
+                  className="absolute -top-4 md:-top-12 -right-10 lg:-right-40 pointer-events-none select-none whitespace-nowrap z-0 overflow-hidden"
                 >
-                  <span className="text-[15vw] lg:text-[25vw] font-black italic uppercase leading-none tracking-tighter block">
+                  <span className="text-[12vw] lg:text-[25vw] font-black italic uppercase leading-none tracking-tighter block">
                     {projects[active].short}
                   </span>
                 </motion.div>
@@ -255,7 +255,7 @@ export default function Showcase() {
                      initial: { opacity: 0, y: 20 },
                      animate: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }
                    }}
-                   className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 lg:p-20 overflow-hidden group/hud border border-zinc-100 dark:border-zinc-900 rounded-3xl lg:rounded-[3rem] bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm"
+                   className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 lg:p-20 overflow-hidden group/hud border border-zinc-100 dark:border-zinc-900 rounded-2xl md:rounded-3xl lg:rounded-[3rem] bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm"
                 >
                   {/* Corner Ornaments */}
                   <div className="absolute top-0 left-0 w-8 lg:w-12 h-8 lg:h-12 border-t-2 border-l-2 border-zinc-100 dark:border-zinc-900 rounded-tl-2xl lg:rounded-tl-3xl" />
@@ -283,7 +283,7 @@ export default function Showcase() {
                           <h4 className="text-xl lg:text-3xl font-black text-zinc-950 dark:text-white italic uppercase tracking-tighter leading-none">{projects[active].tag}</h4>
                        </div>
 
-                       <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-zinc-950 dark:text-white uppercase tracking-tighter leading-[0.85] mb-6 lg:mb-10 skew-x-[-4deg] break-words pr-4 lg:pr-12">
+                       <h2 className="text-3xl md:text-5xl lg:text-7xl font-black text-zinc-950 dark:text-white uppercase tracking-tighter leading-[0.85] mb-4 md:mb-10 skew-x-[-4deg] break-words pr-4 lg:pr-12 max-w-full">
                          <TextReveal>{projects[active].title}</TextReveal>
                        </h2>
                        
@@ -312,8 +312,8 @@ export default function Showcase() {
                     <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-12 border-t lg:border-t-0 lg:border-l border-zinc-100 dark:border-zinc-800 pt-8 lg:pt-0 lg:pl-12">
                        {Object.entries(projects[active].stats).map(([label, value]) => (
                         <div key={label} className="group/stat">
-                          <div className="text-[8px] lg:text-[10px] font-black italic uppercase tracking-[0.5em] text-zinc-300 dark:text-zinc-700 mb-2">{label}</div>
-                          <div className="text-2xl lg:text-5xl font-black text-zinc-950 dark:text-white tabular-nums tracking-tighter italic uppercase transition-transform group-hover/stat:translate-x-2">{value}</div>
+                          <div className="text-[8px] lg:text-[10px] font-black italic uppercase tracking-[0.5em] text-zinc-300 dark:text-zinc-700 mb-1 lg:mb-2">{label}</div>
+                          <div className="text-xl lg:text-5xl font-black text-zinc-950 dark:text-white tabular-nums tracking-tighter italic uppercase transition-transform group-hover/stat:translate-x-2">{value}</div>
                         </div>
                       ))}
                     </div>

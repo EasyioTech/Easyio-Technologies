@@ -50,33 +50,33 @@ const serviceStreams = [
 export default function ServicesPage() {
   return (
     <PageWrapper>
-      <section className="py-24 md:py-40">
+      <section className="py-16 md:py-40">
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
-          <div className="max-w-4xl mb-32">
+          <div className="max-w-4xl mb-16 md:mb-32">
             <FadeIn>
-              <div className="flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
+              <div className="flex items-center gap-3 mb-6 md:mb-8 px-4 py-2 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
                 <Terminal className="w-4 h-4 text-zinc-400" />
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">Service_Manifest</span>
               </div>
             </FadeIn>
 
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 uppercase italic leading-[0.85]">
+            <h1 className="text-4xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 uppercase italic leading-[0.85]">
               <TextReveal>Operational</TextReveal> <br />
               <TextReveal delay={0.2} className="text-zinc-400 dark:text-zinc-800">Elite Grade</TextReveal>
             </h1>
 
             <FadeIn delay={0.4}>
-              <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed italic">
+              <p className="text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed italic">
                 We don't provide "IT support." We engineer sovereign digital infrastructure that serves as the backbone for regional and global leadership.
               </p>
             </FadeIn>
           </div>
 
           {/* Service Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1px bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-900 rounded-[2rem] overflow-hidden mb-40">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1px bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-900 rounded-3xl md:rounded-[2rem] overflow-hidden mb-20 md:mb-40">
             {serviceStreams.map((s, i) => (
-              <FadeIn key={s.title} delay={0.1 * i} className="bg-white dark:bg-zinc-950 p-10 group hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors">
+              <FadeIn key={s.title} delay={0.1 * i} className="bg-white dark:bg-zinc-950 p-6 md:p-10 group hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors">
                 <div className="flex flex-col h-full">
                   <div className="flex justify-between items-start mb-12">
                      <s.icon className="w-10 h-10 text-zinc-400 dark:text-zinc-600 transition-colors group-hover:text-zinc-950 dark:group-hover:text-white" />
@@ -98,16 +98,16 @@ export default function ServicesPage() {
 
           {/* Regional Impact Section */}
           <FadeIn>
-            <div className="p-12 md:p-24 border border-zinc-100 dark:border-zinc-900 rounded-[3rem] bg-zinc-50/30 dark:bg-zinc-900/10 backdrop-blur-sm">
-                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic mb-12 leading-none text-zinc-950 dark:text-white">
+            <div className="p-8 md:p-24 border border-zinc-100 dark:border-zinc-900 rounded-3xl md:rounded-[3rem] bg-zinc-50/30 dark:bg-zinc-900/10 backdrop-blur-sm">
+                <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter italic mb-8 md:mb-12 leading-none text-zinc-950 dark:text-white">
                   Kashmir's Frontier <br />
                   <span className="text-zinc-400 dark:text-zinc-800">Technological Hub.</span>
                 </h2>
-                <div className="grid md:grid-cols-2 gap-12 lg:gap-24 italic font-medium">
-                   <p className="text-xl text-zinc-500 leading-relaxed">
+                <div className="grid md:grid-cols-2 gap-8 md:gap-24 italic font-medium">
+                   <p className="text-lg md:text-xl text-zinc-500 leading-relaxed">
                      Based in Srinagar, Easyio is building the future of the region's digital economy. We provide high-performance solutions for local governments, healthcare, and enterprise, ensuring that Kashmir remains at the forefront of global software engineering standards.
                    </p>
-                   <p className="text-xl text-zinc-500 leading-relaxed">
+                   <p className="text-lg md:text-xl text-zinc-500 leading-relaxed">
                      Our commitment extends beyond code. We take a holistic approach to system design, considering the unique socio-economic landscape of the valley to build software that is resilient, accessible, and world-class.
                    </p>
                 </div>

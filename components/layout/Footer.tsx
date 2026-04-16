@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative pt-40 pb-20 px-6 overflow-hidden transition-colors">
+    <footer className="relative pt-16 md:pt-40 pb-20 px-6 overflow-hidden transition-colors">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-20">
           {/* Brand Identity */}
@@ -21,7 +21,7 @@ export default function Footer() {
               </span>
             </Link>
 
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 font-medium italic transition-colors leading-relaxed max-w-sm">
+            <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-medium italic transition-colors leading-relaxed max-w-sm">
                 Architecting high-fidelity business systems with absolute precision. We don't build software; we engineer destiny.
             </p>
 
@@ -43,7 +43,7 @@ export default function Footer() {
           <div className="md:col-span-8 grid grid-cols-2 lg:grid-cols-4 gap-12">
             {Object.entries(footerLinks).map(([key, section]) => (
                 <div key={key}>
-                  <h4 className="text-[10px] font-black text-zinc-950 dark:text-white uppercase tracking-[0.4em] mb-12">
+                  <h4 className="text-[10px] font-black text-zinc-950 dark:text-white uppercase tracking-[0.4em] mb-8 md:mb-12">
                     {section.title}
                   </h4>
                   <ul className="space-y-6">
@@ -61,7 +61,7 @@ export default function Footer() {
         </div>
 
         {/* Tactical Base */}
-        <div className="mt-40 pt-20 border-t border-zinc-100 dark:border-zinc-900 transition-colors flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
+        <div className="mt-20 md:mt-40 pt-12 md:pt-20 border-t border-zinc-100 dark:border-zinc-900 transition-colors flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400 italic">
                 <span>&copy; {siteConfig.year} Easyio Technologies.</span>
                 <span className="hidden md:block w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-800" />
@@ -90,7 +90,7 @@ export default function Footer() {
         </div>
 
         {/* Big Background Visual */}
-        <div className="mt-20 flex justify-center opacity-[0.03] dark:opacity-[0.01] pointer-events-none scale-125 md:scale-150 transition-all select-none overflow-hidden">
+        <div className="mt-12 md:mt-20 flex justify-center opacity-[0.03] dark:opacity-[0.01] pointer-events-none scale-110 md:scale-150 transition-all select-none overflow-hidden">
             <h2 className="text-[18vw] font-black uppercase tracking-tighter leading-none italic select-none">EASYIO.</h2>
         </div>
       </div>

@@ -6,7 +6,7 @@ import { TextReveal, FadeIn } from "@/components/shared/Animations";
 
 export default function CTA() {
   return (
-    <section className="py-60 px-6 relative border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-zinc-950 transition-colors">
+    <section className="py-16 md:py-60 px-6 relative border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-zinc-950 transition-colors">
       <div className="max-w-7xl mx-auto relative z-10 text-center">
         <FadeIn>
           <div className="mb-12 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-black shadow-2xl">
@@ -20,8 +20,8 @@ export default function CTA() {
           <TextReveal delay={0.3} className="text-zinc-500 dark:text-zinc-700 italic">YOUR TECHNOLOGY?</TextReveal>
         </h2>
 
-        <div className="max-w-3xl mx-auto mb-20">
-          <TextReveal delay={0.6} className="text-xl md:text-3xl text-zinc-500 font-medium italic">
+        <div className="max-w-3xl mx-auto mb-12 md:mb-20">
+          <TextReveal delay={0.6} className="text-lg md:text-3xl text-zinc-500 font-medium italic">
             We turn old, messy technology into simple, powerful tools that just work. No complicated jargon—just solutions that help your business move faster.
           </TextReveal>
         </div>
@@ -41,7 +41,7 @@ export default function CTA() {
         
         {/* Architectural Footer Accent */}
         <FadeIn delay={1.2}>
-          <div className="mt-40 flex flex-wrap items-center justify-center gap-12 md:gap-24 opacity-20 dark:opacity-10 grayscale transition-all">
+          <div className="mt-16 md:mt-40 flex flex-wrap items-center justify-center gap-8 md:gap-24 opacity-20 dark:opacity-10 grayscale transition-all">
               <div className="text-[10px] font-bold uppercase tracking-[1em]">Engineering</div>
               <div className="text-[10px] font-bold uppercase tracking-[1em]">Performance</div>
               <div className="text-[10px] font-bold uppercase tracking-[1em]">Scalability</div>

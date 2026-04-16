@@ -29,31 +29,31 @@ const values = [
 export default function AboutPage() {
   return (
     <PageWrapper>
-      <section className="py-24 md:py-40">
+      <section className="py-16 md:py-40">
         <div className="max-w-7xl mx-auto px-6">
           {/* Hero Section */}
-          <div className="max-w-4xl mb-32">
+          <div className="max-w-4xl mb-16 md:mb-32">
             <FadeIn>
-              <div className="flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
+              <div className="flex items-center gap-3 mb-6 md:mb-8 px-4 py-2 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
                 <Terminal className="w-4 h-4 text-zinc-400" />
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">The_Protocol</span>
               </div>
             </FadeIn>
             
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 uppercase italic leading-[0.85]">
+            <h1 className="text-4xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-8 md:mb-12 uppercase italic leading-[0.85]">
               <TextReveal>We Engineer</TextReveal> <br />
               <TextReveal delay={0.2} className="text-zinc-400 dark:text-zinc-800">Operational Destiny</TextReveal>
             </h1>
             
             <FadeIn delay={0.4}>
-              <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed italic">
+              <p className="text-lg md:text-2xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed italic">
                 Easyio is a frontier software lab founded on the principle that business software should be as resilient as a bridge and as fast as light. We serve the enterprises that refuse to settle for generic solutions.
               </p>
             </FadeIn>
           </div>
 
           {/* Core Values / Philosophy */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 mb-40">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 mb-20 md:mb-40">
             {values.map((v, i) => (
               <FadeIn key={v.title} delay={0.2 * i}>
                 <div className="group border-t border-zinc-100 dark:border-zinc-900 pt-12">
@@ -70,7 +70,7 @@ export default function AboutPage() {
           </div>
 
           {/* Secondary Content - The Srinagar Hub */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center border-t border-zinc-100 dark:border-zinc-900 pt-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center border-t border-zinc-100 dark:border-zinc-900 pt-16 md:pt-24">
             <FadeIn>
               <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter italic leading-none text-zinc-950 dark:text-white">
                 Operating from the Valley of Deep Work.

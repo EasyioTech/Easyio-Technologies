@@ -63,7 +63,7 @@ export default function BentoFeatures() {
   return (
     <section
       ref={containerRef}
-      className="py-60 px-6 relative bg-white dark:bg-zinc-950 overflow-hidden transition-colors"
+      className="py-24 md:py-60 px-6 relative bg-white dark:bg-zinc-950 overflow-hidden transition-colors"
       id="matrix"
     >
       {/* Blueprint Canvas */}
@@ -80,19 +80,19 @@ export default function BentoFeatures() {
           />
         </div>
 
-        <div className="mb-40 text-center relative z-10">
+        <div className="mb-16 md:mb-40 text-center relative z-10">
           <div className="inline-flex items-center gap-4 mb-8">
             <div className="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white animate-ping" />
             <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-500 dark:text-zinc-500">OUR CAPABILITIES</span>
           </div>
-          <h2 className="text-7xl md:text-[10rem] font-black text-zinc-950 dark:text-white uppercase leading-[0.8] tracking-tighter">
+          <h2 className="text-5xl md:text-[10rem] font-black text-zinc-950 dark:text-white uppercase leading-[0.8] tracking-tighter">
             <TextReveal delay={0.1}>OUR</TextReveal> <br />
             <TextReveal delay={0.3}>MATRIX.</TextReveal>
           </h2>
         </div>
 
         {/* Logical Mapping Nodes */}
-        <div className="space-y-40 md:space-y-64 relative z-10">
+        <div className="space-y-24 md:space-y-64 relative z-10">
           {nodes.map((node, i) => (
             <div key={node.id} className="relative group">
               <div className={`flex flex-col ${node.side === 'right' ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-10 md:gap-20`}>
@@ -121,11 +121,11 @@ export default function BentoFeatures() {
                       <span className="text-[9px] font-black text-zinc-500 dark:text-zinc-500 tracking-widest uppercase">{node.label}</span>
                     </div>
 
-                    <h3 className="text-4xl md:text-6xl font-black text-zinc-950 dark:text-white uppercase tracking-tighter mb-8 group-hover:text-zinc-600 dark:group-hover:text-zinc-400 transition-colors duration-500">
+                    <h3 className="text-3xl md:text-6xl font-black text-zinc-950 dark:text-white uppercase tracking-tighter mb-4 md:mb-8 group-hover:text-zinc-600 dark:group-hover:text-zinc-400 transition-colors duration-500">
                       {node.title}
                     </h3>
 
-                    <p className={`text-xl md:text-2xl text-zinc-600 dark:text-zinc-500 font-medium italic max-w-xl ${node.side === 'left' ? 'ml-auto' : ''} leading-relaxed group-hover:text-zinc-950 dark:group-hover:text-zinc-300 transition-colors duration-700`}>
+                    <p className={`text-lg md:text-2xl text-zinc-600 dark:text-zinc-500 font-medium italic max-w-xl ${node.side === 'left' ? 'ml-auto' : ''} leading-relaxed group-hover:text-zinc-950 dark:group-hover:text-zinc-300 transition-colors duration-700`}>
                       {node.desc}
                     </p>
 
@@ -164,9 +164,9 @@ export default function BentoFeatures() {
         </div>
 
         {/* Global Coordinate Footer */}
-        <div className="mt-80 flex justify-between items-center text-[8px] font-black text-zinc-400 dark:text-zinc-600 uppercase tracking-[1em]">
+        <div className="mt-20 md:mt-80 flex justify-between items-center text-[8px] font-black text-zinc-400 dark:text-zinc-600 uppercase tracking-[1em]">
           <span>ARCH_SYS_MAPPING</span>
-          <div className="flex gap-10">
+          <div className="flex gap-4 md:gap-10">
             <span>L: -12.0494</span>
             <span>R: +4.9213</span>
           </div>
