@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Easyio Technologies",
   shortName: "Easyio",
   description:
-    "Frontier software lab dedicated to building high-performance systems and next-generation business solutions.",
+    "The premier software engineering firm in Kashmir, dedicated to architecting high-performance systems and next-generation business solutions for global enterprises.",
   url: "https://easyiotech.com",
   ogImage: "https://easyiotech.com/og-image.png",
   links: {
@@ -16,7 +16,7 @@ export const siteConfig = {
     support: "support@easyiotech.com",
     careers: "careers@easyiotech.com",
   },
-  location: "Mumbai, India",
+  location: "Srinagar, Kashmir",
   year: new Date().getFullYear(),
 };
 
