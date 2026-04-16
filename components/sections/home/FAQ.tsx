@@ -7,24 +7,24 @@ import { TextReveal, FadeIn } from "@/components/shared/Animations";
 
 const faqs = [
   {
-    q: 'What is the core engineering philosophy?',
-    a: 'We prioritize architectural sovereignty and technical excellence. Our systems are built to be modular, distributed, and capable of world-scale throughput without operational noise.',
+    q: 'What is your core engineering philosophy?',
+    a: 'We prioritize reliability and technical excellence. Our systems are built to be modular and scalable, ensuring they can handle your business growth without performance drops.',
   },
   {
-    q: 'How do you initialize a new build?',
-    a: 'Contact our protocol lead. We conduct a deep architectural audit of your current systems to identify bottlenecks before drafting a deployment manifest.',
+    q: 'How do we start a project with you?',
+    a: 'You can reach out through our contact page. We begin with a thorough audit of your current technology to identify improvements before designing a custom solution.',
   },
   {
-    q: 'Which technologies power the frontier?',
-    a: 'We utilize low-latency protocols: Rust and Go for systems engineering, TypeScript for interface logic, and high-frequency PostgreSQL for data persistence.',
+    q: 'What technologies do you specialize in?',
+    a: 'We use industry-leading tools like Rust and Go for backend systems, TypeScript for modern web interfaces, and PostgreSQL for robust data management.',
   },
   {
-    q: 'Is team integration possible?',
-    a: 'We offer elite team augmentation. Our engineers integrate directly into your workflow to normalize high-performance standards and accelerate critical milestones.',
+    q: 'Can you work with our existing team?',
+    a: 'Yes, we offer team augmentation services. Our senior engineers can integrate with your current workflow to help you meet deadlines and improve overall code quality.',
   },
   {
-    q: 'What is the typical deployment cycle?',
-    a: 'We operate in high-velocity sprints. From architectural discovery to production deployment, our process is designed to minimize latency and maximize system impact.',
+    q: 'What does your Typical timeline look like?',
+    a: 'We work in focused sprints to deliver results quickly. From our initial meeting to a working system, we focus on moving fast without sacrificing stability.',
   },
 ];
 
@@ -36,7 +36,7 @@ export default function FAQ() {
       <div className="max-w-4xl mx-auto">
         <div className="mb-32 text-center">
           <h2 className="heading-2">
-            <TextReveal>SYSTEM QUERY.</TextReveal>
+            <TextReveal>COMMON QUESTIONS.</TextReveal>
           </h2>
         </div>
 

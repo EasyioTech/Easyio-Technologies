@@ -11,12 +11,12 @@ export default function CTA() {
         <FadeIn>
           <div className="mb-12 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-black shadow-2xl">
               <Terminal className="w-4 h-4" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Let's Connect</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Work with Us</span>
           </div>
         </FadeIn>
 
         <h2 className="heading-1 mb-12 max-w-5xl mx-auto">
-          <TextReveal>READY TO SIMPLIFY</TextReveal> <br />
+          <TextReveal>READY TO SCALE</TextReveal> <br />
           <TextReveal delay={0.3} className="text-zinc-500 dark:text-zinc-700 italic">YOUR TECHNOLOGY?</TextReveal>
         </h2>
 
@@ -42,9 +42,9 @@ export default function CTA() {
         {/* Architectural Footer Accent */}
         <FadeIn delay={1.2}>
           <div className="mt-40 flex flex-wrap items-center justify-center gap-12 md:gap-24 opacity-20 dark:opacity-10 grayscale transition-all">
-              <div className="text-[10px] font-bold uppercase tracking-[1em]">Architecture</div>
-              <div className="text-[10px] font-bold uppercase tracking-[1em]">Latency</div>
-              <div className="text-[10px] font-bold uppercase tracking-[1em]">Scale</div>
+              <div className="text-[10px] font-bold uppercase tracking-[1em]">Engineering</div>
+              <div className="text-[10px] font-bold uppercase tracking-[1em]">Performance</div>
+              <div className="text-[10px] font-bold uppercase tracking-[1em]">Scalability</div>
           </div>
         </FadeIn>
       </div>

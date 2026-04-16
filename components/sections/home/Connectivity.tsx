@@ -6,19 +6,19 @@ import { motion } from "framer-motion";
 const integrations = [
   { name: "PostgreSQL", icon: Database, color: "#336791" },
   { name: "Kubernetes", icon: Cloud, color: "#326CE5" },
-  { name: "GitHub_CI", icon: Github, color: "#ffffff" },
-  { name: "AWS_Cloud", icon: Globe, color: "#FF9900" },
-  { name: "Redis_Mem", icon: Share2, color: "#DC382D" },
-  { name: "SSL_Sec", icon: Lock, color: "#00A3E0" },
-  { name: "NPU_Core", icon: Cpu, color: "#0071C5" },
-  { name: "Mesh_Net", icon: Radio, color: "#00D1FF" },
-  { name: "Dev_Flow", icon: Workflow, color: "#7731F7" },
-  { name: "Protocol_X", icon: Terminal, color: "#4D4D4D" },
-  { name: "Vault_S", icon: Shield, color: "#FFD700" },
-  { name: "Sync_Node", icon: Activity, color: "#FF3366" },
-  { name: "Mesh_H", icon: Layers, color: "#00FFA3" },
-  { name: "Net_L", icon: Network, color: "#663399" },
-  { name: "I/O_Pipe", icon: Zap, color: "#F0DB4F" },
+  { name: "GitHub CI", icon: Github, color: "#ffffff" },
+  { name: "AWS Cloud", icon: Globe, color: "#FF9900" },
+  { name: "Redis", icon: Share2, color: "#DC382D" },
+  { name: "Security", icon: Lock, color: "#00A3E0" },
+  { name: "Infrastructure", icon: Cpu, color: "#0071C5" },
+  { name: "Mesh Networking", icon: Radio, color: "#00D1FF" },
+  { name: "Development", icon: Workflow, color: "#7731F7" },
+  { name: "Custom Protocols", icon: Terminal, color: "#4D4D4D" },
+  { name: "Secrets Vault", icon: Shield, color: "#FFD700" },
+  { name: "Cloud Sync", icon: Activity, color: "#FF3366" },
+  { name: "System Layers", icon: Layers, color: "#00FFA3" },
+  { name: "Networking", icon: Network, color: "#663399" },
+  { name: "Optimization", icon: Zap, color: "#F0DB4F" },
 ];
 
 // Triple duplicate for ultra-seamless loop
@@ -33,7 +33,7 @@ export default function Connectivity() {
 
       {/* Background Label */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center opacity-[0.03] dark:opacity-[0.07] pointer-events-none select-none">
-        <span className="text-[20vw] font-black italic uppercase tracking-tighter leading-none whitespace-nowrap">INTEGRATIONS</span>
+        <span className="text-[20vw] font-black italic uppercase tracking-tighter leading-none whitespace-nowrap">ECOSYSTEM</span>
       </div>
 
       <div className="relative z-10 flex flex-col justify-center min-h-[40vh] md:min-h-[50vh]">
@@ -86,19 +86,19 @@ export default function Connectivity() {
         {/* HUD Subtitle / Status */}
         <div className="max-w-7xl mx-auto w-full px-6 mt-12 flex flex-col md:flex-row justify-between items-center gap-6 opacity-60">
           <div className="flex items-center gap-4">
-            <span className="text-[10px] font-black uppercase tracking-[0.6em] text-zinc-400 dark:text-zinc-600">GLOBAL_ECOSYSTEM</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.6em] text-zinc-400 dark:text-zinc-600">GLOBAL_NETWORK</span>
             <div className="w-12 h-[1px] bg-zinc-200 dark:bg-zinc-800" />
-            <span className="text-[10px] font-mono font-bold text-zinc-950 dark:text-white tracking-widest">v2.0.42_STABLE</span>
+            <span className="text-[10px] font-mono font-bold text-zinc-950 dark:text-white tracking-widest">v2.0_STABLE</span>
           </div>
 
           <div className="flex gap-8">
             <div className="flex items-center gap-3">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-950 dark:text-white">SYSTEM_STABLE</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-950 dark:text-white">SYSTEM_STATUS</span>
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-600">LATENCY:</span>
-              <span className="text-[10px] font-mono font-bold text-zinc-950 dark:text-white">0.02ms</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-600">OPTIMIZED:</span>
+              <span className="text-[10px] font-mono font-bold text-zinc-950 dark:text-white">TRUE</span>
             </div>
           </div>
         </div>

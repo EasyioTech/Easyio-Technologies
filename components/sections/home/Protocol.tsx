@@ -7,26 +7,26 @@ import { useRef } from "react";
 
 const steps = [
   {
-    title: "Forensic Audit",
-    desc: "We perform a deep-state audit of your architectural bottlenecks and technical debt.",
+    title: "System Audit",
+    desc: "We perform a deep analysis of your current architecture to pinpoint performance gaps and technical debt.",
     icon: Terminal,
     side: "left",
   },
   {
-    title: "Core Engineering",
-    desc: "Drafting the primary logical protocols with zero-overhead execution paths.",
+    title: "Strategy & Design",
+    desc: "We map out a tailored engineering roadmap focused on scalability and long-term stability.",
     icon: Code2,
     side: "right",
   },
   {
-    title: "High-Speed Sync",
-    desc: "Deploying modular units into your production stream with sub-millisecond precision.",
+    title: "Precision Build",
+    desc: "Our senior engineers implement the core infrastructure using modern, high-performance standards.",
     icon: Cpu,
     side: "left",
   },
   {
-    title: "Infinite Velocity",
-    desc: "Perpetual system monitoring at scale to ensure Architectural Dominance.",
+    title: "Scale & Monitor",
+    desc: "We integrate continuous monitoring to ensure your systems remain fast and reliable as you grow.",
     icon: Activity,
     side: "right",
   }
@@ -99,20 +99,20 @@ export default function Protocol() {
           <div className="lg:col-span-7">
             <FadeIn>
               <span className="text-[10px] font-black uppercase tracking-[0.8em] text-zinc-400 dark:text-zinc-600 mb-8 block">
-                The Process_v.2
+                OUR METHODOLOGY
               </span>
             </FadeIn>
             <h2 className="text-6xl md:text-9xl font-black tracking-tighter text-zinc-950 dark:text-white uppercase leading-[0.85]">
-              <TextReveal>ABSOLUTE</TextReveal> <br />
+              <TextReveal>HOW WE</TextReveal> <br />
               <span className="text-zinc-400 dark:text-zinc-800 italic underline decoration-zinc-200 dark:decoration-zinc-900 underline-offset-[20px]">
-                <TextReveal delay={0.4}>PIPELINE.</TextReveal>
+                <TextReveal delay={0.4}>DELIVER.</TextReveal>
               </span>
             </h2>
           </div>
           <div className="lg:col-span-5 pb-4">
             <FadeIn delay={0.6}>
               <p className="text-xl md:text-2xl text-zinc-500 font-medium italic leading-relaxed">
-                We don't do "Agile". We do Architectural Velocity. A forensic journey from discovery to production-grade dominance.
+                We follow a rigorous engineering methodology to move your project from initial discovery to production-grade excellence.
               </p>
             </FadeIn>
           </div>

@@ -19,30 +19,30 @@ export default function MarqueeText() {
         {/* Line 1 - GenZ Vibe / High Energy */}
         <motion.div style={{ x: x1 }} className="flex whitespace-nowrap">
           <span className="text-[8vw] font-black tracking-tighter text-zinc-950 dark:text-white uppercase leading-none">
-            Zero Tolerance for Mid Code <span className="text-zinc-400 dark:text-zinc-800 ml-10">/</span>
-            Architecting Lethal Efficiency <span className="text-zinc-400 dark:text-zinc-800 ml-10">/</span>
-            Zero Tolerance for Mid Code <span className="text-zinc-400 dark:text-zinc-800 ml-10">/</span>
-            Architecting Lethal Efficiency
+            Uncompromising Systems Engineering <span className="text-zinc-400 dark:text-zinc-800 ml-10">/</span>
+            High-Performance Infrastructure <span className="text-zinc-400 dark:text-zinc-800 ml-10">/</span>
+            Uncompromising Systems Engineering <span className="text-zinc-400 dark:text-zinc-800 ml-10">/</span>
+            High-Performance Infrastructure
           </span>
         </motion.div>
 
         {/* Line 2 - Unique Color / Opposite Direction */}
         <motion.div style={{ x: x2 }} className="flex whitespace-nowrap">
           <span className="text-[8vw] font-black tracking-tighter text-zinc-500 dark:text-zinc-400 uppercase leading-none">
-            Shipping Protocols at Lightspeed <span className="text-zinc-300 dark:text-zinc-800 ml-10">/</span>
-            No Compromise on Velocity <span className="text-zinc-300 dark:text-zinc-800 ml-10">/</span>
-            Shipping Protocols at Lightspeed <span className="text-zinc-300 dark:text-zinc-800 ml-10">/</span>
-            No Compromise on Velocity
+            Built for Global Scalability <span className="text-zinc-300 dark:text-zinc-800 ml-10">/</span>
+            Delivering Excellence at Scale <span className="text-zinc-300 dark:text-zinc-800 ml-10">/</span>
+            Built for Global Scalability <span className="text-zinc-300 dark:text-zinc-800 ml-10">/</span>
+            Delivering Excellence at Scale
           </span>
         </motion.div>
 
         {/* Line 3 - Tagline / Same as Line 1 */}
         <motion.div style={{ x: x1 }} className="flex whitespace-nowrap">
           <span className="text-[4vw] font-bold italic tracking-widest text-zinc-400/60 dark:text-zinc-600/50 uppercase leading-none">
-            Built for those who build the future <span className="mx-20">//</span>
-            EASYIO TECH v.2.0.4 <span className="mx-20">//</span>
-            Built for those who build the future <span className="mx-20">//</span>
-            EASYIO TECH v.2.0.4
+            Engineering the Future of Technology <span className="mx-20">//</span>
+            EASYIO TECHNOLOGIES v2.0 <span className="mx-20">//</span>
+            Engineering the Future of Technology <span className="mx-20">//</span>
+            EASYIO TECHNOLOGIES v2.0
           </span>
         </motion.div>
       </div>

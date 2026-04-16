@@ -1,14 +1,10 @@
-interface JsonLdProps {
-  schema: Record<string, any>;
-}
+import React from 'react';
 
-export default function JsonLd({ schema }: JsonLdProps) {
+export default function JsonLd({ data }: { data: any }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(schema),
-      }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
 }

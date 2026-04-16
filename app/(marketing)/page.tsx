@@ -1,71 +1,85 @@
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { generateMetadata } from "@/lib/seo";
-import SectionWrapper from "@/components/layout/SectionWrapper";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
+import PageWrapper from "@/components/layout/PageWrapper";
 import Hero from "@/components/sections/home/Hero";
 import BentoFeatures from "@/components/sections/home/BentoFeatures";
-import Stats from "@/components/sections/home/Stats";
+
 import Testimonials from "@/components/sections/home/Testimonials";
 import FAQ from "@/components/sections/home/FAQ";
 import CTA from "@/components/sections/home/CTA";
 
+import Logos from "@/components/sections/home/Logos";
+import Protocol from "@/components/sections/home/Protocol";
+import Showcase from "@/components/sections/home/Showcase";
+import Connectivity from "@/components/sections/home/Connectivity";
+import Pricing from "@/components/sections/home/Pricing";
+import MarqueeText from "@/components/sections/home/MarqueeText";
+
 export const metadata = generateMetadata({
-  title: "Frontier Software Lab",
+  title: "Easyio Technologies | High-Performance Software Engineering",
   description:
-    "Easyio Technologies: Building high-performance, modular systems and next-generation business solutions. From custom software to system architecture.",
+    "We build scalable, mission-critical software systems for global enterprises. Focus on reliability, performance, and modern architecture.",
   keywords: [
-    "software development",
-    "system architecture",
-    "DevOps",
-    "custom software",
-    "technology consulting",
+    "custom software development",
+    "enterprise software",
+    "scalable architecture",
+    "performance engineering",
   ],
   canonicalUrl: "https://easyiotech.com",
 });
 
 const SectionLoader = () => (
   <div className="w-full h-96 flex items-center justify-center py-20">
-    <div className="space-y-4 w-full max-w-4xl px-4">
-      <Skeleton className="h-12 w-3/4 mx-auto" />
-      <Skeleton className="h-64 w-full rounded-xl" />
+    <div className="space-y-8 w-full max-w-4xl px-4">
+      <Skeleton className="h-20 w-3/4 mx-auto rounded-full" />
+      <Skeleton className="h-96 w-full rounded-[3.5rem]" />
     </div>
   </div>
 );
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-zinc-200 dark:selection:bg-zinc-800 selection:text-zinc-950 dark:selection:text-white overflow-x-hidden">
-      <Hero />
+    <PageWrapper>
+      <main className="w-full">
+        <Hero />
 
-      <Suspense fallback={<SectionLoader />}>
-        <SectionWrapper className="w-full">
-          <BentoFeatures />
-        </SectionWrapper>
-      </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+            <Logos />
+        </Suspense>
 
-      <Suspense fallback={<SectionLoader />}>
-        <SectionWrapper>
-          <Stats />
-        </SectionWrapper>
-      </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+            <BentoFeatures />
+        </Suspense>
 
-      <Suspense fallback={<SectionLoader />}>
-        <SectionWrapper>
-          <Testimonials />
-        </SectionWrapper>
-      </Suspense>
+        <MarqueeText />
 
-      <Suspense fallback={<SectionLoader />}>
-        <SectionWrapper>
-          <FAQ />
-        </SectionWrapper>
-      </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+            <Protocol />
+        </Suspense>
 
-      <Suspense fallback={<SectionLoader />}>
-        <SectionWrapper>
-          <CTA />
-        </SectionWrapper>
-      </Suspense>
-    </div>
+        <Suspense fallback={<SectionLoader />}>
+            <Showcase />
+        </Suspense>
+
+        <Suspense fallback={<SectionLoader />}>
+            <Connectivity />
+        </Suspense>
+
+        <Suspense fallback={<SectionLoader />}>
+            <Testimonials />
+        </Suspense>
+
+        <Suspense fallback={<SectionLoader />}>
+            <FAQ />
+        </Suspense>
+
+        <Suspense fallback={<SectionLoader />}>
+            <CTA />
+        </Suspense>
+      </main>
+    </PageWrapper>
   );
 }

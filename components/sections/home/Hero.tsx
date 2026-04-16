@@ -26,7 +26,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 mb-12 shadow-sm">
               <Terminal className="w-3 h-3 text-zinc-400" />
               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400">
-                <span className="text-zinc-950 dark:text-zinc-200">142</span> ACTIVE NODES CONNECTED
+                TRUSTED BY <span className="text-zinc-950 dark:text-zinc-200">ENTERPRISE LEADERS</span>
               </span>
             </div>
           </FadeIn>
@@ -34,22 +34,22 @@ export default function Hero() {
           {/* Main Heading with Parallax Scroll */}
           <div className="relative mb-12 overflow-visible">
             <motion.h1 style={{ x: xLeft }} className="heading-1 whitespace-nowrap">
-              <span className="opacity-10 dark:opacity-5 mr-8">SYSTEM ARCHITECTURE //</span>
-              ENGINEERING THE
-              <span className="opacity-10 dark:opacity-5 ml-8 text-zinc-500 italic">CORE PROTOCOLS // RELIABILITY</span>
+              <span className="opacity-10 dark:opacity-5 mr-8">SCALABLE SYSTEMS //</span>
+              ENGINEERING FOR
+              <span className="opacity-10 dark:opacity-5 ml-8 text-zinc-500 italic">GLOBAL SCALE // RELIABILITY</span>
             </motion.h1>
             
             <motion.h1 style={{ x: xRight }} className="heading-1 whitespace-nowrap mt-4">
-              <span className="opacity-10 dark:opacity-5 mr-8 italic">ABSOLUTE VELOCITY //</span>
-              <span className="text-zinc-500 dark:text-zinc-700 italic">NEXT PROTOCOL.</span>
-              <span className="opacity-10 dark:opacity-5 ml-8">DISTRIBUTED NODES // v.2.0.4</span>
+              <span className="opacity-10 dark:opacity-5 mr-8 italic">MODERN INFRASTRUCTURE //</span>
+              <span className="text-zinc-500 dark:text-zinc-700 italic">HIGH PERFORMANCE.</span>
+              <span className="opacity-10 dark:opacity-5 ml-8">STABLE DEPLOYMENT // v.2.0</span>
             </motion.h1>
           </div>
 
           {/* Subheading Narrative */}
           <div className="max-w-4xl mx-auto mb-20">
             <TextReveal delay={0.7} className="text-xl md:text-3xl text-zinc-500 font-medium italic">
-              Easyio Technologies builds ultra-high-performance business systems. We transition global firms from operational noise to absolute Architectural Velocity.
+              Easyio Technologies builds ultra-high-performance business systems. We help companies replace technical complexity with streamlined, scalable software that powers growth.
             </TextReveal>
           </div>
 
@@ -57,11 +57,11 @@ export default function Hero() {
           <FadeIn delay={1}>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link href="/contact" className="btn-primary group">
-                Initialize Build
+                Start Your Project
                 <Activity className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               </Link>
               <Link href="/about" className="btn-secondary group">
-                View Manifest
+                See Our Work
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -82,7 +82,7 @@ export default function Hero() {
                     <div className="w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800" />
                   </div>
                   <div className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-400">
-                    System Console // v.2.0.4-stable
+                    Stable Infrastructure // v.2.0
                   </div>
                   <div className="w-10 h-0.5 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
                 </div>
@@ -92,14 +92,14 @@ export default function Hero() {
                   {/* Left Column - Metrics */}
                   <div className="col-span-4 flex flex-col gap-6">
                     <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-100 dark:border-white/5 shadow-sm">
-                      <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">Protocol Throughput</div>
+                      <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">Data Throughput</div>
                       <div className="text-3xl font-black text-zinc-950 dark:text-white tabular-nums">942.8 GB/s</div>
                       <div className="mt-4 h-1 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
                         <div className="h-full w-[85%] bg-zinc-900 dark:bg-white" />
                       </div>
                     </div>
                     <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900/40 border border-zinc-100 dark:border-white/5 shadow-sm">
-                      <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">Architectural Velocity</div>
+                      <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2">System Efficiency</div>
                       <div className="text-3xl font-black text-zinc-950 dark:text-white tabular-nums">98.4%</div>
                       <div className="mt-4 flex gap-1">
                         {[40, 60, 45, 90, 65, 80, 75].map((h, i) => (
@@ -131,7 +131,7 @@ export default function Hero() {
                              <Activity className="w-8 h-8 text-zinc-950 dark:text-white" />
                           </div>
                           <div className="mt-6 text-[10px] font-black tracking-[0.5em] text-zinc-950 dark:text-white uppercase">
-                            Primary Engine Active
+                            Core Services Operational
                           </div>
                        </div>
                     </div>
@@ -141,7 +141,7 @@ export default function Hero() {
                 {/* Footer Status */}
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full border border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md text-[9px] font-bold text-zinc-500 tracking-widest uppercase flex items-center gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  All Systems Operational // Connected to Core Node
+                  All Systems Operational // High-Performance Standards Established
                 </div>
               </div>
             </motion.div>

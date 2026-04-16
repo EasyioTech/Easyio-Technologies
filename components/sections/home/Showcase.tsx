@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { TextReveal } from "@/components/shared/Animations";
+import Link from "next/link";
 import { 
   ArrowUpRight, Terminal, Globe, Shield, Cpu, Activity, Box, 
   BookOpen, ShoppingCart, Building2, Landmark, Briefcase, 
@@ -13,6 +14,7 @@ const projects = [
   {
     title: "Enterprise Resource Protocol (ERP)",
     short: "ERP System",
+    slug: "enterprise-resource-protocol",
     desc: "A centralized orchestration core for multi-departmental resource synchronization and automated reporting.",
     tag: "Business Systems",
     icon: Box,
@@ -22,6 +24,7 @@ const projects = [
   {
     title: "Institutional Learning Management (LMS)",
     short: "LMS Platform",
+    slug: "institutional-learning-management",
     desc: "Cloud-native educational infrastructure with integrated progress tracking and multi-tenant delivery.",
     tag: "EdTech",
     icon: BookOpen,
@@ -31,6 +34,7 @@ const projects = [
   {
     title: "Global Commerce Gateway",
     short: "E-Commerce",
+    slug: "global-commerce-gateway",
     desc: "High-concurrency e-commerce architecture supporting million-scale SKU catalogs and instant checkout.",
     tag: "E-Commerce",
     icon: ShoppingCart,
@@ -38,8 +42,9 @@ const projects = [
     stats: { scale: "UNLIMITED", speed: "EXTREME", convert: "HIGH" }
   },
   {
-    title: "Hospitality Protocol: Prime",
-    short: "Hotel Mgmt",
+    title: "Hotel Management Platform",
+    short: "Hotel Management",
+    slug: "hotel-management-platform",
     desc: "A sleek, integrated system for property management, guest logistics, and real-time reservation sync.",
     tag: "Hospitality",
     icon: Building2,
@@ -49,6 +54,7 @@ const projects = [
   {
     title: "Financial Management Suite",
     short: "Fintech",
+    slug: "financial-management-suite",
     desc: "A secure protocol for asset management, portfolio tracking, and regulatory compliance auditing.",
     tag: "Fintech",
     icon: Landmark,
@@ -56,8 +62,9 @@ const projects = [
     stats: { audits: "AUTO", encryption: "PQC", integrity: "100%" }
   },
   {
-    title: "Workflow Synergy Engine",
-    short: "Project Mgmt",
+    title: "Project Management Platform",
+    short: "Project Management",
+    slug: "project-management-platform",
     desc: "Agile project management backbone for high-performance teams with automated dependency mapping.",
     tag: "Productivity",
     icon: Briefcase,
@@ -65,8 +72,9 @@ const projects = [
     stats: { agility: "MAX", velocity: "HIGH", debt: "LOW" }
   },
   {
-    title: "Digital Twin Architect",
+    title: "3D Design & Rendering Platform",
     short: "3D Design",
+    slug: "high-fidelity-3d-design",
     desc: "High-fidelity 3D modeling and rendering platform for architectural visualization and digital twin exports.",
     tag: "3D Design",
     icon: Layout,
@@ -76,6 +84,7 @@ const projects = [
   {
     title: "Build-Ops Infrastructure",
     short: "Construction",
+    slug: "build-ops-construction",
     desc: "Site-ready construction management system tracking procurement, labor, and safety protocols.",
     tag: "Construction",
     icon: Pyramid,
@@ -85,6 +94,7 @@ const projects = [
   {
     title: "Supply Chain Ledger",
     short: "Logistics",
+    slug: "supply-chain-ledger",
     desc: "An immutable tracking system for global logistics, optimizing multi-modal transport and warehousing.",
     tag: "Logistics",
     icon: Truck,
@@ -94,6 +104,7 @@ const projects = [
   {
     title: "Client Lifecycle CRM",
     short: "CRM Platform",
+    slug: "client-lifecycle-crm",
     desc: "Intelligent customer relationship management with predictive analytics and automated funnel tracking.",
     tag: "Sales Ops",
     icon: Users,
@@ -102,7 +113,8 @@ const projects = [
   },
   {
     title: "Medical Data Core",
-    short: "Healthcare",
+    short: "HealthTech",
+    slug: "medical-data-core",
     desc: "HIPAA-compliant health record architecture with secure biometric access and diagnostic integration.",
     tag: "HealthTech",
     icon: Stethoscope,
@@ -110,8 +122,9 @@ const projects = [
     stats: { privacy: "MAX", sync: "HL7", uptime: "100%" }
   },
   {
-    title: "Cloud Resource Optimizer",
-    short: "DevOps",
+    title: "DevOps & Cloud Scaling Engine",
+    short: "Cloud Ops",
+    slug: "devops-cloud-scaling",
     desc: "Serverless orchestration engine for cost-efficient compute scaling and thermal management.",
     tag: "DevOps",
     icon: Cpu,
@@ -151,7 +164,7 @@ export default function Showcase() {
           {/* Left Side: Scrollable Archive Registry */}
           <div className="lg:w-1/4 flex flex-col -ml-0 lg:-ml-6 relative">
             <div className="inline-flex items-center gap-4 mb-10 px-6">
-               <span className="text-[10px] font-black uppercase tracking-[0.8em] text-zinc-400 dark:text-zinc-600">PROJECT_REGISTRY</span>
+               <span className="text-[10px] font-black uppercase tracking-[0.8em] text-zinc-400 dark:text-zinc-600">PROJECT_ARCHIVE</span>
             </div>
 
             <AnimatePresence>
@@ -280,13 +293,19 @@ export default function Showcase() {
 
                        {/* Action Button */}
                        <div className="flex flex-wrap gap-4">
-                          <button className="group/btn relative px-6 lg:px-8 py-3 lg:py-4 bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 font-black italic uppercase tracking-widest text-[10px] lg:text-xs flex items-center gap-4 hover:scale-105 transition-all">
-                             <span>VIEW_CASE_STUDY</span>
+                          <Link 
+                            href={`/blog/${projects[active].slug}`}
+                            className="group/btn relative px-6 lg:px-8 py-4 lg:py-5 bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 font-black italic uppercase tracking-[0.3em] text-[10px] lg:text-xs flex items-center gap-6 hover:scale-105 transition-all shadow-2xl"
+                          >
+                             <span>VIEW CASE STUDY</span>
                              <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                          </button>
-                          <button className="px-6 lg:px-8 py-3 lg:py-4 border border-zinc-200 dark:border-zinc-800 text-zinc-400 font-black italic uppercase tracking-widest text-[10px] lg:text-xs hover:border-zinc-950 dark:hover:border-white hover:text-zinc-950 dark:hover:text-white transition-all">
-                             TECHNICAL_DOCS
-                          </button>
+                          </Link>
+                          <Link 
+                            href="/contact"
+                            className="px-6 lg:px-8 py-4 lg:py-5 border border-zinc-200 dark:border-zinc-800 text-zinc-400 font-black italic uppercase tracking-[0.3em] text-[10px] lg:text-xs hover:border-zinc-950 dark:hover:border-white hover:text-zinc-950 dark:hover:text-white transition-all"
+                          >
+                             REQUEST QUOTE
+                          </Link>
                        </div>
                     </div>
 

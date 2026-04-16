@@ -75,7 +75,7 @@ export default function Navigation() {
         <div className="flex items-center gap-6 shrink-0">
           {!scrolled && (
             <div className="hidden xl:flex items-center gap-6 mr-6 opacity-30">
-               <span className="text-[10px] font-bold text-zinc-400 dark:text-zinc-600 tracking-[0.4em] uppercase">SYS_v2.0.42</span>
+               <span className="text-[10px] font-bold text-zinc-400 dark:text-zinc-600 tracking-[0.4em] uppercase">v2.0 STABLE</span>
             </div>
           )}
           
@@ -88,7 +88,7 @@ export default function Navigation() {
                 : "h-12 px-8 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-xs font-black uppercase tracking-[0.2em] shadow-xl hover:translate-y-[-2px]"
             )}
           >
-            <span>Initialize</span>
+            <span>Start Project</span>
             <MoveRight className={cn(
               "transition-transform",
               scrolled ? "w-3 h-3" : "w-4 h-4 group-hover:translate-x-1"
