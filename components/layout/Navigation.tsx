@@ -84,14 +84,14 @@ export default function Navigation() {
             className={cn(
               "flex items-center gap-2 transition-all group",
               scrolled 
-                ? "h-10 px-6 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[10px] font-black uppercase tracking-widest shadow-lg"
-                : "h-12 px-8 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-xs font-black uppercase tracking-[0.2em] shadow-xl hover:translate-y-[-2px]"
+                ? "h-9 px-5 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[9px] font-black uppercase tracking-widest shadow-xl shadow-zinc-200/20 dark:shadow-none"
+                : "h-11 px-7 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-zinc-200/10 dark:shadow-none hover:translate-y-[-1px]"
             )}
           >
             <span>Start Project</span>
             <MoveRight className={cn(
               "transition-transform",
-              scrolled ? "w-3 h-3" : "w-4 h-4 group-hover:translate-x-1"
+              scrolled ? "w-3 h-3" : "w-3.5 h-3.5 group-hover:translate-x-1"
             )} />
           </Link>
 
