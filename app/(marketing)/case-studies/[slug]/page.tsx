@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
