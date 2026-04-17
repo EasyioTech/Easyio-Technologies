@@ -9,7 +9,8 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 const MODEL_CHAIN = [
   'gemini-2.5-flash',
   'gemini-2.5-pro',
-  'gemini-2.5-flash-8b',
+  'gemini-2.0-flash',
+  'gemini-2.0-flash-lite',
 ];
 
 const requestSchema = z.object({
@@ -179,7 +180,7 @@ Return only the raw JSON object — no fences, no preamble.`;
       lastError = err;
       if (isRetryable(err)) {
         console.warn(`[AI Blog] ${modelId} overloaded for grounding, trying next model...`);
-        await sleep(800); // brief pause before next attempt
+        await sleep(1500); // brief pause before next attempt
         continue;
       }
       // Non-retryable error (auth, bad request, etc.) — break immediately
@@ -220,7 +221,7 @@ Return only the raw JSON object — no fences, no preamble.`;
       lastError = err;
       if (isRetryable(err)) {
         console.warn(`[AI Blog] ${modelId} overloaded for standard gen, trying next model...`);
-        await sleep(800);
+        await sleep(1500);
         continue;
       }
       throw err;
