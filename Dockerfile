@@ -1,39 +1,54 @@
-# Dependencies
-FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat
+# Build-time dependencies
+FROM node:20-slim AS deps
 WORKDIR /app
+
+# Install system dependencies needed for some native modules
+RUN apt-get update && apt-get install -y openssl python3 build-essential && rm -rf /var/lib/apt/lists/*
+
 COPY package.json package-lock.json ./
+# Use npm ci for clean, reproducible installs
 RUN npm ci
 
-# Builder — limit Node.js heap to prevent OOM on low-RAM VPS
-FROM node:20-alpine AS builder
+# Builder stage
+FROM node:20-slim AS builder
 WORKDIR /app
+
+# Install system dependencies again for the builder stage
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Environment variables for build
 ENV NEXT_TELEMETRY_DISABLED=1
-# Give Node up to 3GB heap (prevents OOM on 2-4GB VPS during build)
-ENV NODE_OPTIONS="--max-old-space-size=3072"
-# Skip TS type-check in Docker (already verified locally before push)
+ENV NODE_ENV=production
+# Moderate heap size to avoid OOM on 1GB/2GB VPS
+ENV NODE_OPTIONS="--max-old-space-size=2048"
+# Skip type-checking and linting to save memory/time
 ENV NEXT_SKIP_TYPE_CHECK=1
+ENV NEXT_SKIP_LINT=1
+
+# Disable build-time database connection checks if possible
+# Some setups might try to connect to DB during static page generation
+ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder"
 
 RUN npm run build
 
-# Runner — minimal production image
-FROM node:20-alpine AS runner
+# Runner stage
+FROM node:20-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN groupadd --system --gid 1001 nodejs
+RUN useradd --system --uid 1001 nextjs
 
+# Set correct permissions
 COPY --from=builder /app/public ./public
+RUN mkdir .next && chown nextjs:nodejs .next
 
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
+# Copy the standalone build
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
