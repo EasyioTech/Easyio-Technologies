@@ -1,4 +1,3 @@
-export const dynamic = 'force-dynamic';
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { generateMetadata } from "@/lib/seo";
@@ -15,6 +14,10 @@ import CTA from "@/components/sections/home/CTA";
 import { db } from "@/lib/db";
 import { projects, testimonials } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
+import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
+
+// ISR: Revalidate every hour, on-demand revalidation via API
+export const revalidate = CACHE_DURATION.MEDIUM;
 
 import Logos from "@/components/sections/home/Logos";
 import Protocol from "@/components/sections/home/Protocol";
@@ -48,14 +51,27 @@ const SectionLoader = () => (
   </div>
 );
 
+// Cached query functions
+const getCachedProjects = cacheQuery(
+  () => db.select().from(projects).orderBy(desc(projects.createdAt)),
+  [CACHE_TAGS.PROJECTS],
+  CACHE_DURATION.MEDIUM
+);
+
+const getCachedTestimonials = cacheQuery(
+  () => db.select().from(testimonials).orderBy(desc(testimonials.createdAt)),
+  [CACHE_TAGS.TESTIMONIALS],
+  CACHE_DURATION.MEDIUM
+);
+
 export default async function HomePage() {
   let allProjects: any[] = [];
   let allTestimonials: any[] = [];
 
   try {
     const results = await Promise.all([
-      db.select().from(projects).orderBy(desc(projects.createdAt)),
-      db.select().from(testimonials).orderBy(desc(testimonials.createdAt))
+      getCachedProjects(),
+      getCachedTestimonials()
     ]);
     allProjects = results[0];
     allTestimonials = results[1];

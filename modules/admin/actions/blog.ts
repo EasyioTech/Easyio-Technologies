@@ -1,10 +1,11 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from '@/lib/db';
 import { blogPosts } from '@/lib/db/schema';
 import { eq, desc } from 'drizzle-orm';
 import { z } from 'zod';
+import { CACHE_TAGS } from '@/lib/cache';
 
 const blogSchema = z.object({
   title: z.string().min(2, 'Title is too short'),
@@ -36,7 +37,7 @@ export async function createBlogPost(data: z.infer<typeof blogSchema>) {
   try {
     const validatedData = blogSchema.parse(data);
     const now = new Date();
-    
+
     await db.insert(blogPosts).values({
       id: crypto.randomUUID(),
       ...validatedData,
@@ -45,9 +46,9 @@ export async function createBlogPost(data: z.infer<typeof blogSchema>) {
       updatedAt: now,
     });
 
+    // Revalidate cache tags for ISR
+    revalidateTag(CACHE_TAGS.BLOG_POSTS);
     revalidatePath('/dashboard/blog');
-    revalidatePath('/blog');
-    revalidatePath('/');
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -56,9 +57,9 @@ export async function createBlogPost(data: z.infer<typeof blogSchema>) {
 
 export async function updateBlogPost(id: string, data: Partial<z.infer<typeof blogSchema>>) {
   try {
-    const updateData: any = { 
-      ...data, 
-      updatedAt: new Date() 
+    const updateData: any = {
+      ...data,
+      updatedAt: new Date()
     };
 
     // Auto-set publishedAt if becoming published
@@ -70,9 +71,12 @@ export async function updateBlogPost(id: string, data: Partial<z.infer<typeof bl
       .set(updateData)
       .where(eq(blogPosts.id, id));
 
+    // Revalidate cache tags for ISR
+    revalidateTag(CACHE_TAGS.BLOG_POSTS);
+    if (data.slug) {
+      revalidateTag(CACHE_TAGS.BLOG_POST_DETAIL);
+    }
     revalidatePath('/dashboard/blog');
-    revalidatePath('/blog');
-    if (data.slug) revalidatePath(`/blog/${data.slug}`);
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -82,6 +86,10 @@ export async function updateBlogPost(id: string, data: Partial<z.infer<typeof bl
 export async function deleteBlogPost(id: string) {
   try {
     await db.delete(blogPosts).where(eq(blogPosts.id, id));
+
+    // Revalidate cache tags for ISR
+    revalidateTag(CACHE_TAGS.BLOG_POSTS);
+    revalidateTag(CACHE_TAGS.BLOG_POST_DETAIL);
     revalidatePath('/dashboard/blog');
     return { success: true };
   } catch (error: any) {

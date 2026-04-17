@@ -26,7 +26,7 @@ const marqueeItems = [...integrations, ...integrations, ...integrations];
 
 export default function Connectivity() {
   return (
-    <section className="py-16 md:py-32 bg-white dark:bg-zinc-950 overflow-hidden relative" id="connectivity">
+    <section className="py-16 md:py-32 bg-transparent overflow-hidden relative" id="connectivity">
       {/* Structural HUD Accents */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-200 dark:via-zinc-800 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-200 dark:via-zinc-800 to-transparent" />

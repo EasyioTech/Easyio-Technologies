@@ -7,6 +7,10 @@ import PostLayout from "@/components/sections/blog/PostLayout";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/shared/JsonLd";
 import PageWrapper from "@/components/layout/PageWrapper";
+import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
+
+// ISR: Revalidate every hour
+export const revalidate = CACHE_DURATION.MEDIUM;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyiotech.com';
 
@@ -38,14 +42,17 @@ function extractFaqs(content: string): { question: string; answer: string }[] {
   return faqs.slice(0, 8);
 }
 
-// Force dynamic rendering - no static generation at build time
-// (DB is not available during Docker build stage)
-export const dynamic = 'force-dynamic';
-
+// Cached query for individual blog post
+const getBlogPostBySlug = (slug: string) =>
+  cacheQuery(
+    () => db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1),
+    [CACHE_TAGS.BLOG_POST_DETAIL, slug],
+    CACHE_DURATION.MEDIUM
+  );
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
+  const [post] = await getBlogPostBySlug(slug)();
 
   if (!post) return {};
 
@@ -89,7 +96,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
+  const [post] = await getBlogPostBySlug(slug)();
 
   if (!post || post.published !== 'true') {
     notFound();

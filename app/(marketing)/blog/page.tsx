@@ -1,10 +1,13 @@
-export const dynamic = 'force-dynamic';
 import { db } from "@/lib/db";
 import { blogPosts } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
 import BlogIndex from "@/components/sections/blog/BlogIndex";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { Metadata } from "next";
+import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
+
+// ISR: Revalidate every hour
+export const revalidate = CACHE_DURATION.MEDIUM;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyiotech.com';
 
@@ -24,14 +27,21 @@ export const metadata: Metadata = {
   },
 };
 
+// Cached query for blog posts
+const getCachedBlogPosts = cacheQuery(
+  () => db
+    .select()
+    .from(blogPosts)
+    .where(eq(blogPosts.published, 'true'))
+    .orderBy(desc(blogPosts.publishedAt)),
+  [CACHE_TAGS.BLOG_POSTS],
+  CACHE_DURATION.MEDIUM
+);
+
 export default async function BlogListingPage() {
   try {
-    // Only fetch published posts
-    const rawPosts = await db
-      .select()
-      .from(blogPosts)
-      .where(eq(blogPosts.published, 'true'))
-      .orderBy(desc(blogPosts.publishedAt));
+    // Only fetch published posts (cached)
+    const rawPosts = await getCachedBlogPosts();
 
     // Map database results to the BlogPost interface expected by the component
     const posts = rawPosts.map(post => ({

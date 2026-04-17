@@ -63,20 +63,26 @@ export default function BentoFeatures() {
   return (
     <section
       ref={containerRef}
-      className="py-24 md:py-60 px-6 relative bg-zinc-950 overflow-hidden transition-colors"
+      className="py-24 md:py-60 px-6 relative bg-transparent overflow-hidden transition-colors"
       id="matrix"
     >
       {/* Blueprint Canvas */}
       <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.02] pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#000000_1px,transparent_1px),linear-gradient(to_bottom,#000000_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:50px_50px]" />
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            backgroundImage: `linear-gradient(to right, hsl(var(--infra-grid)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--infra-grid)) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px' 
+          }} 
+        />
       </div>
 
       <div className="max-w-7xl mx-auto relative">
         {/* The Core Spine */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-zinc-200 dark:bg-zinc-800 -translate-x-1/2 hidden md:block">
+        <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-zinc-100 dark:bg-zinc-800 -translate-x-1/2 hidden md:block">
           <motion.div
             style={{ scaleY: scrollYProgress }}
-            className="absolute inset-0 bg-zinc-950 dark:bg-white origin-top shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+            className="absolute inset-0 bg-zinc-950 dark:bg-white origin-top shadow-[0_0_15px_rgba(0,0,0,0.02)] dark:shadow-[0_0_15px_rgba(255,255,255,0.5)]"
           />
         </div>
 
@@ -85,7 +91,7 @@ export default function BentoFeatures() {
             <div className="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white animate-ping" />
             <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-500 dark:text-zinc-500">OUR CAPABILITIES</span>
           </div>
-          <h2 className="text-5xl md:text-[10rem] font-black text-zinc-950 dark:text-white uppercase leading-[0.8] tracking-tighter">
+          <h2 className="heading-1 md:text-[10rem]">
             <TextReveal delay={0.1}>OUR</TextReveal> <br />
             <TextReveal delay={0.3}>MATRIX.</TextReveal>
           </h2>
@@ -121,11 +127,11 @@ export default function BentoFeatures() {
                       <span className="text-[9px] font-black text-zinc-500 dark:text-zinc-500 tracking-widest uppercase">{node.label}</span>
                     </div>
 
-                    <h3 className="text-3xl md:text-6xl font-black text-zinc-950 dark:text-white uppercase tracking-tighter mb-4 md:mb-8 group-hover:text-zinc-600 dark:group-hover:text-zinc-400 transition-colors duration-500">
+                    <h3 className="heading-3 md:text-6xl mb-4 md:mb-8 group-hover:text-primary transition-colors duration-500">
                       {node.title}
                     </h3>
 
-                    <p className={`text-lg md:text-2xl text-zinc-600 dark:text-zinc-500 font-medium italic max-w-xl ${node.side === 'left' ? 'ml-auto' : ''} leading-relaxed group-hover:text-zinc-950 dark:group-hover:text-zinc-300 transition-colors duration-700`}>
+                    <p className={`text-lg md:text-2xl text-zinc-500 dark:text-zinc-500 font-medium italic max-w-xl ${node.side === 'left' ? 'ml-auto' : ''} leading-relaxed group-hover:text-zinc-950 dark:group-hover:text-zinc-300 transition-colors duration-700`}>
                       {node.desc}
                     </p>
 
@@ -153,7 +159,7 @@ export default function BentoFeatures() {
                     <div className="absolute inset-0 border border-zinc-200 dark:border-zinc-800 rounded-full animate-[spin_10s_linear_infinite]" />
                     <div className="absolute inset-10 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
 
-                    <div className="relative z-10 w-20 h-20 rounded-full bg-zinc-50 dark:bg-zinc-900 backdrop-blur-3xl border border-zinc-200 dark:border-zinc-800 flex items-center justify-center group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-all duration-700 shadow-[0_10px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_0_30px_rgba(255,255,255,0.05)]">
+                    <div className="relative z-10 w-20 h-20 rounded-full bg-white dark:bg-zinc-900 backdrop-blur-3xl border border-zinc-100 dark:border-zinc-800 flex items-center justify-center group-hover:bg-zinc-950 group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black transition-all duration-700 shadow-[0_10px_30px_rgba(0,0,0,0.02)] dark:shadow-[0_0_30px_rgba(255,255,255,0.05)]">
                       <ArrowDownRight className={`w-8 h-8 transition-transform duration-700 ${node.side === 'right' ? 'rotate-180' : ''}`} />
                     </div>
                   </motion.div>

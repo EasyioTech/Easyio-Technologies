@@ -1,4 +1,3 @@
-export const dynamic = 'force-dynamic';
 import { Terminal, ArrowUpRight, Cpu, Zap, Globe, Shield, Box } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { TextReveal, FadeIn } from "@/components/shared/Animations";
@@ -6,6 +5,10 @@ import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import Link from "next/link";
+import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
+
+// ISR: Revalidate every hour
+export const revalidate = CACHE_DURATION.MEDIUM;
 
 export const metadata = {
   title: "Proof of Execution | Easyio Engineering",
@@ -21,8 +24,15 @@ const iconMap: Record<string, any> = {
   CLOUD_ARCHITECTURE: Box,
 };
 
+// Cached query for projects
+const getCachedProjects = cacheQuery(
+  () => db.select().from(projects).orderBy(desc(projects.createdAt)),
+  [CACHE_TAGS.PROJECTS],
+  CACHE_DURATION.MEDIUM
+);
+
 export default async function CaseStudiesPage() {
-  const deployments = await db.select().from(projects).orderBy(desc(projects.createdAt));
+  const deployments = await getCachedProjects();
 
   return (
     <PageWrapper>

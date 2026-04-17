@@ -25,7 +25,7 @@ export default function Logos() {
               {partners.map((p, i) => (
                 <div 
                   key={i}
-                  className="mx-12 text-lg md:text-xl font-black uppercase tracking-tight text-zinc-400 dark:text-zinc-600 hover:text-zinc-950 dark:hover:text-white transition-all cursor-default"
+                  className="mx-12 text-lg md:text-xl font-black uppercase tracking-tight text-zinc-300 dark:text-zinc-600 hover:text-zinc-950 dark:hover:text-white transition-all cursor-default"
                 >
                   {p}
                 </div>

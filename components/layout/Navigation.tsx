@@ -2,20 +2,41 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, Terminal, ArrowRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, X, Terminal, ArrowRight, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navigationLinks } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 export default function Navigation() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    let lastScrollY = 0;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
+      const currentScrollY = window.scrollY;
+      const shouldScroll = currentScrollY > 60;
+
+      // Only update state if scroll threshold changed
+      if ((lastScrollY <= 60 && currentScrollY > 60) || (lastScrollY > 60 && currentScrollY <= 60)) {
+        setScrolled(shouldScroll);
+      }
+      lastScrollY = currentScrollY;
     };
-    window.addEventListener("scroll", handleScroll);
+
+    // Throttle scroll listener
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -24,11 +45,14 @@ export default function Navigation() {
       {/* Top Navigation Bar */}
       <motion.div
         className={cn(
-          "w-full flex items-center justify-between px-6 md:px-12 transition-all duration-500",
+          "w-full flex items-center justify-between px-6 md:px-12 h-20 border-b fixed-nav",
           scrolled
-            ? "h-16 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-2xl border-b border-zinc-200/50 dark:border-white/5 shadow-sm"
-            : "h-20 bg-transparent backdrop-blur-sm"
+            ? "bg-white/70 dark:bg-zinc-950/70 backdrop-blur-3xl shadow-sm border-zinc-300/50 dark:border-white/5"
+            : "bg-transparent backdrop-blur-sm border-transparent"
         )}
+        style={{
+          willChange: "background-color, border-color, box-shadow",
+        }}
         initial={{ y: -80 }}
         animate={{ y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -55,13 +79,19 @@ export default function Navigation() {
 
         {/* Center Navigation - Smart Visibility */}
         <motion.div
-          className="hidden lg:flex items-center gap-2"
+          className="hidden lg:flex items-center gap-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
           {navigationLinks.map((link, idx) => (
-            <NavLink key={link.href} href={link.href} label={link.label} delay={idx * 0.05} />
+            <NavLink
+              key={link.href}
+              href={link.href}
+              label={link.label}
+              delay={idx * 0.05}
+              isActive={pathname === link.href || pathname.startsWith(link.href + '/')}
+            />
           ))}
         </motion.div>
 
@@ -72,29 +102,43 @@ export default function Navigation() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          {!scrolled && (
-            <motion.span
-              className="hidden md:inline text-[10px] font-bold text-zinc-500 dark:text-zinc-500 tracking-[0.3em] uppercase opacity-50"
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              v2.0
-            </motion.span>
-          )}
+          <motion.span
+            className="hidden md:inline text-[10px] font-bold text-zinc-500 dark:text-zinc-500 tracking-[0.3em] uppercase"
+            animate={{ opacity: scrolled ? 0 : [0.3, 0.6, 0.3] }}
+            transition={{ duration: 3, repeat: scrolled ? undefined : Infinity }}
+            style={{ pointerEvents: scrolled ? "none" : "auto" }}
+          >
+            v2.0
+          </motion.span>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+            className="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center justify-center min-w-[40px] min-h-[40px] border border-transparent active:scale-95 z-50"
+            aria-label="Toggle theme"
+          >
+            {mounted && resolvedTheme ? (
+              resolvedTheme === 'dark' ? (
+                <Sun className="w-5 h-5 text-white" />
+              ) : (
+                <Moon className="w-5 h-5 text-zinc-900" />
+              )
+            ) : (
+              <div className="w-5 h-5" />
+            )}
+          </button>
 
           <Link
             href="/contact"
             className="group relative inline-flex items-center gap-2 overflow-hidden"
           >
             <motion.div
-              className={cn(
-                "flex items-center gap-2 font-black uppercase tracking-widest transition-all",
-                scrolled
-                  ? "h-10 px-5 rounded-lg text-[9px]"
-                  : "h-11 px-6 rounded-lg text-[10px]"
-              )}
+              className="flex items-center gap-2 font-semibold uppercase tracking-[0.15em] h-10 px-5 rounded-lg text-[9px]"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              style={{
+                willChange: "transform",
+              }}
             >
               {/* Animated background */}
               <motion.div
@@ -104,7 +148,7 @@ export default function Navigation() {
                 transition={{ type: "spring", stiffness: 300 }}
               />
 
-              <span className="relative text-white dark:text-zinc-950 flex items-center gap-1">
+              <span className="relative text-white dark:text-zinc-950 flex items-center gap-1.5">
                 Start Project
                 <motion.span
                   animate={{ x: [0, 2, 0] }}
@@ -136,13 +180,6 @@ export default function Navigation() {
           </motion.button>
         </motion.div>
 
-        {/* Bottom Accent Line - Psychological Depth */}
-        <motion.div
-          className={cn(
-            "absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-300 dark:via-white/10 to-transparent transition-opacity duration-500",
-            scrolled ? "opacity-100" : "opacity-0"
-          )}
-        />
       </motion.div>
 
       {/* Mobile Menu - Elevated Design */}
@@ -194,33 +231,63 @@ export default function Navigation() {
   );
 }
 
-function NavLink({ href, label, delay }: { href: string; label: string; delay: number }) {
-  const [active, setActive] = useState(false);
+function NavLink({
+  href,
+  label,
+  delay,
+  isActive = false,
+}: {
+  href: string;
+  label: string;
+  delay: number;
+  isActive?: boolean;
+}) {
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <Link href={href} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
+    <Link href={href} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <motion.div
-        className="relative px-4 py-2 group"
+        className="relative px-5 py-2 rounded-full"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay }}
       >
-        <span className={cn(
-          "text-xs font-black uppercase tracking-[0.12em] transition-colors duration-300",
-          active
-            ? "text-zinc-950 dark:text-white"
-            : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
-        )}>
+        {/* Snap animated background pill */}
+        {isActive && (
+          <motion.div
+            className="absolute inset-0 bg-zinc-950 dark:bg-white/10 rounded-full border border-zinc-950 dark:border-white/20"
+            layoutId="active-nav-pill"
+            transition={{
+              type: "spring",
+              stiffness: 380,
+              damping: 30,
+            }}
+          />
+        )}
+
+        {/* Hover background */}
+        {!isActive && hovered && (
+          <motion.div
+            className="absolute inset-0 bg-zinc-950/40 dark:bg-white/5 rounded-full"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          />
+        )}
+
+        <span
+          className={cn(
+            "text-xs font-semibold uppercase tracking-[0.13em] block whitespace-nowrap relative transition-colors duration-200",
+            isActive
+              ? "text-white dark:text-white font-bold"
+              : hovered
+                ? "text-zinc-900 dark:text-zinc-100"
+                : "text-zinc-500 dark:text-zinc-400"
+          )}
+        >
           {label}
         </span>
-
-        {/* Dynamic underline indicator */}
-        <motion.div
-          className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-zinc-950 via-zinc-950 to-transparent dark:from-white dark:via-white dark:to-transparent rounded-full"
-          initial={{ scaleX: 0, originX: 0 }}
-          animate={{ scaleX: active ? 1 : 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-        />
       </motion.div>
     </Link>
   );

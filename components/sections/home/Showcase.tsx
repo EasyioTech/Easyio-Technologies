@@ -78,8 +78,8 @@ export default function Showcase({ initialProjects }: { initialProjects: any[] }
                   onClick={() => setActive(i)}
                   className={`group w-full text-left flex items-center justify-between p-6 rounded-l-none rounded-r-2xl transition-all duration-500 border-l-4 ${
                     active === i
-                    ? "bg-zinc-800 border-zinc-200 translate-x-3"
-                    : "bg-transparent border-transparent hover:bg-zinc-900/40"
+                    ? "bg-zinc-950 dark:bg-zinc-800 border-zinc-950 dark:border-zinc-200 translate-x-3 shadow-xl"
+                    : "bg-transparent border-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900/40"
                   }`}
                 >
                   <div className="flex items-center gap-6">
@@ -89,7 +89,7 @@ export default function Showcase({ initialProjects }: { initialProjects: any[] }
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <h3 className={`text-xl md:text-2xl font-black italic uppercase transition-all tracking-tighter ${
-                      active === i ? "text-white" : "text-zinc-400"
+                      active === i ? "text-white" : "text-zinc-400 dark:text-zinc-600"
                     }`}>
                       {p.short}
                     </h3>
@@ -148,7 +148,7 @@ export default function Showcase({ initialProjects }: { initialProjects: any[] }
                       initial: { opacity: 0, y: 20 },
                       animate: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }
                     }}
-                    className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 lg:p-20 overflow-hidden group/hud border border-zinc-100 dark:border-zinc-900 rounded-2xl md:rounded-3xl lg:rounded-[3rem] bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm"
+                    className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 lg:p-20 overflow-hidden group/hud border border-zinc-100 dark:border-zinc-900 rounded-2xl md:rounded-3xl lg:rounded-[3rem] bg-white dark:bg-zinc-950/50 backdrop-blur-sm shadow-2xl dark:shadow-none"
                   >
                     {/* Floating Project Image */}
                     {projects[active].image && (

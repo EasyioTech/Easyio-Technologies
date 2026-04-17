@@ -7,16 +7,24 @@ import { notFound } from "next/navigation";
 import PageWrapper from "@/components/layout/PageWrapper";
 import ProjectLayout from "@/components/sections/projects/ProjectLayout";
 import JsonLd from "@/components/shared/JsonLd";
+import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
+
+// ISR: Revalidate every hour
+export const revalidate = CACHE_DURATION.MEDIUM;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyiotech.com';
 
-// Force dynamic rendering - no static generation at build time
-// (DB is not available during Docker build stage)
-export const dynamic = 'force-dynamic';
+// Cached query for individual project
+const getProjectBySlug = (slug: string) =>
+  cacheQuery(
+    () => db.select().from(projects).where(eq(projects.slug, slug)).limit(1),
+    [CACHE_TAGS.PROJECT_DETAIL, slug],
+    CACHE_DURATION.MEDIUM
+  );
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const [project] = await db.select().from(projects).where(eq(projects.slug, slug)).limit(1);
+  const [project] = await getProjectBySlug(slug)();
 
   if (!project) return {};
 
@@ -47,7 +55,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [project] = await db.select().from(projects).where(eq(projects.slug, slug)).limit(1);
+  const [project] = await getProjectBySlug(slug)();
 
   if (!project) {
     notFound();

@@ -1,10 +1,11 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { db } from '@/lib/db';
 import { projects } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
+import { CACHE_TAGS } from '@/lib/cache';
 
 const projectSchema = z.object({
   title: z.string().min(2, 'Title is too short'),
@@ -33,7 +34,7 @@ export async function getProject(id: string) {
 export async function createProject(data: z.infer<typeof projectSchema>) {
   try {
     const validatedData = projectSchema.parse(data);
-    
+
     await db.insert(projects).values({
       id: crypto.randomUUID(),
       ...validatedData,
@@ -41,8 +42,9 @@ export async function createProject(data: z.infer<typeof projectSchema>) {
       updatedAt: new Date(),
     });
 
+    // Revalidate cache tags for ISR
+    revalidateTag(CACHE_TAGS.PROJECTS);
     revalidatePath('/dashboard/projects');
-    revalidatePath('/');
     return { success: true };
   } catch (error: any) {
     return { success: false, error: error.message };
@@ -55,6 +57,11 @@ export async function updateProject(id: string, data: Partial<z.infer<typeof pro
       .set({ ...data, updatedAt: new Date() })
       .where(eq(projects.id, id));
 
+    // Revalidate cache tags for ISR
+    revalidateTag(CACHE_TAGS.PROJECTS);
+    if (data.slug) {
+      revalidateTag(CACHE_TAGS.PROJECT_DETAIL);
+    }
     revalidatePath('/dashboard/projects');
     return { success: true };
   } catch (error: any) {
@@ -65,6 +72,10 @@ export async function updateProject(id: string, data: Partial<z.infer<typeof pro
 export async function deleteProject(id: string) {
   try {
     await db.delete(projects).where(eq(projects.id, id));
+
+    // Revalidate cache tags for ISR
+    revalidateTag(CACHE_TAGS.PROJECTS);
+    revalidateTag(CACHE_TAGS.PROJECT_DETAIL);
     revalidatePath('/dashboard/projects');
     return { success: true };
   } catch (error: any) {

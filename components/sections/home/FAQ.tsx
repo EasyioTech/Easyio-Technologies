@@ -32,7 +32,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-40 px-6 relative bg-zinc-950">
+    <section className="py-40 px-6 relative bg-transparent">
       <div className="max-w-4xl mx-auto">
         <div className="mb-32 text-center">
           <h2 className="heading-2">
