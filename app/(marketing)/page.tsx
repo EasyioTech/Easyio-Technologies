@@ -16,8 +16,9 @@ import { projects, testimonials } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
 
-// ISR: Revalidate every hour, on-demand revalidation via API
-export const revalidate = CACHE_DURATION.MEDIUM;
+// Dynamic rendering (DB not available at build time)
+// ISR via Edge Functions in production deployment
+export const dynamic = 'force-dynamic';
 
 import Logos from "@/components/sections/home/Logos";
 import Protocol from "@/components/sections/home/Protocol";

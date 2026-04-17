@@ -89,7 +89,7 @@ export default function BentoFeatures() {
         <div className="mb-16 md:mb-40 text-center relative z-10">
           <div className="inline-flex items-center gap-4 mb-8">
             <div className="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white animate-ping" />
-            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-500 dark:text-zinc-500">OUR CAPABILITIES</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-400 dark:text-zinc-500">OUR CAPABILITIES</span>
           </div>
           <h2 className="heading-1 md:text-[10rem]">
             <TextReveal delay={0.1}>OUR</TextReveal> <br />
@@ -131,7 +131,7 @@ export default function BentoFeatures() {
                       {node.title}
                     </h3>
 
-                    <p className={`text-lg md:text-2xl text-zinc-500 dark:text-zinc-500 font-medium italic max-w-xl ${node.side === 'left' ? 'ml-auto' : ''} leading-relaxed group-hover:text-zinc-950 dark:group-hover:text-zinc-300 transition-colors duration-700`}>
+                    <p className={`text-lg md:text-2xl text-zinc-600 dark:text-zinc-500 font-medium italic max-w-xl ${node.side === 'left' ? 'ml-auto' : ''} leading-relaxed group-hover:text-zinc-950 dark:group-hover:text-zinc-300 transition-colors duration-700`}>
                       {node.desc}
                     </p>
 

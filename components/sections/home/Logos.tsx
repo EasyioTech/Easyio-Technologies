@@ -16,7 +16,7 @@ export default function Logos() {
     <section className="py-20 px-6 relative overflow-hidden border-y border-zinc-100 dark:border-zinc-900 transition-colors">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          <FadeIn className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-300 dark:text-zinc-700 whitespace-nowrap">
+          <FadeIn className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-400 dark:text-zinc-700 whitespace-nowrap">
             TRUSTED BY FRONTIER TEAMS
           </FadeIn>
           
@@ -25,15 +25,15 @@ export default function Logos() {
               {partners.map((p, i) => (
                 <div 
                   key={i}
-                  className="mx-12 text-lg md:text-xl font-black uppercase tracking-tight text-zinc-300 dark:text-zinc-600 hover:text-zinc-950 dark:hover:text-white transition-all cursor-default"
+                  className="mx-12 text-lg md:text-xl font-black uppercase tracking-tight text-zinc-400 dark:text-zinc-600 hover:text-zinc-950 dark:hover:text-white transition-all cursor-default"
                 >
                   {p}
                 </div>
               ))}
             </Marquee>
             {/* Edge Fades */}
-            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
-            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
           </div>
         </div>
       </div>

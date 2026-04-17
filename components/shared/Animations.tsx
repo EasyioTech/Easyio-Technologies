@@ -11,7 +11,7 @@ export const TextReveal = ({ children, delay = 0, className = "" }: { children: 
       {words.map((word, i) => (
         <span key={i} className="inline-block overflow-hidden mr-[0.25em] py-1">
           <motion.span
-            className="text-reveal-word"
+            className="text-reveal-word inline-block"
             initial={{ y: '100%', opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}

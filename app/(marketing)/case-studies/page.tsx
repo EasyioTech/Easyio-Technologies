@@ -7,8 +7,7 @@ import { desc } from "drizzle-orm";
 import Link from "next/link";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
 
-// ISR: Revalidate every hour
-export const revalidate = CACHE_DURATION.MEDIUM;
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: "Proof of Execution | Easyio Engineering",

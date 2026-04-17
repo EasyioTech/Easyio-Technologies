@@ -27,14 +27,14 @@ const TestimonialsColumn = (props: {
           <React.Fragment key={index}>
             {props.testimonials.map(({ text, image, name, role }, i) => (
               <div
-                className="p-6 md:p-10 rounded-2xl md:rounded-[2rem] border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 shadow-sm transition-colors max-w-xs w-full group"
+                className="p-6 md:p-10 rounded-2xl md:rounded-[2rem] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-sm transition-colors max-w-xs w-full group"
                 key={i}
               >
                 <div className="text-zinc-600 dark:text-zinc-400 font-medium italic leading-relaxed text-sm md:text-base">
                   "{text}"
                 </div>
                 <div className="flex items-center gap-4 mt-6 md:mt-8 pt-4 md:pt-6 border-t border-zinc-100 dark:border-zinc-900">
-                  {image ? (
+                  {image && image.trim() !== "" ? (
                     <img
                       width={44}
                       height={44}

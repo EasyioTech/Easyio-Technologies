@@ -9,8 +9,7 @@ import ProjectLayout from "@/components/sections/projects/ProjectLayout";
 import JsonLd from "@/components/shared/JsonLd";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
 
-// ISR: Revalidate every hour
-export const revalidate = CACHE_DURATION.MEDIUM;
+export const dynamic = 'force-dynamic';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyiotech.com';
 

@@ -13,6 +13,8 @@
   }
 }
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -53,8 +55,8 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 2%;
-    --card: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 98%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
@@ -63,7 +65,7 @@
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.1% 11.6%;
     --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 36.1%;
+    --muted-foreground: 240 3.8% 46.1%;
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.1% 11.6%;
     --destructive: 0 84.1% 48.3%;
@@ -71,10 +73,10 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 5.1% 11.6%;
-    --infra-grid: 240 5% 95%;
-    --infra-beam: 240 5% 90%;
-    --infra-glow: radial-gradient(circle at top right, rgba(200, 220, 255, 0.15), transparent 60%);
-    --infra-fog: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(240, 245, 255, 0.4));
+    --infra-grid: 240 5% 90%;
+    --infra-beam: 240 5% 85%;
+    --infra-glow: radial-gradient(circle at top right, rgba(0, 0, 0, 0.02), transparent 60%);
+    --infra-fog: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
     --radius: 2.5rem;
   }
 

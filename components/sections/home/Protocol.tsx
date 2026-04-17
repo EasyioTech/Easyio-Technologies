@@ -46,7 +46,7 @@ function ProtocolStep({ step, index, total, scrollYProgress }: {
     <div className={`flex flex-col ${step.side === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center mb-24 lg:mb-12 will-change-transform`}>
       <div className={`w-full lg:w-1/2 ${step.side === 'right' ? 'lg:pl-20' : 'lg:pr-20'}`}>
         <div className="group relative">
-          <div className="absolute -top-12 -left-8 lg:-top-24 lg:-left-20 text-[6rem] lg:text-[18rem] font-black text-zinc-50 dark:text-zinc-900/10 select-none pointer-events-none group-hover:text-zinc-100 dark:group-hover:text-zinc-900 transition-colors duration-1000">
+          <div className="absolute -top-12 -left-8 lg:-top-24 lg:-left-20 text-[6rem] lg:text-[18rem] font-black text-zinc-100 dark:text-zinc-900/10 select-none pointer-events-none group-hover:text-zinc-200 dark:group-hover:text-zinc-900 transition-colors duration-1000">
             0{index + 1}
           </div>
 
@@ -55,8 +55,8 @@ function ProtocolStep({ step, index, total, scrollYProgress }: {
               <div className="w-16 h-16 rounded-3xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 flex items-center justify-center shadow-xl">
                 <step.icon className="w-8 h-8" />
               </div>
-              <div className="h-[2px] w-20 bg-zinc-100 dark:bg-zinc-900" />
-              <ArrowDownRight className="w-8 h-8 text-zinc-200 dark:text-zinc-800" />
+              <div className="h-[2px] w-20 bg-zinc-200 dark:bg-zinc-900" />
+              <ArrowDownRight className="w-8 h-8 text-zinc-300 dark:text-zinc-800" />
             </div>
 
             <motion.h3 
@@ -129,7 +129,7 @@ export default function Protocol() {
             />
           ))}
 
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-[2px] bg-zinc-50 dark:bg-zinc-900 hidden lg:block translate-z-0">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-[2px] bg-zinc-100 dark:bg-zinc-900 hidden lg:block translate-z-0">
              <motion.div 
                style={{ top: dotY }}
                className="absolute -left-[4px] w-[10px] h-[10px] rounded-full bg-zinc-950 dark:bg-white z-20 will-change-[top]"
