@@ -36,6 +36,13 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - default
+      - oru_default
+
+networks:
+  oru_default:
+    external: true
 
 volumes:
   pgdata:

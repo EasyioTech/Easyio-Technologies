@@ -8,8 +8,8 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 // Model priority chain — on 503/overload, automatically falls back to next
 const MODEL_CHAIN = [
   'gemini-2.5-flash',
-  'gemini-2.0-flash',
-  'gemini-1.5-flash',
+  'gemini-2.5-pro',
+  'gemini-2.5-flash-8b',
 ];
 
 const requestSchema = z.object({

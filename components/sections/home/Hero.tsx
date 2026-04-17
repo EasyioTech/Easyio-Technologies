@@ -29,13 +29,13 @@ export default function Hero() {
             <div className="flex flex-col items-center gap-4 mb-12">
               <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-800 shadow-sm">
                 <Terminal className="w-3 h-3 text-zinc-400" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400">
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-200">
                   TRUSTED BY <span className="text-zinc-950 dark:text-zinc-200">ENTERPRISE LEADERS</span>
                 </span>
               </div>
               <div className="flex items-center gap-3 opacity-40">
                 <div className="w-1 h-1 rounded-full bg-zinc-400" />
-                <span className="text-[8px] font-black uppercase tracking-[0.6em] text-zinc-400">KASHMIR_HQ // PREMIER_ENGINEERING_HUB</span>
+                <span className="text-[8px] font-black uppercase tracking-[0.6em] text-zinc-200">KASHMIR_HQ // PREMIER_ENGINEERING_HUB</span>
               </div>
             </div>
           </FadeIn>
@@ -57,7 +57,7 @@ export default function Hero() {
 
           {/* Subheading Narrative */}
           <div className="max-w-4xl mx-auto mb-12 md:mb-20">
-            <TextReveal delay={0.7} className="text-base md:text-3xl text-zinc-500 font-medium italic">
+            <TextReveal delay={0.7} className="text-base md:text-3xl text-zinc-100 font-medium italic">
               Easyio Technologies builds ultra-high-performance business systems. We help companies replace technical complexity with streamlined, scalable software that powers growth.
             </TextReveal>
           </div>

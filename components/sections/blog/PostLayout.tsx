@@ -3,6 +3,7 @@ import { BlogPost } from "@/lib/blog";
 import { ArrowLeft, Clock, User, Share2 } from "lucide-react";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import LeadCapture from "./LeadCapture";
 
 // Custom MDX components to maintain the high-fidelity design
 export const components = {
@@ -56,6 +57,14 @@ export default function PostLayout({ post }: PostLayoutProps) {
 
   return (
     <div className="bg-white dark:bg-zinc-950 min-h-screen pt-32 pb-24 transition-colors">
+      {/* Reading Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[100] bg-zinc-100 dark:bg-white/5">
+        <div 
+          className="h-full bg-zinc-950 dark:bg-white transition-all duration-300" 
+          style={{ width: '0%', animation: 'progress 1s ease-out forwards' }} 
+        />
+      </div>
+
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Navigation */}
         <div className="max-w-5xl mx-auto w-full">
@@ -123,18 +132,22 @@ export default function PostLayout({ post }: PostLayoutProps) {
 
         {/* Content Section - Balanced Grid */}
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-20">
-          <main className="prose prose-zinc dark:prose-invert max-w-none">
-            <FadeIn delay={0.6}>
-              <MDXRemote source={post.content} components={components} />
-            </FadeIn>
-          </main>
+          <div className="space-y-20">
+            <main className="prose prose-zinc dark:prose-invert max-w-none">
+              <FadeIn delay={0.6}>
+                <MDXRemote source={post.content} components={components} />
+              </FadeIn>
+            </main>
+            
+            <LeadCapture />
+          </div>
 
           {/* Sticky Sidebar */}
           <aside className="hidden lg:block">
             <div className="sticky top-40 space-y-12">
               {tableOfContents.length > 0 && (
                 <div className="p-8 rounded-3xl bg-zinc-50/50 dark:bg-white/[0.02] border border-zinc-100 dark:border-white/5">
-                  <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 mb-8">Navigation</h4>
+                  <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 mb-8 font-mono">/ Navigation</h4>
                   <nav className="space-y-4">
                     {tableOfContents.map((item: any) => (
                       <a 
@@ -149,19 +162,32 @@ export default function PostLayout({ post }: PostLayoutProps) {
                 </div>
               )}
 
-              <div className="p-8 rounded-3xl bg-zinc-950 dark:bg-white text-white dark:text-black shadow-2xl">
-                <h4 className="text-xl font-bold mb-4 tracking-tighter leading-none italic">Join the Elite.</h4>
-                <p className="text-xs opacity-60 mb-8 leading-relaxed">
-                  Weekly architectural breakdowns for the modern engineer.
+              {/* Newsletter / Lead Magnet */}
+              <div className="p-8 rounded-3xl bg-zinc-950 dark:bg-white text-white dark:text-black shadow-2xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 dark:bg-black/5 rounded-full -mr-10 -mt-10 transition-transform group-hover:scale-150" />
+                <h4 className="text-xl font-bold mb-4 tracking-tighter leading-none italic relative z-10">Join the Collective.</h4>
+                <p className="text-[10px] opacity-60 mb-8 leading-relaxed uppercase tracking-widest relative z-10">
+                  Weekly intelligence for modern technology leaders.
                 </p>
-                <input 
-                  type="email" 
-                  placeholder="name@email.com"
-                  className="w-full bg-white/10 dark:bg-black/5 border border-white/20 dark:border-black/10 rounded-xl py-3 px-4 text-xs outline-none mb-4"
-                />
-                <button className="w-full bg-white dark:bg-zinc-950 text-black dark:text-white py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02] active:scale-[0.98]">
-                  Subscribe
-                </button>
+                <div className="space-y-3 relative z-10">
+                  <input 
+                    type="email" 
+                    placeholder="architect@enterprise.com"
+                    className="w-full bg-white/10 dark:bg-black/5 border border-white/20 dark:border-black/10 rounded-xl py-3 px-4 text-xs outline-none focus:border-white/40 transition-colors"
+                  />
+                  <button className="w-full bg-white dark:bg-zinc-950 text-black dark:text-white py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg">
+                    Join Newsletter
+                  </button>
+                </div>
+              </div>
+
+              {/* Social Proof Site Badge */}
+              <div className="p-8 rounded-3xl border border-dashed border-zinc-200 dark:border-white/10 flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-800 flex items-center justify-center mb-6">
+                   <User className="w-5 h-5 text-zinc-400" />
+                </div>
+                <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-2">Technical Authority</h5>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 italic">"Verified architectural insights from the engineering team at Easyio."</p>
               </div>
             </div>
           </aside>

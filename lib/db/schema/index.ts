@@ -24,8 +24,8 @@ export const projects = pgTable('projects', {
   category: varchar('category', { length: 255 }),
   // SEO & AI fields
   focusKeyword: varchar('focus_keyword', { length: 255 }),
-  seoTitle: varchar('seo_title', { length: 60 }),
-  seoDescription: varchar('seo_description', { length: 160 }),
+  seoTitle: varchar('seo_title', { length: 100 }),
+  seoDescription: varchar('seo_description', { length: 255 }),
 });
 
 export const testimonials = pgTable('testimonials', {
@@ -54,8 +54,8 @@ export const blogPosts = pgTable('blog_posts', {
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
   // SEO & AI fields
   focusKeyword: varchar('focus_keyword', { length: 255 }),
-  seoTitle: varchar('seo_title', { length: 60 }),
-  seoDescription: varchar('seo_description', { length: 160 }),
+  seoTitle: varchar('seo_title', { length: 100 }),
+  seoDescription: varchar('seo_description', { length: 255 }),
   keywords: text('keywords'),
   readingTime: varchar('reading_time', { length: 50 }),
   toc: text('toc'),
