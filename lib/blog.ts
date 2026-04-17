@@ -14,6 +14,11 @@ export interface BlogPost {
   readingTime?: string;
   category: string;
   keywords?: string;
+  image?: string;
+  focusKeyword?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  toc?: string;
 }
 
 export function getBlogPosts(): BlogPost[] {

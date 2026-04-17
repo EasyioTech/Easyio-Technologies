@@ -1,13 +1,13 @@
-import { getBlogPosts } from "@/lib/blog";
+import { getPublishedBlogPosts } from "@/modules/admin/actions/blog";
 import { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getBlogPosts();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await getPublishedBlogPosts();
   const baseUrl = "https://easyiotech.com";
 
   const postUrls = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date).toISOString(),
+    lastModified: post.publishedAt?.toISOString() || post.updatedAt?.toISOString() || new Date().toISOString(),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));

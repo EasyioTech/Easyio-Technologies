@@ -6,7 +6,7 @@ import { TextReveal, FadeIn } from "@/components/shared/Animations";
 
 export default function CTA() {
   return (
-    <section className="py-16 md:py-60 px-6 relative border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-zinc-950 transition-colors">
+    <section className="py-16 md:py-60 px-6 relative border-t border-zinc-800 bg-zinc-950 transition-colors">
       <div className="max-w-7xl mx-auto relative z-10 text-center">
         <FadeIn>
           <div className="mb-12 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-black shadow-2xl">

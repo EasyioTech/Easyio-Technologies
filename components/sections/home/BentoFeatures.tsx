@@ -63,7 +63,7 @@ export default function BentoFeatures() {
   return (
     <section
       ref={containerRef}
-      className="py-24 md:py-60 px-6 relative bg-white dark:bg-zinc-950 overflow-hidden transition-colors"
+      className="py-24 md:py-60 px-6 relative bg-zinc-950 overflow-hidden transition-colors"
       id="matrix"
     >
       {/* Blueprint Canvas */}

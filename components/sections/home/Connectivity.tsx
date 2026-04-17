@@ -56,7 +56,7 @@ export default function Connectivity() {
               <div key={i} className="flex items-center gap-6 group cursor-default [backface-visibility:hidden]">
                 {/* Stylish Icon with Hidden Brand Color - Revealed on Hover */}
                 <div
-                  className="brand-icon-wrapper w-12 h-12 md:w-20 md:h-20 bg-zinc-950 dark:bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 group-hover:border-white/20 shadow-lg text-zinc-500"
+                  className="brand-icon-wrapper w-12 h-12 md:w-20 md:h-20 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 group-hover:border-white/20 dark:group-hover:border-white/20 shadow-lg text-zinc-600 dark:text-zinc-300"
                   style={{ "--brand-color": item.color } as any}
                 >
                   <item.icon className="w-6 h-6 md:w-10 md:h-10 transition-colors duration-500" />

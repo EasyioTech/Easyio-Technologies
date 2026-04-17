@@ -11,6 +11,10 @@ import Testimonials from "@/components/sections/home/Testimonials";
 import FAQ from "@/components/sections/home/FAQ";
 import CTA from "@/components/sections/home/CTA";
 
+import { db } from "@/lib/db";
+import { projects, testimonials } from "@/lib/db/schema";
+import { desc } from "drizzle-orm";
+
 import Logos from "@/components/sections/home/Logos";
 import Protocol from "@/components/sections/home/Protocol";
 import Showcase from "@/components/sections/home/Showcase";
@@ -43,7 +47,21 @@ const SectionLoader = () => (
   </div>
 );
 
-export default function HomePage() {
+export default async function HomePage() {
+  let allProjects: any[] = [];
+  let allTestimonials: any[] = [];
+
+  try {
+    const results = await Promise.all([
+      db.select().from(projects).orderBy(desc(projects.createdAt)),
+      db.select().from(testimonials).orderBy(desc(testimonials.createdAt))
+    ]);
+    allProjects = results[0];
+    allTestimonials = results[1];
+  } catch (error) {
+    console.error("Home Page Data Fetch Error:", error);
+  }
+
   return (
     <PageWrapper>
       <main className="w-full">
@@ -64,7 +82,7 @@ export default function HomePage() {
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <Showcase />
+            <Showcase initialProjects={allProjects} />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
@@ -72,7 +90,7 @@ export default function HomePage() {
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <Testimonials />
+            <Testimonials initialTestimonials={allTestimonials} />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>

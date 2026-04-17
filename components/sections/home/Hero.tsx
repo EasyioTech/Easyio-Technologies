@@ -21,7 +21,7 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   return (
-    <section ref={sectionRef} className="relative pt-24 pb-16 md:pt-44 md:pb-32 overflow-hidden bg-white dark:bg-zinc-950">
+    <section ref={sectionRef} className="relative pt-24 pb-16 md:pt-44 md:pb-32 overflow-hidden bg-zinc-950">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center">
           {/* Frontier Badge */}
@@ -76,17 +76,6 @@ export default function Hero() {
             </div>
           </FadeIn>
 
-          {/* Visual Showcase - Technical Dashboard */}
-          <FadeIn delay={1.2}>
-            <div className="perspective-2000">
-              <motion.div 
-                style={{ scale, rotateX, opacity }}
-                className="mt-16 md:mt-32 relative max-w-5xl mx-auto rounded-[2rem] md:rounded-[3rem] border border-zinc-100 dark:border-zinc-900 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-3xl overflow-hidden aspect-auto md:aspect-[16/10] shadow-2xl dark:shadow-[0_0_100px_-20px_rgba(0,0,0,0.5)] transition-all group p-1"
-              >
-                <HeroDashboard />
-              </motion.div>
-            </div>
-          </FadeIn>
         </div>
       </div>
     </section>

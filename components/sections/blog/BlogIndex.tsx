@@ -10,8 +10,8 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
   return (
     <section className="py-24 md:py-32 bg-white dark:bg-zinc-950 transition-colors">
       <div className="container mx-auto px-6">
-        {/* Header */}
-        <div className="max-w-4xl mb-24">
+        {/* Header - Centered */}
+        <div className="max-w-4xl mx-auto mb-24 text-center flex flex-col items-center">
           <FadeIn>
             <div className="flex items-center gap-3 mb-8 px-4 py-1.5 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
               <Terminal className="w-4 h-4 text-zinc-400" />
@@ -19,9 +19,9 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
             </div>
           </FadeIn>
           
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-zinc-950 dark:text-white mb-8">
-            <TextReveal>INSIGHTS INTO</TextReveal> <br />
-            <TextReveal delay={0.2} className="text-zinc-500 dark:text-zinc-700 italic">SYSTEMS ENGINEERING</TextReveal>
+          <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-black tracking-[-0.05em] text-zinc-950 dark:text-white mb-8 leading-[0.8] uppercase">
+            <TextReveal>JOURNAL OF</TextReveal> <br />
+            <TextReveal delay={0.2} className="text-zinc-500 dark:text-zinc-700 italic">ARCHITECTURE</TextReveal>
           </h1>
           
           <FadeIn delay={0.4}>

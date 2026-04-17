@@ -1,6 +1,11 @@
-import { Terminal, ArrowUpRight, Cpu, Zap, Globe, Shield } from "lucide-react";
+export const dynamic = 'force-dynamic';
+import { Terminal, ArrowUpRight, Cpu, Zap, Globe, Shield, Box } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { TextReveal, FadeIn } from "@/components/shared/Animations";
+import { db } from "@/lib/db";
+import { projects } from "@/lib/db/schema";
+import { desc } from "drizzle-orm";
+import Link from "next/link";
 
 export const metadata = {
   title: "Proof of Execution | Easyio Engineering",
@@ -8,31 +13,17 @@ export const metadata = {
   keywords: "software case studies kashmir, it projects srinagar, easyio portfolio, enterprise automation results"
 };
 
-const technicalDeployments = [
-  {
-    title: "Sovereign ERP Protocol",
-    category: "INDUSTRIAL_LOGIC",
-    desc: "Digital transformation for a leading regional manufacturer, reducing operational lag by 45%.",
-    slug: "sovereign-erp-protocol",
-    icon: Cpu
-  },
-  {
-    title: "Global Supply Hub",
-    category: "DISTRIBUTED_SYSTEMS",
-    desc: "Go-based backend infrastructure for international logistics management with 99.9% uptime.",
-    slug: "global-supply-hub",
-    icon: Globe
-  },
-  {
-    title: "Fintech Core Shield",
-    category: "FINTECH_SECURITY",
-    desc: "High-security cryptographic ledger for secure value transfer in volatile environments.",
-    slug: "fintech-core-shield",
-    icon: Shield
-  }
-];
+const iconMap: Record<string, any> = {
+  INDUSTRIAL_LOGIC: Cpu,
+  DISTRIBUTED_SYSTEMS: Globe,
+  FINTECH_SECURITY: Shield,
+  AI_INFRASTRUCTURE: Zap,
+  CLOUD_ARCHITECTURE: Box,
+};
 
-export default function CaseStudiesPage() {
+export default async function CaseStudiesPage() {
+  const deployments = await db.select().from(projects).orderBy(desc(projects.createdAt));
+
   return (
     <PageWrapper>
       <section className="py-24 md:py-40">
@@ -60,29 +51,38 @@ export default function CaseStudiesPage() {
 
           {/* Project Gallery */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-40">
-             {technicalDeployments.map((p, i) => (
-                <FadeIn key={p.slug} delay={0.1 * i}>
-                   <div className="group border border-zinc-100 dark:border-zinc-900 rounded-[3rem] p-10 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm hover:border-zinc-950 dark:hover:border-white transition-all duration-700 h-full flex flex-col">
-                      <div className="flex justify-between items-start mb-12">
-                         <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 group-hover:bg-zinc-950 dark:group-hover:bg-white transition-all duration-700">
-                            <p.icon className="w-6 h-6 text-zinc-400 group-hover:text-white dark:group-hover:text-black transition-colors" />
-                         </div>
-                         <span className="text-[8px] font-mono font-black tracking-widest text-zinc-300 dark:text-zinc-700 uppercase">{p.category}</span>
-                      </div>
-                      
-                      <h3 className="text-3xl font-black uppercase tracking-tighter italic mb-6 text-zinc-950 dark:text-white group-hover:translate-x-2 transition-transform duration-700">
-                        {p.title}
-                      </h3>
-                      <p className="text-lg text-zinc-500 dark:text-zinc-400 font-medium italic mb-12 flex-grow leading-relaxed">
-                        {p.desc}
-                      </p>
+             {deployments.map((p, i) => {
+                const Icon = iconMap[p.category || ''] || Cpu;
+                return (
+                  <FadeIn key={p.slug} delay={0.1 * i}>
+                     <div className="group border border-zinc-100 dark:border-zinc-900 rounded-[3rem] p-10 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm hover:border-zinc-950 dark:hover:border-white transition-all duration-700 h-full flex flex-col">
+                        <div className="flex justify-between items-start mb-12">
+                           <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 group-hover:bg-zinc-950 dark:group-hover:bg-white transition-all duration-700">
+                              <Icon className="w-6 h-6 text-zinc-400 group-hover:text-white dark:group-hover:text-black transition-colors" />
+                           </div>
+                           <span className="text-[8px] font-mono font-black tracking-widest text-zinc-300 dark:text-zinc-700 uppercase">{p.category || 'PROJECT'}</span>
+                        </div>
+                        
+                        {p.image && (
+                          <div className="mb-8 rounded-2xl overflow-hidden aspect-video border border-zinc-100 dark:border-zinc-800">
+                            <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                          </div>
+                        )}
 
-                      <a href={`/blog/${p.slug}`} className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.25em] text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-all">
-                        VIEW_FULL_MANIFEST <ArrowUpRight className="w-4 h-4 translate-x-1" />
-                      </a>
-                   </div>
-                </FadeIn>
-             ))}
+                        <h3 className="text-3xl font-black uppercase tracking-tighter italic mb-6 text-zinc-950 dark:text-white group-hover:translate-x-2 transition-transform duration-700">
+                          {p.title}
+                        </h3>
+                        <p className="text-lg text-zinc-500 dark:text-zinc-400 font-medium italic mb-12 flex-grow leading-relaxed line-clamp-3">
+                          {p.description}
+                        </p>
+
+                        <Link href={`/case-studies/${p.slug}`} className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.25em] text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-all">
+                          VIEW_FULL_MANIFEST <ArrowUpRight className="w-4 h-4 translate-x-1" />
+                        </Link>
+                     </div>
+                  </FadeIn>
+                );
+             })}
           </div>
 
           {/* Bottom CTA */}

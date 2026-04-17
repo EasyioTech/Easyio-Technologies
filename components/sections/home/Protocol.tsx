@@ -89,7 +89,7 @@ export default function Protocol() {
   const dotY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section ref={containerRef} className="py-20 md:py-60 px-6 relative bg-white dark:bg-zinc-950 overflow-hidden transform-gpu">
+    <section ref={containerRef} className="py-20 md:py-60 px-6 relative bg-zinc-950 overflow-hidden transform-gpu">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-full opacity-5 dark:opacity-10 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full border-[1px] border-dashed border-zinc-950 dark:border-white rotate-12 scale-150" />
       </div>

@@ -20,22 +20,34 @@ export default function PostCard({ post, index }: { post: BlogPost; index: numbe
             <div className="absolute inset-0 bg-gradient-to-br from-zinc-100/50 to-transparent dark:from-white/5 dark:to-transparent" />
           </div>
 
+          {/* Featured Image - Scaled Down for Authority */}
+          {post.image && (
+            <div className="relative h-32 -mx-8 -mt-8 mb-6 overflow-hidden border-b border-zinc-100 dark:border-white/5">
+              <img 
+                src={post.image} 
+                alt={post.title}
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-zinc-950 via-transparent to-transparent opacity-80" />
+            </div>
+          )}
+
           <div className="relative z-10">
-            <div className="flex items-center gap-4 mb-6">
-              <span className="px-3 py-1 rounded-full bg-zinc-100 dark:bg-white/5 text-[10px] font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-white/10">
+            <div className="flex items-center gap-4 mb-4">
+              <span className="px-3 py-1 rounded-full bg-zinc-100 dark:bg-white/5 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-white/10">
                 {post.category}
               </span>
-              <div className="flex items-center gap-2 text-[10px] text-zinc-400 dark:text-zinc-500 font-medium">
+              <div className="flex items-center gap-2 text-[10px] text-zinc-400 dark:text-zinc-500 font-bold uppercase tracking-tight">
                 <Clock className="w-3 h-3" />
                 {post.readingTime}
               </div>
             </div>
 
-            <h3 className="text-2xl font-bold text-zinc-950 dark:text-white mb-4 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors line-clamp-2 leading-tight">
+            <h3 className="text-3xl md:text-4xl font-black text-zinc-950 dark:text-white mb-4 group-hover:text-zinc-500 dark:group-hover:text-zinc-400 transition-colors line-clamp-2 leading-[1.1] tracking-tighter">
               {post.title}
             </h3>
 
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-3 mb-8 leading-relaxed">
+            <p className="text-base text-zinc-500 dark:text-zinc-400 line-clamp-3 mb-6 leading-relaxed font-medium">
               {post.description}
             </p>
 

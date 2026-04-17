@@ -14,7 +14,7 @@ export default function MarqueeText() {
   const x2 = useTransform(scrollYProgress, [0, 1], [-1000, 0]);
 
   return (
-    <section ref={containerRef} className="py-20 overflow-hidden bg-white dark:bg-zinc-950 border-y border-zinc-200 dark:border-white/5 transition-colors">
+    <section ref={containerRef} className="py-20 overflow-hidden bg-zinc-950 border-y border-zinc-800 transition-colors">
       <div className="flex flex-col gap-4">
         {/* Line 1 - GenZ Vibe / High Energy */}
         <motion.div style={{ x: x1 }} className="flex whitespace-nowrap">

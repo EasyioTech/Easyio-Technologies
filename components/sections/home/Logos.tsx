@@ -13,7 +13,7 @@ const partners = [
 
 export default function Logos() {
   return (
-    <section className="py-20 px-6 relative overflow-hidden bg-white dark:bg-zinc-950 border-y border-zinc-100 dark:border-zinc-900 transition-colors">
+    <section className="py-20 px-6 relative overflow-hidden border-y border-zinc-100 dark:border-zinc-900 transition-colors">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <FadeIn className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-300 dark:text-zinc-700 whitespace-nowrap">
