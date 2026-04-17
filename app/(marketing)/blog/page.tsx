@@ -47,7 +47,7 @@ export default async function BlogListingPage() {
       slug: post.slug,
       title: post.title,
       description: post.seoDescription || post.excerpt,
-      date: post.publishedAt ? post.publishedAt.toISOString().split('T')[0] : '',
+      date: post.publishedAt ? new Date(post.publishedAt).toISOString().split('T')[0] : '',
       author: post.author,
       category: post.category,
       content: post.content,
