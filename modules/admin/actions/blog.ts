@@ -47,7 +47,7 @@ export async function createBlogPost(data: z.infer<typeof blogSchema>) {
     });
 
     // Revalidate cache tags for ISR
-    revalidateTag(CACHE_TAGS.BLOG_POSTS);
+    revalidateTag(CACHE_TAGS.BLOG_POSTS, 'max');
     revalidatePath('/dashboard/blog');
     return { success: true };
   } catch (error: any) {
@@ -72,9 +72,9 @@ export async function updateBlogPost(id: string, data: Partial<z.infer<typeof bl
       .where(eq(blogPosts.id, id));
 
     // Revalidate cache tags for ISR
-    revalidateTag(CACHE_TAGS.BLOG_POSTS);
+    revalidateTag(CACHE_TAGS.BLOG_POSTS, 'max');
     if (data.slug) {
-      revalidateTag(CACHE_TAGS.BLOG_POST_DETAIL);
+      revalidateTag(CACHE_TAGS.BLOG_POST_DETAIL, 'max');
     }
     revalidatePath('/dashboard/blog');
     return { success: true };
@@ -88,8 +88,8 @@ export async function deleteBlogPost(id: string) {
     await db.delete(blogPosts).where(eq(blogPosts.id, id));
 
     // Revalidate cache tags for ISR
-    revalidateTag(CACHE_TAGS.BLOG_POSTS);
-    revalidateTag(CACHE_TAGS.BLOG_POST_DETAIL);
+    revalidateTag(CACHE_TAGS.BLOG_POSTS, 'max');
+    revalidateTag(CACHE_TAGS.BLOG_POST_DETAIL, 'max');
     revalidatePath('/dashboard/blog');
     return { success: true };
   } catch (error: any) {

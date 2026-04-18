@@ -36,7 +36,7 @@ export async function createTestimonial(data: z.infer<typeof testimonialSchema>)
     });
 
     // Revalidate cache tags for ISR
-    revalidateTag(CACHE_TAGS.TESTIMONIALS);
+    revalidateTag(CACHE_TAGS.TESTIMONIALS, 'max');
     revalidatePath('/dashboard/testimonials');
     return { success: true };
   } catch (error: any) {
@@ -51,7 +51,7 @@ export async function updateTestimonial(id: string, data: Partial<z.infer<typeof
       .where(eq(testimonials.id, id));
 
     // Revalidate cache tags for ISR
-    revalidateTag(CACHE_TAGS.TESTIMONIALS);
+    revalidateTag(CACHE_TAGS.TESTIMONIALS, 'max');
     revalidatePath('/dashboard/testimonials');
     return { success: true };
   } catch (error: any) {
@@ -64,7 +64,7 @@ export async function deleteTestimonial(id: string) {
     await db.delete(testimonials).where(eq(testimonials.id, id));
 
     // Revalidate cache tags for ISR
-    revalidateTag(CACHE_TAGS.TESTIMONIALS);
+    revalidateTag(CACHE_TAGS.TESTIMONIALS, 'max');
     revalidatePath('/dashboard/testimonials');
     return { success: true };
   } catch (error: any) {

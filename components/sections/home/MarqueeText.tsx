@@ -1,6 +1,6 @@
 'use client';
 
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform, useSpring, motion } from "framer-motion";
 import { useRef } from "react";
 
 export default function MarqueeText() {
@@ -10,44 +10,52 @@ export default function MarqueeText() {
     offset: ["start end", "end start"]
   });
 
-  const x1 = useTransform(scrollYProgress, [0, 1], [0, -1000]);
-  const x2 = useTransform(scrollYProgress, [0, 1], [-1000, 0]);
+  // Smooth out the scroll progress
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 60,
+    damping: 25,
+    restDelta: 0.001
+  });
+
+  const x1 = useTransform(smoothProgress, [0, 1], [0, -200]);
+  const x2 = useTransform(smoothProgress, [0, 1], [-200, 0]);
 
   return (
-    <section ref={containerRef} className="py-20 overflow-hidden bg-transparent border-y border-zinc-100 dark:border-zinc-800 transition-colors">
-      <div className="flex flex-col gap-4">
-        {/* Line 1 - GenZ Vibe / High Energy */}
+    <section ref={containerRef} className="py-20 md:py-32 overflow-hidden bg-transparent border-y border-zinc-100 dark:border-zinc-800 transition-colors relative">
+      {/* Technical Grid Background */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+      
+      <div className="flex flex-col gap-10 md:gap-14 relative z-10">
+        {/* Line 1 - High Level Systems */}
         <motion.div style={{ x: x1 }} className="flex whitespace-nowrap">
-          <span className="text-[8vw] font-black tracking-tighter text-zinc-950 dark:text-white uppercase leading-none">
-            Uncompromising Systems Engineering <span className="text-zinc-400 dark:text-zinc-800 ml-10">/</span>
-            High-Performance Infrastructure <span className="text-zinc-400 dark:text-zinc-800 ml-10">/</span>
-            Uncompromising Systems Engineering <span className="text-zinc-400 dark:text-zinc-800 ml-10">/</span>
-            High-Performance Infrastructure
+          <span className="text-[6vw] md:text-[4vw] font-black tracking-tighter text-zinc-950 dark:text-white uppercase leading-none px-4">
+            Hyper-Scalable Systems <span className="text-emerald-500 mx-10">//</span>
+            Precision Architecture <span className="text-emerald-500 mx-10">//</span>
+            Real-time Data Integrity <span className="text-emerald-500 mx-10">//</span>
+            Autonomous Logic
           </span>
         </motion.div>
 
-        {/* Line 2 - Unique Color / Opposite Direction */}
+        {/* Line 2 - Specializations */}
         <motion.div style={{ x: x2 }} className="flex whitespace-nowrap">
-          <span className="text-[8vw] font-black tracking-tighter text-zinc-500 dark:text-zinc-400 uppercase leading-none">
-            Built for Global Scalability <span className="text-zinc-300 dark:text-zinc-800 ml-10">/</span>
-            Delivering Excellence at Scale <span className="text-zinc-300 dark:text-zinc-800 ml-10">/</span>
-            Built for Global Scalability <span className="text-zinc-300 dark:text-zinc-800 ml-10">/</span>
-            Delivering Excellence at Scale
+          <span className="text-[6vw] md:text-[4vw] font-black tracking-tighter text-zinc-500 dark:text-zinc-400 uppercase leading-none px-4">
+            Edge Intelligence <span className="text-zinc-300 dark:text-zinc-800 mx-10">❖</span>
+            Cloud Native Infrastructure <span className="text-zinc-300 dark:text-zinc-800 mx-10">❖</span>
+            Quantum-Safe Security <span className="text-zinc-300 dark:text-zinc-800 mx-10">❖</span>
+            DevOps Excellence
           </span>
         </motion.div>
 
-        {/* Line 3 - Tagline / Same as Line 1 */}
+        {/* Line 3 - Corporate Value */}
         <motion.div style={{ x: x1 }} className="flex whitespace-nowrap">
-          <span className="text-[4vw] font-bold italic tracking-widest text-zinc-400/60 dark:text-zinc-600/50 uppercase leading-none">
-            Engineering the Future of Technology <span className="mx-20">//</span>
-            EASYIO TECHNOLOGIES v2.0 <span className="mx-20">//</span>
-            Engineering the Future of Technology <span className="mx-20">//</span>
-            EASYIO TECHNOLOGIES v2.0
+          <span className="text-[3vw] md:text-[1.5vw] font-extrabold italic tracking-[0.4em] text-zinc-400/60 dark:text-zinc-600/50 uppercase leading-none px-4">
+            Engineering Sovereignty <span className="mx-16">•</span>
+            Scale Without Friction <span className="mx-16">•</span>
+            Established MMXIV Kashmir
           </span>
         </motion.div>
       </div>
-
-
     </section>
   );
 }

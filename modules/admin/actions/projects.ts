@@ -43,7 +43,7 @@ export async function createProject(data: z.infer<typeof projectSchema>) {
     });
 
     // Revalidate cache tags for ISR
-    revalidateTag(CACHE_TAGS.PROJECTS);
+    revalidateTag(CACHE_TAGS.PROJECTS, 'max');
     revalidatePath('/dashboard/projects');
     return { success: true };
   } catch (error: any) {
@@ -58,9 +58,9 @@ export async function updateProject(id: string, data: Partial<z.infer<typeof pro
       .where(eq(projects.id, id));
 
     // Revalidate cache tags for ISR
-    revalidateTag(CACHE_TAGS.PROJECTS);
+    revalidateTag(CACHE_TAGS.PROJECTS, 'max');
     if (data.slug) {
-      revalidateTag(CACHE_TAGS.PROJECT_DETAIL);
+      revalidateTag(CACHE_TAGS.PROJECT_DETAIL, 'max');
     }
     revalidatePath('/dashboard/projects');
     return { success: true };
@@ -74,8 +74,8 @@ export async function deleteProject(id: string) {
     await db.delete(projects).where(eq(projects.id, id));
 
     // Revalidate cache tags for ISR
-    revalidateTag(CACHE_TAGS.PROJECTS);
-    revalidateTag(CACHE_TAGS.PROJECT_DETAIL);
+    revalidateTag(CACHE_TAGS.PROJECTS, 'max');
+    revalidateTag(CACHE_TAGS.PROJECT_DETAIL, 'max');
     revalidatePath('/dashboard/projects');
     return { success: true };
   } catch (error: any) {

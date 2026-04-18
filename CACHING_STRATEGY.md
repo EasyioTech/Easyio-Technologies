@@ -42,7 +42,7 @@ const getCachedBlogPosts = cacheQuery(
 When content changes (create, update, delete), cache tags are revalidated immediately:
 
 ```typescript
-revalidateTag(CACHE_TAGS.BLOG_POSTS); // Invalidates all blog-related caches
+revalidateTag(CACHE_TAGS.BLOG_POSTS, 'max'); // Invalidates all blog-related caches
 ```
 
 ## Implementation Details
@@ -106,7 +106,7 @@ The `middleware.ts` sets appropriate cache headers:
 2. Form submits to `createBlogPost()` or `updateBlogPost()` server action
 3. Server action:
    - Saves to database
-   - Calls `revalidateTag(CACHE_TAGS.BLOG_POSTS)`
+   - Calls `revalidateTag(CACHE_TAGS.BLOG_POSTS, 'max')`
    - Returns success
 4. Cache invalidation triggers automatic regeneration on next request
 5. Public pages serve fresh content

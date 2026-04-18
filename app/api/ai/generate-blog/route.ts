@@ -15,6 +15,7 @@ const MODEL_CHAIN = [
 
 const requestSchema = z.object({
   command: z.string().min(10, 'Command too short').max(500, 'Command too long'),
+  provider: z.enum(['auto', 'gemini', 'groq', 'sambanova', 'cerebras']).optional().default('auto'),
 });
 
 function buildToc(content: string): { level: number; text: string; anchor: string }[] {
@@ -92,8 +93,8 @@ TITLE & META:
 • Meta description: 140-160 characters. Directly answers the search intent. Ends with a soft CTA ("Learn…", "See how…", "Find out…").
 
 CONTENT SIGNALS:
-• Article length: 1,200-2,500 words. Authoritative but readable.
-• H2 heading every 250-350 words minimum. H3 for sub-sections. Never skip a heading level.
+• Article length: 600-900 words. High-density, authoritative, and focused. Stay within this range to ensure full completion without truncation.
+• H2 heading every 200-250 words minimum. H3 for sub-sections. Never skip a heading level.
 • Internal linking: include 2-3 natural phrases formatted as [anchor text](internal-link-placeholder) — the CMS will replace the URLs.
 • External authority links: 2-3 real links to high-authority sources (official docs, GitHub, academic papers, MDN) — use real URLs from your search results.
 
@@ -253,6 +254,93 @@ function extractJson(text: string) {
   throw new Error('AI returned invalid JSON. Cannot parse the response.');
 }
 
+async function generateWithGroq(command: string) {
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) throw new Error('Groq not configured');
+
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: `TOPIC: ${command}\nReturn only the raw JSON object.` }
+      ],
+      response_format: { type: 'json_object' }
+    })
+  });
+
+  const data = await response.json();
+  return { 
+    text: data.choices[0].message.content, 
+    searches: [], 
+    grounded: false, 
+    modelUsed: 'groq/llama-3.3-70b' 
+  };
+}
+
+async function generateWithSambaNova(command: string) {
+  const apiKey = process.env.SAMBANOVA_API_KEY;
+  if (!apiKey) throw new Error('SambaNova not configured');
+
+  const response = await fetch('https://api.sambanova.ai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'Meta-Llama-3.3-70B-Instruct',
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: `TOPIC: ${command}\nReturn only the raw JSON object.` }
+      ],
+      response_format: { type: 'json_object' }
+    })
+  });
+
+  const data = await response.json();
+  return { 
+    text: data.choices[0].message.content, 
+    searches: [], 
+    grounded: false, 
+    modelUsed: 'sambanova/llama-3.1-70b' 
+  };
+}
+
+async function generateWithCerebras(command: string) {
+  const apiKey = process.env.CEREBRAS_API_KEY;
+  if (!apiKey) throw new Error('Cerebras not configured');
+
+  const response = await fetch('https://api.cerebras.ai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'llama3.1-8b',
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: `TOPIC: ${command}\nReturn only the raw JSON object.` }
+      ],
+      response_format: { type: 'json_object' }
+    })
+  });
+
+  const data = await response.json();
+  return { 
+    text: data.choices[0].message.content, 
+    searches: [], 
+    grounded: false, 
+    modelUsed: 'cerebras/llama-3.1-70b' 
+  };
+}
+
 export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
@@ -266,49 +354,67 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { command } = requestSchema.parse(body);
+    const { command, provider } = requestSchema.parse(body);
 
-    let responseText: string;
-    let searchesUsed: string[] = [];
-    let groundingUsed = false;
+    let result: any;
+    const errors: string[] = [];
+
+    // EXECUTION MATRIX: Targeted or Autonomous
+    const tryGemini = async () => {
+      try {
+        return await generateWithGrounding(command);
+      } catch (e: any) {
+        errors.push(`Gemini Grounding: ${e.message}`);
+        return await generateWithoutGrounding(command);
+      }
+    };
 
     try {
-      const { text, searches, grounded } = await generateWithGrounding(command);
-      responseText = text;
-      searchesUsed = searches;
-      groundingUsed = grounded;
-      console.log(`[AI Blog] Grounded generation succeeded. Queries: ${searches.join(', ')}`);
-    } catch (groundingError: any) {
-      console.warn(`[AI Blog] Grounding failed (${groundingError.message}), falling back to standard generation.`);
-      const { text } = await generateWithoutGrounding(command);
-      responseText = text;
+      if (provider === 'gemini') {
+        result = await tryGemini();
+      } else if (provider === 'groq') {
+        result = await generateWithGroq(command);
+      } else if (provider === 'sambanova') {
+        result = await generateWithSambaNova(command);
+      } else if (provider === 'cerebras') {
+        result = await generateWithCerebras(command);
+      } else {
+        // AUTONOMOUS FALLBACK CHAIN (The Original Logic)
+        try {
+          result = await tryGemini();
+        } catch (e: any) {
+          errors.push(`Gemini Suite: ${e.message}`);
+          try {
+            result = await generateWithGroq(command);
+          } catch (e3: any) {
+            errors.push(`Groq: ${e3.message}`);
+            try {
+              result = await generateWithSambaNova(command);
+            } catch (e4: any) {
+              errors.push(`SambaNova: ${e4.message}`);
+              result = await generateWithCerebras(command);
+            }
+          }
+        }
+      }
+    } catch (finalError: any) {
+      console.error('[AI Blog] All targeted/fallback attempts failed:', errors);
+      throw new Error(`Generation failed. ${errors.join(' | ')}`);
     }
 
     let parsed: any;
     try {
-      parsed = extractJson(responseText);
+      parsed = extractJson(result.text);
     } catch (parseError: any) {
-      console.error('[AI Blog] JSON parse failed. Raw response:', responseText.slice(0, 500));
-      throw new Error('AI returned malformed output. Please try again.');
+      console.error('[AI Blog] JSON parse failed. Raw response:', result.text.slice(0, 500));
+      throw new Error(`AI model (${result.modelUsed}) returned malformed output.`);
     }
 
     const required = ['title', 'slug', 'content', 'seoTitle', 'excerpt'];
     for (const field of required) {
       if (!parsed[field]) {
-        throw new Error(`AI response is missing required field: "${field}". Please try again.`);
+        throw new Error(`AI response from ${result.modelUsed} is missing required field: "${field}".`);
       }
-    }
-
-    // Safety: flag hallucinated Easyio-specific content
-    const suspiciousPatterns = [
-      /easyio\s+(platform|erp|system|dashboard|client|project|case\s*study)/gi,
-      /our\s+(client|customer|partner)\s+[A-Z][a-z]+/g,
-      /reduced\s+\w+\s+by\s+\d+%/gi,
-      /increased\s+\w+\s+by\s+\d+%/gi,
-    ];
-    const flagged = suspiciousPatterns.some(p => p.test(parsed.content));
-    if (flagged) {
-      console.warn('[AI Blog] Content flagged for potential hallucinated company data.');
     }
 
     const toc = buildToc(parsed.content);
@@ -323,7 +429,6 @@ export async function POST(request: NextRequest) {
         excerpt: parsed.excerpt,
         seoDescription: parsed.seoDescription,
         focusKeyword: parsed.focusKeyword,
-        // New fields — update your CMS schema to accept these
         lsiKeywords: parsed.lsiKeywords || parsed.keywords || '',
         contentType: parsed.contentType || 'technical-guide',
         category: parsed.category,
@@ -334,11 +439,12 @@ export async function POST(request: NextRequest) {
         sourcesUsed: parsed.sourcesUsed || [],
       },
       meta: {
-        groundingEnabled: groundingUsed,
-        searchQueriesUsed: searchesUsed,
-        contentFlagged: flagged,
+        groundingEnabled: result.grounded,
+        searchQueriesUsed: result.searches,
+        modelUsed: result.modelUsed,
       },
     });
+
   } catch (error: any) {
     console.error('[AI Blog] Fatal error:', error);
     return NextResponse.json(

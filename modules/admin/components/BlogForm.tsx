@@ -31,7 +31,8 @@ export function BlogForm({ onClose, initialData, isModal = true }: { onClose: ()
   const [aiLoading, setAiLoading] = useState(false);
   const [aiCommand, setAiCommand] = useState('');
   const [aiError, setAiError] = useState('');
-  const [aiMeta, setAiMeta] = useState<{ groundingEnabled?: boolean; searchQueriesUsed?: string[]; contentFlagged?: boolean } | null>(null);
+  const [aiProvider, setAiProvider] = useState<'auto' | 'gemini' | 'groq' | 'sambanova' | 'cerebras'>('auto');
+  const [aiMeta, setAiMeta] = useState<{ groundingEnabled?: boolean; searchQueriesUsed?: string[]; contentFlagged?: boolean; modelUsed?: string } | null>(null);
   const router = useRouter();
   const isEditing = !!initialData;
 
@@ -87,7 +88,7 @@ export function BlogForm({ onClose, initialData, isModal = true }: { onClose: ()
       const res = await fetch('/api/ai/generate-blog', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ command: aiCommand }),
+        body: JSON.stringify({ command: aiCommand, provider: aiProvider }),
       });
 
       const json = await res.json();
@@ -158,67 +159,104 @@ export function BlogForm({ onClose, initialData, isModal = true }: { onClose: ()
             {/* HUD Status Line */}
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
             
-            <div className="p-10 space-y-8">
+            <div className="p-6 space-y-6">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                      <Wand2 className="w-5 h-5 text-emerald-400" />
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-700 ${aiLoading ? 'bg-emerald-500/20 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'bg-emerald-500/10 border-emerald-500/20'}`}>
+                      <Wand2 className={`w-4 h-4 ${aiLoading ? 'text-white' : 'text-emerald-400'}`} />
                     </div>
                     {aiLoading && (
-                      <div className="absolute inset-0 rounded-full border border-emerald-500 animate-[ping_1.5s_linear_infinite]" />
+                      <div className="absolute -inset-1 rounded-full border border-emerald-500/50 animate-pulse" />
                     )}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white tracking-[-0.03em]">Autonomous Content Architect</h3>
-                    <p className="text-xs font-medium text-emerald-500/60 uppercase tracking-[0.15em] mt-0.5">Gemini 2.5 Flash Implementation</p>
+                    <h3 className="text-base font-bold text-white tracking-tight">Autonomous Content Architect</h3>
+                    <p className="text-[9px] font-black text-emerald-500/70 uppercase tracking-[0.1em] mt-0.5">Free Production Matrix</p>
                   </div>
                 </div>
                 
-                <div className="flex gap-2">
-                  <div className={`h-1.5 w-1.5 rounded-full ${aiLoading ? 'bg-emerald-500 animate-pulse' : 'bg-zinc-800'}`} />
-                  <div className={`h-1.5 w-1.5 rounded-full ${aiLoading ? 'bg-emerald-500/60 animate-pulse delay-75' : 'bg-zinc-800'}`} />
-                  <div className={`h-1.5 w-1.5 rounded-full ${aiLoading ? 'bg-emerald-500/30 animate-pulse delay-150' : 'bg-zinc-800'}`} />
+                <div className="flex gap-1.5">
+                  <div className={`h-1 w-1 rounded-full ${aiLoading ? 'bg-emerald-500 animate-pulse' : 'bg-zinc-800'}`} />
+                  <div className={`h-1 w-1 rounded-full ${aiLoading ? 'bg-emerald-500/60 animate-pulse delay-75' : 'bg-zinc-800'}`} />
+                  <div className={`h-1 w-1 rounded-full ${aiLoading ? 'bg-emerald-500/30 animate-pulse delay-150' : 'bg-zinc-800'}`} />
                 </div>
               </div>
 
-              <div className="relative">
+              <div className="relative group/textarea">
                 <textarea
                   value={aiCommand}
                   onChange={(e) => setAiCommand(e.target.value)}
-                  placeholder="Define Technical Objective (e.g. 'Case study on building highly available microservices in Rust')..."
+                  placeholder="Define Technical Objective..."
                   rows={2}
-                  className="w-full bg-zinc-950/60 border border-zinc-800/50 focus:border-emerald-500/30 rounded-2xl px-8 py-6 text-lg text-zinc-100 placeholder:text-zinc-700 transition-all outline-none resize-none"
+                  className={`w-full bg-zinc-950/60 border border-zinc-800/50 focus:border-emerald-500/30 rounded-xl px-5 py-4 text-sm text-zinc-100 placeholder:text-zinc-700 transition-all outline-none resize-none ${aiLoading ? 'opacity-50' : ''}`}
                 />
+                {aiLoading && (
+                  <div className="absolute inset-x-5 top-0 h-[1.5px] bg-emerald-500/40 blur-[1px] animate-scan pointer-events-none" />
+                )}
               </div>
               
-              <div className="flex items-center justify-between pt-2">
-                <div className="flex items-center gap-6">
-                  <button
-                    type="button"
-                    onClick={handleAiGenerate}
-                    disabled={aiLoading}
-                    className="group relative flex items-center gap-3 px-10 py-4 bg-white text-black font-black text-xs uppercase tracking-widest rounded-full transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
-                  >
-                    <span>{aiLoading ? 'Processing Matrix...' : 'Execute Generation'}</span>
-                    <Wand2 className={`w-4 h-4 transition-transform ${aiLoading ? 'animate-spin' : 'group-hover:rotate-12'}`} />
-                  </button>
-                  
-                  {aiLoading && (
-                    <span className="text-[10px] font-bold text-emerald-500 animate-pulse uppercase tracking-widest">
-                      Synthesizing Level 4 Article...
-                    </span>
-                  )}
+              <div className="flex flex-col gap-4 pt-1">
+                {/* Custom Provider Selector */}
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {[
+                    { id: 'auto', name: 'Auto' },
+                    { id: 'gemini', name: 'Gemini' },
+                    { id: 'groq', name: 'Groq' },
+                    { id: 'sambanova', name: 'SambaNova' },
+                    { id: 'cerebras', name: 'Cerebras' },
+                  ].map((p) => (
+                    <button
+                      key={p.id}
+                      type="button"
+                      onClick={() => setAiProvider(p.id as any)}
+                      className={`px-3 py-1.5 rounded-lg border text-[10px] font-black uppercase tracking-widest transition-all ${
+                        aiProvider === p.id 
+                          ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-400' 
+                          : 'bg-zinc-950/40 border-zinc-800 text-zinc-600 hover:border-zinc-700'
+                      }`}
+                    >
+                      {p.name}
+                    </button>
+                  ))}
                 </div>
 
-                <div className="text-right">
-                  <p className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-700">Protocol v2.5.Stable</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={handleAiGenerate}
+                      disabled={aiLoading}
+                      className="group relative flex items-center gap-4 px-6 py-2.5 bg-white text-black rounded-full transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:pointer-events-none shadow-lg shadow-white/5"
+                    >
+                      <div className="flex flex-col items-start leading-none text-left">
+                        <span className="text-[9px] font-black uppercase tracking-widest">{aiLoading ? 'Protocol Active' : 'Execute Generation'}</span>
+                        <span className="text-[8px] opacity-40 mt-0.5 font-bold uppercase tracking-widest">{aiLoading ? 'Synthesizing...' : `${aiProvider.toUpperCase()} INTERFACE`}</span>
+                      </div>
+                      <div className={`w-1.5 h-1.5 rounded-full ${aiLoading ? 'bg-emerald-500 animate-pulse' : 'bg-black/20'}`} />
+                    </button>
+                    
+                    {aiLoading && (
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[8px] font-bold text-emerald-500 animate-pulse uppercase tracking-[0.2em]">
+                          Processing Synthesis...
+                        </span>
+                        <div className="h-0.5 w-20 bg-zinc-900 overflow-hidden rounded-full">
+                          <div className="h-full bg-emerald-500 animate-shimmer w-1/2" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="text-right hidden sm:block">
+                    <p className="text-[9px] font-black uppercase tracking-[0.2em] text-zinc-800">Protocol v2.5</p>
+                  </div>
                 </div>
               </div>
               
               {aiError && (
-                <div className="p-5 bg-rose-500/5 border border-rose-500/10 rounded-2xl">
-                  <p className="text-rose-400 text-xs font-bold leading-relaxed">{aiError}</p>
+                <div className="p-4 bg-rose-500/5 border border-rose-500/10 rounded-xl">
+                  <p className="text-rose-400 text-[10px] font-bold tracking-tight">{aiError}</p>
                 </div>
               )}
 
@@ -263,36 +301,36 @@ export function BlogForm({ onClose, initialData, isModal = true }: { onClose: ()
         )}
 
         {/* BASIC FIELDS */}
-        <div className="grid grid-cols-2 gap-8">
-          <div className="space-y-3">
-            <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Article Title</label>
-            <input {...register('title')} className="w-full bg-zinc-950 border border-zinc-800 focus:border-zinc-600 rounded-2xl px-6 py-4 text-xl font-bold tracking-tight transition-all" />
-            {errors.title && <p className="text-rose-500 text-xs">{errors.title.message as string}</p>}
+        <div className="grid grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Article Title</label>
+            <input {...register('title')} placeholder="Protocol Identifier..." className="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500/30 rounded-xl px-5 py-3 text-base font-bold tracking-tight transition-all" />
+            {errors.title && <p className="text-rose-500 text-[10px] uppercase font-black">{errors.title.message as string}</p>}
           </div>
-          <div className="space-y-3">
-            <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">URL Slug</label>
-            <input {...register('slug')} className="w-full bg-zinc-950 border border-zinc-800 focus:border-zinc-600 rounded-2xl px-6 py-4 text-lg font-mono transition-all" />
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">URL Slug</label>
+            <input {...register('slug')} placeholder="slug-path..." className="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500/30 rounded-xl px-5 py-3 text-sm font-mono transition-all" />
           </div>
         </div>
 
-        <div className="space-y-3">
-          <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Expert Excerpt</label>
-          <textarea {...register('excerpt')} rows={3} className="w-full bg-zinc-950 border border-zinc-800 focus:border-zinc-600 rounded-2xl px-6 py-4 text-lg leading-relaxed transition-all" />
+        <div className="space-y-2">
+          <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Expert Excerpt</label>
+          <textarea {...register('excerpt')} rows={2} placeholder="Brief executive summary..." className="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500/30 rounded-xl px-5 py-3 text-sm leading-relaxed transition-all resize-none" />
         </div>
 
-        <div className="space-y-3">
-          <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Main Manuscript (Markdown)</label>
-          <textarea {...register('content')} rows={15} className="w-full bg-zinc-950 border border-zinc-800 focus:border-zinc-600 rounded-2xl px-8 py-6 font-mono text-lg leading-relaxed transition-all" />
+        <div className="space-y-2">
+          <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Main Manuscript (Markdown)</label>
+          <textarea {...register('content')} rows={12} className="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500/30 rounded-xl px-6 py-4 font-mono text-sm leading-relaxed transition-all" />
         </div>
 
-        <div className="grid grid-cols-2 gap-8">
-          <div className="space-y-3">
-            <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Primary Author</label>
-            <input {...register('author')} className="w-full bg-zinc-950 border border-zinc-800 focus:border-zinc-600 rounded-2xl px-6 py-4 text-lg transition-all" />
+        <div className="grid grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Primary Author</label>
+            <input {...register('author')} className="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500/30 rounded-xl px-5 py-3 text-sm" />
           </div>
-          <div className="space-y-3">
-            <label className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Subject Category</label>
-            <input {...register('category')} className="w-full bg-zinc-950 border border-zinc-800 focus:border-zinc-600 rounded-2xl px-6 py-4 text-lg transition-all" />
+          <div className="space-y-2">
+            <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Subject Category</label>
+            <input {...register('category')} className="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500/30 rounded-xl px-5 py-3 text-sm" />
           </div>
         </div>
 
