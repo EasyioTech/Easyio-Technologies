@@ -134,14 +134,18 @@ Escape all newlines as \\n and all internal double quotes as \\".
 
 /** Returns true if the error is a transient overload/rate-limit (worth retrying or falling back) */
 function isRetryable(error: any): boolean {
-  const msg = error?.message || '';
+  const msg = (error?.message || '').toLowerCase();
   return (
     msg.includes('503') ||
-    msg.includes('Service Unavailable') ||
+    msg.includes('service unavailable') ||
     msg.includes('overloaded') ||
     msg.includes('high demand') ||
     msg.includes('429') ||
-    msg.includes('Too Many Requests')
+    msg.includes('too many requests') ||
+    msg.includes('quota exceeded') ||
+    msg.includes('resource exhausted') ||
+    msg.includes('limit exceeded') ||
+    msg.includes('quota')
   );
 }
 
