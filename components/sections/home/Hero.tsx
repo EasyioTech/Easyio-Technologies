@@ -31,9 +31,9 @@ export default function Hero() {
                 className="group h-14 pl-8 pr-2 flex items-center justify-center bg-zinc-950 text-white font-medium rounded-full hover:bg-zinc-800 transition-all shadow-xl shadow-emerald-500/10 active:scale-95"
               >
                 Get Started 
-                <div className="w-10 h-10 ml-4 bg-white rounded-full flex items-center justify-center text-zinc-950 group-hover:bg-[#FEF9C3] group-hover:scale-105 transition-all duration-300">
-                  <ArrowRight className="w-5 h-5 -rotate-[25deg]" />
-                </div>
+                  <div className="w-10 h-10 ml-4 bg-white rounded-full flex items-center justify-center text-zinc-950 group-hover:bg-[#FEF9C3] group-hover:scale-105 transition-all duration-500 group-hover:rotate-45">
+                    <ArrowUpRight className="w-5 h-5 flex-shrink-0" />
+                  </div>
               </Link>
               
               <div className="flex items-center gap-4 text-left">

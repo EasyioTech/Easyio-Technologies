@@ -51,26 +51,30 @@ export default function Blogs() {
                 <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-950">Expertise</span>
             </div>
             <h2 className="text-5xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-8 leading-tight">
-              Latest <br />
-              <span className="font-serif italic font-medium text-zinc-400">Insights</span>
+              Latest <span className="font-serif italic font-medium text-zinc-400">Insights</span>
             </h2>
-            <p className="text-zinc-500 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed mb-10">
+            <p className="text-zinc-500 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
                Deep dives into software development, security best practices, and building for the future.
             </p>
+          </FadeIn>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-12 mb-20">
+          {blogs.map((post, i) => (
+            <BlogCard key={post.id} post={post} index={i} />
+          ))}
+        </div>
+
+        <div className="flex justify-center">
+          <FadeIn delay={0.4}>
             <Link 
               href="/blog" 
               className="inline-flex items-center gap-3 px-10 py-4 bg-zinc-950 text-white rounded-2xl text-xs font-bold uppercase tracking-widest group hover:bg-emerald-600 transition-all shadow-xl shadow-zinc-200/50"
             >
-              Read our blog
+              Read more
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </FadeIn>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-12">
-          {blogs.map((post, i) => (
-            <BlogCard key={post.id} post={post} index={i} />
-          ))}
         </div>
       </div>
     </section>
