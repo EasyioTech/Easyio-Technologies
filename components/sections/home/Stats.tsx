@@ -16,15 +16,15 @@ export default function Stats() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, i) => (
             <FadeIn key={i} delay={i * 0.1}>
-              <div className="card-base p-16 text-center group bg-white border-2 border-slate-100 hover:border-blue-100 hover:bg-slate-50/50 transition-all duration-500">
-                <div className="text-6xl md:text-8xl font-black text-primary mb-6 tracking-tighter leading-none group-hover:scale-105 transition-transform duration-700 tabular-nums">
+              <div className="card-base p-16 text-center group bg-white border-2 border-zinc-100 hover:border-emerald-100 hover:bg-emerald-50/10 transition-all duration-500">
+                <div className="text-6xl md:text-8xl font-black text-zinc-950 mb-6 tracking-tighter leading-none group-hover:scale-105 transition-transform duration-700 tabular-nums">
                   {stat.value}
                 </div>
-                <p className="text-[12px] text-slate-500 font-black uppercase tracking-[0.25em] transition-colors group-hover:text-blue-600">
+                <p className="text-[12px] text-zinc-500 font-black uppercase tracking-[0.25em] transition-colors group-hover:text-emerald-600">
                   {stat.label}
                 </p>
                 {/* Industrial Divider */}
-                <div className="w-16 h-[3px] bg-blue-100 mx-auto mt-10 rounded-full group-hover:w-24 group-hover:bg-blue-400 transition-all duration-700" />
+                <div className="w-16 h-[3px] bg-zinc-100 mx-auto mt-10 rounded-full group-hover:w-24 group-hover:bg-emerald-400 transition-all duration-700" />
               </div>
             </FadeIn>
           ))}

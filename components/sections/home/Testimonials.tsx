@@ -67,7 +67,7 @@ const thirdColumn = testimonials.slice(6, 9);
 
 const Testimonials = () => {
   return (
-    <section className="pt-16 pb-32 md:pt-24 md:pb-48 bg-transparent relative overflow-hidden" id="testimonials">
+    <section className="pt-8 pb-32 md:pt-12 md:pb-48 bg-transparent relative overflow-hidden" id="testimonials">
       <div className="container relative z-10 mx-auto px-6">
         {/* Stylish Hero-style Background Overlay */}
         <div className="absolute inset-0 z-0 pointer-events-none">

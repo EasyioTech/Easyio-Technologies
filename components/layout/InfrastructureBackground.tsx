@@ -49,10 +49,7 @@ export default function InfrastructureBackground() {
       <motion.div
         className="absolute inset-0 z-10"
         style={{
-          background: useTransform(
-            [mouseX, mouseY],
-            (pos) => `radial-gradient(600px circle at ${pos[0]}px ${pos[1]}px, rgba(244, 244, 245, 0.08), transparent 85%)`
-          ),
+          background: `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(244, 244, 245, 0.08), transparent 85%)`
         }}
       />
 

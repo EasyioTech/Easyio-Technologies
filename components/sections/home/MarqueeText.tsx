@@ -54,7 +54,7 @@ function MarqueeItem({ text, italicText, color }: { text: string; italicText: st
       <span className={`text-4xl md:text-6xl font-bold tracking-tight ${color}`}>
         {text} <span className="font-serif italic font-medium opacity-90">{italicText}</span>
       </span>
-      <div className={`w-2 h-2 rounded-full ${color === 'text-zinc-950' ? 'bg-blue-600' : 'bg-zinc-200'}`} />
+      <div className={`w-2 h-2 rounded-full ${color === 'text-zinc-950' ? 'bg-emerald-600' : 'bg-zinc-200'}`} />
     </div>
   );
 }

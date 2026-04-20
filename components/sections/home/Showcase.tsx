@@ -89,7 +89,7 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
   }, [carouselApi]);
 
   return (
-    <section className="pt-32 pb-16 relative overflow-hidden select-none" id="work">
+    <section className="pt-24 pb-8 relative overflow-hidden select-none" id="work">
       {/* Hero-style Gradient Backdrop */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] h-full bg-[radial-gradient(circle_at_50%_100%,#FEF9C3_0%,transparent_50%)] opacity-20" />

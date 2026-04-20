@@ -25,10 +25,10 @@
 
   :root {
     --background: #FFFFFF;
-    --foreground: #020617;
-    --primary: #020617;
-    --secondary: #2563EB;
-    --border: #E2E8F0;
+    --foreground: #09090b;
+    --primary: #09090b;
+    --secondary: #10B981;
+    --border: #e4e4e7;
   }
 
   body {
@@ -90,11 +90,11 @@
   }
 
   .btn-primary {
-    @apply h-14 md:h-20 px-8 md:px-16 bg-slate-950 text-white font-black uppercase tracking-widest text-sm md:text-lg flex items-center justify-center transition-all duration-300 hover:scale-[1.02] hover:bg-accent shadow-2xl;
+    @apply h-14 md:h-20 px-8 md:px-16 bg-zinc-950 text-white font-black uppercase tracking-widest text-sm md:text-lg flex items-center justify-center transition-all duration-300 hover:scale-[1.02] hover:bg-emerald-600 shadow-2xl;
   }
 
   .btn-secondary {
-    @apply h-14 md:h-20 px-8 md:px-16 border-2 border-slate-950 text-slate-950 font-black uppercase tracking-widest text-sm md:text-lg flex items-center justify-center transition-all duration-300 hover:bg-slate-950 hover:text-white;
+    @apply h-14 md:h-20 px-8 md:px-16 border-2 border-zinc-950 text-zinc-950 font-black uppercase tracking-widest text-sm md:text-lg flex items-center justify-center transition-all duration-300 hover:bg-zinc-950 hover:text-white;
   }
 
   .section-light {

@@ -18,7 +18,7 @@ const capabilities = [
     align: "right"
   },
   {
-    image: "https://images.unsplash.com/photo-1639322537231-2f206e06af84?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1000",
     title: "Reliable Data",
     description: "Your information is your most valuable asset. We ensure it's always accurate, synced in real-time, and available whenever you need it.",
     align: "left"

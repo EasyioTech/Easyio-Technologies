@@ -27,7 +27,7 @@ export default function CTA() {
              {/* Tagline */}
              <FadeIn delay={0.2}>
                 <div className="flex items-center gap-3 mb-10">
-                   <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-950">Ready to start?</span>
                 </div>
              </FadeIn>
@@ -53,13 +53,13 @@ export default function CTA() {
              >
                 <Link 
                   href="/contact"
-                  className="group flex items-center gap-1 h-12 md:h-16 bg-zinc-950 rounded-full pl-8 pr-2 transition-all duration-500 shadow-2xl shadow-blue-500/20"
+                  className="group flex items-center gap-1 h-12 md:h-16 bg-zinc-950 rounded-full pl-8 pr-2 transition-all duration-500 shadow-2xl shadow-emerald-500/10"
                 >
                   <span className="text-white text-xs md:text-sm font-bold tracking-widest uppercase pr-6 pl-2">
                     Connect With Us
                   </span>
                   
-                  <div className="w-8 h-8 md:w-12 md:h-12 bg-[#E0F2FE] rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-45 shadow-lg">
+                  <div className="w-8 h-8 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center transition-all duration-500 group-hover:rotate-45 group-hover:bg-[#FEF9C3] shadow-lg -rotate-[22.5deg]">
                     <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-zinc-950 stroke-[2.5px]" />
                   </div>
                 </Link>

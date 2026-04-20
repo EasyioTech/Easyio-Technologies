@@ -44,17 +44,17 @@ export default function Blogs() {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center mb-24 border-b border-zinc-100/50 pb-16">
+        <div className="max-w-4xl mb-16">
           <FadeIn>
-            <div className="inline-flex items-center gap-2 bg-zinc-50 border border-zinc-100 px-3 py-1 rounded-full mb-8">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-950">Expertise</span>
+            <div className="inline-flex items-center gap-2 bg-zinc-50 border border-zinc-100 px-3 py-1 rounded-full mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">The Journal</span>
             </div>
-            <h2 className="text-5xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-8 leading-tight">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-8 leading-tight">
               Latest <span className="font-serif italic font-medium text-zinc-400">Insights</span>
             </h2>
-            <p className="text-zinc-500 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-               Deep dives into software development, security best practices, and building for the future.
+            <p className="text-zinc-500 text-lg font-medium leading-relaxed">
+               Expert-led analysis on software engineering, security protocols, and enterprise infrastructure.
             </p>
           </FadeIn>
         </div>

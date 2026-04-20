@@ -29,12 +29,12 @@ export const TextReveal = ({ children, delay = 0, className = "" }: { children: 
   );
 };
 
-export const FadeIn = ({ children, delay = 0, direction = 'up', className = "" }: { children: ReactNode, delay?: number, direction?: 'up' | 'down' | 'left' | 'right', className?: string }) => {
+export const FadeIn = ({ children, delay = 0, direction = 'up', className = "" }: { children: React.ReactNode, delay?: number, direction?: 'up' | 'down' | 'left' | 'right', className?: string }) => {
   const directions = {
-    up: { y: 20 },
-    down: { y: -20 },
-    left: { x: 20 },
-    right: { x: -20 }
+    up: { y: 30 },
+    down: { y: -30 },
+    left: { x: 30 },
+    right: { x: -30 }
   };
 
   return (
@@ -42,8 +42,12 @@ export const FadeIn = ({ children, delay = 0, direction = 'up', className = "" }
       className={className}
       initial={{ opacity: 0, ...directions[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay, ease: [0.23, 1, 0.32, 1] }}
+      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      transition={{ 
+        duration: 0.8, 
+        delay, 
+        ease: [0.16, 1, 0.3, 1] 
+      }}
     >
       {children}
     </motion.div>

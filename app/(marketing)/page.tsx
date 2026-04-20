@@ -62,12 +62,27 @@ export default async function HomePage() {
   let allProjects: any[] = [];
 
   try {
+    // Add a race to prevent hanging indefinitely in production
+    const fetchWithTimeout = (promise: Promise<any>, ms: number) => {
+      let timeout = new Promise((_, reject) => {
+        const id = setTimeout(() => {
+          clearTimeout(id);
+          reject(new Error('Fetch timed out'));
+        }, ms);
+      });
+      return Promise.race([promise, timeout]);
+    };
+
     const results = await Promise.all([
-      getCachedProjects()
-    ]);
-    allProjects = results[0];
+      fetchWithTimeout(getCachedProjects(), 5000)
+    ]).catch(err => {
+      console.error("Home Page Data Fetch Timeout/Error:", err);
+      return [[]]; // Fallback to empty projects
+    });
+    
+    allProjects = (results as any[])[0] || [];
   } catch (error) {
-    console.error("Home Page Data Fetch Error:", error);
+    console.error("Home Page Data Fetch Crash:", error);
   }
 
   return (
