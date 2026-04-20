@@ -47,77 +47,103 @@ export default function ContactForm() {
         animate={{ opacity: 1, scale: 1 }}
         className="py-20 text-center"
       >
-        <div className="w-24 h-24 rounded-full bg-zinc-950 dark:bg-white flex items-center justify-center mx-auto mb-12 shadow-2xl">
-          <CheckCircle2 className="w-10 h-10 text-white dark:text-black" />
+        <div className="w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center mx-auto mb-12 shadow-2xl">
+          <CheckCircle2 className="w-10 h-10 text-white" />
         </div>
-        <h3 className="heading-2 mb-6">TRANSMISSION RECEIVED.</h3>
-        <p className="text-xl text-zinc-500 font-medium italic">We'll initialize communication within 24 hours.</p>
+        <h3 className="text-4xl font-bold text-zinc-950 tracking-tight mb-6">Message sent!</h3>
+        <p className="text-xl text-zinc-600 font-medium font-serif italic">We'll get back to you within 24 hours.</p>
       </motion.div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
-      <div className="grid md:grid-cols-2 gap-12">
-        <div className="space-y-4">
-          <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-700 block pl-1">
-            Full Name
-          </label>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-3">
+          <div className="flex justify-between items-center px-1">
+            <label className="text-[12px] font-bold uppercase tracking-widest text-zinc-950 block">
+              Full Name
+            </label>
+          </div>
           <input
             {...register('name')}
             type="text"
-            placeholder="OPERATOR NAME"
-            className="w-full h-16 px-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-900 text-zinc-950 dark:text-white placeholder:text-zinc-300 dark:placeholder:text-zinc-800 focus:outline-none focus:border-zinc-300 dark:focus:border-zinc-700 transition-all font-bold uppercase tracking-tight"
+            placeholder="e.g. John Doe"
+            className="w-full h-16 px-8 rounded-2xl bg-white border-2 border-zinc-200 text-zinc-950 placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-all font-medium text-base shadow-sm"
           />
-          {errors.name && <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest pl-1">{errors.name.message}</p>}
+          {errors.name && <p className="text-red-500 text-[10px] font-bold uppercase tracking-wider pl-1">{errors.name.message}</p>}
         </div>
-        <div className="space-y-4">
-          <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-700 block pl-1">
-            Email Address
-          </label>
+        <div className="space-y-3">
+          <div className="flex justify-between items-center px-1">
+            <label className="text-[12px] font-bold uppercase tracking-widest text-zinc-950 block">
+              Email Address
+            </label>
+          </div>
           <input
             {...register('email')}
             type="email"
-            placeholder="PROTOCOL@DOMAIN.COM"
-            className="w-full h-16 px-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-900 text-zinc-950 dark:text-white placeholder:text-zinc-300 dark:placeholder:text-zinc-800 focus:outline-none focus:border-zinc-300 dark:focus:border-zinc-700 transition-all font-bold uppercase tracking-tight"
+            placeholder="john@example.com"
+            className="w-full h-16 px-8 rounded-2xl bg-white border-2 border-zinc-200 text-zinc-950 placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-all font-medium text-base shadow-sm"
           />
-          {errors.email && <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest pl-1">{errors.email.message}</p>}
+          {errors.email && <p className="text-red-500 text-[10px] font-bold uppercase tracking-wider pl-1">{errors.email.message}</p>}
         </div>
       </div>
 
-      <div className="space-y-4">
-        <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-700 block pl-1">
-          Company (Optional)
-        </label>
+      <div className="space-y-3">
+        <div className="flex justify-between items-center px-1">
+          <label className="text-[12px] font-bold uppercase tracking-widest text-zinc-950 block">
+            Organization
+          </label>
+          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest leading-none">Optional</span>
+        </div>
         <input
           {...register('company')}
           type="text"
-          placeholder="ORGANIZATION"
-          className="w-full h-16 px-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-900 text-zinc-950 dark:text-white placeholder:text-zinc-300 dark:placeholder:text-zinc-800 focus:outline-none focus:border-zinc-300 dark:focus:border-zinc-700 transition-all font-bold uppercase tracking-tight"
+          placeholder="Your company name"
+          className="w-full h-16 px-8 rounded-2xl bg-white border-2 border-zinc-200 text-zinc-950 placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-all font-medium text-base shadow-sm"
         />
       </div>
 
-      <div className="space-y-4">
-        <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-700 block pl-1">
-          Project Details
-        </label>
+      <div className="space-y-3">
+        <div className="flex justify-between items-center px-1">
+          <label className="text-[12px] font-bold uppercase tracking-widest text-zinc-950 block">
+            What are you looking for?
+          </label>
+        </div>
         <textarea
           {...register('message')}
           rows={6}
-          placeholder="DESCRIBE THE ARCHITECTURAL CHALLENGE..."
-          className="w-full p-8 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-100 dark:border-zinc-900 text-zinc-950 dark:text-white placeholder:text-zinc-300 dark:placeholder:text-zinc-800 focus:outline-none focus:border-zinc-300 dark:focus:border-zinc-700 transition-all resize-none font-bold uppercase tracking-tight text-xl leading-relaxed"
+          placeholder="Tell us about your project or needs..."
+          className="w-full p-8 rounded-2xl bg-white border-2 border-zinc-200 text-zinc-950 placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-all resize-none font-medium text-lg leading-relaxed shadow-sm"
         />
-        {errors.message && <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest pl-1">{errors.message.message}</p>}
+        {errors.message && <p className="text-red-500 text-[10px] font-bold uppercase tracking-wider pl-1">{errors.message.message}</p>}
       </div>
 
       <button
         type="submit"
         disabled={isLoading}
-        className="btn-primary w-full group"
+        className="w-full h-18 py-6 bg-zinc-950 text-white text-xs font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-4 hover:bg-blue-600 rounded-2xl transition-all shadow-xl shadow-zinc-200/50 group"
       >
-        {isLoading ? 'EXECUTING...' : 'INITIALIZE TRANSMISSION'}
-        <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+        {isLoading ? (
+          <span className="animate-pulse">Sending...</span>
+        ) : (
+          <>
+            Send Message
+            <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </>
+        )}
       </button>
+      
+      <div className="pt-4 flex items-center justify-center gap-8">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Global Support</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Fast Response</span>
+        </div>
+      </div>
     </form>
   );
 }

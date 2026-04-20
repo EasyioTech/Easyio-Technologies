@@ -1,146 +1,246 @@
 'use client';
 
-import { Terminal, Code2, Cpu, Activity, ArrowDownRight, LucideIcon } from "lucide-react";
-import { TextReveal, FadeIn } from "@/components/shared/Animations";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { useRef } from "react";
+import { motion, useScroll, useSpring, useTransform, AnimatePresence, MotionValue } from "framer-motion";
+import { Search, Globe, Activity, ArrowRight, Zap, Target, Binary } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { FadeIn } from "@/components/shared/Animations";
 
-const steps = [
+interface Stage {
+  id: string;
+  title: string;
+  sub: string;
+  desc: string;
+  metrics: string[];
+  icon: React.ReactNode;
+}
+
+const stages = [
   {
-    title: "System Audit",
-    desc: "We perform a deep analysis of your current architecture to pinpoint performance gaps and technical debt.",
-    icon: Terminal,
-    side: "left",
+    id: "01",
+    title: "Research & Discovery",
+    sub: "STEP 1",
+    desc: "We dive deep into your current systems to find hidden issues and identify exactly what needs to be improved for your success.",
+    metrics: ["Full System Audit", "Growth Audit"],
+    icon: <Search className="w-6 h-6" />
   },
   {
-    title: "Strategy & Design",
-    desc: "We map out a tailored engineering roadmap focused on scalability and long-term stability.",
-    icon: Code2,
-    side: "right",
+    id: "02",
+    title: "Design & Development",
+    sub: "STEP 2",
+    desc: "Our engineers build custom software and reliable tools designed to handle heavy use without ever slowing down.",
+    metrics: ["High Stability", "Future-Proof Code"],
+    icon: <Binary className="w-6 h-6" />
   },
   {
-    title: "Precision Build",
-    desc: "Our senior engineers implement the core infrastructure using modern, high-performance standards.",
-    icon: Cpu,
-    side: "left",
+    id: "03",
+    title: "Testing & Quality",
+    sub: "STEP 3",
+    desc: "We put your system through rigorous testing to make sure it stays fast and stable even when you have thousands of users at once.",
+    metrics: ["Traffic Simulation", "Speed Optimization"],
+    icon: <Activity className="w-6 h-6" />
   },
   {
-    title: "Scale & Monitor",
-    desc: "We integrate continuous monitoring to ensure your systems remain fast and reliable as you grow.",
-    icon: Activity,
-    side: "right",
+    id: "04",
+    title: "Launch & Support",
+    sub: "STEP 4",
+    desc: "We launch your project safely and provide ongoing support to help your business grow smoothly as you get more customers.",
+    metrics: ["Safe Deployment", "24/7 Monitoring"],
+    icon: <Zap className="w-6 h-6" />
   }
 ];
 
-function ProtocolStep({ step, index, total, scrollYProgress }: { 
-  step: typeof steps[0], 
-  index: number, 
-  total: number, 
-  scrollYProgress: MotionValue<number> 
-}) {
-  const stepStart = index / total;
-  const colorProgress = useTransform(scrollYProgress, [stepStart - 0.1, stepStart + 0.1], [0.3, 1]);
-  const opacityProgress = useTransform(scrollYProgress, [stepStart - 0.1, stepStart + 0.1], [0, 1]);
+export default function Protocol() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 60%", "end 40%"]
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
-    <div className={`flex flex-col ${step.side === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center mb-24 lg:mb-12 will-change-transform`}>
-      <div className={`w-full lg:w-1/2 ${step.side === 'right' ? 'lg:pl-20' : 'lg:pr-20'}`}>
-        <div className="group relative">
-          <div className="absolute -top-12 -left-8 lg:-top-24 lg:-left-20 text-[6rem] lg:text-[18rem] font-black text-zinc-100 dark:text-zinc-900/10 select-none pointer-events-none group-hover:text-zinc-200 dark:group-hover:text-zinc-900 transition-colors duration-1000">
-            0{index + 1}
+    <section ref={containerRef} className="py-32 md:py-64 relative bg-transparent" id="pipeline">
+      <div className="max-w-[1600px] mx-auto px-6">
+        
+        {/* Header - Sovereign Alignment */}
+        <div className="mb-48 flex flex-col md:flex-row md:items-end justify-between gap-12">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-8">
+               <div className="w-12 h-px bg-zinc-200" />
+               <span className="text-xs font-black uppercase tracking-[0.4em] text-zinc-400">The Engineering Protocol</span>
+            </div>
+            <FadeIn>
+              <h2 
+                className="text-6xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-12"
+                style={{ fontFamily: 'Instrument Serif, serif' }}
+              >
+                How we build <br />
+                <span className="italic font-medium text-zinc-400">your success</span>
+              </h2>
+            </FadeIn>
+            <div className="flex gap-4">
+               <div className="w-2 h-2 rounded-full bg-[#FEF9C3]" />
+               <p className="text-zinc-500 text-lg md:text-xl max-w-xl leading-relaxed font-medium">
+                 A high-velocity, structured approach to building reliable software systems that grow 
+                 seamlessly with your industrial needs.
+               </p>
+            </div>
+          </div>
+          
+          <div className="hidden lg:block pb-12">
+             <div className="w-32 h-32 rounded-full border border-zinc-100 flex items-center justify-center relative">
+                <motion.div 
+                  className="absolute inset-0 rounded-full border-2 border-dashed border-zinc-200"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                />
+                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">Phase Sequential</span>
+             </div>
+          </div>
+        </div>
+
+        {/* Timeline Infrastructure */}
+        <div className="relative">
+          
+          {/* High-Precision Progress Line */}
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-zinc-100 -translate-x-1/2 rounded-full">
+            <motion.div 
+              style={{ scaleY }}
+              className="absolute top-0 bottom-0 w-full bg-zinc-950 origin-top shadow-[0_0_20px_rgba(224,242,254,0.8)]"
+            />
           </div>
 
-          <motion.div style={{ opacity: opacityProgress }} className="relative z-10 translate-z-0">
-            <div className="flex items-center gap-6 mb-8">
-              <div className="w-16 h-16 rounded-3xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 flex items-center justify-center shadow-xl">
-                <step.icon className="w-8 h-8" />
-              </div>
-              <div className="h-[2px] w-20 bg-zinc-200 dark:bg-zinc-900" />
-              <ArrowDownRight className="w-8 h-8 text-zinc-300 dark:text-zinc-800" />
-            </div>
-
-            <motion.h3 
-              style={{ opacity: opacityProgress }}
-              className="heading-3 md:text-6xl mb-4 md:mb-6"
-            >
-              {step.title}
-            </motion.h3>
-            <motion.p 
-              style={{ opacity: colorProgress }}
-              className="max-w-md text-lg md:text-xl text-zinc-700 dark:text-zinc-500 font-medium italic leading-relaxed"
-            >
-              {step.desc}
-            </motion.p>
-          </motion.div>
+          {/* Timeline Stages */}
+          <div className="space-y-64">
+            {stages.map((stage, i) => (
+              <TimelineStage 
+                key={i} 
+                stage={stage} 
+                index={i} 
+                total={stages.length} 
+                scrollYProgress={scrollYProgress}
+              />
+            ))}
+          </div>
         </div>
+
       </div>
-      <div className="hidden lg:block w-1/2" />
-    </div>
+    </section>
   );
 }
 
-export default function Protocol() {
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  });
+function TimelineStage({ 
+  stage, 
+  index, 
+  total, 
+  scrollYProgress 
+}: { 
+  stage: Stage; 
+  index: number; 
+  total: number;
+  scrollYProgress: MotionValue<number>;
+}) {
+  const isEven = index % 2 === 0;
+  const start = index / total;
+  const end = (index + 0.8) / total;
 
-  const dotY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  // Reveal logic with 0.05 base opacity for 'fainted' look
+  const opacity = useTransform(
+    scrollYProgress,
+    [start - 0.15, start, end, end + 0.1],
+    [0.05, 1, 1, 1]
+  );
+
+  const y = useTransform(
+    scrollYProgress,
+    [start - 0.1, start],
+    [40, 0]
+  );
+
+  const accentColor = index % 2 === 0 ? "#FEF9C3" : "#D1FAE5";
 
   return (
-    <section ref={containerRef} className="py-20 md:py-60 px-6 relative bg-transparent overflow-hidden transform-gpu">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-full opacity-5 dark:opacity-10 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full border-[1px] border-dashed border-zinc-950 dark:border-white rotate-12 scale-150" />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-20 items-end mb-12 md:mb-40">
-          <div className="lg:col-span-7">
-            <FadeIn>
-              <span className="text-[10px] font-black uppercase tracking-[0.8em] text-zinc-400 dark:text-zinc-600 mb-6 block">
-                OUR METHODOLOGY
-              </span>
-            </FadeIn>
-            <h2 className="heading-2 md:text-9xl mb-0">
-              <TextReveal>HOW WE</TextReveal> <br />
-              <span className="text-zinc-600 dark:text-zinc-400 italic underline decoration-zinc-200 dark:decoration-zinc-900 underline-offset-[10px] md:underline-offset-[20px]">
-                <TextReveal delay={0.4}>DELIVER.</TextReveal>
-              </span>
-            </h2>
+    <motion.div 
+      style={{ opacity }}
+      className={cn(
+        "relative flex flex-col md:flex-row items-start md:items-center gap-12 lg:gap-32",
+        isEven ? "md:flex-row" : "md:flex-row-reverse"
+      )}
+    >
+      
+      {/* Visual Indicator Layer */}
+      <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
+        <motion.div 
+          className="w-12 h-12 md:w-20 md:h-20 bg-white border border-zinc-100 rounded-2xl flex items-center justify-center text-zinc-950 shadow-xl transition-all duration-700"
+          style={{ 
+            backgroundColor: useTransform(scrollYProgress, [start - 0.05, start], ["#FFFFFF", accentColor]),
+            rotate: useTransform(scrollYProgress, [start - 0.05, start], [0, 45])
+          }}
+        >
+          <div className="text-[12px] md:text-xl font-black tracking-tighter" style={{ transform: "rotate(-45deg)" }}>
+             {stage.id}
           </div>
-          <div className="lg:col-span-5 pb-4">
-            <FadeIn delay={0.6}>
-              <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-500 font-medium italic leading-relaxed">
-                We follow a rigorous engineering methodology to move your project from initial discovery to production-grade excellence.
-              </p>
-            </FadeIn>
-          </div>
-        </div>
-
-        <div className="relative">
-          {steps.map((step, i) => (
-            <ProtocolStep 
-              key={i} 
-              step={step} 
-              index={i} 
-              total={steps.length} 
-              scrollYProgress={scrollYProgress} 
+          
+          {/* Pulse Signal */}
+          <AnimatePresence>
+            <motion.div 
+              style={{ opacity: useTransform(scrollYProgress, [start - 0.05, start], [0, 1]) }}
+              className="absolute inset-x-[-12px] h-[1px] bg-zinc-950 opacity-20"
             />
-          ))}
-
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-[2px] bg-zinc-100 dark:bg-zinc-900 hidden lg:block translate-z-0">
-             <motion.div 
-               style={{ top: dotY }}
-               className="absolute -left-[4px] w-[10px] h-[10px] rounded-full bg-zinc-950 dark:bg-white z-20 will-change-[top]"
-             />
-             <motion.div 
-              style={{ height: dotY }}
-              className="absolute top-0 left-0 w-full bg-zinc-950 dark:bg-white opacity-20 z-10"
-             />
-          </div>
-        </div>
+          </AnimatePresence>
+        </motion.div>
       </div>
-    </section>
+
+      {/* Narrative Container */}
+      <div className="flex-1 w-full pl-16 md:pl-0">
+        <motion.div 
+          style={{ y }}
+          className={cn(
+            "flex flex-col gap-6",
+            isEven ? "md:items-end md:text-right" : "md:items-start md:text-left"
+          )}
+        >
+          <div className="px-4 py-1.5 bg-zinc-50 border border-zinc-100 rounded-full text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em]">
+            {stage.sub}
+          </div>
+          
+          <h3 className="text-4xl md:text-6xl font-bold text-zinc-950 tracking-tight leading-[1.1]">
+            {stage.title}
+          </h3>
+          
+          <p className={cn(
+            "text-zinc-500 text-lg md:text-xl leading-relaxed max-w-xl",
+            isEven ? "md:ml-auto" : "md:mr-auto"
+          )}>
+            {stage.desc}
+          </p>
+          
+          <div className={cn(
+            "flex flex-wrap gap-3",
+            isEven ? "justify-end" : "justify-start"
+          )}>
+            {stage.metrics.map((m: string, idx: number) => (
+              <div 
+                key={idx} 
+                className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-950 bg-white border border-zinc-100 px-5 py-2.5 rounded-xl shadow-sm"
+              >
+                <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: accentColor }} />
+                {m}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Architectural Spacer */}
+      <div className="flex-1 hidden md:block" />
+
+    </motion.div>
   );
 }

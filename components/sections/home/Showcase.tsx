@@ -1,249 +1,192 @@
 'use client';
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { TextReveal } from "@/components/shared/Animations";
-import Link from "next/link";
-import { 
-  ArrowUpRight, Terminal, Globe, Shield, Cpu, Activity, Box, 
-  BookOpen, ShoppingCart, Building2, Landmark, Briefcase, 
-  Layout, Pyramid, Truck, Users, Stethoscope, ChevronUp, ChevronDown
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { useEffect, useState, useMemo } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { FadeIn } from "@/components/shared/Animations";
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
-const iconMap: Record<string, any> = {
-  Box, BookOpen, ShoppingCart, Building2, Landmark, Briefcase, Layout, Pyramid, Truck, Users, Stethoscope, Cpu
-};
+interface Project {
+  id: string;
+  title: string;
+  image: string;
+  tags: string[];
+  summary?: string;
+  url?: string;
+}
 
-export default function Showcase({ initialProjects }: { initialProjects: any[] }) {
-  const projectsData = initialProjects.map(p => ({
-    ...p,
-    short: p.metadata?.short || p.title,
-    stats: p.metadata?.stats || {},
-    icon: iconMap[p.metadata?.icon] || Box,
-    tag: p.tags?.[0] || "Enterprise"
-  }));
+const projects: Project[] = [
+  {
+    id: "01",
+    title: "Global Finance App",
+    summary: "A powerful banking platform built for speed and security, helping businesses manage money across the globe without borders.",
+    image: "https://images.unsplash.com/photo-1616077168712-fc6c788bc4ee?auto=format&fit=crop&q=80",
+    tags: ["Banking", "Security"],
+    url: "#"
+  },
+  {
+    id: "02",
+    title: "Smart Learning Hub",
+    summary: "Helping schools and universities use data to create personalized learning paths for every student.",
+    image: "https://images.unsplash.com/photo-1551288049-bb848a55a175?auto=format&fit=crop&q=80",
+    tags: ["AI", "Education"],
+    url: "#"
+  },
+  {
+    id: "03",
+    title: "Health & Research",
+    summary: "Advanced AI tools that help medical researchers find patterns in complex data to discover new treatments faster.",
+    image: "https://images.unsplash.com/photo-1579154341098-ec40089e9f19?auto=format&fit=crop&q=80",
+    tags: ["Healthcare", "AI"],
+    url: "#"
+  },
+  {
+    id: "04",
+    title: "Modern Factory",
+    summary: "Industrial automation that connects machines and software to make manufacturing smoother and more efficient.",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80",
+    tags: ["Smart Tech", "Automation"],
+    url: "#"
+  }
+];
 
-  const [active, setActive] = useState(0);
-  const projects = projectsData;
-  const [showTopArrow, setShowTopArrow] = useState(false);
-  const [showBottomArrow, setShowBottomArrow] = useState(true);
+export default function Showcase({ initialProjects = projects }: { initialProjects?: any[] }) {
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
 
-  const handleSidebarScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    setShowTopArrow(scrollTop > 20);
-    setShowBottomArrow(scrollTop + clientHeight < scrollHeight - 20);
-  };
+  const displayProjects = useMemo(() => {
+    if (initialProjects && initialProjects.length > 0) {
+      return initialProjects.map((p, idx) => ({
+        id: p.id || `p-${idx}`,
+        title: p.title,
+        summary: p.summary || "Custom software solutions built to solve real-world business challenges.",
+        image: p.image || "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80",
+        tags: p.tags || ["Development"],
+        url: "#"
+      }));
+    }
+    return projects;
+  }, [initialProjects]);
+
+  useEffect(() => {
+    if (!carouselApi) return;
+    const updateSelection = () => {
+      setCanScrollPrev(carouselApi.canScrollPrev());
+      setCanScrollNext(carouselApi.canScrollNext());
+    };
+    updateSelection();
+    carouselApi.on("select", updateSelection);
+    return () => {
+      carouselApi.off("select", updateSelection);
+    };
+  }, [carouselApi]);
 
   return (
-    <section className="relative py-16 md:py-40 overflow-hidden" id="builds">
-      {/* Universal Grid Overlay */}
-      <div className="absolute inset-x-0 inset-y-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none select-none">
-        <svg width="100%" height="100%">
-          <defs>
-            <pattern id="dotPatternSmall" width="30" height="30" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="0.5" fill="currentColor" className="text-zinc-950 dark:text-white" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#dotPatternSmall)" />
-        </svg>
+    <section className="pt-32 pb-16 relative overflow-hidden select-none" id="work">
+      {/* Hero-style Gradient Backdrop */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] h-full bg-[radial-gradient(circle_at_50%_100%,#FEF9C3_0%,transparent_50%)] opacity-20" />
       </div>
 
-      <div className="max-w-[1600px] mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
-          
-          {/* Left Side: Scrollable Archive Registry */}
-          <div className="lg:w-1/4 flex flex-col -ml-0 lg:-ml-6 relative">
-            <div className="inline-flex items-center gap-4 mb-10 px-6">
-               <span className="text-[10px] font-black uppercase tracking-[0.8em] text-zinc-400 dark:text-zinc-600">PROJECT_ARCHIVE</span>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="mb-12 flex flex-col justify-between md:mb-20 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 bg-zinc-100 px-3 py-1 rounded-full mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Our Portfolio</span>
             </div>
-
-            <AnimatePresence>
-              {showTopArrow && (
-                <motion.div 
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  className="absolute -top-4 left-6 z-20 text-zinc-400"
-                >
-                  <ChevronUp className="w-4 h-4" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <div 
-              className="h-[400px] lg:h-[650px] overflow-y-auto pr-4 space-y-2 scrollbar-hide mask-fade-bottom"
-              onScroll={handleSidebarScroll}
-            >
-              {projects.map((p, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  className={`group w-full text-left flex items-center justify-between p-6 rounded-l-none rounded-r-2xl transition-all duration-500 border-l-4 ${
-                    active === i
-                    ? "bg-zinc-950 dark:bg-zinc-800 border-zinc-950 dark:border-zinc-200 translate-x-3 shadow-xl"
-                    : "bg-transparent border-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900/40"
-                  }`}
-                >
-                  <div className="flex items-center gap-6">
-                    <span className={`text-[10px] font-black font-mono transition-colors ${
-                      active === i ? "text-white/40" : "text-zinc-400"
-                    }`}>
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className={`text-xl md:text-2xl font-black italic uppercase transition-all tracking-tighter ${
-                      active === i ? "text-white" : "text-zinc-400 dark:text-zinc-600"
-                    }`}>
-                      {p.short}
-                    </h3>
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            <AnimatePresence>
-              {showBottomArrow && (
-                <motion.div 
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  className="absolute -bottom-4 left-6 z-20 text-zinc-400"
-                >
-                  <ChevronDown className="w-4 h-4" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-            
-            <div className="mt-12 opacity-20 px-6">
-               <div className="flex gap-4 mb-4">
-                  <Activity className="w-4 h-4" />
-                  <span className="text-[8px] font-mono tracking-widest uppercase font-bold italic">REGISTRY_STREAM_..._CONNECTED</span>
-               </div>
-            </div>
-          </div>
-
-          {/* Right Side: Immersive HUD Window */}
-          <div className="lg:flex-1 relative min-h-[500px] md:min-h-[650px] lg:h-[800px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                className="absolute inset-0 flex flex-col justify-center landscape:relative"
+            <FadeIn>
+              <h2 
+                className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-6"
               >
-                {/* Background Watermark - Responsive Scale */}
-                {projects.length > 0 && projects[active] && (
-                  <motion.div 
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={{ opacity: 0.04, x: 0 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="absolute -top-4 md:-top-12 -right-10 lg:-right-40 pointer-events-none select-none whitespace-nowrap z-0 overflow-hidden"
-                  >
-                    <span className="text-[12vw] lg:text-[25vw] font-black italic uppercase leading-none tracking-tighter block">
-                      {projects[active].short}
-                    </span>
-                  </motion.div>
-                )}
-
-                {/* Staggered HUD Content */}
-                {projects.length > 0 && projects[active] ? (
-                  <motion.div 
-                    variants={{
-                      initial: { opacity: 0, y: 20 },
-                      animate: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.5 } }
-                    }}
-                    className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12 lg:p-20 overflow-hidden group/hud border border-zinc-100 dark:border-zinc-900 rounded-2xl md:rounded-3xl lg:rounded-[3rem] bg-white dark:bg-zinc-950/50 backdrop-blur-sm shadow-2xl dark:shadow-none"
-                  >
-                    {/* Floating Project Image */}
-                    {projects[active].image && (
-                      <motion.div 
-                        initial={{ opacity: 0, scale: 0.9, x: 50 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        transition={{ delay: 0.4, duration: 0.8 }}
-                        className="absolute top-12 right-12 w-1/3 aspect-video hidden lg:block rounded-2xl overflow-hidden border border-zinc-100 dark:border-zinc-800 shadow-2xl z-0"
-                      >
-                        <img 
-                          src={projects[active].image} 
-                          alt={projects[active].title}
-                          className="w-full h-full object-cover grayscale group-hover/hud:grayscale-0 transition-all duration-700"
-                        />
-                      </motion.div>
-                    )}
-                    {/* Corner Ornaments */}
-                    <div className="absolute top-0 left-0 w-8 lg:w-12 h-8 lg:h-12 border-t-2 border-l-2 border-zinc-100 dark:border-zinc-900 rounded-tl-2xl lg:rounded-tl-3xl" />
-                    <div className="absolute bottom-0 right-0 w-8 lg:w-12 h-8 lg:h-12 border-b-2 border-r-2 border-zinc-100 dark:border-zinc-900 rounded-br-2xl lg:rounded-br-3xl" />
-
-                    {/* Metadata Bar */}
-                    <div className="absolute top-6 lg:top-12 left-6 lg:left-12 flex items-center gap-4 lg:gap-6">
-                        <div className="flex items-center gap-2 lg:gap-3">
-                           <div className="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white animate-pulse" />
-                           <span className="text-[8px] lg:text-[9px] font-black italic uppercase tracking-[0.5em] text-zinc-950 dark:text-white">{projects[active].id}</span>
-                        </div>
-                        <div className="h-[1px] w-8 lg:w-12 bg-zinc-100 dark:bg-zinc-900" />
-                        <span className="text-[8px] lg:text-[9px] font-black italic uppercase tracking-[0.5em] text-zinc-400 dark:text-zinc-600">VERIFIED_SECURE</span>
-                    </div>
-
-                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end mt-20 lg:mt-0">
-                      <div className="lg:col-span-8">
-                         <div className="flex items-center gap-4 lg:gap-8 mb-6 lg:mb-10">
-                            <div className="w-12 lg:w-16 h-12 lg:h-16 bg-zinc-50 dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-100 dark:border-zinc-800 rounded-xl lg:rounded-2xl flex items-center justify-center text-zinc-950 dark:text-white">
-                              {(() => {
-                                const Icon = projects[active].icon;
-                                return <Icon className="w-6 lg:w-8 h-6 lg:h-8" />;
-                              })()}
-                            </div>
-                            <h4 className="text-xl lg:text-3xl font-black text-zinc-950 dark:text-white italic uppercase tracking-tighter leading-none">{projects[active].tag}</h4>
-                         </div>
-
-                         <h2 className="text-3xl md:text-5xl lg:text-7xl font-black text-zinc-950 dark:text-white uppercase tracking-tighter leading-[0.85] mb-4 md:mb-10 skew-x-[-4deg] break-words pr-4 lg:pr-12 max-w-full">
-                           <TextReveal>{projects[active].title}</TextReveal>
-                         </h2>
-                         
-                         <p className="text-base lg:text-lg text-zinc-400 dark:text-zinc-500 font-medium italic leading-relaxed lg:leading-tight max-w-2xl tracking-tight mb-8 lg:mb-12">
-                           {projects[active].description}
-                         </p>
-
-                         {/* Action Button */}
-                         <div className="flex flex-wrap gap-4">
-                            <Link 
-                              href={`/case-studies/${projects[active].slug}`}
-                              className="group/btn relative px-6 lg:px-8 py-4 lg:py-5 bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 font-black italic uppercase tracking-[0.3em] text-[10px] lg:text-xs flex items-center gap-6 hover:scale-105 transition-all shadow-2xl"
-                            >
-                               <span>VIEW CASE STUDY</span>
-                               <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                            </Link>
-                            <Link 
-                              href="/contact"
-                              className="px-6 lg:px-8 py-4 lg:py-5 border border-zinc-200 dark:border-zinc-800 text-zinc-400 font-black italic uppercase tracking-[0.3em] text-[10px] lg:text-xs hover:border-zinc-950 dark:hover:border-white hover:text-zinc-950 dark:hover:text-white transition-all"
-                            >
-                               REQUEST QUOTE
-                            </Link>
-                         </div>
-                      </div>
-
-                      <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-12 border-t lg:border-t-0 lg:border-l border-zinc-100 dark:border-zinc-800 pt-8 lg:pt-0 lg:pl-12">
-                         {projects[active].stats && Object.entries(projects[active].stats).map(([label, value]) => (
-                          <div key={label} className="group/stat">
-                            <div className="text-[8px] lg:text-[10px] font-black italic uppercase tracking-[0.5em] text-zinc-300 dark:text-zinc-700 mb-1 lg:mb-2">{label}</div>
-                            <div className="text-xl lg:text-5xl font-black text-zinc-950 dark:text-white tabular-nums tracking-tighter italic uppercase transition-transform group-hover/stat:translate-x-2">{value as string}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Operational Footer Bar */}
-                    <div className="hidden lg:flex absolute bottom-8 lg:bottom-12 left-12 right-12 justify-between items-center opacity-20 border-t border-zinc-100 dark:border-zinc-900 pt-6">
-                      <span className="text-[8px] font-mono tracking-widest uppercase italic font-bold">ARC_V2_PROTOCOL_INITIALIZED</span>
-                    </div>
-                  </motion.div>
-                ) : (
-                  <div className="flex items-center justify-center h-full border border-dashed border-zinc-800 rounded-[3rem]">
-                    <div className="text-center space-y-4">
-                      <Terminal className="w-12 h-12 text-zinc-800 mx-auto" />
-                      <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest">Awaiting system registration...</p>
-                    </div>
-                  </div>
-                )}
-              </motion.div>
-            </AnimatePresence>
+                Recent <span className="font-serif italic font-medium text-zinc-400">Work</span>
+              </h2>
+            </FadeIn>
+            <p className="text-zinc-500 text-lg font-medium leading-relaxed max-w-lg">
+              Explore how we help modern teams build and scale their ideas with custom software.
+            </p>
+          </div>
+          <div className="mt-8 flex shrink-0 items-center justify-start gap-4">
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => carouselApi?.scrollPrev()}
+              disabled={!canScrollPrev}
+              className="w-14 h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
+            >
+              <ArrowLeft className="size-6" />
+            </Button>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => carouselApi?.scrollNext()}
+              disabled={!canScrollNext}
+              className="w-14 h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
+            >
+              <ArrowRight className="size-6" />
+            </Button>
           </div>
         </div>
+      </div>
+
+      <div className="w-full relative z-10">
+        <Carousel
+          setApi={setCarouselApi}
+          opts={{
+            align: "start",
+            loop: false,
+          }}
+          className="relative lg:left-[calc((100vw-1280px)/2)]"
+        >
+          <CarouselContent className="-ml-4 md:-ml-8">
+            {displayProjects.map((project) => (
+              <CarouselItem key={project.id} className="pl-4 md:pl-8 md:basis-[520px]">
+                <div className="group relative flex flex-col bg-white border border-zinc-100 rounded-[3rem] p-6 transition-all hover:shadow-2xl hover:shadow-zinc-200/60">
+                  <div className="aspect-[16/11] overflow-hidden rounded-[2.5rem] mb-8">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  
+                  <div className="px-4 pb-4">
+                    <div className="flex items-center gap-3 mb-6">
+                      {project.tags.map((tag: string) => (
+                        <span key={tag} className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-500 bg-zinc-50 border border-zinc-100 rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <h3 className="text-3xl font-bold text-zinc-950 mb-4 tracking-tight">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-zinc-500 leading-relaxed mb-10 line-clamp-2 font-medium">
+                      {project.summary}
+                    </p>
+                    
+                    <a 
+                      href={project.url}
+                      className="inline-flex items-center text-[10px] font-black tracking-[0.3em] text-zinc-950 hover:text-emerald-600 transition-colors uppercase group/link"
+                    >
+                      View Case Study
+                      <ArrowUpRight className="ml-3 w-4 h-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
+                    </a>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );

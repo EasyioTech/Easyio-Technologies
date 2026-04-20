@@ -1,92 +1,98 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TextReveal, FadeIn } from "@/components/shared/Animations";
+import { Plus, Minus, Search, ArrowDown } from 'lucide-react';
+import { FadeIn, TextReveal } from "@/components/shared/Animations";
 
 const faqs = [
   {
-    q: 'What is your core engineering philosophy?',
-    a: 'We prioritize reliability and technical excellence. Our systems are built to be modular and scalable, ensuring they can handle your business growth without performance drops.',
+    question: "Do you offer support after the project is done?",
+    answer: "Yes, we provide 3 months of priority support once your project is live. This ensures everything runs smoothly during the launch. We also offer long-term maintenance plans if you need ongoing help.",
+    category: "Support"
   },
   {
-    q: 'How do we start a project with you?',
-    a: 'You can reach out through our contact page. We begin with a thorough audit of your current technology to identify improvements before designing a custom solution.',
+    question: "How long does a typical project take?",
+    answer: "Most projects take between 4 and 12 weeks. We move fast to hit your deadlines but we never cut corners on quality or security.",
+    category: "Timeline"
   },
   {
-    q: 'What technologies do you specialize in?',
-    a: 'We use industry-leading tools like Rust and Go for backend systems, TypeScript for modern web interfaces, and PostgreSQL for robust data management.',
+    question: "Can you work with our existing team?",
+    answer: "Absolutely. We can join your internal developers as a specialized team to help finish complex features faster and improve your overall system design.",
+    category: "Collaboration"
   },
   {
-    q: 'Can you work with our existing team?',
-    a: 'Yes, we offer team augmentation services. Our senior engineers can integrate with your current workflow to help you meet deadlines and improve overall code quality.',
-  },
-  {
-    q: 'What does your Typical timeline look like?',
-    a: 'We work in focused sprints to deliver results quickly. From our initial meeting to a working system, we focus on moving fast without sacrificing stability.',
-  },
+    question: "How do you keep our data secure?",
+    answer: "We use modern security standards, including advanced encryption and secure access controls, to make sure your sensitive information is always protected.",
+    category: "Security"
+  }
 ];
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-40 px-6 relative bg-transparent">
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-32 text-center">
-          <h2 className="heading-2">
-            <TextReveal>COMMON QUESTIONS.</TextReveal>
-          </h2>
-        </div>
+    <section className="py-24 md:py-32 bg-transparent relative overflow-hidden" id="faq">
+      <div className="max-w-[1600px] mx-auto px-6 relative z-10">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+          
+          {/* Header */}
+          <div className="lg:col-span-5">
+             <div className="sticky top-40">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-1.5 h-1.5 rounded-full bg-zinc-950" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-500">Infrastructure Support</span>
+                </div>
+                <h2 className="text-6xl md:text-8xl font-bold tracking-tighter text-zinc-950 leading-[0.8] mb-10">
+                    Frequently <span className="font-serif italic text-zinc-400 block mt-2">Asked.</span>
+                </h2>
+                <p className="text-lg md:text-xl text-zinc-500 max-w-sm leading-relaxed border-l-2 border-zinc-100 pl-8 font-medium">
+                   Technical parameters and operational protocols for our high-velocity engineering deployments. 
+                </p>
+             </div>
+          </div>
 
-        <div className="space-y-6">
-          {faqs.map((faq, i) => (
-            <FadeIn key={i} delay={i * 0.05}>
-              <div
-                className={`rounded-[2.5rem] border transition-all duration-700 overflow-hidden ${
-                  open === i 
-                  ? 'bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 shadow-lg' 
-                  : 'bg-white dark:bg-zinc-950 border-zinc-100 dark:border-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-800 shadow-sm'
-                }`}
-              >
-                <button
-                  onClick={() => setOpen(open === i ? null : i)}
-                  className="w-full p-10 text-left flex items-center justify-between gap-6 group"
-                >
-                  <h3 className={`text-xl font-bold uppercase tracking-tight transition-colors ${
-                    open === i ? 'text-zinc-950 dark:text-white' : 'text-zinc-500 dark:text-zinc-600'
-                  }`}>
-                    {faq.q}
-                  </h3>
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-700 ${
-                      open === i 
-                      ? 'bg-zinc-950 dark:bg-white border-zinc-950 dark:border-white text-white dark:text-black rotate-180' 
-                      : 'bg-transparent border-zinc-200 dark:border-zinc-800 text-zinc-400 dark:text-zinc-600 group-hover:border-zinc-400'
-                  }`}>
-                      <ChevronDown className="w-5 h-5" />
-                  </div>
-                </button>
-                
-                <AnimatePresence>
-                  {open === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      <div className="px-10 pb-10 border-t border-zinc-200 dark:border-zinc-800 pt-8 mt-2">
-                        <p className="text-xl text-zinc-500 font-medium italic leading-relaxed">
-                          {faq.a}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </FadeIn>
-          ))}
+          {/* List */}
+          <div className="lg:col-span-7 space-y-2">
+             {faqs.map((faq, i) => (
+               <div key={i} className={`rounded-[2.5rem] transition-all duration-700 overflow-hidden ${openIndex === i ? 'bg-[#FEF9C3]/80 border-transparent shadow-2xl shadow-yellow-200/20' : 'bg-transparent border-transparent hover:bg-[#D1FAE5]/30'}`}>
+                  <button 
+                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                    className="w-full py-12 px-10 text-left flex items-center justify-between group"
+                  >
+                     <div className="flex items-center gap-10">
+                        <span className="text-xs font-mono text-zinc-300 font-bold">0{i+1}</span>
+                        <h3 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 group-hover:text-zinc-600 transition-colors">
+                           {faq.question}
+                        </h3>
+                     </div>
+                     <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-500 ${openIndex === i ? 'bg-[#D1FAE5] border-[#D1FAE5] text-zinc-950 rotate-180' : 'bg-white border-zinc-100 text-zinc-400 group-hover:border-zinc-200'}`}>
+                        <ArrowDown className="w-5 h-5" />
+                     </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {openIndex === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                         <div className="px-10 pb-12 pl-[calc(40px+3.5rem)] md:pl-[calc(40px+4.5rem)]">
+                            <p className="text-lg md:text-xl text-zinc-500 leading-relaxed max-w-2xl">
+                               {faq.answer}
+                            </p>
+                         </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+               </div>
+             ))}
+          </div>
+
         </div>
       </div>
     </section>

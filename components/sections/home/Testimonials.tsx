@@ -1,109 +1,121 @@
-'use client';
+"use client";
 
-import React from "react";
+import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import { motion } from "framer-motion";
-import { TextReveal } from "@/components/shared/Animations";
+import { FadeIn } from "@/components/shared/Animations";
 
-const TestimonialsColumn = (props: {
-  className?: string;
-  testimonials: any[];
-  duration?: number;
-}) => {
+const testimonials = [
+  {
+    text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100",
+    name: "Briana Patton",
+    role: "Operations Manager",
+  },
+  {
+    text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100",
+    name: "Bilal Ahmed",
+    role: "IT Manager",
+  },
+  {
+    text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=100",
+    name: "Saman Malik",
+    role: "Customer Support Lead",
+  },
+  {
+    text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=100",
+    name: "Omar Raza",
+    role: "CEO",
+  },
+  {
+    text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100",
+    name: "Zainab Hussain",
+    role: "Project Manager",
+  },
+  {
+    text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100",
+    name: "Aliza Khan",
+    role: "Business Analyst",
+  },
+  {
+    text: "Our business functions improved with a user-friendly design and positive customer feedback.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100",
+    name: "Farhan Siddiqui",
+    role: "Marketing Director",
+  },
+  {
+    text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100",
+    name: "Sana Sheikh",
+    role: "Sales Manager",
+  },
+  {
+    text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=100",
+    name: "Hassan Ali",
+    role: "E-commerce Manager",
+  },
+];
+
+const firstColumn = testimonials.slice(0, 3);
+const secondColumn = testimonials.slice(3, 6);
+const thirdColumn = testimonials.slice(6, 9);
+
+const Testimonials = () => {
   return (
-    <div className={props.className}>
-      <motion.div
-        animate={{
-          translateY: "-50%",
-        }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        className="flex flex-col gap-6 pb-6"
-      >
-        {[...new Array(2)].map((_, index) => (
-          <React.Fragment key={index}>
-            {props.testimonials.map(({ text, image, name, role }, i) => (
-              <div
-                className="p-6 md:p-10 rounded-2xl md:rounded-[2rem] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-sm transition-colors max-w-xs w-full group"
-                key={i}
-              >
-                <div className="text-zinc-600 dark:text-zinc-400 font-medium italic leading-relaxed text-sm md:text-base">
-                  "{text}"
-                </div>
-                <div className="flex items-center gap-4 mt-6 md:mt-8 pt-4 md:pt-6 border-t border-zinc-100 dark:border-zinc-900">
-                  {image && image.trim() !== "" ? (
-                    <img
-                      width={44}
-                      height={44}
-                      src={image}
-                      alt={name}
-                      className="h-9 w-9 md:h-11 md:w-11 rounded-full grayscale group-hover:grayscale-0 transition-all duration-500 border border-zinc-200 dark:border-zinc-800 object-cover"
-                    />
-                  ) : (
-                    <div className="h-9 w-9 md:h-11 md:w-11 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-[10px] font-black uppercase text-zinc-500 dark:text-zinc-500">
-                      {name.charAt(0)}
-                    </div>
-                  )}
-                  <div className="flex flex-col">
-                    <div className="font-black uppercase tracking-tight leading-none text-foreground text-xs md:text-sm">{name}</div>
-                    <div className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold opacity-40 mt-1 dark:text-zinc-400">{role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </React.Fragment>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
-
-export default function Testimonials({ initialTestimonials }: { initialTestimonials: any[] }) {
-  const testimonials = (initialTestimonials || []).map(t => ({
-    text: t.content,
-    image: t.avatar,
-    name: t.name,
-    role: t.role
-  }));
-
-  const firstColumn = testimonials.slice(0, 3);
-  const secondColumn = testimonials.slice(3, 6);
-  const thirdColumn = testimonials.slice(6, 9);
-
-  return (
-    <section className="py-16 md:py-40 bg-transparent relative overflow-hidden">
-      {/* Background Accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.03)_0%,transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02)_0%,transparent_70%)] pointer-events-none" />
-
+    <section className="pt-16 pb-32 md:pt-24 md:pb-48 bg-transparent relative overflow-hidden" id="testimonials">
       <div className="container relative z-10 mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
-          className="flex flex-col items-center justify-center max-w-2xl mx-auto mb-16 md:mb-32 text-center"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-600 mb-6 md:mb-8">
-             Testimonials
-          </div>
+        {/* Stylish Hero-style Background Overlay */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] h-full bg-[radial-gradient(circle_at_50%_0%,#FEF9C3_0%,transparent_50%)] opacity-20" />
+        </div>
 
-          <h2 className="heading-2 md:text-6xl mb-0">
-            <TextReveal>Trusted by global teams.</TextReveal>
-          </h2>
-          <p className="text-base md:text-xl text-zinc-500 font-medium italic mt-6 md:mt-8 max-w-lg">
-            Our platform powers operations across the globe. Here is what our partners have to say.
-          </p>
-        </motion.div>
+        {/* Header - Hero Style Hierarchy */}
+        <div className="text-center mb-24 relative z-10">
+          <FadeIn>
+            <div className="flex justify-center mb-8">
+              <div className="px-4 py-1.5 bg-white border border-zinc-100 rounded-full shadow-sm">
+                <span className="text-[10px] font-bold text-zinc-900 uppercase tracking-widest ">Customer Stories</span>
+              </div>
+            </div>
 
-        <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[600px] md:max-h-[700px] lg:max-h-[800px] overflow-hidden w-full px-6 md:px-0">
-          <TestimonialsColumn testimonials={firstColumn} duration={25} />
-          <TestimonialsColumn testimonials={secondColumn} className="hidden sm:block" duration={35} />
-          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={30} />
+            <h2 className="text-5xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-8 leading-tight">
+              Trusted by <br />
+              <span className="font-serif italic font-medium text-zinc-400">Industry Leaders</span>
+            </h2>
+            <p className="text-zinc-500 max-w-xl mx-auto text-lg md:text-xl leading-relaxed font-medium">
+              See how modern teams transform their business and ship faster 
+              using our custom software solutions.
+            </p>
+          </FadeIn>
+        </div>
+
+        {/* Animated 3-Column Layout */}
+        <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[800px] overflow-hidden">
+          {/* Column 1 */}
+          <TestimonialsColumn testimonials={firstColumn} duration={15} />
+          
+          {/* Column 2 */}
+          <TestimonialsColumn 
+            testimonials={secondColumn} 
+            className="hidden md:block" 
+            duration={22} 
+          />
+          
+          {/* Column 3 */}
+          <TestimonialsColumn 
+            testimonials={thirdColumn} 
+            className="hidden lg:block" 
+            duration={18} 
+          />
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Testimonials;

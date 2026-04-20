@@ -5,14 +5,14 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import PageWrapper from "@/components/layout/PageWrapper";
 import Hero from "@/components/sections/home/Hero";
-import BentoFeatures from "@/components/sections/home/BentoFeatures";
-
+import EngineFeatures from "@/components/sections/home/EngineFeatures";
+import Services from "@/components/sections/home/Services";
 import Testimonials from "@/components/sections/home/Testimonials";
 import FAQ from "@/components/sections/home/FAQ";
 import CTA from "@/components/sections/home/CTA";
 
 import { db } from "@/lib/db";
-import { projects, testimonials } from "@/lib/db/schema";
+import { projects } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
 
@@ -20,11 +20,10 @@ import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
 // ISR via Edge Functions in production deployment
 export const dynamic = 'force-dynamic';
 
-import Logos from "@/components/sections/home/Logos";
 import Protocol from "@/components/sections/home/Protocol";
 import Showcase from "@/components/sections/home/Showcase";
-import Connectivity from "@/components/sections/home/Connectivity";
-import Pricing from "@/components/sections/home/Pricing";
+import Blogs from "@/components/sections/home/Blogs";
+
 import MarqueeText from "@/components/sections/home/MarqueeText";
 
 export const metadata = generateMetadata({
@@ -59,38 +58,29 @@ const getCachedProjects = cacheQuery(
   CACHE_DURATION.MEDIUM
 );
 
-const getCachedTestimonials = cacheQuery(
-  () => db.select().from(testimonials).orderBy(desc(testimonials.createdAt)),
-  [CACHE_TAGS.TESTIMONIALS],
-  CACHE_DURATION.MEDIUM
-);
-
 export default async function HomePage() {
   let allProjects: any[] = [];
-  let allTestimonials: any[] = [];
 
   try {
     const results = await Promise.all([
-      getCachedProjects(),
-      getCachedTestimonials()
+      getCachedProjects()
     ]);
     allProjects = results[0];
-    allTestimonials = results[1];
   } catch (error) {
     console.error("Home Page Data Fetch Error:", error);
   }
 
   return (
     <PageWrapper>
-      <main className="w-full">
+      <main className="w-full relative overflow-hidden mesh-gradient">
         <Hero />
 
         <Suspense fallback={<SectionLoader />}>
-            <Logos />
+            <EngineFeatures />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <BentoFeatures />
+            <Services />
         </Suspense>
 
         <MarqueeText />
@@ -104,11 +94,11 @@ export default async function HomePage() {
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <Connectivity />
+            <Testimonials />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <Testimonials initialTestimonials={allTestimonials} />
+            <Blogs />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>

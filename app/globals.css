@@ -1,187 +1,114 @@
 @import "tailwindcss";
 
-/* Navigation performance optimization */
+/* Atomic Performance Optimization & Layout Containment */
 @layer base {
+  * {
+    @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
   nav {
     contain: layout style paint;
   }
 
   .fixed-nav {
-    transition-property: background-color, border-color, box-shadow;
-    transition-duration: 0.2s;
-    transition-timing-function: ease;
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                backdrop-filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
-}
 
-/* Dark mode variant is now handled via standard [data-theme='dark'] selector */
-
-@layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 98%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.1% 5%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.1% 11.6%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.1% 11.6%;
-    --destructive: 0 84.1% 48.3%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.1% 11.6%;
-    --infra-grid: 240 5% 90%;
-    --infra-beam: 240 5% 85%;
-    --infra-glow: radial-gradient(circle at top right, rgba(0, 0, 0, 0.02), transparent 60%);
-    --infra-fog: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
-    --radius: 2.5rem;
-
-    /* Tailwind v4 Color Mappings */
-    --color-background: hsl(var(--background));
-    --color-foreground: hsl(var(--foreground));
-    --color-card: hsl(var(--card));
-    --color-card-foreground: hsl(var(--card-foreground));
-    --color-popover: hsl(var(--popover));
-    --color-popover-foreground: hsl(var(--popover-foreground));
-    --color-primary: hsl(var(--primary));
-    --color-primary-foreground: hsl(var(--primary-foreground));
-    --color-secondary: hsl(var(--secondary));
-    --color-secondary-foreground: hsl(var(--secondary-foreground));
-    --color-muted: hsl(var(--muted));
-    --color-muted-foreground: hsl(var(--muted-foreground));
-    --color-accent: hsl(var(--accent));
-    --color-accent-foreground: hsl(var(--accent-foreground));
-    --color-destructive: hsl(var(--destructive));
-    --color-destructive-foreground: hsl(var(--destructive-foreground));
-    --color-border: hsl(var(--border));
-    --color-input: hsl(var(--input));
-    --color-ring: hsl(var(--ring));
-  }
-
-  [data-theme='dark'] {
-    --background: 240 10% 2%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --infra-grid: 240 5% 15%;
-    --infra-beam: 240 5% 40%;
-    --infra-glow: rgba(255,255,255,0.04);
-    --infra-fog: linear-gradient(to bottom, #09090b, transparent, rgba(9, 9, 11, 0.8));
+    --background: #FFFFFF;
+    --foreground: #020617;
+    --primary: #020617;
+    --secondary: #2563EB;
+    --border: #E2E8F0;
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background-color: #FFFFFF;
+    color: #0A0A0A;
+    min-height: 100vh;
+    @apply bg-white text-zinc-950 antialiased font-sans overflow-x-hidden;
+    letter-spacing: -0.01em;
   }
 
-  ::selection {
-    background-color: var(--primary);
-    color: var(--primary-foreground);
+  .font-serif {
+    font-family: var(--font-serif), serif;
+  }
+
+  .mesh-gradient {
+    background-color: #ffffff;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(209, 250, 229, 0.6) 0, transparent 40%),
+      radial-gradient(at 100% 0%, rgba(254, 249, 195, 0.6) 0, transparent 40%),
+      radial-gradient(at 100% 100%, rgba(244, 244, 245, 0.5) 0, transparent 40%),
+      radial-gradient(at 0% 100%, rgba(244, 244, 245, 0.5) 0, transparent 40%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-black tracking-tighter leading-[0.9];
   }
 }
 
+@theme {
+  /* ELITE DESIGN SYSTEM - Light Mode Focus */
+  --color-background: #FFFFFF;
+  --color-foreground: #0A0A0A;
+  --color-border: rgba(10, 10, 10, 0.1);
+  --color-primary: #0A0A0A;
+  --color-secondary: #0B0F19;
+  --color-accent: #10B981;
+  
+  --color-dark-section: #FFFFFF; /* Forced to light */
+  --color-light-section: #FFFFFF;
+  
+  --color-muted: #F8FAFC;
+  --color-muted-foreground: #475569;
+  
+  /* Infrastructure Elements */
+  --color-infra-grid: rgba(10, 10, 10, 0.05);
+  --color-infra-beam: rgba(16, 185, 129, 0.05);
+  --color-infra-glow: rgba(16, 185, 129, 0.1);
+}
+
 @layer components {
+  .heading-hero {
+    @apply text-[56px] md:text-[72px] lg:text-[88px] font-black uppercase tracking-[-0.04em] leading-[0.85];
+  }
+
   .heading-1 {
-    font-size: clamp(3rem, 10vw, 6rem);
-    font-weight: 700;
-    letter-spacing: -0.05em;
-    line-height: 0.85;
-    text-transform: uppercase;
-  }
-
-  .heading-2 {
-    font-size: clamp(2rem, 7vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-    text-transform: uppercase;
-  }
-
-  .heading-3 {
-    font-size: clamp(1.25rem, 3vw, 2rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    text-transform: uppercase;
+    @apply text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9];
   }
 
   .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 3rem; /* Scaled down from h-16 */
-    padding: 0 1.5rem;
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    font-weight: 700;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border-radius: 1rem;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-  }
-
-  .btn-primary:active {
-    transform: scale(0.95);
+    @apply h-14 md:h-20 px-8 md:px-16 bg-slate-950 text-white font-black uppercase tracking-widest text-sm md:text-lg flex items-center justify-center transition-all duration-300 hover:scale-[1.02] hover:bg-accent shadow-2xl;
   }
 
   .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 3rem;
-    padding: 0 1.5rem;
-    background-color: transparent;
-    color: hsl(var(--foreground));
-    border: 1px solid hsl(var(--border));
-    font-weight: 700;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border-radius: 1rem;
-    transition: all 0.2s;
+    @apply h-14 md:h-20 px-8 md:px-16 border-2 border-slate-950 text-slate-950 font-black uppercase tracking-widest text-sm md:text-lg flex items-center justify-center transition-all duration-300 hover:bg-slate-950 hover:text-white;
   }
 
-  .card-base {
-    border-radius: 2rem;
-    background-color: hsla(var(--background), 0.5);
-    border: 1px solid hsl(var(--border));
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
+  .section-light {
+    @apply bg-white py-20 lg:py-32;
+    --color-primary: #0A0A0A;
+    --color-secondary: #475569;
+    --color-border: rgba(10, 10, 10, 0.1);
   }
 
-  .text-reveal-container {
-    overflow: hidden;
-    display: inline-flex;
-    flex-wrap: wrap;
-  }
-
-  .text-reveal-word {
-    display: inline-block;
+  .section-dark {
+    @apply bg-white py-20 lg:py-32 text-zinc-950; /* Forced to light */
+    --color-primary: #0A0A0A;
+    --color-secondary: #475569;
+    --color-border: rgba(10, 10, 10, 0.1);
   }
 }
 
@@ -201,20 +128,17 @@
 
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
-    width: 6px; /* High density */
+    width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background-color: hsl(var(--background));
+    background-color: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: hsl(var(--border));
+    background-color: rgba(10, 10, 10, 0.1);
     border-radius: 99px;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: hsl(var(--muted-foreground));
-  }
 
-  /* Noise Overlay utility for texture */
+  /* Noise Overlay */
   .noise-bg {
     position: relative;
   }
@@ -225,7 +149,7 @@
     width: 100%;
     height: 100%;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.03;
+    opacity: 0.02;
     pointer-events: none;
     z-index: 100;
   }
@@ -249,20 +173,15 @@
     animation: scan 3s infinite ease-in-out;
   }
 
-  /* Hide scrollbar while keeping scroll functionality */
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
   .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+    display: none;
   }
-  .shadow-inner-vignette {
-    opacity: 0;
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  [data-theme='dark'] .shadow-inner-vignette {
-    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.8);
-    opacity: 1;
+  .bg-dark-section {
+    @apply bg-white; /* Forced to white */
   }
 }

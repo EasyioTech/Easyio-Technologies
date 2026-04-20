@@ -13,65 +13,83 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <PageWrapper>
-      <section className="py-24 md:py-40">
+      <section className="min-h-[50vh] pt-32 md:pt-48 pb-12 relative bg-white flex items-center">
+        {/* Stylish Hero-style Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none mesh-gradient overflow-visible">
+          {/* Subtle Image Backdrop - Extended Height */}
+          <div className="absolute top-0 left-0 w-full h-[140%] z-0 overflow-hidden">
+             <img 
+               src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000" 
+               className="w-full h-full object-cover opacity-[0.2] grayscale contrast-125 brightness-110"
+               alt=""
+             />
+             {/* Gradient Fades for Text Readability & Bottom Blend */}
+             <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
+             <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-transparent to-white" />
+          </div>
+          
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.02] contrast-150" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+          <div className="max-w-3xl">
+            <FadeIn>
+              <div className="inline-flex items-center gap-3 bg-emerald-50 px-4 py-1.5 rounded-full mb-8">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-900 leading-none">We're Online</span>
+              </div>
+            </FadeIn>
+
+            <h1 className="text-[10vw] sm:text-6xl md:text-7xl lg:text-[100px] font-bold tracking-tight text-zinc-950 mb-8 leading-[0.85] text-left">
+              Let's Build <br />
+              <span className="font-serif italic font-medium text-zinc-400">your Vision.</span>
+            </h1>
+
+            <FadeIn delay={0.2}>
+              <p className="text-zinc-600 text-lg md:text-xl max-w-xl leading-relaxed font-medium">
+                Have a project in mind? We'd love to hear from you.
+                Our team is ready to help you build your next big idea.
+              </p>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-zinc-50/50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-20">
-            {/* Left Side: Context & Info */}
-            <div className="lg:w-1/3 xl:w-2/5">
-              <FadeIn>
-                <div className="flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
-                  <Terminal className="w-4 h-4 text-zinc-400" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">Comm_Channel</span>
-                </div>
-              </FadeIn>
-
-              <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 uppercase italic leading-[0.85]">
-                <TextReveal>Initialize</TextReveal> <br />
-                <TextReveal delay={0.2} className="text-zinc-400 dark:text-zinc-800">The Tunnel</TextReveal>
-              </h1>
-
+          <div className="flex flex-col lg:flex-row gap-20 items-stretch">
+            {/* Left Side: Contact Cards */}
+            <div className="lg:w-1/3 flex flex-col gap-6">
               <FadeIn delay={0.4}>
-                <p className="text-xl text-zinc-500 dark:text-zinc-400 leading-relaxed italic mb-16 max-w-md">
-                  We don't do "general inquiries." We engage in technical discourse. Use this channel to start your transition to sovereign engineering infrastructure.
-                </p>
-              </FadeIn>
-
-              <div className="space-y-12">
-                <FadeIn delay={0.6}>
-                  <div className="group border-l-2 border-zinc-100 dark:border-zinc-900 pl-8 transition-colors hover:border-zinc-950 dark:hover:border-white">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-700 mb-2 italic">Global Registry</div>
-                    <a href={`mailto:${siteConfig.email.contact}`} className="text-2xl font-black text-zinc-950 dark:text-white uppercase transition-all tracking-tighter">
-                      {siteConfig.email.contact}
-                    </a>
-                  </div>
-                </FadeIn>
-
-                <FadeIn delay={0.7}>
-                  <div className="group border-l-2 border-zinc-100 dark:border-zinc-900 pl-8 transition-colors hover:border-zinc-950 dark:hover:border-white">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-700 mb-2 italic">Ops Command Central</div>
-                    <div className="text-2xl font-black text-zinc-950 dark:text-white uppercase tracking-tighter">
-                      {siteConfig.location}
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl h-full flex flex-col justify-center shadow-sm">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-6 border-b border-zinc-50 pb-4">Contact Protocol</div>
+                  <div className="space-y-8">
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 block mb-2">Email Address</span>
+                      <a href={`mailto:${siteConfig.email.contact}`} className="text-xl md:text-2xl font-bold text-zinc-950 hover:text-emerald-600 transition-colors tracking-tight block">
+                        {siteConfig.email.contact}
+                      </a>
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 block mb-2">Our Office</span>
+                      <div className="text-xl md:text-2xl font-bold text-zinc-950 tracking-tight leading-tight">
+                        {siteConfig.location}
+                      </div>
                     </div>
                   </div>
-                </FadeIn>
-
-                <FadeIn delay={0.8}>
-                  <div className="mt-12 opacity-40">
-                     <div className="flex items-center gap-4 px-4 py-2 rounded-lg border border-zinc-100 dark:border-zinc-900 w-fit">
-                        <div className="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white animate-pulse" />
-                        <span className="text-[8px] font-mono tracking-widest uppercase font-bold italic">REGISTRY_STREAM_CONNECTED</span>
-                     </div>
-                  </div>
-                </FadeIn>
-              </div>
+                </div>
+              </FadeIn>
             </div>
 
             {/* Right Side: The Form */}
             <div className="flex-1">
-              <FadeIn delay={0.5}>
-                <div className="border border-zinc-100 dark:border-zinc-900 rounded-3xl lg:rounded-[3rem] bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm p-8 md:p-16 relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-100/50 dark:bg-white/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000" />
+              <FadeIn delay={0.3}>
+                <div className="bg-white border border-zinc-200 rounded-[3rem] shadow-2xl shadow-zinc-200/40 p-10 md:p-16 relative overflow-hidden">
                   <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-12">
+                      <h2 className="text-3xl font-bold text-zinc-950 tracking-tight">Send a message</h2>
+                      <Globe className="w-8 h-8 text-zinc-100" />
+                    </div>
                     <ContactForm />
                   </div>
                 </div>

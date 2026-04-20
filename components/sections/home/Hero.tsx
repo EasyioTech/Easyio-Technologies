@@ -1,79 +1,93 @@
 'use client';
 
 import Link from "next/link";
-import { ArrowRight, Activity, Terminal } from "lucide-react";
-import { TextReveal, FadeIn } from "@/components/shared/Animations";
-import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef } from "react";
-import HeroDashboard from "./HeroDashboard";
+import { ArrowUpRight, Star, ArrowRight, Activity, Cloud, Database, Layout, Hexagon, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import { FadeIn } from "@/components/shared/Animations";
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  });
-
-  const xLeft = useTransform(scrollYProgress, [0, 1], [0, -500]);
-  const xRight = useTransform(scrollYProgress, [0, 1], [0, 500]);
-  const scale = useTransform(scrollYProgress, [0, 0.4], [0.95, 1.1]);
-  const rotateX = useTransform(scrollYProgress, [0, 0.4], [5, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
-
   return (
-    <section ref={sectionRef} className="relative pt-24 pb-16 md:pt-44 md:pb-32 overflow-hidden bg-transparent">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center">
-          {/* Frontier Badge */}
-          <FadeIn>
-            <div className="flex flex-col items-center gap-4 mb-12">
-              <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 shadow-sm">
-                <Terminal className="w-3 h-3 text-zinc-500 dark:text-zinc-400" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-600 dark:text-zinc-400">
-                  TRUSTED BY <span className="text-zinc-950 dark:text-white">ENTERPRISE LEADERS</span>
-                </span>
-              </div>
-              <div className="flex items-center gap-3 opacity-40">
-                <div className="w-1 h-1 rounded-full bg-zinc-400" />
-                <span className="text-[8px] font-black uppercase tracking-[0.6em] text-zinc-400 dark:text-zinc-500">KASHMIR_HQ // PREMIER_ENGINEERING_HUB</span>
+    <section className="relative pt-32 pb-20 md:pt-56 md:pb-32 overflow-hidden flex flex-col items-center justify-center">
+      
+      <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
+        <div className="flex flex-col items-center">
+          
+          <h1 className="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tight text-zinc-950 mb-8 leading-[0.85] max-w-[1200px]">
+            Architecting digital <br />
+            <span className="font-serif italic font-medium text-zinc-900">systems with precision</span>
+          </h1>
+
+          <FadeIn delay={0.2}>
+            <p className="text-zinc-500 text-sm md:text-base max-w-xl mx-auto mb-12 leading-relaxed">
+              Custom software engines for mission-critical deployments. We build resilient, 
+              high-performance infrastructure for modern enterprises.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.4}>
+            <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
+              <Link 
+                href="/contact" 
+                className="group h-14 pl-8 pr-2 flex items-center justify-center bg-zinc-950 text-white font-medium rounded-full hover:bg-zinc-800 transition-all shadow-xl shadow-emerald-500/10 active:scale-95"
+              >
+                Get Started 
+                <div className="w-10 h-10 ml-4 bg-white rounded-full flex items-center justify-center text-zinc-950 group-hover:bg-[#FEF9C3] group-hover:scale-105 transition-all duration-300">
+                  <ArrowRight className="w-5 h-5 -rotate-[25deg]" />
+                </div>
+              </Link>
+              
+              <div className="flex items-center gap-4 text-left">
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="w-10 h-10 rounded-full border-2 border-[#FEF9C3] bg-zinc-100 overflow-hidden shadow-sm">
+                       <img src={`/images/avatar_${i}.jpg`} alt="User" className="w-full h-full object-cover" />
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <div className="flex items-center gap-0.5 mb-0.5">
+                    {[1, 2, 3, 4].map((i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    ))}
+                    <Star className="w-3.5 h-3.5 text-zinc-200 fill-zinc-200" />
+                  </div>
+                  <p className="text-[11px] font-medium text-zinc-500 uppercase tracking-wider">
+                    Trusted by 1000+ clients
+                  </p>
+                </div>
               </div>
             </div>
           </FadeIn>
+        </div>
+      </div>
 
-          {/* Main Heading with Parallax Scroll */}
-          <div className="relative mb-12 overflow-visible">
-            <motion.h1 style={{ x: xLeft }} className="heading-1 whitespace-nowrap opacity-10 dark:opacity-10">
-              SCALABLE SYSTEMS // ENGINEERING FOR THE FUTURE // v.2.0 //
-            </motion.h1>
-            
-            <motion.h1 style={{ x: xRight }} className="heading-1 whitespace-nowrap mt-4 opacity-10 dark:opacity-10">
-              MODERN INFRASTRUCTURE // <span className="text-primary italic">HIGH PERFORMANCE.</span> // STABLE DEPLOYMENT
-            </motion.h1>
+      {/* Brand Logos Bar */}
+      <div className="w-full mt-auto pt-10 pb-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-xs font-medium text-zinc-400 uppercase tracking-[0.2em] mb-12">
+            Trusted by industrial leaders and fast-growing teams
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 opacity-40 grayscale hover:opacity-100 transition-opacity">
+            <LogoItem name="FlowBank" icon={<Layout className="w-5 h-5" />} />
+            <LogoItem name="DataGrid" icon={<Database className="w-5 h-5" />} />
+            <LogoItem name="Nexus" icon={<Hexagon className="w-5 h-5" />} />
+            <LogoItem name="CloudNine" icon={<Cloud className="w-5 h-5" />} />
+            <LogoItem name="Pulse" icon={<Activity className="w-5 h-5" />} />
+            <LogoItem name="Apex" icon={<Zap className="w-5 h-5" />} />
           </div>
-
-          {/* Subheading Narrative */}
-          <div className="max-w-4xl mx-auto mb-12 md:mb-20">
-            <TextReveal delay={0.7} className="text-base md:text-3xl text-zinc-900 dark:text-zinc-200 font-medium italic">
-              Easyio Technologies builds ultra-high-performance business systems. We help companies replace technical complexity with streamlined, scalable software that powers growth.
-            </TextReveal>
-          </div>
-
-          {/* Tactical CTAs */}
-          <FadeIn delay={1}>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Link href="/contact" className="btn-primary group">
-                Start Your Project
-                <Activity className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-              </Link>
-              <Link href="/about" className="btn-secondary group">
-                See Our Work
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </FadeIn>
-
         </div>
       </div>
     </section>
+  );
+}
+
+function LogoItem({ name, icon }: { name: string; icon: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-3">
+      <div className="text-zinc-950">
+        {icon}
+      </div>
+      <span className="font-bold tracking-tight text-zinc-950 text-xl">{name}</span>
+    </div>
   );
 }

@@ -1,56 +1,56 @@
 'use client';
 
 import Link from "next/link";
-import { Mail, MapPin, Terminal, Cpu } from "lucide-react";
+import { Mail, MapPin, Terminal, Activity, ShieldCheck, Globe, Zap, ArrowUpRight, Lock, Shield } from "lucide-react";
 import { footerLinks, siteConfig } from "@/config/site";
 import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative pt-16 md:pt-40 pb-20 px-6 overflow-hidden transition-colors">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-20">
-          {/* Brand Identity */}
-          <div className="md:col-span-4 flex flex-col items-start gap-12">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-2xl bg-zinc-950 dark:bg-white flex items-center justify-center transition-all duration-700 group-hover:rotate-12 group-hover:scale-110">
-                  <Terminal className="w-5 h-5 text-white dark:text-black" />
+    <footer className="bg-transparent px-6 py-24 relative overflow-hidden border-t border-zinc-100/50">
+      <div className="max-w-[1600px] mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 mb-32">
+          
+          {/* Brand Identity / Logo System */}
+          <div className="lg:col-span-12 xl:col-span-5 flex flex-col items-start text-left">
+            <Link href="/" className="mb-10 group block">
+              <div className="relative">
+                <span className="block text-4xl md:text-5xl font-bold tracking-tighter text-zinc-950 uppercase leading-none">
+                  EASYIO
+                </span>
+                <span className="block text-3xl md:text-4xl font-cursive text-zinc-400 -mt-2 ml-1 low-caps opacity-80 group-hover:text-[#FEF9C3] transition-colors" style={{ fontFamily: 'Sacramento, cursive' }}>
+                  Technologies
+                </span>
               </div>
-              <span className="font-black text-3xl uppercase tracking-tighter text-zinc-950 dark:text-white transition-colors">
-                {siteConfig.shortName}
-              </span>
             </Link>
 
-            <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-medium italic transition-colors leading-relaxed max-w-sm">
-                Architecting high-fidelity business systems with absolute precision. We don't build software; we engineer destiny.
-            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-zinc-400 italic uppercase tracking-tight leading-tight mb-12 max-w-sm">
+               Architecting high-performance <span className="text-zinc-950">business systems</span> with absolute precision.
+            </h2>
 
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400">
-                <Mail className="w-3 h-3" />
-                <a href={`mailto:${siteConfig.email.contact}`} className="hover:text-zinc-950 dark:hover:text-white transition-colors">
-                  {siteConfig.email.contact}
-                </a>
-              </div>
-              <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400">
-                <MapPin className="w-3 h-3" />
-                <span>{siteConfig.location}</span>
-              </div>
+            <div className="flex flex-col gap-6 w-full">
+              <a href={`mailto:${siteConfig.email.contact}`} className="flex items-center gap-4 text-zinc-500 hover:text-zinc-950 transition-colors group">
+                 <div className="w-12 h-12 rounded-full border border-zinc-100 flex items-center justify-center group-hover:border-zinc-200 group-hover:bg-zinc-100/50 transition-all">
+                    <Mail className="w-5 h-5 text-zinc-400 group-hover:text-zinc-950" />
+                 </div>
+                 <span className="text-xl font-bold tracking-tight uppercase italic">{siteConfig.email.contact}</span>
+              </a>
             </div>
           </div>
 
-          {/* Links Grid */}
-          <div className="md:col-span-8 grid grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Navigation Systems */}
+          <div className="lg:col-span-12 xl:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
             {Object.entries(footerLinks).map(([key, section]) => (
                 <div key={key}>
-                  <h4 className="text-[10px] font-black text-zinc-950 dark:text-white uppercase tracking-[0.4em] mb-8 md:mb-12">
+                  <h4 className="text-[11px] font-bold text-zinc-950 uppercase tracking-[0.3em] mb-10">
                     {section.title}
                   </h4>
-                  <ul className="space-y-6">
+                  <ul className="space-y-5">
                     {section.links.map((link) => (
                       <li key={link.label}>
-                        <Link href={link.href} className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-white hover:italic transition-all inline-block hover:translate-x-1">
-                          {link.label}
+                        <Link href={link.href} className="text-base font-bold text-zinc-400 hover:text-zinc-950 transition-all flex items-center gap-3 group relative w-fit">
+                          <span className="absolute -inset-x-4 -inset-y-1 bg-[#FEF9C3] scale-x-0 group-hover:scale-x-100 transition-transform origin-left -z-10 rounded-lg" />
+                          <span className="uppercase tracking-tight">{link.label}</span>
                         </Link>
                       </li>
                     ))}
@@ -60,38 +60,39 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Tactical Base */}
-        <div className="mt-20 md:mt-40 pt-12 md:pt-20 border-t border-zinc-100 dark:border-zinc-900 transition-colors flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400 italic">
-                <span>&copy; {siteConfig.year} Easyio Technologies.</span>
-                <span className="hidden md:block w-1 h-1 rounded-full bg-zinc-200 dark:bg-zinc-800" />
-                <span>High-Fidelity Engineering Protocol.</span>
+        {/* Technical Footer Bar */}
+        <div className="pt-12 border-t border-zinc-100/50 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="flex flex-wrap items-center justify-center gap-8 text-zinc-400">
+                <div className="flex items-center gap-2">
+                   <ShieldCheck className="w-4 h-4 text-zinc-950" />
+                   <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Secure Protocol</span>
+                </div>
+                <div className="flex items-center gap-2">
+                   <Globe className="w-4 h-4 text-emerald-500" />
+                   <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Global Infrastructure</span>
+                </div>
             </div>
 
-            <div className="flex items-center gap-8">
-                {[
-                { name: "Twitter", href: siteConfig.links.twitter },
-                { name: "LinkedIn", href: siteConfig.links.linkedin },
-                { name: "Github", href: siteConfig.links.github },
-                ].map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2"
-                >
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-all underline decoration-transparent group-hover:decoration-current">
-                    {social.name}
-                  </span>
-                </a>
-                ))}
+            <div className="flex flex-col md:items-end gap-3 text-center md:text-right">
+               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400">© 2026 Easyio Technologies // Sovereign Systems</span>
+               <div className="flex items-center justify-center md:justify-end gap-8">
+                  {[
+                    { name: "Twitter", href: siteConfig.links.twitter },
+                    { name: "LinkedIn", href: siteConfig.links.linkedin },
+                    { name: "Github", href: siteConfig.links.github },
+                  ].map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] font-bold text-zinc-400 hover:text-zinc-950 transition-colors tracking-widest uppercase hover:bg-zinc-100 px-3 py-1 rounded-md"
+                    >
+                      {social.name}
+                    </a>
+                  ))}
+               </div>
             </div>
-        </div>
-
-        {/* Big Background Visual */}
-        <div className="mt-12 md:mt-20 flex justify-center opacity-[0.03] dark:opacity-[0.01] pointer-events-none scale-110 md:scale-150 transition-all select-none overflow-hidden">
-            <h2 className="text-[18vw] font-black uppercase tracking-tighter leading-none italic select-none">EASYIO.</h2>
         </div>
       </div>
     </footer>

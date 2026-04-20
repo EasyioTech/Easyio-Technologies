@@ -1,106 +1,82 @@
 'use client';
 
-import { Github, Database, Cloud, Share2, Globe, Lock, Cpu, Zap, Radio, Terminal, Shield, Workflow, Activity, Layers, Network } from "lucide-react";
 import { motion } from "framer-motion";
-
-const integrations = [
-  { name: "PostgreSQL", icon: Database, color: "#336791" },
-  { name: "Kubernetes", icon: Cloud, color: "#326CE5" },
-  { name: "GitHub CI", icon: Github, color: "#ffffff" },
-  { name: "AWS Cloud", icon: Globe, color: "#FF9900" },
-  { name: "Redis", icon: Share2, color: "#DC382D" },
-  { name: "Security", icon: Lock, color: "#00A3E0" },
-  { name: "Infrastructure", icon: Cpu, color: "#0071C5" },
-  { name: "Mesh Networking", icon: Radio, color: "#00D1FF" },
-  { name: "Development", icon: Workflow, color: "#7731F7" },
-  { name: "Custom Protocols", icon: Terminal, color: "#4D4D4D" },
-  { name: "Secrets Vault", icon: Shield, color: "#FFD700" },
-  { name: "Cloud Sync", icon: Activity, color: "#FF3366" },
-  { name: "System Layers", icon: Layers, color: "#00FFA3" },
-  { name: "Networking", icon: Network, color: "#663399" },
-  { name: "Optimization", icon: Zap, color: "#F0DB4F" },
-];
-
-// Triple duplicate for ultra-seamless loop
-const marqueeItems = [...integrations, ...integrations, ...integrations];
+import { Search, Globe, Activity, Terminal, Shield, Network } from "lucide-react";
+import { FadeIn, TextReveal } from "@/components/shared/Animations";
 
 export default function Connectivity() {
   return (
-    <section className="py-16 md:py-32 bg-transparent overflow-hidden relative" id="connectivity">
-      {/* Structural HUD Accents */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-200 dark:via-zinc-800 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-200 dark:via-zinc-800 to-transparent" />
-
-      {/* Background Label */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center opacity-[0.03] dark:opacity-[0.07] pointer-events-none select-none">
-        <span className="text-[12vw] md:text-[20vw] font-black italic uppercase tracking-tighter leading-none whitespace-nowrap">ECOSYSTEM</span>
+    <section className="py-32 bg-white relative overflow-hidden" id="connectivity">
+      {/* Background Graphic */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.05]">
+          <div 
+            className="w-[1200px] h-[1200px] bg-no-repeat bg-center bg-contain animate-pulse"
+            style={{ 
+              backgroundImage: 'url("/images/hero-bg.png")',
+              transform: 'rotate(45deg)'
+            }}
+          />
       </div>
 
-      <div className="relative z-10 flex flex-col justify-center min-h-[40vh] md:min-h-[50vh]">
-        {/* The GenZ Perspective Rail */}
-        <div className="relative rotate-[-2deg] scale-105 perspective-2000">
-          {/* Scan Overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(0,0,0,0.02)_50%,transparent_100%)] dark:bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.03)_50%,transparent_100%)] z-20 pointer-events-none animate-pulse" />
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          <div className="lg:col-span-12 text-center max-w-3xl mx-auto mb-20">
+             <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">Global Integration</span>
+             </div>
+             <h2 className="text-5xl md:text-7xl font-black tracking-tight text-zinc-950 uppercase italic leading-tight">
+                Mesh <span className="text-zinc-100">Intelligence.</span>
+             </h2>
+             <p className="mt-8 text-lg text-zinc-500 font-medium italic">
+                Decentralized architectures connecting mission-critical nodes across the globe.
+             </p>
+          </div>
 
-          <motion.div
-            className="flex w-max gap-8 md:gap-24 items-center py-8 md:py-12 will-change-transform"
-            style={{ transform: "translateZ(0)" }}
-            animate={{ x: ["0%", "-33.333%"] }}
-            transition={{
-              repeat: Infinity,
-              duration: 100,
-              ease: "linear"
-            }}
-          >
-            {marqueeItems.map((item, i) => (
-              <div key={i} className="flex items-center gap-6 group cursor-default [backface-visibility:hidden]">
-                {/* Stylish Icon with Hidden Brand Color - Revealed on Hover */}
-                <div
-                  className="brand-icon-wrapper w-12 h-12 md:w-20 md:h-20 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 group-hover:border-white/20 dark:group-hover:border-white/20 shadow-lg text-zinc-600 dark:text-zinc-300"
-                  style={{ "--brand-color": item.color } as any}
-                >
-                  <item.icon className="w-6 h-6 md:w-10 md:h-10 transition-colors duration-500" />
+          <div className="lg:col-span-12 relative h-[500px] md:h-[600px] bg-zinc-50 rounded-[4rem] border border-zinc-100 overflow-hidden shadow-inner">
+             {/* Simplified Map Visualization */}
+             <div className="absolute inset-0 bg-[radial-gradient(rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:60px_60px]" />
+             
+             <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative group">
+                   <div className="w-48 h-48 md:w-64 md:h-64 rounded-full border border-accent/10 animate-ping absolute" />
+                   <div className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-zinc-950 flex items-center justify-center relative z-10 shadow-2xl transition-transform duration-700 group-hover:scale-110">
+                      <Globe className="w-16 h-16 md:w-24 md:h-24 text-white" />
+                   </div>
+                   
+                   {/* Data Flow Rings */}
+                   <div className="absolute inset-0 -m-8 border border-zinc-200 rounded-full animate-[spin_20s_linear_infinite]" />
+                   <div className="absolute inset-0 -m-16 border border-zinc-100 rounded-full animate-[spin_30s_linear_infinite_reverse]" />
                 </div>
+             </div>
 
-                {/* GenZ Styled Text */}
-                <span className="text-4xl md:text-8xl font-black italic uppercase tracking-tighter text-zinc-950 dark:text-white transition-all duration-500 group-hover:translate-x-4 antialiased">
-                  {item.name}
-                </span>
-
-                {/* Separator Bullet */}
-                <div className="w-3 h-3 md:w-6 md:h-6 rotate-45 border-2 md:border-4 border-zinc-200 dark:border-zinc-800 ml-4 md:ml-12 group-hover:border-zinc-950 dark:group-hover:border-white transition-colors" />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* CSS for Brand Revelation */}
-        <style jsx>{`
-          .brand-icon-wrapper:hover {
-            color: var(--brand-color) !important;
-            box-shadow: 0 0 30px var(--brand-color) !important;
-            border-color: var(--brand-color) !important;
-          }
-        `}</style>
-
-        {/* HUD Subtitle / Status */}
-        <div className="max-w-7xl mx-auto w-full px-6 mt-12 flex flex-col md:flex-row justify-between items-center gap-6 opacity-60">
-          <div className="flex items-center gap-4">
-            <span className="text-[10px] font-black uppercase tracking-[0.6em] text-zinc-400 dark:text-zinc-600">GLOBAL_NETWORK</span>
-            <div className="w-12 h-[1px] bg-zinc-200 dark:bg-zinc-800" />
-            <span className="text-[10px] font-mono font-bold text-zinc-950 dark:text-white tracking-widest">v2.0_STABLE</span>
+             {/* Orbital Nodes */}
+             {[
+               { top: '20%', left: '25%', label: 'LDN_01', delay: 0.1 },
+               { top: '15%', left: '70%', label: 'NYC_04', delay: 0.4 },
+               { top: '65%', left: '20%', label: 'SXR_09', delay: 0.7 },
+               { top: '75%', left: '75%', label: 'TKY_12', delay: 1.0 },
+               { top: '40%', left: '10%', label: 'BER_02', delay: 1.2 },
+               { top: '45%', left: '85%', label: 'SYD_07', delay: 1.5 },
+             ].map((node, i) => (
+                <motion.div 
+                  key={i} 
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: node.delay, duration: 0.5 }}
+                  className="absolute flex flex-col items-center gap-3" 
+                  style={{ top: node.top, left: node.left }}
+                >
+                   <div className="w-4 h-4 rounded-full bg-white border-2 border-accent shadow-xl shadow-accent/20" />
+                   <div className="flex items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1 rounded-xl border border-zinc-100 shadow-sm">
+                      <Network className="w-3 h-3 text-accent" />
+                      <span className="text-[10px] font-black font-mono text-zinc-950 uppercase">{node.label}</span>
+                   </div>
+                </motion.div>
+             ))}
           </div>
 
-          <div className="flex gap-8">
-            <div className="flex items-center gap-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-950 dark:text-white">SYSTEM_STATUS</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 dark:text-zinc-600">OPTIMIZED:</span>
-              <span className="text-[10px] font-mono font-bold text-zinc-950 dark:text-white">TRUE</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>

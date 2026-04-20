@@ -1,52 +1,75 @@
 'use client';
 
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { MessageSquare, Phone, Terminal } from "lucide-react";
-import { TextReveal, FadeIn } from "@/components/shared/Animations";
+import { FadeIn } from "@/components/shared/Animations";
 
 export default function CTA() {
   return (
-    <section className="py-16 md:py-60 px-6 relative border-t border-zinc-200 dark:border-zinc-800 bg-transparent transition-colors">
-      <div className="max-w-7xl mx-auto relative z-10 text-center">
-        <FadeIn>
-          <div className="mb-12 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-black shadow-2xl">
-              <Terminal className="w-4 h-4" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Work with Us</span>
-          </div>
-        </FadeIn>
-
-        <h2 className="heading-1 mb-12 max-w-5xl mx-auto">
-          <TextReveal>READY TO SCALE</TextReveal> <br />
-          <TextReveal delay={0.3} className="text-zinc-500 dark:text-zinc-700 italic">YOUR TECHNOLOGY?</TextReveal>
-        </h2>
-
-        <div className="max-w-3xl mx-auto mb-12 md:mb-20">
-          <TextReveal delay={0.6} className="text-lg md:text-3xl text-zinc-500 font-medium italic">
-            We turn old, messy technology into simple, powerful tools that just work. No complicated jargon—just solutions that help your business move faster.
-          </TextReveal>
-        </div>
-
-        <FadeIn delay={0.9}>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link href="/contact" className="btn-primary group h-16 px-10">
-              <MessageSquare className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              <span>Talk to an Expert</span>
-            </Link>
-            <a href="tel:+1234567890" className="btn-secondary h-16 px-10 group">
-              <Phone className="w-5 h-5 group-hover:animate-bounce" />
-              <span>Call Us Directly</span>
-            </a>
-          </div>
-        </FadeIn>
+    <section className="py-8 md:py-16 bg-transparent relative overflow-hidden" id="contact">
+      <div className="max-w-[1600px] mx-auto px-6 relative z-10">
         
-        {/* Architectural Footer Accent */}
-        <FadeIn delay={1.2}>
-          <div className="mt-16 md:mt-40 flex flex-wrap items-center justify-center gap-8 md:gap-24 opacity-20 dark:opacity-10 grayscale transition-all">
-              <div className="text-[10px] font-bold uppercase tracking-[1em]">Engineering</div>
-              <div className="text-[10px] font-bold uppercase tracking-[1em]">Performance</div>
-              <div className="text-[10px] font-bold uppercase tracking-[1em]">Scalability</div>
+        {/* The Premium Card - Adjusted for Horizontal Profile */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="relative rounded-[3rem] p-10 md:p-16 overflow-hidden group border border-yellow-100 shadow-2xl shadow-yellow-200/20 bg-[#FEF9C3]/40 backdrop-blur-sm"
+        >
+          {/* Abstract Texture Background - Yellowish Glow */}
+          <div className="absolute inset-0 bg-white/40" />
+          <div className="absolute top-0 right-0 w-[60%] h-full bg-yellow-100/30 blur-[120px] rounded-full" />
+          
+          <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
+             
+             {/* Tagline */}
+             <FadeIn delay={0.2}>
+                <div className="flex items-center gap-3 mb-10">
+                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                   <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-950">Ready to start?</span>
+                </div>
+             </FadeIn>
+
+             {/* Headline - Bold + Display Serif Combination */}
+             <h2 className="text-4xl md:text-6xl lg:text-[72px] font-bold text-zinc-950 tracking-tight leading-[0.9] mb-12 max-w-4xl mx-auto">
+                Helping you build <br />
+                <span className="font-serif italic font-medium text-zinc-400 mt-4 block">
+                  The Future.
+                </span>
+              </h2>
+
+             {/* Subtext */}
+             <p className="text-base md:text-lg text-zinc-500 max-w-2xl mx-auto leading-relaxed mb-10 font-medium">
+                We work with ambitious founders and teams to build high-quality software that solves real problems and scales beautifully.
+             </p>
+
+             {/* The Unique Pixel-Perfect Button */}
+             <motion.div
+               whileHover={{ scale: 1.02 }}
+               whileTap={{ scale: 0.98 }}
+               className="relative"
+             >
+                <Link 
+                  href="/contact"
+                  className="group flex items-center gap-1 h-12 md:h-16 bg-zinc-950 rounded-full pl-8 pr-2 transition-all duration-500 shadow-2xl shadow-emerald-500/10"
+                >
+                  <span className="text-white text-xs md:text-sm font-bold tracking-widest uppercase pr-6 pl-2">
+                    Connect With Us
+                  </span>
+                  
+                  <div className="w-8 h-8 md:w-12 md:h-12 bg-[#D1FAE5] rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-45 shadow-lg">
+                    <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-zinc-950 stroke-[2.5px]" />
+                  </div>
+                </Link>
+             </motion.div>
           </div>
-        </FadeIn>
+
+          {/* Abstract Texture - Psychological depth */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" 
+               style={{ backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        </motion.div>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ import InfrastructureBackground from './InfrastructureBackground';
 
 export default function PageWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground transition-colors duration-300">
+    <div className="relative min-h-screen overflow-x-hidden bg-transparent text-zinc-950 font-sans">
       {/* Background Infrastructure */}
       <InfrastructureBackground />
 
