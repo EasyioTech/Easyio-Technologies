@@ -1,7 +1,6 @@
 'use client';
 
 import { Palette, Code2, Globe, PenTool, BarChart3, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
 import { FadeIn } from "@/components/shared/Animations";
 
 const services = [
@@ -64,13 +63,8 @@ export default function Services() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {services.map((item, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
               className={`relative aspect-[2/1] bg-zinc-50/50 rounded-[1.5rem] p-6 lg:p-8 flex flex-col items-center justify-center text-center group cursor-pointer transition-all border border-transparent 
                 ${index % 2 === 0 
                   ? 'hover:border-emerald-100 hover:bg-[#D1FAE5]/40 hover:shadow-emerald-200/20' 
@@ -89,7 +83,7 @@ export default function Services() {
                   VIEW SOLUTION
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

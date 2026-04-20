@@ -1,65 +1,8 @@
 'use client';
 
-import { Layers, Zap, Shield, Globe, Terminal, ArrowDownRight, Activity } from "lucide-react";
-import { TextReveal } from "@/components/shared/Animations";
-import { motion, useScroll } from "framer-motion";
-import { useRef } from "react";
-
-const nodes = [
-  {
-    id: "01",
-    label: "ENTERPRISE_SOFTWARE",
-    title: "Custom Solutions",
-    desc: "Mission-critical systems built to handle your unique business logic with absolute reliability.",
-    icon: Terminal,
-    side: "left",
-    stats: "CORE: STABLE // AUTH: VERIFIED"
-  },
-  {
-    id: "02",
-    label: "CLOUD_ARCHITECTURE",
-    title: "Scalable Infrastructure",
-    desc: "Resilient systems designed to scale seamlessly as your user base grows across the globe.",
-    icon: Layers,
-    side: "right",
-    stats: "NODES: 42k+ // MESH: ACTIVE"
-  },
-  {
-    id: "03",
-    label: "PERFORMANCE_TUNING",
-    title: "Speed Optimization",
-    desc: "Optimizing code and databases to ensure sub-millisecond response times under peak load.",
-    icon: Zap,
-    side: "left",
-    stats: "LAG: 0.12ms // CPU: OPTIMIZED"
-  },
-  {
-    id: "04",
-    label: "DATA_SECURITY",
-    title: "Secure Engineering",
-    desc: "Privacy-first logic and advanced encryption to protect your most sensitive business data.",
-    icon: Shield,
-    side: "right",
-    stats: "ENCRYPT: AES-512-E2EE"
-  },
-  {
-    id: "05",
-    label: "SYSTEM_MODERNIZATION",
-    title: "Modern Migration",
-    desc: "Transitioning legacy systems into modern high-performance architectures without the downtime.",
-    icon: Globe,
-    side: "left",
-    stats: "UPTIME: 99.999% // NODES: GLOBAL"
-  }
-];
+import { Layers, Zap, Shield, Globe, Terminal, ArrowDownRight } from "lucide-react";
 
 export default function BentoFeatures() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"]
-  });
-
   return (
     <section className="section-light relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative">
@@ -84,10 +27,7 @@ export default function BentoFeatures() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
           
           {/* Big Feature 1: Software Engines (Col Span 7) */}
-          <motion.div 
-            whileInView={{ opacity: 1, x: 0 }}
-            initial={{ opacity: 0, x: -30 }}
-            viewport={{ once: true }}
+          <div 
             className="md:col-span-7 card-base !p-12 md:!p-16 group hover:border-accent/40 bg-white shadow-2xl shadow-slate-200/50"
           >
             <div className="flex flex-col h-full">
@@ -109,13 +49,10 @@ export default function BentoFeatures() {
                     </div>
                 </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Big Feature 2: Infrastructure (Col Span 5) */}
-          <motion.div 
-            whileInView={{ opacity: 1, x: 0 }}
-            initial={{ opacity: 0, x: 30 }}
-            viewport={{ once: true }}
+          <div 
             className="md:col-span-5 card-base !p-12 md:!p-16 bg-dark-section text-white group"
           >
             <div className="flex flex-col h-full">
@@ -133,48 +70,37 @@ export default function BentoFeatures() {
                     </div>
                 </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Small Feature 1 (Col Span 4) */}
-          <motion.div 
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 30 }}
-            viewport={{ once: true }}
+          <div 
             className="md:col-span-4 card-base !p-10 group hover:bg-slate-50 border-slate-100"
           >
             <Zap className="w-8 h-8 text-accent mb-6" />
             <h4 className="text-xl font-black mb-3">Extreme Speed</h4>
             <p className="text-sm font-semibold text-slate-500 leading-relaxed mb-6">Database tuning and edge-caching protocols for instant interaction.</p>
             <div className="bg-white rounded-xl p-4 border border-slate-100 font-mono text-[10px] text-accent">PING: 0.12ms // CACHE: HIT</div>
-          </motion.div>
+          </div>
 
           {/* Small Feature 2 (Col Span 4) */}
-          <motion.div 
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 30 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+          <div 
             className="md:col-span-4 card-base !p-10 group hover:bg-slate-50 border-slate-100"
           >
             <Shield className="w-8 h-8 text-blue-800 mb-6" />
             <h4 className="text-xl font-black mb-3">Hardened Security</h4>
             <p className="text-sm font-semibold text-slate-500 leading-relaxed mb-6">Advanced encryption layers and privacy-first engineering protocols.</p>
             <div className="bg-white rounded-xl p-4 border border-slate-100 font-mono text-[10px] text-blue-800">ENCRYPT: AES-512-GCM</div>
-          </motion.div>
+          </div>
 
           {/* Small Feature 3 (Col Span 4) */}
-          <motion.div 
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 30 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+          <div 
             className="md:col-span-4 card-base !p-10 bg-accent text-white"
           >
             <Globe className="w-8 h-8 text-white mb-6" />
             <h4 className="text-xl font-black mb-3">Global Sync</h4>
             <p className="text-sm font-bold text-white/80 leading-relaxed mb-6">Masterized data replication across multi-region enterprise nodes.</p>
             <div className="bg-white/10 rounded-xl p-4 border border-white/20 font-mono text-[10px] text-white">NODES: 42 // REGION: AS-1, EU-3</div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

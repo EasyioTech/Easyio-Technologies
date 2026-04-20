@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { FadeIn } from "@/components/shared/Animations";
@@ -11,11 +10,7 @@ export default function CTA() {
       <div className="max-w-[1600px] mx-auto px-6 relative z-10">
         
         {/* The Premium Card - Adjusted for Horizontal Profile */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        <div 
           className="relative rounded-[3rem] p-10 md:p-16 overflow-hidden group border border-yellow-100 shadow-2xl shadow-yellow-200/20 bg-[#FEF9C3]/40 backdrop-blur-sm"
         >
           {/* Abstract Texture Background - Yellowish Glow */}
@@ -46,11 +41,7 @@ export default function CTA() {
              </p>
 
              {/* The Unique Pixel-Perfect Button */}
-             <motion.div
-               whileHover={{ scale: 1.02 }}
-               whileTap={{ scale: 0.98 }}
-               className="relative"
-             >
+             <div className="relative">
                 <Link 
                   href="/contact"
                   className="group flex items-center gap-1 h-12 md:h-16 bg-zinc-950 rounded-full pl-8 pr-2 transition-all duration-500 shadow-2xl shadow-emerald-500/10"
@@ -63,13 +54,13 @@ export default function CTA() {
                     <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-zinc-950 stroke-[2.5px]" />
                   </div>
                 </Link>
-             </motion.div>
+             </div>
           </div>
 
           {/* Abstract Texture - Psychological depth */}
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" 
                style={{ backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

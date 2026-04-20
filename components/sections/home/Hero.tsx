@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { ArrowUpRight, Star, ArrowRight, Activity, Cloud, Database, Layout, Hexagon, Zap } from "lucide-react";
-import { motion } from "framer-motion";
 import { FadeIn } from "@/components/shared/Animations";
 
 export default function Hero() {

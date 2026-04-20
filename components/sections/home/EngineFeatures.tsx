@@ -2,7 +2,6 @@
 
 import { ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/shared/Animations";
-import { motion } from "framer-motion";
 
 const capabilities = [
   {
@@ -55,13 +54,7 @@ export default function EngineFeatures() {
             >
               {/* Visual Element */}
               <div className="flex-1 w-full">
-                <motion.div 
-                   initial={{ opacity: 0, y: 30 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   transition={{ duration: 0.8 }}
-                   viewport={{ once: true }}
-                   className="relative group"
-                >
+                <div className="relative group">
                   <div className="aspect-[1.4/1] rounded-[2rem] overflow-hidden border border-zinc-100 shadow-xl bg-zinc-50">
                     <img 
                       src={item.image} 
@@ -69,7 +62,7 @@ export default function EngineFeatures() {
                       className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                     />
                   </div>
-                </motion.div>
+                </div>
               </div>
 
               {/* Text Element */}

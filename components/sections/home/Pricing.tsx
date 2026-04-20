@@ -2,7 +2,6 @@
 
 import { Check, ArrowRight, ShieldCheck, Zap, Activity, Globe } from "lucide-react";
 import { FadeIn, TextReveal } from "@/components/shared/Animations";
-import { motion } from "framer-motion";
 
 const plans = [
   {

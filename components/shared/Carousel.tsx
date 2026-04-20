@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CarouselProps {
@@ -42,18 +41,9 @@ export default function Carousel({ items, autoPlayInterval = 5000 }: CarouselPro
   return (
     <div className="relative w-full group">
       <div className="relative overflow-hidden min-h-[400px] flex items-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="w-full"
-          >
-            {items[currentIndex]}
-          </motion.div>
-        </AnimatePresence>
+        <div className="w-full">
+          {items[currentIndex]}
+        </div>
       </div>
 
       {/* Manual Controls */}
@@ -81,11 +71,9 @@ export default function Carousel({ items, autoPlayInterval = 5000 }: CarouselPro
             onClick={() => { setCurrentIndex(i); setProgress(0); }}
           >
             {i === currentIndex && (
-              <motion.div 
-                className="h-full bg-accent"
-                initial={{ width: "0%" }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.1, ease: "linear" }}
+              <div 
+                className="h-full bg-accent transition-[width] duration-100 ease-linear"
+                style={{ width: `${progress}%` }}
               />
             )}
             {i < currentIndex && <div className="h-full w-full bg-zinc-300" />}

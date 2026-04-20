@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform, AnimatePresence, MotionValue } from "framer-motion";
 import { Search, Globe, Activity, ArrowRight, Zap, Target, Binary } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FadeIn } from "@/components/shared/Animations";
@@ -52,17 +51,6 @@ const stages = [
 
 export default function Protocol() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 60%", "end 40%"]
-  });
-
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
 
   return (
     <section ref={containerRef} className="py-32 md:py-64 relative bg-transparent" id="pipeline">
@@ -95,11 +83,7 @@ export default function Protocol() {
           
           <div className="hidden lg:block pb-12">
              <div className="w-32 h-32 rounded-full border border-zinc-100 flex items-center justify-center relative">
-                <motion.div 
-                  className="absolute inset-0 rounded-full border-2 border-dashed border-zinc-200"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                />
+                <div className="absolute inset-0 rounded-full border-2 border-dashed border-zinc-200" />
                 <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">Phase Sequential</span>
              </div>
           </div>
@@ -110,10 +94,7 @@ export default function Protocol() {
           
           {/* High-Precision Progress Line */}
           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-zinc-100 -translate-x-1/2 rounded-full">
-            <motion.div 
-              style={{ scaleY }}
-              className="absolute top-0 bottom-0 w-full bg-zinc-950 origin-top shadow-[0_0_20px_rgba(224,242,254,0.8)]"
-            />
+            <div className="absolute top-0 bottom-0 w-full bg-zinc-950 origin-top shadow-[0_0_20px_rgba(224,242,254,0.8)]" style={{ height: '0%' }} />
           </div>
 
           {/* Timeline Stages */}
@@ -123,8 +104,6 @@ export default function Protocol() {
                 key={i} 
                 stage={stage} 
                 index={i} 
-                total={stages.length} 
-                scrollYProgress={scrollYProgress}
               />
             ))}
           </div>
@@ -138,37 +117,15 @@ export default function Protocol() {
 function TimelineStage({ 
   stage, 
   index, 
-  total, 
-  scrollYProgress 
 }: { 
   stage: Stage; 
   index: number; 
-  total: number;
-  scrollYProgress: MotionValue<number>;
 }) {
   const isEven = index % 2 === 0;
-  const start = index / total;
-  const end = (index + 0.8) / total;
-
-  // Reveal logic with 0.05 base opacity for 'fainted' look
-  const opacity = useTransform(
-    scrollYProgress,
-    [start - 0.15, start, end, end + 0.1],
-    [0.05, 1, 1, 1]
-  );
-
-  const y = useTransform(
-    scrollYProgress,
-    [start - 0.1, start],
-    [40, 0]
-  );
-
   const accentColor = index % 2 === 0 ? "#FEF9C3" : "#D1FAE5";
 
   return (
-    <motion.div 
-      style={{ opacity }}
-      className={cn(
+    <div className={cn(
         "relative flex flex-col md:flex-row items-start md:items-center gap-12 lg:gap-32",
         isEven ? "md:flex-row" : "md:flex-row-reverse"
       )}
@@ -176,32 +133,16 @@ function TimelineStage({
       
       {/* Visual Indicator Layer */}
       <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
-        <motion.div 
-          className="w-12 h-12 md:w-20 md:h-20 bg-white border border-zinc-100 rounded-2xl flex items-center justify-center text-zinc-950 shadow-xl transition-all duration-700"
-          style={{ 
-            backgroundColor: useTransform(scrollYProgress, [start - 0.05, start], ["#FFFFFF", accentColor]),
-            rotate: useTransform(scrollYProgress, [start - 0.05, start], [0, 45])
-          }}
-        >
-          <div className="text-[12px] md:text-xl font-black tracking-tighter" style={{ transform: "rotate(-45deg)" }}>
+        <div className="w-12 h-12 md:w-20 md:h-20 bg-white border border-zinc-100 rounded-2xl flex items-center justify-center text-zinc-950 shadow-xl transition-all duration-700">
+          <div className="text-[12px] md:text-xl font-black tracking-tighter">
              {stage.id}
           </div>
-          
-          {/* Pulse Signal */}
-          <AnimatePresence>
-            <motion.div 
-              style={{ opacity: useTransform(scrollYProgress, [start - 0.05, start], [0, 1]) }}
-              className="absolute inset-x-[-12px] h-[1px] bg-zinc-950 opacity-20"
-            />
-          </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
 
       {/* Narrative Container */}
       <div className="flex-1 w-full pl-16 md:pl-0">
-        <motion.div 
-          style={{ y }}
-          className={cn(
+        <div className={cn(
             "flex flex-col gap-6",
             isEven ? "md:items-end md:text-right" : "md:items-start md:text-left"
           )}
@@ -235,12 +176,12 @@ function TimelineStage({
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Architectural Spacer */}
       <div className="flex-1 hidden md:block" />
 
-    </motion.div>
+    </div>
   );
 }

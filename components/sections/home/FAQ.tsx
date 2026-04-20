@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, Search, ArrowDown } from 'lucide-react';
 import { FadeIn, TextReveal } from "@/components/shared/Animations";
 
@@ -72,23 +71,15 @@ export default function FAQ() {
                      </div>
                   </button>
 
-                  <AnimatePresence>
-                    {openIndex === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
-                      >
-                         <div className="px-10 pb-12 pl-[calc(40px+3.5rem)] md:pl-[calc(40px+4.5rem)]">
-                            <p className="text-lg md:text-xl text-zinc-500 leading-relaxed max-w-2xl">
-                               {faq.answer}
-                            </p>
-                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {openIndex === i && (
+                    <div className="overflow-hidden">
+                       <div className="px-10 pb-12 pl-[calc(40px+3.5rem)] md:pl-[calc(40px+4.5rem)]">
+                          <p className="text-lg md:text-xl text-zinc-500 leading-relaxed max-w-2xl">
+                             {faq.answer}
+                          </p>
+                       </div>
+                    </div>
+                  )}
                </div>
              ))}
           </div>

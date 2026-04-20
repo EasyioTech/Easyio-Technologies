@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, Hexagon, Phone, MessageSquare } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { navigationLinks } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -99,47 +98,42 @@ export default function Navigation() {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-24 left-6 right-6 lg:hidden bg-white/90 backdrop-blur-xl rounded-[2rem] border border-zinc-200 shadow-2xl p-8 z-[101]"
-          >
-            <div className="flex flex-col gap-4">
-              {navigationLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-2xl font-bold text-zinc-950 tracking-tight py-2 border-b border-zinc-100"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="flex flex-col gap-3 pt-4">
-                <Link
-                  href="tel:+1234567890"
-                  className="flex items-center justify-center h-14 w-full border border-zinc-200 text-zinc-950 text-lg font-bold rounded-2xl gap-3"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Phone className="w-5 h-5" />
-                  Call
-                </Link>
-                <Link
-                  href="/contact"
-                  className="flex items-center justify-center h-14 w-full bg-zinc-950 text-white text-lg font-bold rounded-2xl gap-3"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <MessageSquare className="w-5 h-5" />
-                  Contact
-                </Link>
-              </div>
+      {isOpen && (
+        <div
+          className="absolute top-24 left-6 right-6 lg:hidden bg-white/90 backdrop-blur-xl rounded-[2rem] border border-zinc-200 shadow-2xl p-8 z-[101]"
+        >
+          <div className="flex flex-col gap-4">
+            {navigationLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-2xl font-bold text-zinc-950 tracking-tight py-2 border-b border-zinc-100"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="flex flex-col gap-3 pt-4">
+              <Link
+                href="tel:+1234567890"
+                className="flex items-center justify-center h-14 w-full border border-zinc-200 text-zinc-950 text-lg font-bold rounded-2xl gap-3"
+                onClick={() => setIsOpen(false)}
+              >
+                <Phone className="w-5 h-5" />
+                Call
+              </Link>
+              <Link
+                href="/contact"
+                className="flex items-center justify-center h-14 w-full bg-zinc-950 text-white text-lg font-bold rounded-2xl gap-3"
+                onClick={() => setIsOpen(false)}
+              >
+                <MessageSquare className="w-5 h-5" />
+                Contact
+              </Link>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

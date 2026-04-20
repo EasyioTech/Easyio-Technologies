@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Clock, User, HardDrive, Terminal } from 'lucide-react';
 import { FadeIn } from "@/components/shared/Animations";
 import Link from 'next/link';

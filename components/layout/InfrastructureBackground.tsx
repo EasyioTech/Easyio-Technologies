@@ -1,26 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import React from 'react';
 
 export default function InfrastructureBackground() {
-  const mouseX = useSpring(0, { stiffness: 50, damping: 20 });
-  const mouseY = useSpring(0, { stiffness: 50, damping: 20 });
-  
-  const { scrollYProgress } = useScroll();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-transparent">
       {/* 1. Subtle Base Mesh */}
@@ -45,15 +27,7 @@ export default function InfrastructureBackground() {
         }}
       />
 
-      {/* 3. Interactive Cursor Spotlight */}
-      <motion.div
-        className="absolute inset-0 z-10"
-        style={{
-          background: `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(244, 244, 245, 0.08), transparent 85%)`
-        }}
-      />
-
-      {/* 4. Fine Grain Texture */}
+      {/* 3. Fine Grain Texture */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{

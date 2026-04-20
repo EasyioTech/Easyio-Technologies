@@ -1,14 +1,10 @@
-import { motion } from "framer-motion";
 import { ArrowRight, Clock, User, HardDrive } from "lucide-react";
 import Link from "next/link";
 import { BlogPost } from "@/lib/blog";
 
 export default function PostCard({ post, index }: { post: BlogPost; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
+    <div
       className="group"
     >
       <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
@@ -67,6 +63,6 @@ export default function PostCard({ post, index }: { post: BlogPost; index: numbe
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }

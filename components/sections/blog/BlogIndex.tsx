@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from "framer-motion";
 import { FadeIn } from "@/components/shared/Animations";
 import { BlogPost } from "@/lib/blog";
 import PostCard from "./PostCard";

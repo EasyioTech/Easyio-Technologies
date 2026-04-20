@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   LayoutDashboard, 
   Settings, 
@@ -12,7 +11,6 @@ import {
   Activity,
   ChevronLeft,
   X,
-  Menu,
   Box
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -81,10 +79,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean, onClose?: () =>
                 <span className="text-[11px] uppercase tracking-widest">{item.name}</span>
               )}
               {isActive && !isDesktopCollapsed && (
-                <motion.div 
-                  layoutId="sidebar-active"
-                  className="absolute left-0 w-1 h-6 bg-black rounded-r-full"
-                />
+                <div className="absolute left-0 w-1 h-6 bg-black rounded-r-full" />
               )}
             </Link>
           );
@@ -115,28 +110,19 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean, onClose?: () =>
   return (
     <>
       {/* Mobile Sidebar Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={onClose}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
-            />
-            <motion.aside
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 left-0 w-72 z-50 lg:hidden"
-            >
-              {sidebarContent}
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
+      {isOpen && (
+        <>
+          <div 
+            onClick={onClose}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden transition-opacity"
+          />
+          <aside
+            className="fixed inset-y-0 left-0 w-72 z-50 lg:hidden transition-transform duration-300 translate-x-0"
+          >
+            {sidebarContent}
+          </aside>
+        </>
+      )}
 
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex shrink-0 sticky top-0 h-screen overflow-hidden">

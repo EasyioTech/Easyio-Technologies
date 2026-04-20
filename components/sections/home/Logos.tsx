@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from "framer-motion";
 import { Marquee } from "@/components/shared/Animations";
 import { Shield, Activity, Terminal } from "lucide-react";
 

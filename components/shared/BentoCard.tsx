@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { LucideIcon } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface BentoCardProps {
   icon?: LucideIcon;
@@ -20,11 +19,7 @@ export default function BentoCard({
   delay = 0,
 }: BentoCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay }}
+    <div
       className={`card-base card-hover group p-10 md:p-12 ${className}`}
     >
       <div className="relative z-10 flex flex-col h-full">
@@ -50,6 +45,6 @@ export default function BentoCard({
           <Icon className="w-40 h-40" />
         </div>
       )}
-    </motion.div>
+    </div>
   );
 }

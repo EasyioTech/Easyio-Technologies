@@ -1,8 +1,8 @@
 'use client';
 
-import { motion } from "framer-motion";
-import { Search, Globe, Activity, Terminal, Shield, Network } from "lucide-react";
-import { FadeIn, TextReveal } from "@/components/shared/Animations";
+import React from "react";
+import { Globe, Network } from "lucide-react";
+import { FadeIn } from "@/components/shared/Animations";
 
 export default function Connectivity() {
   return (
@@ -53,18 +53,15 @@ export default function Connectivity() {
 
              {/* Orbital Nodes */}
              {[
-               { top: '20%', left: '25%', label: 'LDN_01', delay: 0.1 },
-               { top: '15%', left: '70%', label: 'NYC_04', delay: 0.4 },
-               { top: '65%', left: '20%', label: 'SXR_09', delay: 0.7 },
-               { top: '75%', left: '75%', label: 'TKY_12', delay: 1.0 },
-               { top: '40%', left: '10%', label: 'BER_02', delay: 1.2 },
-               { top: '45%', left: '85%', label: 'SYD_07', delay: 1.5 },
+               { top: '20%', left: '25%', label: 'LDN_01' },
+               { top: '15%', left: '70%', label: 'NYC_04' },
+               { top: '65%', left: '20%', label: 'SXR_09' },
+               { top: '75%', left: '75%', label: 'TKY_12' },
+               { top: '40%', left: '10%', label: 'BER_02' },
+               { top: '45%', left: '85%', label: 'SYD_07' },
              ].map((node, i) => (
-                <motion.div 
+                <div 
                   key={i} 
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: node.delay, duration: 0.5 }}
                   className="absolute flex flex-col items-center gap-3" 
                   style={{ top: node.top, left: node.left }}
                 >
@@ -73,7 +70,7 @@ export default function Connectivity() {
                       <Network className="w-3 h-3 text-accent" />
                       <span className="text-[10px] font-black font-mono text-zinc-950 uppercase">{node.label}</span>
                    </div>
-                </motion.div>
+                </div>
              ))}
           </div>
 

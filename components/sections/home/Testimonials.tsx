@@ -1,7 +1,6 @@
 "use client";
 
 import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
-import { motion } from "framer-motion";
 import { FadeIn } from "@/components/shared/Animations";
 
 const testimonials = [

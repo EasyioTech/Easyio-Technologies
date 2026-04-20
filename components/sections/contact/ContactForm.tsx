@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactFormSchema, type ContactFormInput } from '@/lib/validations';
 import { Send, CheckCircle2 } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -42,9 +41,7 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+      <div 
         className="py-20 text-center"
       >
         <div className="w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center mx-auto mb-12 shadow-2xl">
@@ -52,7 +49,7 @@ export default function ContactForm() {
         </div>
         <h3 className="text-4xl font-bold text-zinc-950 tracking-tight mb-6">Message sent!</h3>
         <p className="text-xl text-zinc-600 font-medium font-serif italic">We'll get back to you within 24 hours.</p>
-      </motion.div>
+      </div>
     );
   }
 
