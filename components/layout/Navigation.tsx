@@ -112,7 +112,7 @@ export default function Navigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-zinc-950/60 backdrop-blur-sm z-[101] lg:hidden"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[101] lg:hidden"
             />
             
             <motion.div
@@ -120,26 +120,26 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-screen w-[90%] sm:w-[400px] bg-zinc-950 text-white z-[102] lg:hidden shadow-2xl flex flex-col"
+              className="fixed top-0 right-0 h-screen w-[90%] sm:w-[400px] bg-white text-zinc-950 z-[102] lg:hidden shadow-2xl flex flex-col"
             >
               {/* Drawer Header */}
               <div className="flex items-center justify-between p-6 pt-8">
                 <Link href="/" className="flex items-center gap-3 group" onClick={() => setIsOpen(false)}>
-                  <div className="w-10 h-10 bg-white text-zinc-950 flex items-center justify-center rounded-xl shadow-sm">
+                  <div className="w-10 h-10 bg-zinc-950 text-white flex items-center justify-center rounded-xl shadow-sm">
                     <Hexagon className="w-6 h-6 fill-current" />
                   </div>
                   <div className="flex flex-col leading-none">
-                    <span className="font-bold tracking-tighter text-white uppercase text-lg">
+                    <span className="font-bold tracking-tighter text-zinc-950 uppercase text-lg">
                       EASYIO
                     </span>
-                    <span className="font-cursive text-zinc-400 opacity-80 text-base -mt-1" style={{ fontFamily: 'Sacramento, cursive' }}>
+                    <span className="font-cursive text-zinc-500 opacity-80 text-base -mt-1" style={{ fontFamily: 'Sacramento, cursive' }}>
                       Technologies
                     </span>
                   </div>
                 </Link>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:scale-95 transition-all text-white border border-white/10"
+                  className="w-10 h-10 flex items-center justify-center text-zinc-950 hover:bg-zinc-100 rounded-full transition-colors active:scale-95 bg-white/50 backdrop-blur-sm border border-zinc-200/50"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -158,18 +158,18 @@ export default function Navigation() {
                       <Link
                         href={link.href}
                         className={cn(
-                          "flex items-center justify-between w-full py-4 px-5 rounded-2xl transition-all duration-300 group",
+                          "flex items-center justify-between w-full py-4 px-5 rounded-2xl transition-all duration-300 group border border-transparent",
                           pathname === link.href 
-                            ? "bg-white/10 text-white" 
-                            : "text-zinc-400 hover:bg-white/5 hover:text-white"
+                            ? "bg-zinc-50 border-zinc-200/50 text-zinc-950 shadow-sm" 
+                            : "text-zinc-500 hover:bg-zinc-50 hover:text-zinc-950"
                         )}
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="text-xl font-medium tracking-tight">
+                        <span className="text-xl font-bold tracking-tight">
                           {link.label}
                         </span>
                         {pathname !== link.href && (
-                          <ChevronRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-zinc-500" />
+                          <ChevronRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-zinc-300" />
                         )}
                       </Link>
                     </motion.div>
@@ -185,10 +185,12 @@ export default function Navigation() {
                     >
                       <Link
                         href="tel:+919596418226"
-                        className="flex flex-col items-center justify-center h-28 w-full border border-white/10 bg-white/5 hover:bg-white/10 text-white rounded-2xl gap-3 font-medium active:scale-95 transition-all"
+                        className="flex flex-col items-center justify-center h-28 w-full border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-950 rounded-2xl gap-3 font-bold active:scale-95 transition-all"
                         onClick={() => setIsOpen(false)}
                       >
-                        <Phone className="w-5 h-5 text-emerald-400" />
+                        <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center shadow-sm">
+                          <Phone className="w-5 h-5 text-emerald-600" />
+                        </div>
                         <span className="text-[10px] uppercase tracking-widest text-zinc-400">Support</span>
                       </Link>
                     </motion.div>
@@ -200,16 +202,18 @@ export default function Navigation() {
                     >
                       <Link
                         href="/contact"
-                        className="flex flex-col items-center justify-center h-28 w-full bg-white text-zinc-950 rounded-2xl gap-3 font-bold active:scale-95 hover:bg-zinc-200 transition-all shadow-xl"
+                        className="flex flex-col items-center justify-center h-28 w-full bg-zinc-950 text-white rounded-2xl gap-3 font-bold active:scale-95 hover:bg-zinc-800 transition-all shadow-xl shadow-zinc-950/10"
                         onClick={() => setIsOpen(false)}
                       >
-                        <MessageSquare className="w-5 h-5 text-zinc-950" />
-                        <span className="text-[10px] uppercase tracking-widest text-zinc-900">Contact</span>
+                        <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center">
+                          <MessageSquare className="w-5 h-5 text-emerald-400" />
+                        </div>
+                        <span className="text-[10px] uppercase tracking-widest text-zinc-500">Contact</span>
                       </Link>
                     </motion.div>
                   </div>
 
-                  <div className="flex flex-col items-center gap-4 py-8 border-t border-white/10">
+                  <div className="flex flex-col items-center gap-4 py-8 border-t border-zinc-100">
                     <div className="flex items-center gap-2">
                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUpRight, Star, ArrowRight, Activity, Cloud, Database, Layout, Hexagon, Zap } from "lucide-react";
-import { FadeIn } from "@/components/shared/Animations";
+import { FadeIn, Marquee } from "@/components/shared/Animations";
 import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHeading";
 
 import Magnetic from "@/components/shared/Magnetic";
@@ -66,19 +66,33 @@ export default function Hero() {
       </div>
 
       {/* Brand Logos Bar */}
-      <div className="w-full mt-auto pt-10 pb-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-center text-xs font-medium text-zinc-400 uppercase tracking-[0.2em] mb-12">
+      <div className="w-full mt-10 pt-10 pb-12 overflow-hidden border-t border-zinc-100">
+        <div className="max-w-7xl mx-auto px-6 mb-8">
+          <p className="text-center text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em]">
             Trusted by industrial leaders and fast-growing teams
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 opacity-40 grayscale hover:opacity-100 transition-opacity">
-            <LogoItem name="FlowBank" icon={<Layout className="w-5 h-5" />} />
-            <LogoItem name="DataGrid" icon={<Database className="w-5 h-5" />} />
-            <LogoItem name="Nexus" icon={<Hexagon className="w-5 h-5" />} />
-            <LogoItem name="CloudNine" icon={<Cloud className="w-5 h-5" />} />
-            <LogoItem name="Pulse" icon={<Activity className="w-5 h-5" />} />
-            <LogoItem name="Apex" icon={<Zap className="w-5 h-5" />} />
-          </div>
+        </div>
+        <div className="w-full opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-700">
+          <Marquee className="h-12 md:h-16" speed={30}>
+            <div className="flex items-center">
+              <LogoItem name="FlowBank" icon={<Layout className="w-5 h-5" />} />
+            </div>
+            <div className="flex items-center">
+              <LogoItem name="DataGrid" icon={<Database className="w-5 h-5" />} />
+            </div>
+            <div className="flex items-center">
+              <LogoItem name="Nexus" icon={<Hexagon className="w-5 h-5" />} />
+            </div>
+            <div className="flex items-center">
+              <LogoItem name="CloudNine" icon={<Cloud className="w-5 h-5" />} />
+            </div>
+            <div className="flex items-center">
+              <LogoItem name="Pulse" icon={<Activity className="w-5 h-5" />} />
+            </div>
+            <div className="flex items-center">
+              <LogoItem name="Apex" icon={<Zap className="w-5 h-5" />} />
+            </div>
+          </Marquee>
         </div>
       </div>
     </section>
@@ -87,11 +101,11 @@ export default function Hero() {
 
 function LogoItem({ name, icon }: { name: string; icon: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-3">
-      <div className="text-zinc-950">
+    <div className="flex items-center gap-3 mx-8 md:mx-16">
+      <div className="text-zinc-500">
         {icon}
       </div>
-      <span className="font-bold tracking-tight text-zinc-950 text-xl">{name}</span>
+      <span className="font-bold tracking-tight text-zinc-500 text-xl md:text-2xl">{name}</span>
     </div>
   );
 }
