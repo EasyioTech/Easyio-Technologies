@@ -51,17 +51,16 @@ export default function EngineFeatures() {
   return (
     <section ref={containerRef} className="py-24 md:py-64 relative bg-white overflow-hidden" id="features">
       
-      {/* High-Precision Vertical Progress Beam */}
-      <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-zinc-100 -translate-x-1/2" />
+      {/* High-Precision Atmospheric Gradient Beam - Wide, fainted, and responsive */}
       <motion.div 
         style={{ scaleY }}
-        className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-emerald-500 -translate-x-1/2 origin-top shadow-[0_0_15px_#10B981]" 
+        className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[60px] md:w-[120px] bg-gradient-to-b from-emerald-400/10 via-yellow-300/20 to-emerald-400/10 -translate-x-1/2 origin-top blur-[40px] md:blur-[80px] pointer-events-none opacity-60" 
       />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="mb-24 md:mb-48 text-center md:text-left">
+        <div className="mb-20 md:mb-48 text-center md:text-left">
            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-emerald-500 mb-6 block">Capabilities</span>
-           <h2 className="text-5xl md:text-9xl font-bold tracking-tighter text-zinc-950 leading-[0.8] mb-12">
+           <h2 className="text-5xl md:text-9xl font-bold tracking-tight text-zinc-950 leading-[0.85] mb-12">
              Industrial <br />
              <span className="font-serif italic font-medium text-zinc-300">Stabilization</span>
            </h2>

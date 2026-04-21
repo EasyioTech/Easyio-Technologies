@@ -63,6 +63,11 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const displayProjects = useMemo(() => {
     if (initialProjects && initialProjects.length > 0) {
@@ -121,7 +126,7 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
                 size="icon"
                 variant="outline"
                 onClick={() => carouselApi?.scrollPrev()}
-                disabled={!canScrollPrev}
+                disabled={!mounted || !canScrollPrev}
                 className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
               >
                 <ArrowLeft className="size-5 md:size-6" />
@@ -132,7 +137,7 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
                 size="icon"
                 variant="outline"
                 onClick={() => carouselApi?.scrollNext()}
-                disabled={!canScrollNext}
+                disabled={!mounted || !canScrollNext}
                 className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
               >
                 <ArrowRight className="size-5 md:size-6" />
@@ -163,7 +168,7 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
                     delay: index * 0.1,
                     ease: [0.16, 1, 0.3, 1] 
                   }}
-                  className="group relative flex flex-col bg-white border border-zinc-100 rounded-[3rem] p-6 transition-all hover:shadow-2xl hover:shadow-zinc-200/60"
+                  className="group relative flex flex-col bg-white border border-zinc-100/50 rounded-[3rem] p-6 transition-all hover:shadow-2xl hover:shadow-zinc-200/60"
                 >
                   <div className="aspect-[16/11] overflow-hidden rounded-[2.5rem] mb-8">
                     <img

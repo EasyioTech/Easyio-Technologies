@@ -61,7 +61,7 @@ export default function Protocol() {
               text="How we build success"
               highlightWords={["success"]}
               as="h2"
-              className="text-6xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-8 leading-[0.85]"
+              className="text-5xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-8 leading-[0.85]"
             />
             <p className="text-zinc-500 text-lg max-w-xl leading-relaxed font-medium italic">
                 A high-velocity, structured approach to building reliable software systems.

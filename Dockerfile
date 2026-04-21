@@ -28,8 +28,8 @@ ENV NODE_OPTIONS="--max-old-space-size=2048"
 ENV NEXT_SKIP_TYPE_CHECK=1
 ENV NEXT_SKIP_LINT=1
 
-# Disable build-time database connection checks if possible
-# Some setups might try to connect to DB during static page generation
+# Disable build-time database connection checks
+# This prevents Next.js from trying to pre-render dynamic pages during build
 ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder"
 
 RUN npm run build
@@ -44,12 +44,16 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN groupadd --system --gid 1001 nodejs
 RUN useradd --system --uid 1001 nextjs
 
-# Set correct permissions
+# Copy essential folders
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/content ./content
+
+# Set correct permissions
 RUN mkdir .next && chown nextjs:nodejs .next
 
 # Copy the standalone build
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone/node_modules ./node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
