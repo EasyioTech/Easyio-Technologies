@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Contentlayer
 .contentlayer
+
+# Docker
+docker-compose.override.yml
