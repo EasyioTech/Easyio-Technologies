@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y openssl python3 build-essential && rm -
 
 COPY package.json package-lock.json ./
 # Use npm ci for clean, reproducible installs
-RUN npm ci
+RUN npm install
 
 # Builder stage
 FROM node:20-slim AS builder
