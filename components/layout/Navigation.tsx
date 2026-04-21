@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Hexagon, Phone, MessageSquare } from "lucide-react";
 import { navigationLinks } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -90,50 +91,87 @@ export default function Navigation() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center text-zinc-950 ml-1"
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-zinc-950 ml-1 relative z-[102]"
           >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div
-          className="absolute top-24 left-6 right-6 lg:hidden bg-white/90 backdrop-blur-xl rounded-[2rem] border border-zinc-200 shadow-2xl p-8 z-[101]"
-        >
-          <div className="flex flex-col gap-4">
-            {navigationLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-2xl font-bold text-zinc-950 tracking-tight py-2 border-b border-zinc-100"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="flex flex-col gap-3 pt-4">
-              <Link
-                href="tel:+1234567890"
-                className="flex items-center justify-center h-14 w-full border border-zinc-200 text-zinc-950 text-lg font-bold rounded-2xl gap-3"
-                onClick={() => setIsOpen(false)}
-              >
-                <Phone className="w-5 h-5" />
-                Call
-              </Link>
-              <Link
-                href="/contact"
-                className="flex items-center justify-center h-14 w-full bg-zinc-950 text-white text-lg font-bold rounded-2xl gap-3"
-                onClick={() => setIsOpen(false)}
-              >
-                <MessageSquare className="w-5 h-5" />
-                Contact
-              </Link>
+      {/* Mobile Menu - Premium Drawer */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-0 left-0 right-0 lg:hidden bg-white/95 backdrop-blur-2xl rounded-[2.5rem] border border-zinc-200 shadow-2xl p-6 pt-24 z-[101] flex flex-col"
+          >
+            <div className="flex flex-col gap-1">
+              {navigationLinks.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 + 0.1 }}
+                >
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "text-3xl font-bold tracking-tighter py-4 px-4 rounded-2xl transition-colors",
+                      pathname === link.href ? "text-emerald-600 bg-emerald-50" : "text-zinc-950 hover:bg-zinc-50"
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
             </div>
-          </div>
-        </div>
-      )}
+
+            <div className="mt-8 grid grid-cols-2 gap-3">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <Link
+                  href="tel:+919596418226"
+                  className="flex flex-col items-center justify-center h-24 w-full border border-zinc-100 bg-zinc-50/50 text-zinc-950 rounded-2xl gap-2 font-bold group active:scale-95 transition-all"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm">
+                    <Phone className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-widest text-zinc-400">Call Now</span>
+                </Link>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+              >
+                <Link
+                  href="/contact"
+                  className="flex flex-col items-center justify-center h-24 w-full bg-zinc-950 text-white rounded-2xl gap-2 font-bold active:scale-95 transition-all shadow-xl shadow-zinc-950/10"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center">
+                    <MessageSquare className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <span className="text-[10px] uppercase tracking-widest text-zinc-500">Contact</span>
+                </Link>
+              </motion.div>
+            </div>
+
+            <div className="mt-8 pt-8 border-t border-zinc-100 flex items-center justify-center gap-6">
+               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-300">Sovereign Engineering</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

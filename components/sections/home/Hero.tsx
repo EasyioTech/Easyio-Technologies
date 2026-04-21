@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { ArrowUpRight, Star, ArrowRight, Activity, Cloud, Database, Layout, Hexagon, Zap } from "lucide-react";
 import { FadeIn } from "@/components/shared/Animations";
+import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHeading";
+
+import Magnetic from "@/components/shared/Magnetic";
 
 export default function Hero() {
   return (
@@ -11,29 +14,31 @@ export default function Hero() {
       <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
         <div className="flex flex-col items-center">
           
-          <h1 className="text-6xl md:text-8xl lg:text-[110px] font-bold tracking-tight text-zinc-950 mb-8 leading-[0.85] max-w-[1200px]">
-            Architecting digital <br />
-            <span className="font-serif italic font-medium text-zinc-900">systems with precision</span>
-          </h1>
+          <PremiumHeading 
+            text="Architecting digital systems with precision"
+            highlightWords={["systems", "precision"]}
+            className="text-5xl md:text-8xl lg:text-[110px] font-bold tracking-tight text-zinc-950 mb-8 leading-[0.9] md:leading-[0.85] max-w-[1200px]"
+          />
 
-          <FadeIn delay={0.2}>
-            <p className="text-zinc-500 text-sm md:text-base max-w-xl mx-auto mb-12 leading-relaxed">
-              Custom software engines for mission-critical deployments. We build resilient, 
-              high-performance infrastructure for modern enterprises.
-            </p>
-          </FadeIn>
+          <PremiumSubheading 
+            delay={0.6}
+            text="Custom software engines for mission-critical deployments. We build resilient, high-performance infrastructure for modern enterprises."
+            className="text-zinc-500 text-sm md:text-base max-w-xl mx-auto mb-12 leading-relaxed"
+          />
 
           <FadeIn delay={0.4}>
             <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
-              <Link 
-                href="/contact" 
-                className="group h-14 pl-8 pr-2 flex items-center justify-center bg-zinc-950 text-white font-medium rounded-full hover:bg-zinc-800 transition-all shadow-xl shadow-emerald-500/10 active:scale-95"
-              >
-                Get Started 
-                  <div className="w-10 h-10 ml-4 bg-white rounded-full flex items-center justify-center text-zinc-950 group-hover:bg-[#FEF9C3] group-hover:scale-105 transition-all duration-500 group-hover:rotate-45 -rotate-[22.5deg]">
-                    <ArrowUpRight className="w-5 h-5 flex-shrink-0" />
-                  </div>
-              </Link>
+              <Magnetic>
+                <Link 
+                  href="/contact" 
+                  className="group h-14 pl-8 pr-2 flex items-center justify-center bg-zinc-950 text-white font-medium rounded-full hover:bg-zinc-800 transition-all shadow-xl shadow-emerald-500/10 active:scale-95"
+                >
+                  Get Started 
+                    <div className="w-10 h-10 ml-4 bg-white rounded-full flex items-center justify-center text-zinc-950 group-hover:bg-[#FEF9C3] group-hover:scale-105 transition-all duration-500 group-hover:rotate-45 -rotate-[22.5deg]">
+                      <ArrowUpRight className="w-5 h-5 flex-shrink-0" />
+                    </div>
+                </Link>
+              </Magnetic>
               
               <div className="flex items-center gap-4 text-left">
                 <div className="flex -space-x-3">

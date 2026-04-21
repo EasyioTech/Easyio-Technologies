@@ -3,6 +3,9 @@
 import { ArrowRight, Calendar, Clock, User, HardDrive, Terminal } from 'lucide-react';
 import { FadeIn } from "@/components/shared/Animations";
 import Link from 'next/link';
+import { PremiumHeading } from "@/components/shared/PremiumHeading";
+import Magnetic from "@/components/shared/Magnetic";
+import { motion } from "framer-motion";
 
 const blogs = [
   {
@@ -44,46 +47,51 @@ export default function Blogs() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mb-16">
-          <FadeIn>
-            <div className="inline-flex items-center gap-2 bg-zinc-50 border border-zinc-100 px-3 py-1 rounded-full mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">The Journal</span>
-            </div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-8 leading-tight">
-              Latest <span className="font-serif italic font-medium text-zinc-400">Insights</span>
-            </h2>
+            <PremiumHeading 
+              text="Latest Insights"
+              highlightWords={["Insights"]}
+              as="h2"
+              className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-8 leading-tight"
+            />
             <p className="text-zinc-500 text-lg font-medium leading-relaxed">
                Expert-led analysis on software engineering, security protocols, and enterprise infrastructure.
             </p>
-          </FadeIn>
-        </div>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-12 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-20 gap-x-12 mb-20">
           {blogs.map((post, i) => (
             <BlogCard key={post.id} post={post} index={i} />
           ))}
         </div>
 
         <div className="flex justify-center">
-          <FadeIn delay={0.4}>
-            <Link 
-              href="/blog" 
-              className="inline-flex items-center gap-3 px-10 py-4 bg-zinc-950 text-white rounded-2xl text-xs font-bold uppercase tracking-widest group hover:bg-emerald-600 transition-all shadow-xl shadow-zinc-200/50"
-            >
-              Read more
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </FadeIn>
+            <Magnetic>
+              <Link 
+                href="/blog" 
+                className="inline-flex items-center gap-3 px-10 py-4 bg-zinc-950 text-white rounded-2xl text-xs font-bold uppercase tracking-widest group hover:bg-emerald-600 transition-all shadow-xl shadow-zinc-200/50"
+              >
+                Read more
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Magnetic>
         </div>
       </div>
     </section>
   );
 }
-
 function BlogCard({ post, index }: { post: any; index: number }) {
   return (
-    <FadeIn delay={index * 0.1}>
-      <div className="group cursor-pointer flex flex-col h-full">
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.8, 
+        delay: index * 0.1,
+        ease: [0.16, 1, 0.3, 1] 
+      }}
+      className="group cursor-pointer flex flex-col h-full"
+    >
         {/* Modern Image Frame */}
         <div className="relative aspect-[16/10] overflow-hidden rounded-[2.5rem] bg-zinc-50 border border-zinc-100 mb-8 transition-all group-hover:shadow-2xl group-hover:shadow-zinc-200/40">
           <img 
@@ -111,7 +119,7 @@ function BlogCard({ post, index }: { post: any; index: number }) {
             </div>
           </div>
 
-          <h3 className="text-2xl font-bold text-zinc-950 tracking-tight leading-[1.2] mb-8 group-hover:text-emerald-600 transition-colors">
+          <h3 className="text-xl md:text-2xl font-bold text-zinc-950 tracking-tight leading-[1.2] mb-8 group-hover:text-emerald-600 transition-colors">
             {post.title}
           </h3>
 
@@ -134,7 +142,6 @@ function BlogCard({ post, index }: { post: any; index: number }) {
              </div>
           </div>
         </div>
-      </div>
-    </FadeIn>
+    </motion.div>
   );
 }

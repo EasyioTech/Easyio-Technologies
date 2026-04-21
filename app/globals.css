@@ -181,6 +181,10 @@
     scrollbar-width: none;
   }
 
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
   .bg-dark-section {
     @apply bg-white; /* Forced to white */
   }

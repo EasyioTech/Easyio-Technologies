@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Plus, Minus, Search, ArrowDown } from 'lucide-react';
 import { FadeIn, TextReveal } from "@/components/shared/Animations";
+import { PremiumHeading } from "@/components/shared/PremiumHeading";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
@@ -43,9 +45,12 @@ export default function FAQ() {
                   <div className="w-1.5 h-1.5 rounded-full bg-zinc-950" />
                   <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-500">Infrastructure Support</span>
                 </div>
-                <h2 className="text-6xl md:text-8xl font-bold tracking-tighter text-zinc-950 leading-[0.8] mb-10">
-                    Frequently <span className="font-serif italic text-zinc-400 block mt-2">Asked.</span>
-                </h2>
+                <PremiumHeading 
+                  text="Frequently Asked."
+                  highlightWords={["Asked."]}
+                  as="h2"
+                  className="text-5xl md:text-8xl font-bold tracking-tighter text-zinc-950 leading-[0.8] mb-10"
+                />
                 <p className="text-lg md:text-xl text-zinc-500 max-w-sm leading-relaxed border-l-2 border-zinc-100 pl-8 font-medium">
                    Technical parameters and operational protocols for our high-velocity engineering deployments. 
                 </p>
@@ -55,32 +60,47 @@ export default function FAQ() {
           {/* List */}
           <div className="lg:col-span-7 space-y-2">
              {faqs.map((faq, i) => (
-               <div key={i} className={`rounded-[2.5rem] transition-all duration-700 overflow-hidden ${openIndex === i ? 'bg-[#FEF9C3]/80 border-transparent shadow-2xl shadow-yellow-200/20' : 'bg-transparent border-transparent hover:bg-[#D1FAE5]/30'}`}>
+               <motion.div 
+                 key={i} 
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ duration: 0.5, delay: i * 0.1 }}
+                 className={`rounded-[2rem] md:rounded-[2.5rem] transition-all duration-700 overflow-hidden ${openIndex === i ? 'bg-[#FEF9C3]/80 border-transparent shadow-2xl shadow-yellow-200/20' : 'bg-transparent border-transparent hover:bg-[#D1FAE5]/30'}`}
+               >
                   <button 
                     onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className="w-full py-12 px-10 text-left flex items-center justify-between group"
+                    className="w-full py-8 md:py-12 px-6 md:px-10 text-left flex items-center justify-between group"
                   >
-                     <div className="flex items-center gap-10">
-                        <span className="text-xs font-mono text-zinc-300 font-bold">0{i+1}</span>
-                        <h3 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 group-hover:text-zinc-600 transition-colors">
+                     <div className="flex items-center gap-6 md:gap-10">
+                        <span className="text-[10px] md:text-xs font-mono text-zinc-300 font-bold">0{i+1}</span>
+                        <h3 className="text-lg md:text-2xl font-bold tracking-tight text-zinc-950 group-hover:text-zinc-600 transition-colors">
                            {faq.question}
                         </h3>
                      </div>
-                     <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-500 ${openIndex === i ? 'bg-[#D1FAE5] border-[#D1FAE5] text-zinc-950 rotate-180' : 'bg-white border-zinc-100 text-zinc-400 group-hover:border-zinc-200'}`}>
+                     <div className={`w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-full border flex items-center justify-center transition-all duration-500 ${openIndex === i ? 'bg-[#D1FAE5] border-[#D1FAE5] text-zinc-950 rotate-180' : 'bg-white border-zinc-100 text-zinc-400 group-hover:border-zinc-200'}`}>
                         <ArrowDown className="w-5 h-5" />
                      </div>
                   </button>
 
-                  {openIndex === i && (
-                    <div className="overflow-hidden">
-                       <div className="px-10 pb-12 pl-[calc(40px+3.5rem)] md:pl-[calc(40px+4.5rem)]">
-                          <p className="text-lg md:text-xl text-zinc-500 leading-relaxed max-w-2xl">
-                             {faq.answer}
-                          </p>
-                       </div>
-                    </div>
-                  )}
-               </div>
+                  <AnimatePresence>
+                    {openIndex === i && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                         <div className="px-6 md:px-10 pb-10 md:pb-12 pl-[calc(24px+2.5rem)] md:pl-[calc(40px+4.5rem)]">
+                            <p className="text-base md:text-xl text-zinc-500 leading-relaxed max-w-2xl">
+                               {faq.answer}
+                            </p>
+                         </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+               </motion.div>
              ))}
           </div>
 

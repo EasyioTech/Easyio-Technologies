@@ -68,23 +68,21 @@ const config: Config = {
             height: "0",
           },
         },
-        "fade-in": {
-          from: {
-            opacity: "0",
-          },
-          to: {
-            opacity: "1",
-          },
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(30px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
         },
-        "slide-in-from-bottom": {
-          from: {
-            opacity: "0",
-            transform: "translateY(16px)",
-          },
-          to: {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
+        "fade-down": {
+          from: { opacity: "0", transform: "translateY(-30px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-left": {
+          from: { opacity: "0", transform: "translateX(30px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+        "fade-right": {
+          from: { opacity: "0", transform: "translateX(-30px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
         },
         "marquee": {
           "0%": { transform: "translateX(0%)" },
@@ -100,6 +98,10 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
         "slide-in-from-bottom": "slide-in-from-bottom 0.5s ease-out",
+        "fade-up": "fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-down": "fade-down 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-left": "fade-left 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-right": "fade-right 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "marquee": "marquee var(--duration, 40s) linear infinite",
         "marquee-reverse": "marquee-reverse var(--duration, 40s) linear infinite",
       },

@@ -1,10 +1,13 @@
 'use client';
 
+import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useEffect, useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/shared/Animations";
+import { PremiumHeading } from "@/components/shared/PremiumHeading";
+import Magnetic from "@/components/shared/Magnetic";
 import {
   Carousel,
   CarouselApi,
@@ -102,41 +105,44 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Our Portfolio</span>
             </div>
-            <FadeIn>
-              <h2 
-                className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-6"
-              >
-                Recent <span className="font-serif italic font-medium text-zinc-400">Work</span>
-              </h2>
-            </FadeIn>
+            <PremiumHeading 
+              text="Recent Work"
+              highlightWords={["Work"]}
+              as="h2"
+              className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-6"
+            />
             <p className="text-zinc-500 text-lg font-medium leading-relaxed max-w-lg">
               Explore how we help modern teams build and scale their ideas with custom software.
             </p>
           </div>
           <div className="mt-8 flex shrink-0 items-center justify-start gap-4">
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => carouselApi?.scrollPrev()}
-              disabled={!canScrollPrev}
-              className="w-14 h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
-            >
-              <ArrowLeft className="size-6" />
-            </Button>
-            <Button
-              size="icon"
-              variant="outline"
-              onClick={() => carouselApi?.scrollNext()}
-              disabled={!canScrollNext}
-              className="w-14 h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
-            >
-              <ArrowRight className="size-6" />
-            </Button>
+            <Magnetic>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => carouselApi?.scrollPrev()}
+                disabled={!canScrollPrev}
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
+              >
+                <ArrowLeft className="size-5 md:size-6" />
+              </Button>
+            </Magnetic>
+            <Magnetic>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => carouselApi?.scrollNext()}
+                disabled={!canScrollNext}
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
+              >
+                <ArrowRight className="size-5 md:size-6" />
+              </Button>
+            </Magnetic>
           </div>
         </div>
       </div>
 
-      <div className="w-full relative z-10">
+      <div className="w-full relative z-10 px-6 lg:px-0">
         <Carousel
           setApi={setCarouselApi}
           opts={{
@@ -146,9 +152,19 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
           className="relative lg:left-[calc((100vw-1280px)/2)]"
         >
           <CarouselContent className="-ml-4 md:-ml-8">
-            {displayProjects.map((project) => (
+            {displayProjects.map((project, index) => (
               <CarouselItem key={project.id} className="pl-4 md:pl-8 md:basis-[520px]">
-                <div className="group relative flex flex-col bg-white border border-zinc-100 rounded-[3rem] p-6 transition-all hover:shadow-2xl hover:shadow-zinc-200/60">
+                <motion.div 
+                  initial={{ opacity: 0, x: 100 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: index * 0.1,
+                    ease: [0.16, 1, 0.3, 1] 
+                  }}
+                  className="group relative flex flex-col bg-white border border-zinc-100 rounded-[3rem] p-6 transition-all hover:shadow-2xl hover:shadow-zinc-200/60"
+                >
                   <div className="aspect-[16/11] overflow-hidden rounded-[2.5rem] mb-8">
                     <img
                       src={project.image}
@@ -182,7 +198,7 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
                       <ArrowUpRight className="ml-3 w-4 h-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
                     </a>
                   </div>
-                </div>
+                </motion.div>
               </CarouselItem>
             ))}
           </CarouselContent>

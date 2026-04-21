@@ -3,6 +3,9 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { FadeIn } from "@/components/shared/Animations";
+import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHeading";
+
+import Magnetic from "@/components/shared/Magnetic";
 
 export default function CTA() {
   return (
@@ -27,33 +30,36 @@ export default function CTA() {
                 </div>
              </FadeIn>
 
-             {/* Headline - Bold + Display Serif Combination */}
-             <h2 className="text-4xl md:text-6xl lg:text-[72px] font-bold text-zinc-950 tracking-tight leading-[0.9] mb-12 max-w-4xl mx-auto">
-                Helping you build <br />
-                <span className="font-serif italic font-medium text-zinc-400 mt-4 block">
-                  The Future.
-                </span>
-              </h2>
+             <PremiumHeading 
+               text="Helping you build The Future."
+               highlightWords={["Future."]}
+               as="h2"
+               className="text-4xl md:text-6xl lg:text-[72px] font-bold text-zinc-950 tracking-tight leading-[0.9] mb-8 md:mb-12 max-w-4xl mx-auto"
+               highlightClassName="font-serif italic font-medium text-zinc-400 mt-4 block"
+             />
 
-             {/* Subtext */}
-             <p className="text-base md:text-lg text-zinc-500 max-w-2xl mx-auto leading-relaxed mb-10 font-medium">
-                We work with ambitious founders and teams to build high-quality software that solves real problems and scales beautifully.
-             </p>
+             <PremiumSubheading 
+               delay={0.4}
+               text="We work with ambitious founders and teams to build high-quality software that solves real problems and scales beautifully."
+               className="text-sm md:text-lg text-zinc-500 max-w-2xl mx-auto leading-relaxed mb-8 md:mb-10 font-medium"
+             />
 
              {/* The Unique Pixel-Perfect Button */}
              <div className="relative">
-                <Link 
-                  href="/contact"
-                  className="group flex items-center gap-1 h-12 md:h-16 bg-zinc-950 rounded-full pl-8 pr-2 transition-all duration-500 shadow-2xl shadow-emerald-500/10"
-                >
-                  <span className="text-white text-xs md:text-sm font-bold tracking-widest uppercase pr-6 pl-2">
-                    Connect With Us
-                  </span>
-                  
-                  <div className="w-8 h-8 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center transition-all duration-500 group-hover:rotate-45 group-hover:bg-[#FEF9C3] shadow-lg -rotate-[22.5deg]">
-                    <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-zinc-950 stroke-[2.5px]" />
-                  </div>
-                </Link>
+                <Magnetic>
+                  <Link 
+                    href="/contact"
+                    className="group flex items-center gap-1 h-12 md:h-16 bg-zinc-950 rounded-full pl-8 pr-2 transition-all duration-500 shadow-2xl shadow-emerald-500/10"
+                  >
+                    <span className="text-white text-xs md:text-sm font-bold tracking-widest uppercase pr-6 pl-2">
+                      Connect With Us
+                    </span>
+                    
+                    <div className="w-8 h-8 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center transition-all duration-500 group-hover:rotate-45 group-hover:bg-[#FEF9C3] shadow-lg -rotate-[22.5deg]">
+                      <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-zinc-950 stroke-[2.5px]" />
+                    </div>
+                  </Link>
+                </Magnetic>
              </div>
           </div>
 

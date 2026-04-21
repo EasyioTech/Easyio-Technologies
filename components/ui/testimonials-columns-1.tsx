@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 
 interface Testimonial {
   text: string;
@@ -15,8 +16,18 @@ export const TestimonialsColumn = (props: {
 }) => {
   return (
     <div className={props.className}>
-      <div className="flex flex-col gap-6 pb-6">
-        {props.testimonials.map(({ text, image, name, role }, i) => (
+       <motion.div 
+        animate={{
+          y: [0, -1000],
+        }}
+        transition={{
+          duration: props.duration || 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="flex flex-col gap-6 pb-6"
+      >
+        {[...props.testimonials, ...props.testimonials, ...props.testimonials].map(({ text, image, name, role }, i) => (
           <div className="p-10 rounded-3xl border border-zinc-100 bg-white shadow-xl shadow-zinc-950/5 max-w-xs w-full" key={i}>
             <div className="text-zinc-600 leading-relaxed font-medium italic mb-6">"{text}"</div>
             <div className="flex items-center gap-3 mt-5">
@@ -34,7 +45,7 @@ export const TestimonialsColumn = (props: {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

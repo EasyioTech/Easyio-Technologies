@@ -64,6 +64,8 @@ const firstColumn = testimonials.slice(0, 3);
 const secondColumn = testimonials.slice(3, 6);
 const thirdColumn = testimonials.slice(6, 9);
 
+import { PremiumHeading } from "@/components/shared/PremiumHeading";
+
 const Testimonials = () => {
   return (
     <section className="pt-8 pb-32 md:pt-12 md:pb-48 bg-transparent relative overflow-hidden" id="testimonials">
@@ -75,22 +77,16 @@ const Testimonials = () => {
 
         {/* Header - Hero Style Hierarchy */}
         <div className="text-center mb-24 relative z-10">
-          <FadeIn>
-            <div className="flex justify-center mb-8">
-              <div className="px-4 py-1.5 bg-white border border-zinc-100 rounded-full shadow-sm">
-                <span className="text-[10px] font-bold text-zinc-900 uppercase tracking-widest ">Customer Stories</span>
-              </div>
-            </div>
-
-            <h2 className="text-5xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-8 leading-tight">
-              Trusted by <br />
-              <span className="font-serif italic font-medium text-zinc-400">Industry Leaders</span>
-            </h2>
-            <p className="text-zinc-500 max-w-xl mx-auto text-lg md:text-xl leading-relaxed font-medium">
-              See how modern teams transform their business and ship faster 
-              using our custom software solutions.
-            </p>
-          </FadeIn>
+          <PremiumHeading 
+            text="Trusted by Industry Leaders"
+            highlightWords={["Leaders"]}
+            as="h2"
+            className="text-5xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-8 leading-tight"
+          />
+          <p className="text-zinc-500 max-w-xl mx-auto text-lg md:text-xl leading-relaxed font-medium">
+            See how modern teams transform their business and ship faster 
+            using our custom software solutions.
+          </p>
         </div>
 
         {/* Animated 3-Column Layout */}
