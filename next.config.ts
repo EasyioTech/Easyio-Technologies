@@ -74,10 +74,10 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  outputFileTracingIncludes: {
+    '/**': ['./content/**/*'],
+  },
   experimental: {
-    outputFileTracingIncludes: {
-      '/': ['content/**/*'],
-    },
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
   output: "standalone",
