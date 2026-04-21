@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, Hexagon, Phone, MessageSquare } from "lucide-react";
+import { Menu, X, Hexagon, Phone, MessageSquare, ChevronRight } from "lucide-react";
 import { navigationLinks } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -91,11 +91,11 @@ export default function Navigation() {
 
           {/* Mobile Toggle */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsOpen(true)}
             className="lg:hidden w-10 h-10 flex items-center justify-center text-zinc-950 hover:bg-zinc-100 rounded-full transition-colors relative z-[102] active:scale-95 bg-white/50 backdrop-blur-sm border border-zinc-200/50"
-            aria-label="Toggle Menu"
+            aria-label="Open Menu"
           >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <Menu className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -112,7 +112,7 @@ export default function Navigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] lg:hidden"
+              className="fixed inset-0 bg-zinc-950/60 backdrop-blur-sm z-[101] lg:hidden"
             />
             
             <motion.div
@@ -120,10 +120,34 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-screen w-[85%] max-w-sm bg-white z-[101] lg:hidden shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.1)] flex flex-col"
+              className="fixed top-0 right-0 h-screen w-[90%] sm:w-[400px] bg-zinc-950 text-white z-[102] lg:hidden shadow-2xl flex flex-col"
             >
-              <div className="flex flex-col h-full overflow-y-auto pt-24 px-6 pb-10">
-                <div className="flex flex-col gap-2">
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between p-6 pt-8">
+                <Link href="/" className="flex items-center gap-3 group" onClick={() => setIsOpen(false)}>
+                  <div className="w-10 h-10 bg-white text-zinc-950 flex items-center justify-center rounded-xl shadow-sm">
+                    <Hexagon className="w-6 h-6 fill-current" />
+                  </div>
+                  <div className="flex flex-col leading-none">
+                    <span className="font-bold tracking-tighter text-white uppercase text-lg">
+                      EASYIO
+                    </span>
+                    <span className="font-cursive text-zinc-400 opacity-80 text-base -mt-1" style={{ fontFamily: 'Sacramento, cursive' }}>
+                      Technologies
+                    </span>
+                  </div>
+                </Link>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:scale-95 transition-all text-white border border-white/10"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Drawer Body */}
+              <div className="flex flex-col h-full overflow-y-auto px-6 pb-10 pt-4">
+                <div className="flex flex-col gap-2 mb-10">
                   {navigationLinks.map((link, i) => (
                     <motion.div
                       key={link.href}
@@ -134,14 +158,19 @@ export default function Navigation() {
                       <Link
                         href={link.href}
                         className={cn(
-                          "text-4xl font-bold tracking-tighter py-4 px-4 rounded-2xl transition-all duration-300",
+                          "flex items-center justify-between w-full py-4 px-5 rounded-2xl transition-all duration-300 group",
                           pathname === link.href 
-                            ? "text-emerald-600 bg-emerald-50/50" 
-                            : "text-zinc-950 hover:bg-zinc-50 hover:pl-6"
+                            ? "bg-white/10 text-white" 
+                            : "text-zinc-400 hover:bg-white/5 hover:text-white"
                         )}
                         onClick={() => setIsOpen(false)}
                       >
-                        {link.label}
+                        <span className="text-xl font-medium tracking-tight">
+                          {link.label}
+                        </span>
+                        {pathname !== link.href && (
+                          <ChevronRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-zinc-500" />
+                        )}
                       </Link>
                     </motion.div>
                   ))}
@@ -156,12 +185,10 @@ export default function Navigation() {
                     >
                       <Link
                         href="tel:+919596418226"
-                        className="flex flex-col items-center justify-center h-28 w-full border border-zinc-100 bg-zinc-50/50 text-zinc-950 rounded-2xl gap-2 font-bold group active:scale-95 transition-all"
+                        className="flex flex-col items-center justify-center h-28 w-full border border-white/10 bg-white/5 hover:bg-white/10 text-white rounded-2xl gap-3 font-medium active:scale-95 transition-all"
                         onClick={() => setIsOpen(false)}
                       >
-                        <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
-                          <Phone className="w-5 h-5 text-emerald-600" />
-                        </div>
+                        <Phone className="w-5 h-5 text-emerald-400" />
                         <span className="text-[10px] uppercase tracking-widest text-zinc-400">Support</span>
                       </Link>
                     </motion.div>
@@ -173,20 +200,18 @@ export default function Navigation() {
                     >
                       <Link
                         href="/contact"
-                        className="flex flex-col items-center justify-center h-28 w-full bg-zinc-950 text-white rounded-2xl gap-2 font-bold active:scale-95 transition-all shadow-xl shadow-zinc-950/10"
+                        className="flex flex-col items-center justify-center h-28 w-full bg-white text-zinc-950 rounded-2xl gap-3 font-bold active:scale-95 hover:bg-zinc-200 transition-all shadow-xl"
                         onClick={() => setIsOpen(false)}
                       >
-                        <div className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center">
-                          <MessageSquare className="w-5 h-5 text-emerald-400" />
-                        </div>
-                        <span className="text-[10px] uppercase tracking-widest text-zinc-500">Contact</span>
+                        <MessageSquare className="w-5 h-5 text-zinc-950" />
+                        <span className="text-[10px] uppercase tracking-widest text-zinc-900">Contact</span>
                       </Link>
                     </motion.div>
                   </div>
 
-                  <div className="flex flex-col items-center gap-4 py-6 border-t border-zinc-100">
+                  <div className="flex flex-col items-center gap-4 py-8 border-t border-white/10">
                     <div className="flex items-center gap-2">
-                       <div className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400">
                          Sovereign Engineering
                        </span>
