@@ -29,7 +29,7 @@ const capabilities = [
     title: "Reliable Intelligence",
     tagline: "DATA INTEGRITY",
     description: "Your information is your most valuable asset. We ensure it's always accurate and synced in real-time.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1000",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000",
     metrics: ["Real-time Sync", "Fault Tolerance", "Atomic Ops"],
     icon: <Database className="w-5 h-5" />
   }
@@ -66,7 +66,7 @@ export default function EngineFeatures() {
            </h2>
         </div>
 
-        <div className="space-y-48 md:space-y-96">
+        <div className="space-y-24 md:space-y-40">
           {capabilities.map((item, i) => (
             <CapabilityItem 
               key={i} 

@@ -126,7 +126,7 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
                 size="icon"
                 variant="outline"
                 onClick={() => carouselApi?.scrollPrev()}
-                disabled={!mounted || !canScrollPrev}
+                disabled={!canScrollPrev}
                 className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
               >
                 <ArrowLeft className="size-5 md:size-6" />
@@ -137,7 +137,7 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
                 size="icon"
                 variant="outline"
                 onClick={() => carouselApi?.scrollNext()}
-                disabled={!mounted || !canScrollNext}
+                disabled={!canScrollNext}
                 className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
               >
                 <ArrowRight className="size-5 md:size-6" />
