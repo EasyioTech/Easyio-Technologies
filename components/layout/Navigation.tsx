@@ -22,7 +22,8 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav className={cn(
+    <>
+      <nav className={cn(
       "fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-3rem)] max-w-7xl transition-all duration-500 rounded-[2rem]",
       scrolled 
         ? "bg-white/80 backdrop-blur-xl border border-zinc-200/50 shadow-2xl shadow-zinc-200/50 py-2.5" 
