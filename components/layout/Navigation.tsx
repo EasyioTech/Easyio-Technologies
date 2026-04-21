@@ -99,6 +99,8 @@ export default function Navigation() {
         </div>
       </div>
 
+    </nav>
+
       {/* Mobile Menu - Premium Side Drawer */}
       <AnimatePresence>
         {isOpen && (
@@ -195,6 +197,6 @@ export default function Navigation() {
           </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }
