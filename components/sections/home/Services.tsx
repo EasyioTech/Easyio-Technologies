@@ -61,25 +61,25 @@ export default function Services() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {services.map((item, index) => (
-            <FadeIn key={index} delay={index * 100} direction="up">
+            <FadeIn key={index} delay={index * 100} direction="up" className={index === 4 ? "col-span-2 md:col-span-1" : ""}>
               <div
-                className={`relative aspect-[2/1] bg-zinc-50/50 rounded-[1.5rem] p-6 lg:p-8 flex flex-col items-center justify-center text-center group cursor-pointer transition-all border border-transparent 
+                className={`relative aspect-[5/4] sm:aspect-square md:aspect-[3/4] lg:aspect-square bg-zinc-50/50 rounded-[1.25rem] md:rounded-[1.5rem] p-4 md:p-6 lg:p-8 flex flex-col items-center justify-center text-center group cursor-pointer transition-all border border-transparent 
                   ${index % 2 === 0 
                     ? 'hover:border-emerald-100 hover:bg-[#D1FAE5]/40 hover:shadow-emerald-200/20' 
                     : 'hover:border-yellow-100 hover:bg-[#FEF9C3]/40 hover:shadow-yellow-200/20'} 
-                  hover:shadow-2xl`}
+                  hover:shadow-2xl h-full`}
               >
-                <div className={`transition-all duration-300 mb-4 scale-90 group-hover:scale-100 ${index % 2 === 0 ? 'text-emerald-500/60 group-hover:text-emerald-600' : 'text-yellow-500/60 group-hover:text-yellow-600'}`}>
+                <div className={`transition-all duration-300 mb-2 md:mb-4 scale-90 group-hover:scale-100 ${index % 2 === 0 ? 'text-emerald-500/60 group-hover:text-emerald-600' : 'text-yellow-500/60 group-hover:text-yellow-600'}`}>
                   {item.icon}
                 </div>
 
-                <div>
-                  <h3 className="text-sm md:text-base font-bold text-zinc-950 tracking-tight">
+                <div className="flex flex-col items-center">
+                  <h3 className="text-sm md:text-base font-bold text-zinc-950 tracking-tight leading-tight">
                     {item.title}
                   </h3>
-                  <span className={`text-[10px] font-bold tracking-wide opacity-0 group-hover:opacity-100 transition-opacity ${index % 2 === 0 ? 'text-emerald-600' : 'text-yellow-600'}`}>
+                  <span className={`text-[10px] font-bold tracking-wide opacity-0 group-hover:opacity-100 transition-opacity hidden md:block mt-1 ${index % 2 === 0 ? 'text-emerald-600' : 'text-yellow-600'}`}>
                     VIEW SOLUTION
                   </span>
                 </div>

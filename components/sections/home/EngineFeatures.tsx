@@ -66,14 +66,13 @@ export default function EngineFeatures() {
            </h2>
         </div>
 
-        <div className="flex overflow-x-auto md:overflow-visible snap-x snap-mandatory gap-6 md:gap-0 md:flex-col md:space-y-96 pb-12 -mx-6 px-6 md:mx-0 md:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="space-y-48 md:space-y-96">
           {capabilities.map((item, i) => (
-            <div key={i} className="min-w-[85vw] sm:min-w-[300px] snap-center md:min-w-0 md:snap-align-none">
-              <CapabilityItem 
-                item={item} 
-                isEven={i % 2 === 1}
-              />
-            </div>
+            <CapabilityItem 
+              key={i} 
+              item={item} 
+              isEven={i % 2 === 1}
+            />
           ))}
         </div>
       </div>
@@ -84,20 +83,20 @@ export default function EngineFeatures() {
 function CapabilityItem({ item, isEven }: { item: any, isEven: boolean }) {
   return (
     <div className={cn(
-      "relative flex flex-col md:flex-row items-center gap-8 md:gap-32 w-full",
+      "relative flex flex-col md:flex-row items-center gap-12 md:gap-32",
       isEven ? "md:flex-row-reverse" : ""
     )}>
       
       {/* Background Big Number - Psychological Hierarchy */}
       <div className={cn(
-        "absolute -top-10 md:-top-32 font-black text-[80px] md:text-[240px] text-zinc-100 md:text-zinc-50 opacity-40 md:opacity-10 select-none",
+        "absolute -top-16 md:-top-32 font-black text-[100px] md:text-[240px] text-zinc-50 opacity-10 select-none",
         isEven ? "left-0" : "right-0"
       )}>
         {item.id}
       </div>
 
-      {/* Visual Component - Hidden on mobile, prominent on desktop */}
-      <div className="hidden md:block flex-1 w-full relative">
+      {/* Visual Component */}
+      <div className="flex-1 w-full relative">
          <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -106,40 +105,40 @@ function CapabilityItem({ item, isEven }: { item: any, isEven: boolean }) {
             className="relative rounded-[3rem] overflow-hidden aspect-[1.2/1] border border-zinc-100 shadow-2xl bg-zinc-50 group"
          >
             <img src={item.image} alt={item.title} className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" />
-             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/20 to-transparent" />
          </motion.div>
       </div>
 
       {/* Content Component */}
       <div className={cn(
-        "flex-1 z-10 flex flex-col w-full bg-white/60 backdrop-blur-xl md:bg-transparent border border-zinc-200/50 md:border-none p-6 md:p-0 rounded-3xl",
-        isEven ? "items-start text-left" : "items-start text-left md:items-end md:text-right"
+        "flex-1 z-10 flex flex-col",
+        isEven ? "items-start text-left" : "md:items-end md:text-right"
       )}>
           <motion.div
             initial={{ opacity: 0, x: isEven ? -20 : 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="w-full"
           >
-            <div className={cn("flex flex-row md:flex-row items-center gap-3 mb-6", isEven ? "" : "md:flex-row-reverse")}>
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl md:rounded-2xl bg-zinc-950 text-white flex flex-shrink-0 items-center justify-center shadow-xl">
+            <div className="flex items-center gap-3 mb-6">
+                {!isEven && <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">{item.tagline}</span>}
+                <div className="w-10 h-10 rounded-2xl bg-zinc-950 text-white flex items-center justify-center shadow-xl">
                     {item.icon}
                 </div>
-                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-emerald-600 md:text-zinc-400">{item.tagline}</span>
+                {isEven && <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">{item.tagline}</span>}
             </div>
 
-            <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold text-zinc-950 mb-4 md:mb-8 tracking-tighter leading-tight w-full">
+            <h3 className="text-4xl md:text-6xl font-bold text-zinc-950 mb-8 tracking-tighter leading-tight">
               {item.title}
             </h3>
 
-            <p className="text-zinc-600 md:text-zinc-500 text-sm sm:text-base md:text-xl leading-relaxed mb-8 md:mb-10 max-w-lg font-medium italic w-full">
+            <p className="text-zinc-500 text-lg md:text-xl leading-relaxed mb-10 max-w-lg font-medium italic">
               {item.description}
             </p>
 
-            <div className={cn("flex flex-wrap gap-2 md:gap-3", isEven ? "justify-start" : "justify-start md:justify-end")}>
+            <div className={cn("flex flex-wrap gap-2 md:gap-3", isEven ? "justify-start" : "md:justify-end")}>
                 {item.metrics.map((m: string, idx: number) => (
-                  <div key={idx} className="px-2.5 py-1.5 md:px-4 md:py-2 bg-white md:bg-white border border-zinc-200 md:border-zinc-100 rounded-lg md:rounded-xl text-[8px] md:text-[9px] font-black uppercase tracking-[0.15em] md:tracking-widest text-zinc-950 flex items-center gap-1.5 shadow-sm">
+                  <div key={idx} className="px-2.5 py-1.5 md:px-4 md:py-2 bg-white border border-zinc-100 rounded-lg md:rounded-xl text-[8px] md:text-[9px] font-black uppercase tracking-[0.15em] md:tracking-widest text-zinc-950 flex items-center gap-1.5 shadow-sm">
                     <Activity className="w-3 h-3 text-emerald-500 shrink-0" />
                     <span className="whitespace-nowrap">{m}</span>
                   </div>
