@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import React from 'react';
 
 interface PremiumHeadingProps {
@@ -22,19 +22,19 @@ export const PremiumHeading: React.FC<PremiumHeadingProps> = ({
 }) => {
   const words = text.split(' ');
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
       transition: { 
         staggerChildren: 0.12, 
         delayChildren: delay + (i * 0.1),
-        ease: [0.2, 0.65, 0.3, 0.9]
+        ease: [0.2, 0.65, 0.3, 0.9] as const
       },
     }),
   };
 
-  const child = {
+  const child: Variants = {
     visible: {
       opacity: 1,
       y: 0,
@@ -100,7 +100,7 @@ export const PremiumSubheading: React.FC<{ text: string; className?: string; del
       transition={{ 
         delay, 
         duration: 0.8, 
-        ease: [0.2, 0.65, 0.3, 0.9] 
+        ease: [0.2, 0.65, 0.3, 0.9] as const 
       }}
       className={className}
     >

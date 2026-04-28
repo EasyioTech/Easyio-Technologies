@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.99 44.48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #95d1b0;
+      }
+
+      .cls-2 {
+        fill: #54abdf;
+      }
+
+      .cls-3 {
+        fill: #64c4a8;
+      }
+
+      .cls-4 {
+        fill: #32ba9c;
+      }
+
+      .cls-5 {
+        fill: #4f7dbf;
+      }
+
+      .cls-6 {
+        fill: #3e449c;
+      }
+    </style>
+  </defs>
+  <g id="Crop_Marks" data-name="Crop Marks">
+    <g>
+      <g>
+        <path class="cls-3" d="M21.31,34.51l-4.99,4.99L2.43,25.62c-3.24-3.24-3.24-8.5,0-11.74L11.32,4.99h0s4.99,4.99,4.99,4.99l-.04.05-8.84,8.85c-.48.48-.48,1.27,0,1.75l13.88,13.88h0Z"/>
+        <rect class="cls-4" x="12.74" y="1.51" width="7.06" height="7.06" transform="translate(1.2 12.98) rotate(-45)"/>
+        <path class="cls-4" d="M37.41,28.36l-16.12,16.12-4.99-4.99h0s.02.01.02.01l4.99-4.99h0s-.01-.02-.01-.02l16.12-16.12h0c2.76,2.76,2.76,7.23,0,9.98Z"/>
+        <polygon class="cls-1" points="21.31 34.51 16.31 39.5 16.3 39.49 21.29 34.49 21.3 34.51 21.31 34.51"/>
+      </g>
+      <g>
+        <path class="cls-5" d="M59.57,23.81c.48.48.48,1.26,0,1.75l-8.89,8.89,4.99,4.99,8.89-8.89c3.24-3.24,3.24-8.5,0-11.74l-13.88-13.88-4.99,4.99,13.88,13.88Z"/>
+        <path class="cls-2" d="M29.86,9.51h22.75v7.06h-29.81c0-3.9,3.16-7.06,7.06-7.06Z" transform="translate(1.83 30.48) rotate(-45)"/>
+        <rect class="cls-6" x="47.15" y="35.91" width="7.06" height="7.06" transform="translate(-13.05 47.39) rotate(-45)"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,119 +1,118 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Search, Activity, Zap, Binary, CheckCircle2 } from "lucide-react";
+import { Search, PenTool, Code, Rocket, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PremiumHeading } from "@/components/shared/PremiumHeading";
 
 const stages = [
   {
     id: "01",
-    title: "Research & Discovery",
+    title: "Understanding",
     sub: "STEP 1",
-    desc: "We dive deep into your current systems to find hidden issues and identify exactly what needs to be improved.",
-    metrics: ["Full System Audit", "Growth Audit"],
+    desc: "We start by listening. We dive into your goals, your users, and your vision to build a solid foundation for the project.",
+    highlights: ["Goal Alignment", "User Research"],
     icon: <Search className="w-6 h-6" />,
     className: "md:col-span-2 md:row-span-1",
-    color: "bg-yellow-50/50"
+    color: "bg-yellow-50/30"
   },
   {
     id: "02",
-    title: "Design & Dev",
+    title: "Crafting",
     sub: "STEP 2",
-    desc: "Custom software engines designed to handle heavy use without ever slowing down.",
-    metrics: ["High Stability", "Future-Proof"],
-    icon: <Binary className="w-6 h-6" />,
+    desc: "Our designers and engineers work together to create a seamless, beautiful product that works perfectly on every device.",
+    highlights: ["Modern Design", "Clean Code"],
+    icon: <PenTool className="w-6 h-6" />,
     className: "md:col-span-1 md:row-span-1",
     color: "bg-zinc-50/50"
   },
   {
     id: "03",
-    title: "Testing & Quality",
+    title: "Perfecting",
     sub: "STEP 3",
-    desc: "Rigorous simulation to ensure stability for thousands of concurrent users.",
-    metrics: ["Traffic Simulation", "Speed Optimization"],
-    icon: <Activity className="w-6 h-6" />,
+    desc: "We test every interaction and optimize every line of code to ensure your product is fast, stable, and ready for the world.",
+    highlights: ["Speed Testing", "QA Audit"],
+    icon: <Code className="w-6 h-6" />,
     className: "md:col-span-1 md:row-span-1",
     color: "bg-zinc-50/50"
   },
   {
     id: "04",
-    title: "Launch & Support",
+    title: "Scaling",
     sub: "STEP 4",
-    desc: "Safe deployment and 24/7 monitoring to ensure smooth growth as you scale.",
-    metrics: ["Safe Deployment", "24/7 Monitoring"],
-    icon: <Zap className="w-6 h-6" />,
+    desc: "We help you launch with confidence and provide the support you need to scale your product as your business grows.",
+    highlights: ["Launch Strategy", "Ongoing Growth"],
+    icon: <Rocket className="w-6 h-6" />,
     className: "md:col-span-2 md:row-span-1",
-    color: "bg-emerald-50/50"
+    color: "bg-emerald-50/30"
   }
 ];
 
-import { PremiumHeading } from "@/components/shared/PremiumHeading";
-
 export default function Protocol() {
   return (
-    <section className="py-32 relative bg-transparent overflow-hidden" id="pipeline">
+    <section className="py-32 md:py-48 relative bg-transparent overflow-hidden" id="process">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Superior Header */}
+        {/* Header - Simple & Focused */}
         <div className="mb-24 flex flex-col items-center text-center">
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-500 mb-6 drop-shadow-sm">The Engineering Protocol</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-400 mb-6 uppercase">Our Process</span>
             <PremiumHeading 
-              text="How we build success"
-              highlightWords={["success"]}
+              text="How we bring ideas to life"
+              highlightWords={["ideas", "life"]}
               as="h2"
-              className="text-5xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-8 leading-[0.85]"
+              className="text-5xl md:text-8xl font-black tracking-tighter text-zinc-950 mb-8 leading-[0.85]"
             />
-            <p className="text-zinc-500 text-lg max-w-xl leading-relaxed font-medium italic">
-                A high-velocity, structured approach to building reliable software systems.
+            <p className="text-zinc-500 text-lg md:text-xl max-w-xl leading-relaxed font-medium">
+                A simple, effective way to build products that people love.
             </p>
         </div>
 
-        {/* Bento Pipeline Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:auto-rows-[340px]">
+        {/* Clean Process Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:auto-rows-[340px]">
           {stages.map((stage, i) => (
             <motion.div
               key={stage.id}
               layout
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.8, ease: "circOut" }}
-              whileHover={{ scale: 1.01, y: -5 }}
+              transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className={cn(
-                "group relative overflow-hidden rounded-[2.5rem] border border-zinc-100 p-8 md:p-10 flex flex-col justify-between transition-shadow hover:shadow-2xl hover:shadow-zinc-200/50 bg-white min-h-[340px] md:min-h-0",
+                "group relative overflow-hidden rounded-[3rem] border border-zinc-100 p-10 flex flex-col justify-between bg-white/50 backdrop-blur-sm transition-all hover:border-zinc-200 hover:shadow-xl hover:shadow-zinc-100/50 min-h-[340px] md:min-h-0",
                 stage.className
               )}
             >
-              {/* Technical Backdrop */}
-              <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700", stage.color)} />
-              <div className="absolute top-0 right-0 p-8 md:p-10 opacity-[0.03] group-hover:opacity-[0.08] transition-all duration-700 group-hover:scale-110">
-                {stage.icon}
-              </div>
-
+              {/* Subtle Gradient Hover */}
+              <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000", stage.color)} />
+              
               <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-8">
-                     <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300 group-hover:text-zinc-950 transition-colors uppercase">{stage.sub}</span>
-                     <div className="w-8 h-8 rounded-full border border-zinc-100 flex items-center justify-center text-[10px] font-bold">
+                  <div className="flex items-center justify-between mb-10">
+                     <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover:text-zinc-950 transition-colors">{stage.sub}</span>
+                     <div className="w-10 h-10 rounded-full border border-zinc-100 flex items-center justify-center text-xs font-black text-zinc-300 group-hover:text-zinc-950 group-hover:border-zinc-200 transition-all">
                         {stage.id}
                      </div>
                   </div>
                   
-                  <h3 className="text-3xl md:text-4xl font-bold text-zinc-950 mb-4 tracking-tight group-hover:translate-x-1 transition-transform">
+                  <h3 className="text-3xl md:text-4xl font-black text-zinc-950 mb-6 tracking-tighter">
                     {stage.title}
                   </h3>
                   
-                  <p className="text-zinc-500 text-base leading-relaxed max-w-[280px]">
+                  <p className="text-zinc-500 text-base md:text-lg leading-snug max-w-[320px]">
                     {stage.desc}
                   </p>
               </div>
 
               <div className="relative z-10 flex flex-wrap gap-2 mt-8">
-                {stage.metrics.map((m, idx) => (
-                  <div key={idx} className="flex items-center gap-1.5 px-3 py-1 bg-zinc-50 rounded-full border border-zinc-100 text-[9px] font-bold uppercase tracking-wider text-zinc-400 group-hover:border-zinc-200 group-hover:text-zinc-900 transition-all">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-500" />
-                    {m}
+                {stage.highlights.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2 px-4 py-1.5 bg-white rounded-full border border-zinc-100 text-[10px] font-bold uppercase tracking-wider text-zinc-400 group-hover:text-zinc-900 transition-all">
+                    <div className="w-1 h-1 rounded-full bg-emerald-500" />
+                    {item}
                   </div>
                 ))}
+              </div>
+
+              <div className="absolute top-10 right-10 opacity-5 group-hover:opacity-20 transition-all duration-700 group-hover:rotate-12">
+                {stage.icon}
               </div>
             </motion.div>
           ))}

@@ -15,15 +15,15 @@ export default function Hero() {
         <div className="flex flex-col items-center">
           
           <PremiumHeading 
-            text="Architecting digital systems with precision"
-            highlightWords={["systems", "precision"]}
-            className="text-5xl md:text-8xl lg:text-[110px] font-bold tracking-tight text-zinc-950 mb-8 leading-[0.9] md:leading-[0.85] max-w-[1200px]"
+            text="Building products people actually love"
+            highlightWords={["products", "love"]}
+            className="text-5xl md:text-8xl lg:text-[110px] font-black tracking-tighter text-zinc-950 mb-8 leading-[0.9] md:leading-[0.85] max-w-[1200px]"
           />
 
           <PremiumSubheading 
             delay={0.6}
-            text="Custom software engines for mission-critical deployments. We build resilient, high-performance infrastructure for modern enterprises."
-            className="text-zinc-500 text-sm md:text-base max-w-xl mx-auto mb-12 leading-relaxed"
+            text="We design and build clean, scalable digital products. From mvps to global scale, we're the partner you need to move faster."
+            className="text-zinc-400 text-base md:text-xl font-medium max-w-xl mx-auto mb-12 leading-tight"
           />
 
           <FadeIn delay={0.4}>
@@ -68,8 +68,8 @@ export default function Hero() {
       {/* Brand Logos Bar */}
       <div className="w-full mt-10 pt-10 pb-12 overflow-hidden border-t border-zinc-100">
         <div className="max-w-7xl mx-auto px-6 mb-8">
-          <p className="text-center text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em]">
-            Trusted by industrial leaders and fast-growing teams
+          <p className="text-center text-[10px] font-black text-zinc-300 uppercase tracking-[0.4em]">
+            Trusted by innovative startups and fast-growing teams
           </p>
         </div>
         <div className="w-full opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-700">

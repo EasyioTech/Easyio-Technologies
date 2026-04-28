@@ -1,91 +1,138 @@
 'use client';
 
-import { Palette, Code2, Globe, PenTool, BarChart3, ArrowRight } from "lucide-react";
-import { FadeIn } from "@/components/shared/Animations";
+import { useEffect, useRef } from "react";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 
 const services = [
   {
+    id: "01",
     title: "Brand Strategy",
-    icon: <Palette className="w-8 h-8 md:w-10 md:h-10" />,
-    color: "bg-zinc-50",
-    textColor: "text-zinc-950",
-    delay: 0.1
+    description: "We help you define your voice and stand out in the noise. Strategic positioning and visual identities that turn startups into iconic brands.",
   },
   {
+    id: "02",
     title: "Web Engineering",
-    icon: <Code2 className="w-8 h-8 md:w-10 md:h-10" />,
-    color: "bg-zinc-50",
-    textColor: "text-zinc-950",
-    delay: 0.2
+    description: "Fast, reliable, and beautifully crafted websites. We use the latest tech to build high-performance products that your users will love.",
   },
   {
+    id: "03",
     title: "Growth Systems",
-    icon: <Globe className="w-8 h-8 md:w-10 md:h-10" />,
-    color: "bg-zinc-50",
-    textColor: "text-zinc-950",
-    delay: 0.3
+    description: "Smart acquisition and marketing strategies to scale your business. We focus on results, not just numbers, to help you grow sustainably.",
   },
   {
-    title: "Experience Design",
-    icon: <PenTool className="w-8 h-8 md:w-10 md:h-10" />,
-    color: "bg-zinc-50",
-    textColor: "text-zinc-950",
-    delay: 0.4
+    id: "04",
+    title: "Product Design",
+    description: "Intuitive user interfaces that look amazing and work perfectly. We design with your users in mind, making every interaction feel natural.",
   },
   {
-    title: "Data Intelligence",
-    icon: <BarChart3 className="w-8 h-8 md:w-10 md:h-10" />,
-    color: "bg-zinc-50",
-    textColor: "text-zinc-950",
-    delay: 0.5
+    id: "05",
+    title: "Data Insights",
+    description: "Simple, actionable analytics to help you make better decisions. No complex jargon, just the insights you need to move forward faster.",
   }
 ];
 
 export default function Services() {
-  return (
-    <section className="py-24 md:py-32 bg-transparent" id="services">
-      <div className="max-w-[1600px] mx-auto px-6">
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-        <div className="mb-20 md:mb-28 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-400">Core Capabilities</span>
-            </div>
-            <PremiumHeading 
-               text="Sovereign solutions."
-               highlightWords={["solutions."]}
-               className="text-6xl md:text-8xl font-bold tracking-tighter text-zinc-950 leading-[0.8] mb-8"
-               highlightClassName="font-serif italic text-zinc-300 block mt-2"
-            />
+  useEffect(() => {
+    let ctx: any;
+
+    const init = async () => {
+      const { gsap } = await import("gsap");
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
+
+      ctx = gsap.context(() => {
+        const panels = gsap.utils.toArray<HTMLElement>(".service-row");
+        
+        panels.forEach((panel) => {
+          const title = panel.querySelector(".service-title");
+          const description = panel.querySelector(".service-desc");
+          const index = panel.querySelector(".service-index");
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: panel,
+              start: "top 80%",
+              end: "bottom 20%",
+              scrub: true,
+            }
+          })
+          .fromTo(index, { opacity: 0, x: -20 }, { opacity: 0.05, x: 0, duration: 1 })
+          .fromTo(title, { opacity: 0.2, color: "#a1a1aa" }, { opacity: 1, color: "#09090b", duration: 1 }, "-=0.8")
+          .fromTo(description, { opacity: 0.1, color: "#d4d4d8", y: 10 }, { opacity: 1, color: "#52525b", y: 0, duration: 1.2 }, "-=0.8");
+        });
+      }, sectionRef);
+    };
+
+    init();
+    return () => ctx?.revert();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="relative py-32 md:py-64 overflow-hidden" id="services">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Header - Simple & Clean */}
+        <div className="mb-40 max-w-5xl">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-1.5 h-1.5 bg-emerald-500" />
+            <span className="text-[10px] font-black tracking-[0.5em] text-zinc-400 uppercase">
+              Our Services
+            </span>
+          </div>
+          <PremiumHeading
+            text="Building the next big thing."
+            highlightWords={["big", "thing."]}
+            className="text-5xl md:text-9xl font-black tracking-tighter text-zinc-950 leading-[0.85]"
+          />
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-          {services.map((item, index) => (
-            <FadeIn key={index} delay={index * 100} direction="up" className={index === 4 ? "col-span-2 md:col-span-1" : ""}>
-              <div
-                className={`relative aspect-[5/4] sm:aspect-square md:aspect-[3/4] lg:aspect-square bg-zinc-50/50 rounded-[1.25rem] md:rounded-[1.5rem] p-4 md:p-6 lg:p-8 flex flex-col items-center justify-center text-center group cursor-pointer transition-all border border-transparent 
-                  ${index % 2 === 0 
-                    ? 'hover:border-emerald-100 hover:bg-[#D1FAE5]/40 hover:shadow-emerald-200/20' 
-                    : 'hover:border-yellow-100 hover:bg-[#FEF9C3]/40 hover:shadow-yellow-200/20'} 
-                  hover:shadow-2xl h-full`}
-              >
-                <div className={`transition-all duration-300 mb-2 md:mb-4 scale-90 group-hover:scale-100 ${index % 2 === 0 ? 'text-emerald-500/60 group-hover:text-emerald-600' : 'text-yellow-500/60 group-hover:text-yellow-600'}`}>
-                  {item.icon}
-                </div>
+        {/* Narrative Paragraph Flow */}
+        <div className="space-y-40 md:space-y-72">
+          {services.map((service) => (
+            <div
+              key={service.id}
+              className="service-row relative grid grid-cols-1 md:grid-cols-12 gap-12"
+            >
+              {/* Index Number */}
+              <div className="service-index absolute -left-4 md:-left-20 top-0 text-[18vw] md:text-[14vw] font-black text-zinc-950 opacity-0 pointer-events-none select-none tracking-tighter">
+                {service.id}
+              </div>
 
-                <div className="flex flex-col items-center">
-                  <h3 className="text-sm md:text-base font-bold text-zinc-950 tracking-tight leading-tight">
-                    {item.title}
-                  </h3>
-                  <span className={`text-[10px] font-bold tracking-wide opacity-0 group-hover:opacity-100 transition-opacity hidden md:block mt-1 ${index % 2 === 0 ? 'text-emerald-600' : 'text-yellow-600'}`}>
-                    VIEW SOLUTION
-                  </span>
+              {/* Title Section */}
+              <div className="md:col-span-4 relative z-10 pt-4">
+                <h3 className="service-title text-3xl md:text-6xl font-black text-zinc-300 tracking-tighter leading-[0.9] uppercase">
+                  {service.title}
+                </h3>
+              </div>
+
+              {/* Description Section */}
+              <div className="md:col-span-8 relative z-10">
+                <p className="service-desc text-2xl md:text-5xl font-medium text-zinc-200 leading-[1.1] tracking-tight">
+                  {service.description}
+                </p>
+                
+                <div className="mt-16 flex items-center gap-6">
+                   <div className="h-px flex-1 bg-zinc-100" />
+                   <span className="text-[9px] font-black text-zinc-300 uppercase tracking-widest">
+                     Built for you
+                   </span>
                 </div>
               </div>
-            </FadeIn>
+            </div>
           ))}
+        </div>
+
+        {/* Simple Outro */}
+        <div className="mt-80 pt-20 border-t border-zinc-100 flex justify-between items-center text-zinc-400">
+           <div className="flex items-center gap-4">
+              <div className="w-8 h-8 border border-zinc-200 flex items-center justify-center">
+                 <div className="w-2 h-2 bg-zinc-950" />
+              </div>
+              <span className="text-[10px] font-black tracking-widest uppercase">Launch Ready</span>
+           </div>
+           <span className="text-[10px] uppercase tracking-[0.2em]">Ready to build your vision</span>
         </div>
 
       </div>

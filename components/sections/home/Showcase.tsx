@@ -24,42 +24,7 @@ interface Project {
   url?: string;
 }
 
-const projects: Project[] = [
-  {
-    id: "01",
-    title: "Global Finance App",
-    summary: "A powerful banking platform built for speed and security, helping businesses manage money across the globe without borders.",
-    image: "https://images.unsplash.com/photo-1616077168712-fc6c788bc4ee?auto=format&fit=crop&q=80",
-    tags: ["Banking", "Security"],
-    url: "#"
-  },
-  {
-    id: "02",
-    title: "Smart Learning Hub",
-    summary: "Helping schools and universities use data to create personalized learning paths for every student.",
-    image: "https://images.unsplash.com/photo-1551288049-bb848a55a175?auto=format&fit=crop&q=80",
-    tags: ["AI", "Education"],
-    url: "#"
-  },
-  {
-    id: "03",
-    title: "Health & Research",
-    summary: "Advanced AI tools that help medical researchers find patterns in complex data to discover new treatments faster.",
-    image: "https://images.unsplash.com/photo-1579154341098-ec40089e9f19?auto=format&fit=crop&q=80",
-    tags: ["Healthcare", "AI"],
-    url: "#"
-  },
-  {
-    id: "04",
-    title: "Modern Factory",
-    summary: "Industrial automation that connects machines and software to make manufacturing smoother and more efficient.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80",
-    tags: ["Smart Tech", "Automation"],
-    url: "#"
-  }
-];
-
-export default function Showcase({ initialProjects = projects }: { initialProjects?: any[] }) {
+export default function Showcase({ initialProjects = [] }: { initialProjects?: any[] }) {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -74,13 +39,13 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
       return initialProjects.map((p, idx) => ({
         id: p.id || `p-${idx}`,
         title: p.title,
-        summary: p.summary || "Custom software solutions built to solve real-world business challenges.",
+        summary: p.description || "Custom software solutions built to solve real-world business challenges.",
         image: p.image || "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80",
-        tags: p.tags || ["Development"],
-        url: "#"
+        tags: Array.isArray(p.tags) && p.tags.length > 0 ? p.tags : ["Development"],
+        url: `/case-studies/${p.slug}` || "#"
       }));
     }
-    return projects;
+    return [];
   }, [initialProjects]);
 
   useEffect(() => {
@@ -126,7 +91,7 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
                 size="icon"
                 variant="outline"
                 onClick={() => carouselApi?.scrollPrev()}
-                disabled={!canScrollPrev}
+                disabled={!mounted || !canScrollPrev}
                 className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
               >
                 <ArrowLeft className="size-5 md:size-6" />
@@ -137,7 +102,7 @@ export default function Showcase({ initialProjects = projects }: { initialProjec
                 size="icon"
                 variant="outline"
                 onClick={() => carouselApi?.scrollNext()}
-                disabled={!canScrollNext}
+                disabled={!mounted || !canScrollNext}
                 className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
               >
                 <ArrowRight className="size-5 md:size-6" />
