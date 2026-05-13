@@ -46,3 +46,18 @@ next-env.d.ts
 
 # Docker
 docker-compose.override.yml
+
+# Clutter
+*.sql
+*.tar.gz
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!next.config.ts
+!eslint.config.mjs
+!postcss.config.mjs
+!tailwind.config.ts
+!vercel.json
+db_push_log.txt
+backups/
