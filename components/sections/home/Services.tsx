@@ -1,138 +1,149 @@
 'use client';
 
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { Palette, Code2, Rocket, Layout, BarChart3, ArrowUpRight } from "lucide-react";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 
 const services = [
   {
     id: "01",
-    title: "Brand Strategy",
-    description: "We help you define your voice and stand out in the noise. Strategic positioning and visual identities that turn startups into iconic brands.",
+    title: "Branding",
+    icon: Palette,
+    description: "We define your voice and visual identity to turn your startup into a memorable brand that stands out.",
+    color: "emerald"
   },
   {
     id: "02",
-    title: "Web Engineering",
-    description: "Fast, reliable, and beautifully crafted websites. We use the latest tech to build high-performance products that your users will love.",
+    title: "Websites",
+    icon: Code2,
+    description: "High-performance, beautifully crafted websites built with the latest tech to deliver speed and reliability.",
+    color: "blue"
   },
   {
     id: "03",
-    title: "Growth Systems",
-    description: "Smart acquisition and marketing strategies to scale your business. We focus on results, not just numbers, to help you grow sustainably.",
+    title: "Growth",
+    icon: Rocket,
+    description: "Strategic marketing and acquisition systems designed to scale your business results sustainably.",
+    color: "purple"
   },
   {
     id: "04",
-    title: "Product Design",
-    description: "Intuitive user interfaces that look amazing and work perfectly. We design with your users in mind, making every interaction feel natural.",
+    title: "Design",
+    icon: Layout,
+    description: "Intuitive and stunning user interfaces that make interacting with your product feel natural and perfect.",
+    color: "orange"
   },
   {
     id: "05",
-    title: "Data Insights",
-    description: "Simple, actionable analytics to help you make better decisions. No complex jargon, just the insights you need to move forward faster.",
+    title: "Analytics",
+    icon: BarChart3,
+    description: "Clear, actionable insights from your data to help you make smarter business decisions faster.",
+    color: "rose"
   }
 ];
 
 export default function Services() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let ctx: any;
-
-    const init = async () => {
-      const { gsap } = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
-
-      ctx = gsap.context(() => {
-        const panels = gsap.utils.toArray<HTMLElement>(".service-row");
-        
-        panels.forEach((panel) => {
-          const title = panel.querySelector(".service-title");
-          const description = panel.querySelector(".service-desc");
-          const index = panel.querySelector(".service-index");
-
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: panel,
-              start: "top 80%",
-              end: "bottom 20%",
-              scrub: true,
-            }
-          })
-          .fromTo(index, { opacity: 0, x: -20 }, { opacity: 0.05, x: 0, duration: 1 })
-          .fromTo(title, { opacity: 0.2, color: "#a1a1aa" }, { opacity: 1, color: "#09090b", duration: 1 }, "-=0.8")
-          .fromTo(description, { opacity: 0.1, color: "#d4d4d8", y: 10 }, { opacity: 1, color: "#52525b", y: 0, duration: 1.2 }, "-=0.8");
-        });
-      }, sectionRef);
-    };
-
-    init();
-    return () => ctx?.revert();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="relative py-32 md:py-64 overflow-hidden" id="services">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative py-24 md:py-32 overflow-hidden" id="services">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* Header - Simple & Clean */}
-        <div className="mb-40 max-w-5xl">
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-1.5 h-1.5 bg-emerald-500" />
-            <span className="text-[10px] font-black tracking-[0.5em] text-zinc-400 uppercase">
-              Our Services
+        {/* Header Section */}
+        <div className="mb-20">
+          <div className="flex items-center gap-3 mb-6">
+            <motion.div 
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              className="w-2 h-2 rounded-full bg-emerald-500" 
+            />
+            <span className="text-[10px] font-bold tracking-[0.4em] text-zinc-400 uppercase">
+              Capabilities
             </span>
           </div>
           <PremiumHeading
             text="Building the next big thing."
             highlightWords={["big", "thing."]}
-            className="text-5xl md:text-9xl font-black tracking-tighter text-zinc-950 leading-[0.85]"
+            className="text-4xl md:text-7xl font-black tracking-tight text-zinc-950 leading-[0.95]"
           />
         </div>
 
-        {/* Narrative Paragraph Flow */}
-        <div className="space-y-40 md:space-y-72">
-          {services.map((service) => (
-            <div
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service, index) => (
+            <motion.div
               key={service.id}
-              className="service-row relative grid grid-cols-1 md:grid-cols-12 gap-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="group relative p-8 rounded-[2rem] bg-white border border-zinc-100 hover:border-zinc-200 transition-all duration-500 shadow-sm hover:shadow-xl"
             >
-              {/* Index Number */}
-              <div className="service-index absolute -left-4 md:-left-20 top-0 text-[18vw] md:text-[14vw] font-black text-zinc-950 opacity-0 pointer-events-none select-none tracking-tighter">
+              {/* Service Icon */}
+              <div className={`w-14 h-14 rounded-2xl bg-${service.color}-50 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
+                <service.icon className={`w-7 h-7 text-${service.color}-600`} />
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-2xl font-bold text-zinc-900 tracking-tight">
+                    {service.title}
+                  </h3>
+                  <ArrowUpRight className="w-5 h-5 text-zinc-300 group-hover:text-zinc-950 transition-colors" />
+                </div>
+                
+                <p className="text-zinc-500 leading-relaxed font-medium">
+                  {service.description}
+                </p>
+              </div>
+
+              {/* Subtle Index */}
+              <div className="absolute bottom-8 right-8 text-4xl font-black text-zinc-50 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
                 {service.id}
               </div>
 
-              {/* Title Section */}
-              <div className="md:col-span-4 relative z-10 pt-4">
-                <h3 className="service-title text-3xl md:text-6xl font-black text-zinc-300 tracking-tighter leading-[0.9] uppercase">
-                  {service.title}
-                </h3>
-              </div>
-
-              {/* Description Section */}
-              <div className="md:col-span-8 relative z-10">
-                <p className="service-desc text-2xl md:text-5xl font-medium text-zinc-200 leading-[1.1] tracking-tight">
-                  {service.description}
-                </p>
-                
-                <div className="mt-16 flex items-center gap-6">
-                   <div className="h-px flex-1 bg-zinc-100" />
-                   <span className="text-[9px] font-black text-zinc-300 uppercase tracking-widest">
-                     Built for you
-                   </span>
-                </div>
-              </div>
-            </div>
+              {/* Hover Glow Effect */}
+              <div className={`absolute inset-0 rounded-[2rem] bg-gradient-to-br from-${service.color}-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`} />
+            </motion.div>
           ))}
+          
+          {/* Join Us Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="group relative p-8 rounded-[2rem] bg-zinc-950 border border-zinc-900 flex flex-col justify-between overflow-hidden shadow-2xl"
+          >
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold text-white tracking-tight mb-4">
+                Launch Ready
+              </h3>
+              <p className="text-zinc-400 font-medium">
+                We are ready to build your vision. Let's create something extraordinary together.
+              </p>
+            </div>
+            
+            <motion.button 
+              whileHover={{ x: 5 }}
+              className="relative z-10 mt-12 flex items-center gap-3 text-white font-bold tracking-tight"
+            >
+              Start Project <ArrowUpRight className="w-5 h-5" />
+            </motion.button>
+
+            {/* Background Accent */}
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-500/20 blur-[80px]" />
+          </motion.div>
         </div>
 
-        {/* Simple Outro */}
-        <div className="mt-80 pt-20 border-t border-zinc-100 flex justify-between items-center text-zinc-400">
-           <div className="flex items-center gap-4">
-              <div className="w-8 h-8 border border-zinc-200 flex items-center justify-center">
-                 <div className="w-2 h-2 bg-zinc-950" />
-              </div>
-              <span className="text-[10px] font-black tracking-widest uppercase">Launch Ready</span>
+        {/* Bottom Status */}
+        <div className="mt-20 pt-8 border-t border-zinc-100 flex justify-between items-center text-zinc-400">
+           <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-zinc-950 animate-pulse" />
+              <span className="text-[10px] font-bold tracking-widest uppercase">Systems Active</span>
            </div>
-           <span className="text-[10px] uppercase tracking-[0.2em]">Ready to build your vision</span>
+           <span className="text-[10px] uppercase tracking-[0.2em] font-medium">© 2026 Easyio Technologies</span>
         </div>
 
       </div>
