@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Zap, Shield, Heart, ArrowRight } from "lucide-react";
+import { Zap, Shield, Heart, ArrowUpRight } from "lucide-react";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 
 const features = [
@@ -11,7 +11,7 @@ const features = [
     icon: Zap,
     description: "Sub-millisecond response times. Optimized databases. Code that doesn't waste CPU cycles. Your users notice the difference.",
     metric: "0.34s",
-    label: "Load Time",
+    label: "Average Load Time",
     color: "emerald"
   },
   {
@@ -20,7 +20,7 @@ const features = [
     icon: Shield,
     description: "Clean architecture that survives rewrites. Testable, maintainable, future-proof. Technical debt is a choice we don't make.",
     metric: "99.98%",
-    label: "Uptime",
+    label: "System Uptime",
     color: "blue"
   },
   {
@@ -29,112 +29,88 @@ const features = [
     icon: Heart,
     description: "Every pixel, every interaction matters. We measure success by outcomes, not features shipped. Systems that scale with your vision.",
     metric: "12m 34s",
-    label: "Engagement",
+    label: "User Engagement",
     color: "purple"
   }
 ];
 
 export default function EngineFeatures() {
   return (
-    <section className="relative py-24 md:py-40 overflow-hidden bg-zinc-950" id="engine">
-      {/* Technical Background Elements */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #27272a 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section className="relative py-24 md:py-40 bg-white" id="engine">
+      <div className="max-w-7xl mx-auto px-6">
         
-        {/* Header */}
-        <div className="mb-24 max-w-4xl">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3 mb-8"
-          >
-            <div className="w-12 h-[1px] bg-emerald-500/50" />
-            <span className="text-[10px] font-bold tracking-[0.4em] text-emerald-500 uppercase">
-              The Easyio Standard
+        {/* Header - Huge & Minimal */}
+        <div className="mb-32">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-10 h-[1px] bg-zinc-200" />
+            <span className="text-[10px] font-black tracking-[0.5em] text-zinc-400 uppercase">
+              The Engineering Standard
             </span>
-          </motion.div>
-          
+          </div>
           <PremiumHeading
             text="Software that works the way you think."
             highlightWords={["works", "think."]}
-            className="text-4xl md:text-7xl font-bold tracking-tight text-white leading-[1.1]"
+            className="text-5xl md:text-8xl font-black tracking-tighter text-zinc-950 leading-[0.9] max-w-4xl"
           />
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Features - Editorial Layout */}
+        <div className="space-y-32 md:space-y-48">
           {features.map((feature, index) => (
             <motion.div
               key={feature.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15 }}
-              className="group relative flex flex-col p-8 rounded-[2.5rem] bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition-all duration-500 overflow-hidden"
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className={`flex flex-col md:flex-row gap-12 md:gap-24 items-start ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
             >
-              {/* Metric Background */}
-              <div className="absolute -top-10 -right-10 text-[10rem] font-black text-white/[0.02] group-hover:text-white/[0.04] transition-colors pointer-events-none">
-                {feature.id}
-              </div>
-
-              {/* Icon & Label */}
-              <div className="flex items-center justify-between mb-12">
-                <div className={`p-4 rounded-2xl bg-zinc-800/50 text-${feature.color}-500 group-hover:scale-110 transition-transform duration-500`}>
-                  <feature.icon className="w-6 h-6" />
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl md:text-4xl font-bold text-white tracking-tighter">
-                    {feature.metric}
+              {/* Metric Column */}
+              <div className="w-full md:w-1/2">
+                <div className="relative">
+                  <div className={`text-[12rem] md:text-[16rem] font-black tracking-tighter leading-none opacity-[0.03] select-none text-${feature.color}-500 absolute -top-12 -left-8`}>
+                    {feature.id}
                   </div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
-                    {feature.label}
+                  <div className="relative z-10">
+                    <h4 className={`text-6xl md:text-9xl font-black tracking-tighter text-zinc-950 mb-4`}>
+                      {feature.metric}
+                    </h4>
+                    <p className="text-sm font-black uppercase tracking-[0.3em] text-zinc-400">
+                      {feature.label}
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="mt-auto">
-                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">
+              {/* Content Column */}
+              <div className="w-full md:w-1/2 pt-4">
+                <div className={`w-12 h-12 rounded-2xl bg-${feature.color}-50 flex items-center justify-center mb-8`}>
+                  <feature.icon className={`w-6 h-6 text-${feature.color}-600`} />
+                </div>
+                <h3 className="text-3xl md:text-5xl font-black text-zinc-950 mb-6 tracking-tighter uppercase">
                   {feature.title}
                 </h3>
-                <p className="text-zinc-400 font-medium leading-relaxed mb-8">
+                <p className="text-xl md:text-2xl text-zinc-500 font-medium leading-tight mb-10 max-w-lg">
                   {feature.description}
                 </p>
-                
-                <div className="flex items-center gap-2 text-white text-xs font-bold tracking-widest uppercase group-hover:gap-4 transition-all opacity-0 group-hover:opacity-100">
-                  Read Protocol <ArrowRight className="w-4 h-4" />
-                </div>
+                <button className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-zinc-950 group">
+                  View Protocol <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+                </button>
               </div>
-
-              {/* Hover Glow */}
-              <div className={`absolute inset-0 bg-gradient-to-br from-${feature.color}-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none`} />
             </motion.div>
           ))}
         </div>
 
-        {/* Bottom Status */}
-        <div className="mt-24 pt-12 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-10">
-            <div className="flex flex-col gap-1">
-              <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Protocol</span>
-              <span className="text-sm font-bold text-white">V2.4.0-Stable</span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Latency</span>
-              <span className="text-sm font-bold text-emerald-500">Nominal (12ms)</span>
-            </div>
+        {/* Bottom Bar */}
+        <div className="mt-40 pt-10 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-8">
+            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">Natural Extension</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">Zero Debt</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">Global Scale</span>
           </div>
-          
-          <div className="flex items-center gap-4 px-6 py-3 rounded-full bg-zinc-900/80 border border-zinc-800">
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-              Natural extensions of your business
-            </span>
+          <div className="flex items-center gap-4">
+            <div className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-950">Systems Optimal</span>
           </div>
         </div>
 
