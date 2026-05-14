@@ -29,20 +29,20 @@ export default function ContactPage() {
             <FadeIn>
               <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-emerald-100 px-4 py-2 rounded-full mb-10 shadow-sm">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-900 leading-none">Transmission Ready</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-900 leading-none">Ready to Help</span>
               </div>
             </FadeIn>
 
             <PremiumHeading 
-              text="Initialize your vision."
-              highlightWords={["vision."]}
+              text="Start your project."
+              highlightWords={["project."]}
               className="text-6xl md:text-8xl lg:text-[120px] font-black tracking-tight text-zinc-950 mb-10 leading-[0.85]"
               highlightClassName="font-serif italic font-medium text-zinc-400 block mt-2"
             />
 
             <PremiumSubheading 
               delay={0.4}
-              text="Have a mission-critical project? We're ready to engineer your next leap forward. Initialize communication via the protocol below."
+              text="Have a big idea? We're ready to build your next great product. Send us a message below to get started."
               className="text-zinc-500 text-lg md:text-2xl max-w-2xl leading-relaxed font-medium"
             />
           </div>
@@ -60,7 +60,7 @@ export default function ContactPage() {
                 <div className="p-10 bg-white border border-zinc-100/60 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.02)] h-full flex flex-col justify-between group hover:border-emerald-200/50 transition-colors duration-500">
                   <div className="space-y-12">
                     <div className="flex items-center justify-between border-b border-zinc-50 pb-6">
-                      <div className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-400">Project Protocol</div>
+                      <div className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-400">Project Details</div>
                       <Mail className="w-4 h-4 text-emerald-500/50" />
                     </div>
                     
@@ -101,8 +101,8 @@ export default function ContactPage() {
                   <div className="relative z-10">
                     <div className="flex items-center justify-between mb-16">
                       <div className="space-y-1">
-                         <h2 className="text-3xl font-black text-zinc-950 tracking-tight uppercase">Project Initialization</h2>
-                         <p className="text-sm text-zinc-400 font-medium">Step 01: Transmission of requirements</p>
+                         <h2 className="text-3xl font-black text-zinc-950 tracking-tight uppercase">New Project</h2>
+                         <p className="text-sm text-zinc-400 font-medium">Step 01: Tell us what you need</p>
                       </div>
                       <div className="w-12 h-12 rounded-full border border-zinc-100 flex items-center justify-center">
                         <ArrowRight className="w-5 h-5 text-zinc-300" />

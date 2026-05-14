@@ -6,43 +6,43 @@ import { PremiumHeading } from "@/components/shared/PremiumHeading";
 const solutions = [
   {
     id: "01",
-    name: "Custom Enterprise Software Engines",
-    highlightWords: ["Enterprise", "Software", "Engines"],
+    name: "Custom Business Software",
+    highlightWords: ["Custom", "Business", "Software"],
     paragraph:
-      "We don't build apps — we architect high-performance engines. Optimized for logic-intensive workflows, our systems handle complexity with sub-millisecond precision. Operational sovereignty starts here.",
-    metric: "98.4% core efficiency",
+      "We build powerful software that solves complex business problems. Our systems are fast, reliable, and built to handle your unique needs perfectly.",
+    metric: "High efficiency",
   },
   {
     id: "02",
-    name: "Scalable Cloud Mesh",
-    highlightWords: ["Scalable", "Cloud", "Mesh"],
+    name: "Fast & Reliable Cloud",
+    highlightWords: ["Fast", "Reliable", "Cloud"],
     paragraph:
-      "Resilient infrastructure designed to expand across global nodes without breaking a sweat. Built for 99.999% availability under peak traffic loads, our cloud mesh grows with your ambition.",
-    metric: "99.999% availability",
+      "Modern cloud systems designed to grow with your business. We ensure your data is always safe and your website stays online even during busy times.",
+    metric: "99.999% uptime",
   },
   {
     id: "03",
-    name: "Extreme Speed & Edge Caching",
-    highlightWords: ["Extreme", "Speed", "Edge"],
+    name: "Extreme Speed",
+    highlightWords: ["Extreme", "Speed"],
     paragraph:
-      "Database tuning and edge-caching protocols engineered for instant interaction. Every millisecond matters — we compress latency until it's invisible to your users.",
-    metric: "0.12ms ping",
+      "We optimize every second of your user's journey. By removing lag and improving loading times, we make sure your customers never have to wait.",
+    metric: "Instant loading",
   },
   {
     id: "04",
-    name: "Hardened Security Protocols",
-    highlightWords: ["Hardened", "Security", "Protocols"],
+    name: "Safe & Secure",
+    highlightWords: ["Safe", "Secure"],
     paragraph:
-      "Advanced encryption layers and privacy-first engineering woven into every layer of the stack. AES-512-GCM isn't a checkbox — it's a foundation.",
-    metric: "AES-512-GCM",
+      "Security is at the heart of everything we build. We use industry-leading encryption to keep your customer data private and protected.",
+    metric: "Enterprise Grade",
   },
   {
     id: "05",
-    name: "Global Sync & Multi-Region Nodes",
-    highlightWords: ["Global", "Sync", "Multi-Region"],
+    name: "Global Sync",
+    highlightWords: ["Global", "Sync"],
     paragraph:
-      "Masterized data replication across 42 enterprise nodes spanning AS-1, EU-3, and beyond. Consistency at planetary scale, delivered without compromise.",
-    metric: "42 nodes worldwide",
+      "Your data stays in sync across the world. No matter where your customers are, they get the same fast and consistent experience.",
+    metric: "Global Network",
   },
 ];
 

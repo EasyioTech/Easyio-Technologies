@@ -41,7 +41,7 @@ export default function EngineFeatures() {
             <span className="text-[10px] font-black tracking-[0.4em] text-zinc-400 uppercase">Engine Capabilities</span>
           </div>
           <PremiumHeading 
-            text="High Performance Protocols."
+            text="Built for Business."
             highlightWords={["Performance"]}
             className="text-4xl md:text-6xl font-black tracking-tighter text-zinc-950 leading-none"
           />
@@ -55,7 +55,7 @@ export default function EngineFeatures() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="md:col-span-6 md:row-span-2 bg-[#FFCA00] rounded-[2.5rem] p-8 md:p-12 flex flex-col relative overflow-hidden group min-h-[400px] md:min-h-0 shadow-2xl shadow-yellow-500/10"
+            className="md:col-span-6 md:row-span-2 bg-[#FDE047] rounded-[2.5rem] p-8 md:p-12 flex flex-col relative overflow-hidden group min-h-[400px] md:min-h-0 shadow-2xl shadow-yellow-400/10"
           >
             <div className="relative z-20 max-w-[400px]">
               <div className="flex items-center gap-3 mb-8">
@@ -68,12 +68,12 @@ export default function EngineFeatures() {
                 Industrial Grade<br/>Software Engines.
               </h3>
               <p className="text-zinc-950/60 text-base md:text-lg leading-snug font-bold max-w-[320px]">
-                Architecting high-performance systems optimized for logic-intensive workflows.
+                Building smart software that solves complex business problems.
               </p>
               
               <div className="mt-10">
                 <button className="bg-zinc-950 text-white text-xs font-black py-4 px-10 rounded-full hover:scale-105 transition-all shadow-xl shadow-zinc-950/20 active:scale-95">
-                  View Architecture
+                  See Our Work
                 </button>
               </div>
             </div>
@@ -95,8 +95,8 @@ export default function EngineFeatures() {
                   className="object-cover opacity-40 grayscale-[0.8] contrast-[1.2]"
                 />
                 {/* Additional color matching gradients */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#FFCA00] via-transparent to-transparent opacity-40" />
-                <div className="absolute inset-0 bg-gradient-to-l from-[#FFCA00] via-transparent to-transparent opacity-40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#FDE047] via-transparent to-transparent opacity-40" />
+                <div className="absolute inset-0 bg-gradient-to-l from-[#FDE047] via-transparent to-transparent opacity-40" />
               </div>
             </div>
           </motion.div>
@@ -192,19 +192,19 @@ export default function EngineFeatures() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="md:col-span-3 md:row-span-2 bg-zinc-50 rounded-[2.5rem] p-8 md:p-10 flex flex-col relative overflow-hidden group border border-zinc-100 shadow-xl shadow-zinc-500/5"
+            className="md:col-span-3 md:row-span-2 bg-[#ECFDF5] rounded-[2.5rem] p-8 md:p-10 flex flex-col relative overflow-hidden group border border-emerald-100 shadow-xl shadow-emerald-500/5"
           >
             <div className="mb-10 relative z-20">
-              <div className="p-4 bg-white rounded-2xl border border-zinc-200 shadow-sm w-fit mb-8">
-                <Shield className="w-6 h-6 text-zinc-950" />
+              <div className="p-4 bg-white rounded-2xl border border-emerald-200 shadow-sm w-fit mb-8">
+                <Shield className="w-6 h-6 text-emerald-600" />
               </div>
-              <h3 className="text-4xl font-black text-zinc-950 tracking-tighter mb-2 leading-none">
-                Hardened<br/>Protocols
+              <h3 className="text-4xl font-black text-emerald-950 tracking-tighter mb-2 leading-none">
+                Safe &<br/>Secure
               </h3>
-              <p className="text-base font-bold text-zinc-500 mb-8 mt-4">
-                AES-512-GCM Industrial Security Standard.
+              <p className="text-base font-bold text-emerald-700/60 mb-8 mt-4">
+                Industrial grade security as standard.
               </p>
-              <div className="inline-flex items-center gap-3 px-4 py-2 bg-white rounded-full text-[10px] font-black text-zinc-400 uppercase tracking-[0.2em] border border-zinc-200">
+              <div className="inline-flex items-center gap-3 px-4 py-2 bg-white rounded-full text-[10px] font-black text-emerald-600 uppercase tracking-[0.2em] border border-emerald-200">
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
                 Privacy First
               </div>
@@ -228,7 +228,7 @@ export default function EngineFeatures() {
             </div>
             
             <div className="absolute bottom-8 right-8 z-30">
-                <div className="w-14 h-14 rounded-full bg-zinc-950 flex items-center justify-center shadow-2xl hover:scale-110 transition-all cursor-pointer">
+                <div className="w-14 h-14 rounded-full bg-emerald-600 flex items-center justify-center shadow-2xl hover:scale-110 transition-all cursor-pointer">
                 <ArrowUpRight className="w-7 h-7 text-white" />
                 </div>
             </div>

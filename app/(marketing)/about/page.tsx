@@ -16,32 +16,32 @@ export const metadata = {
 const principles = [
   {
     index: "01",
-    title: "High-Throughput Architecture",
-    desc: "Architecture is defined by its throughput. We optimize for millisecond latency at every layer of the stack, from database indexing to edge delivery.",
+    title: "Fast & Reliable Systems",
+    desc: "We build systems that work instantly. We focus on speed at every level, ensuring your software is always fast and responsive.",
     icon: Zap,
-    tag: "PERF_OPTIMIZATION"
+    tag: "MAX_SPEED"
   },
   {
     index: "02",
-    title: "Technical Sovereignty",
-    desc: "Systems built for total ownership. No vendor lock-in, no black boxes—just clean, auditable, and proprietary infrastructure tailored to your mission.",
+    title: "You Own Everything",
+    desc: "Software built for complete ownership. No hidden rules or vendor traps—just clean, custom tools made specifically for your business.",
     icon: ShieldCheck,
-    tag: "SYSTEM_INTEGRITY"
+    tag: "FULL_OWNERSHIP"
   },
   {
     index: "03",
-    title: "Operational Durability",
-    desc: "We build for the long-term. Our systems are engineered to outlast market trends and legacy transitions with zero-debt architectural scaling.",
+    title: "Built to Last",
+    desc: "We build for the long term. Our software is designed to grow with you, staying modern and useful for years to come.",
     icon: HardDrive,
-    tag: "STABILITY_LAYER"
+    tag: "LONG_TERM_VALUE"
   }
 ];
 
 const infrastructureNodes = [
-  { label: "Logic Layer", value: "Distributed Computing", icon: Cpu },
-  { label: "Data Persistence", value: "High-Availability DB", icon: Database },
-  { label: "Security Protocol", value: "End-to-End Encryption", icon: Fingerprint },
-  { label: "Network Edge", value: "Low-Latency CDNs", icon: Network }
+  { label: "Brain Layer", value: "Smart Computing", icon: Cpu },
+  { label: "Data Storage", value: "Always-On Storage", icon: Database },
+  { label: "Security", value: "Strong Encryption", icon: Fingerprint },
+  { label: "Network", value: "Lightning Fast Delivery", icon: Network }
 ];
 
 export default function AboutPage() {
@@ -64,7 +64,7 @@ export default function AboutPage() {
                 <div className="flex items-center gap-4 mb-12">
                   <div className="flex items-center gap-2.5 px-4 py-2 bg-zinc-950 text-white rounded-sm shadow-xl shadow-zinc-950/20">
                     <Terminal className="w-4 h-4 text-emerald-400" />
-                    <span className="text-[10px] font-mono font-black uppercase tracking-[0.25em]">MISSION_PROFILE_01</span>
+                    <span className="text-[10px] font-mono font-black uppercase tracking-[0.25em]">OUR_MISSION</span>
                   </div>
                   <div className="h-px w-12 bg-zinc-200" />
                   <span className="text-[10px] font-mono text-zinc-400 font-bold uppercase tracking-widest">v4.2.0_SECURE</span>
@@ -72,8 +72,8 @@ export default function AboutPage() {
               </FadeIn>
 
               <PremiumHeading 
-                text="Architecting technical destiny."
-                highlightWords={["destiny."]}
+                text="Building your digital future."
+                highlightWords={["future."]}
                 className="text-6xl md:text-8xl lg:text-[140px] font-black tracking-tighter text-zinc-950 mb-10 leading-[0.85] uppercase"
                 highlightClassName="font-serif italic font-medium text-zinc-300 block mt-4"
               />
@@ -82,7 +82,7 @@ export default function AboutPage() {
                 <div className="flex-1">
                   <PremiumSubheading 
                     delay={0.4}
-                    text="Easyio operates at the intersection of geographic serenity and technical intensity. Based in Srinagar, we transform the silence of the Himalayas into high-performance digital infrastructure."
+                    text="Easyio works where calm nature meets high-tech work. Based in the beautiful city of Srinagar, we build powerful digital tools that help businesses grow worldwide."
                     className="text-zinc-500 text-lg md:text-2xl max-w-2xl leading-relaxed font-medium"
                   />
                 </div>
@@ -91,7 +91,7 @@ export default function AboutPage() {
                     <p className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 mb-3">Base Operations</p>
                     <p className="text-sm font-black italic uppercase tracking-tighter text-zinc-950 flex items-center md:justify-end gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      Srinagar, J&K // Global Transmission
+                      Srinagar, J&K // Working Globally
                     </p>
                   </FadeIn>
                 </div>
@@ -116,7 +116,7 @@ export default function AboutPage() {
                     />
                     <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     <div className="absolute top-6 left-6 px-4 py-2 bg-black/80 backdrop-blur-md border border-white/10 text-[9px] font-mono text-white uppercase tracking-widest rounded-sm">
-                      Protocol_Visual_01 // SECURE_FACILITY
+                      Inside Our Office
                     </div>
                     <div className="absolute bottom-6 left-6 right-6 p-6 bg-black/80 backdrop-blur-md border border-white/10 rounded-2xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
                       <div className="flex items-center gap-3 mb-2">
@@ -139,7 +139,7 @@ export default function AboutPage() {
                       Beyond the traditional <span className="text-zinc-300 font-serif italic block mt-2">tech hub.</span>
                     </h2>
                     <p className="text-xl md:text-2xl text-zinc-500 leading-relaxed font-medium mb-12 max-w-2xl">
-                      We've eliminated the noise of conventional tech environments to focus on pure engineering. Our lab is a sovereign space for builders who prioritize technical excellence over market hype.
+                      We focus on deep work and great engineering. Our space is built for creators who care more about making things work perfectly than just following the latest trends.
                     </p>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-12 border-t border-zinc-100">
@@ -148,14 +148,14 @@ export default function AboutPage() {
                           <Code2 className="w-4 h-4 text-emerald-500" />
                           <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-zinc-400 leading-none group-hover:text-zinc-600">Focus_Area</h4>
                         </div>
-                        <p className="text-xl font-black text-zinc-950 tracking-tight leading-tight uppercase">Mission Critical Architecture</p>
+                        <p className="text-xl font-black text-zinc-950 tracking-tight leading-tight uppercase">High-End Software Design</p>
                       </div>
                       <div className="p-8 bg-zinc-50 rounded-3xl border border-zinc-100 group hover:border-emerald-200 transition-all">
                         <div className="flex items-center gap-3 mb-6">
                           <Layers className="w-4 h-4 text-emerald-500" />
                           <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-zinc-400 leading-none group-hover:text-zinc-600">Philosophy</h4>
                         </div>
-                        <p className="text-xl font-black text-zinc-950 tracking-tight leading-tight uppercase">Zero-Debt Scaling Strategy</p>
+                        <p className="text-xl font-black text-zinc-950 tracking-tight leading-tight uppercase">Smart Growth Strategy</p>
                       </div>
                     </div>
                   </div>
@@ -175,14 +175,14 @@ export default function AboutPage() {
                   <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-emerald-600">Foundational_Logic_Registry</h2>
                 </div>
                 <h3 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 uppercase leading-[0.85]">
-                  Core Engineering <br />
-                  <span className="text-zinc-300 font-serif italic">Protocols.</span>
+                  Our Core <br />
+                  <span className="text-zinc-300 font-serif italic">Rules.</span>
                 </h3>
               </div>
               <div className="md:text-right">
                 <p className="text-sm font-black text-zinc-400 uppercase tracking-widest mb-2">Registry_Status: Active</p>
                 <p className="text-xs font-bold text-zinc-300 italic max-w-xs">
-                  Built for the next decade of sovereign internet infrastructure.
+                  Built for the next generation of the internet.
                 </p>
               </div>
             </div>
@@ -224,8 +224,8 @@ export default function AboutPage() {
               <div>
                 <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-emerald-500 mb-10">System_Infrastructure</h2>
                 <h3 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-12 leading-[0.9]">
-                  Engineered for <br />
-                  <span className="text-zinc-500 italic font-serif">Unfailing Connectivity.</span>
+                  Built for <br />
+                  <span className="text-zinc-500 italic font-serif">Perfect Connection.</span>
                 </h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
@@ -250,9 +250,9 @@ export default function AboutPage() {
                    <div className="absolute inset-0 border border-emerald-500/20 rounded-full animate-[spin_20s_linear_infinite]" />
                    <div className="absolute inset-8 border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
                    <div className="text-center relative z-10">
-                     <p className="text-[10px] font-mono font-black text-emerald-500 uppercase tracking-[0.3em] mb-4">Uptime_Status</p>
+                     <p className="text-[10px] font-mono font-black text-emerald-500 uppercase tracking-[0.3em] mb-4">Uptime Status</p>
                      <p className="text-8xl font-black text-white tracking-tighter">99.9<span className="text-emerald-500 text-4xl">%</span></p>
-                     <p className="text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest mt-4">SLA_CONFIRMED</p>
+                     <p className="text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest mt-4">GUARANTEED</p>
                    </div>
                  </div>
               </div>
@@ -271,8 +271,8 @@ export default function AboutPage() {
                 </div>
                 
                 <h2 className="text-6xl md:text-8xl font-black text-zinc-950 uppercase tracking-tighter mb-16 leading-[0.85]">
-                  Initialize your technical <br />
-                  <span className="text-zinc-300 italic font-serif lowercase">evolution.</span>
+                  Start your digital <br />
+                  <span className="text-zinc-300 italic font-serif lowercase">growth.</span>
                 </h2>
                 
                 <div className="flex flex-wrap justify-center gap-12 md:gap-24 items-center mb-20">
@@ -288,7 +288,7 @@ export default function AboutPage() {
                   <div className="w-px h-16 bg-zinc-100 hidden md:block" />
                   <div className="space-y-3">
                      <p className="text-5xl font-black text-zinc-950 tracking-tighter">Global</p>
-                     <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Transmission</p>
+                     <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Reach</p>
                   </div>
                 </div>
                 
@@ -299,7 +299,7 @@ export default function AboutPage() {
                   >
                     <div className="absolute inset-0 bg-emerald-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     <span className="relative z-10 group-hover:text-white transition-colors flex items-center gap-4">
-                      Connect Protocol
+                    Get in Touch
                       <ArrowRight className="w-4 h-4" />
                     </span>
                   </a>

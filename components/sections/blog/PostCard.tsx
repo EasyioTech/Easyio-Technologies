@@ -18,7 +18,7 @@ export default function PostCard({ post, index }: { post: BlogPost; index: numbe
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
             <div className="absolute top-4 left-4 px-3 py-1.5 bg-zinc-950/90 backdrop-blur-md text-white text-[9px] font-mono font-bold uppercase tracking-[0.2em] flex items-center gap-2 border border-white/10 rounded-sm">
               <Terminal className="w-3 h-3 text-emerald-400" />
-              SRC_ENTRY_{index + 1}
+              BLOG_POST_{index + 1}
             </div>
           </div>
         )}
