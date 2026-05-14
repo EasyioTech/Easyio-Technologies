@@ -17,7 +17,7 @@ export default function MarqueeText() {
   const springX2 = useSpring(x2, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   return (
-    <section ref={containerRef} className="bg-white overflow-hidden py-10 md:py-24 border-y border-zinc-100/60">
+    <section ref={containerRef} className="relative bg-transparent overflow-hidden py-10 md:py-24 border-y border-zinc-100/60">
       <div className="flex flex-col gap-8">
         
         {/* Row 1 - High Contrast Professional */}

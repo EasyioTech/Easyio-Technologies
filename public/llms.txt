@@ -1,0 +1,23 @@
+# Easyio Technologies
+
+Easyio Technologies is a frontier software lab based in Kashmir, India, dedicated to building high-performance, modular systems and next-generation business solutions.
+
+## Core Services
+- Custom Software Development (Web & Mobile)
+- System Architecture & Design
+- AI & LLM Integration Services
+- LSM (Large Scale Modular) System Design
+- DevOps & Cloud Infrastructure
+
+## Navigation
+- [Home](https://easyiotech.com/)
+- [About Us](https://easyiotech.com/about)
+- [Blog](https://easyiotech.com/blog)
+- [Careers](https://easyiotech.com/careers)
+- [Contact](https://easyiotech.com/contact)
+
+## For AI & LLMs
+- [Full Site Mirror (Markdown)](https://easyiotech.com/llms)
+- [Comprehensive Documentation](https://easyiotech.com/llms-full.txt)
+- [System Architecture Overview](https://easyiotech.com/blog/system-architecture-modern-era)
+- [Tech Stack Details](https://easyiotech.com/about#stack)

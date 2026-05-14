@@ -74,7 +74,7 @@ export default async function HomePage() {
     };
 
     const results = await Promise.all([
-      fetchWithTimeout(getCachedProjects(), 5000)
+      fetchWithTimeout(getCachedProjects(), 15000)
     ]).catch(err => {
       console.error("Home Page Data Fetch Timeout/Error:", err);
       return [[]]; // Fallback to empty projects
@@ -87,7 +87,7 @@ export default async function HomePage() {
 
   return (
     <PageWrapper>
-      <main className="w-full relative overflow-hidden mesh-gradient">
+      <main className="w-full relative overflow-hidden">
         <Hero />
 
         <Suspense fallback={<SectionLoader />}>

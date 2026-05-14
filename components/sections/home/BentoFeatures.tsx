@@ -142,7 +142,7 @@ export default function BentoFeatures() {
           <PremiumHeading
             text="Industrial Grade System Architectures."
             highlightWords={["Industrial", "Grade"]}
-            className="text-5xl md:text-9xl font-black tracking-tighter text-zinc-950 leading-[0.85]"
+            className="text-5xl md:text-9xl font-black tracking-tighter text-zinc-950 leading-none"
           />
         </div>
 
@@ -160,7 +160,7 @@ export default function BentoFeatures() {
 
               {/* Name column */}
               <div className="md:col-span-4 relative z-10 pt-4">
-                <h3 className="sovereign-name text-3xl md:text-5xl font-black text-zinc-300 tracking-tighter leading-[0.9] uppercase">
+                <h3 className="sovereign-name text-3xl md:text-5xl font-black text-zinc-300 tracking-tighter leading-none uppercase">
                   {sol.name}
                 </h3>
               </div>

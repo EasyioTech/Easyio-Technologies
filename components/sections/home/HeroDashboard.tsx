@@ -7,6 +7,7 @@ export default function HeroDashboard() {
         src="/images/hero_dashboard_v3.png"
         alt="Easyio Enterprise Dashboard"
         fill
+        sizes="(max-width: 1280px) 100vw, 1280px"
         className="object-cover"
         priority
       />

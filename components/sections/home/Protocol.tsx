@@ -60,7 +60,7 @@ export default function Protocol() {
               text="How we bring ideas to life"
               highlightWords={["ideas", "life"]}
               as="h2"
-              className="text-5xl md:text-8xl font-black tracking-tighter text-zinc-950 mb-8 leading-[0.85]"
+              className="text-5xl md:text-8xl font-black tracking-tighter text-zinc-950 mb-8 leading-none"
             />
             <p className="text-zinc-500 text-lg md:text-xl max-w-xl leading-relaxed font-medium">
                 A simple, effective way to build products that people love.

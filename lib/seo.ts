@@ -46,6 +46,7 @@ export function generateMetadata({
         },
       ],
       siteName: "Easyio Technologies",
+      locale: "en_IN",
     },
     twitter: {
       card: twitterCard,
@@ -64,6 +65,15 @@ export function generateMetadata({
       "max-snippet": -1,
       "max-video-preview": -1,
     },
+    verification: {
+      google: "google-site-verification-placeholder", // User should update
+    },
+    other: {
+      "geo.region": "IN-JK",
+      "geo.placename": "Srinagar",
+      "geo.position": "34.0837;74.7973",
+      "ICBM": "34.0837, 74.7973",
+    },
   };
 }
 
@@ -80,7 +90,13 @@ export const ORGANIZATION_SCHEMA = {
   url: SITE_URL,
   logo: `${SITE_URL}/logo.png`,
   description:
-    "Frontier software lab dedicated to building high-performance systems and next-generation business solutions.",
+    "Frontier software lab in Kashmir, India, building high-performance systems and modular business solutions.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Srinagar",
+    addressRegion: "Jammu and Kashmir",
+    addressCountry: "India",
+  },
   sameAs: [
     "https://twitter.com/easyiotech",
     "https://linkedin.com/company/easyio",
@@ -91,6 +107,46 @@ export const ORGANIZATION_SCHEMA = {
     contactType: "Customer Support",
     email: "hello@easyiotech.com",
   },
+};
+
+export const LOCAL_BUSINESS_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Easyio Technologies",
+  image: `${SITE_URL}/og-image.png`,
+  "@id": `${SITE_URL}/#localbusiness`,
+  url: SITE_URL,
+  telephone: "+91-XXXXXXXXXX", // Placeholder, user should update
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Srinagar",
+    addressLocality: "Srinagar",
+    addressRegion: "Jammu and Kashmir",
+    postalCode: "190001",
+    addressCountry: "India",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 34.0837,
+    longitude: 74.7973,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    opens: "09:00",
+    closes: "18:00",
+  },
+  sameAs: [
+    "https://twitter.com/easyiotech",
+    "https://linkedin.com/company/easyio",
+  ],
 };
 
 export const WEBSITE_SCHEMA = {

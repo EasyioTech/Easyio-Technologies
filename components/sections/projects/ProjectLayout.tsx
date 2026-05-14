@@ -45,7 +45,7 @@ export default function ProjectLayout({ project }: ProjectLayoutProps) {
               </div>
             </FadeIn>
 
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 leading-[0.85] uppercase italic">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 leading-none uppercase italic">
               <TextReveal>{project.title}</TextReveal>
             </h1>
 

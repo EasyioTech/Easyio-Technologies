@@ -5,11 +5,17 @@ import { ArrowUpRight, Star, ArrowRight, Activity, Cloud, Database, Layout, Hexa
 import { FadeIn, Marquee } from "@/components/shared/Animations";
 import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHeading";
 
-import Magnetic from "@/components/shared/Magnetic";
+
 
 export default function Hero() {
   return (
     <section className="relative pt-32 pb-20 md:pt-56 md:pb-32 overflow-hidden flex flex-col items-center justify-center">
+      {/* Enhanced Mesh Gradient Background - Matches CTA */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] bg-emerald-100/30 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '10s' }} />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[70%] bg-yellow-100/30 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '12s', animationDelay: '3s' }} />
+        <div className="absolute top-1/4 left-1/4 w-[50%] h-[50%] bg-white/40 blur-[100px] rounded-full" />
+      </div>
       
       <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
         <div className="flex flex-col items-center">
@@ -17,7 +23,7 @@ export default function Hero() {
           <PremiumHeading 
             text="Building products people actually love"
             highlightWords={["products", "love"]}
-            className="text-5xl md:text-8xl lg:text-[110px] font-black tracking-tighter text-zinc-950 mb-8 leading-[0.9] md:leading-[0.85] max-w-[1200px]"
+            className="text-5xl md:text-8xl lg:text-[110px] font-black tracking-tighter text-zinc-950 mb-8 leading-none max-w-[1200px]"
           />
 
           <PremiumSubheading 
@@ -28,7 +34,6 @@ export default function Hero() {
 
           <FadeIn delay={0.4}>
             <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
-              <Magnetic>
                 <Link 
                   href="/contact" 
                   className="group h-14 pl-8 pr-2 flex items-center justify-center bg-zinc-950 text-white font-medium rounded-full hover:bg-zinc-800 transition-all shadow-xl shadow-emerald-500/10 active:scale-95"
@@ -38,7 +43,6 @@ export default function Hero() {
                       <ArrowUpRight className="w-5 h-5 flex-shrink-0" />
                     </div>
                 </Link>
-              </Magnetic>
               
               <div className="flex items-center gap-4 text-left">
                 <div className="flex -space-x-3">

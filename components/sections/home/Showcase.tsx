@@ -79,40 +79,36 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
               text="Recent Work"
               highlightWords={["Work"]}
               as="h2"
-              className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-6"
+              className="text-4xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-6"
             />
-            <p className="text-zinc-500 text-lg font-medium leading-relaxed max-w-lg">
+            <p className="text-zinc-500 text-base md:text-lg font-medium leading-relaxed max-w-lg">
               Explore how we help modern teams build and scale their ideas with custom software.
             </p>
           </div>
           <div className="mt-8 flex shrink-0 items-center justify-start gap-4">
-            <Magnetic>
-              <Button
-                size="icon"
-                variant="outline"
-                onClick={() => carouselApi?.scrollPrev()}
-                disabled={!mounted || !canScrollPrev}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
-              >
-                <ArrowLeft className="size-5 md:size-6" />
-              </Button>
-            </Magnetic>
-            <Magnetic>
-              <Button
-                size="icon"
-                variant="outline"
-                onClick={() => carouselApi?.scrollNext()}
-                disabled={!mounted || !canScrollNext}
-                className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
-              >
-                <ArrowRight className="size-5 md:size-6" />
-              </Button>
-            </Magnetic>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => carouselApi?.scrollPrev()}
+              disabled={!mounted || !canScrollPrev}
+              className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
+            >
+              <ArrowLeft className="size-5 md:size-6" />
+            </Button>
+            <Button
+              size="icon"
+              variant="outline"
+              onClick={() => carouselApi?.scrollNext()}
+              disabled={!mounted || !canScrollNext}
+              className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
+            >
+              <ArrowRight className="size-5 md:size-6" />
+            </Button>
           </div>
         </div>
       </div>
 
-      <div className="w-full relative z-10 px-6 lg:px-0">
+      <div className="w-full relative z-10 px-6 lg:px-0 overflow-visible">
         <Carousel
           setApi={setCarouselApi}
           opts={{
@@ -123,19 +119,19 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
         >
           <CarouselContent className="-ml-4 md:-ml-8">
             {displayProjects.map((project, index) => (
-              <CarouselItem key={project.id} className="pl-4 md:pl-8 md:basis-[520px]">
+              <CarouselItem key={project.id} className="pl-4 md:pl-8 basis-[85%] md:basis-[520px]">
                 <motion.div 
-                  initial={{ opacity: 0, x: 100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
                   transition={{ 
                     duration: 0.8, 
                     delay: index * 0.1,
                     ease: [0.16, 1, 0.3, 1] 
                   }}
-                  className="group relative flex flex-col bg-white border border-zinc-100/50 rounded-[3rem] p-6 transition-all hover:shadow-2xl hover:shadow-zinc-200/60"
+                  className="group relative flex flex-col bg-white border border-zinc-100/50 rounded-[2.5rem] md:rounded-[3rem] p-5 md:p-6 transition-all hover:shadow-2xl hover:shadow-zinc-200/60 h-full"
                 >
-                  <div className="aspect-[16/11] overflow-hidden rounded-[2.5rem] mb-8">
+                  <div className="aspect-[16/11] overflow-hidden rounded-[1.8rem] md:rounded-[2.5rem] mb-6 md:mb-8">
                     <img
                       src={project.image}
                       alt={project.title}
@@ -143,20 +139,20 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
                     />
                   </div>
                   
-                  <div className="px-4 pb-4">
-                    <div className="flex items-center gap-3 mb-6">
+                  <div className="px-2 md:px-4 pb-2 md:pb-4">
+                    <div className="flex flex-wrap items-center gap-2 mb-4 md:mb-6">
                       {project.tags.map((tag: string) => (
-                        <span key={tag} className="px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-500 bg-zinc-50 border border-zinc-100 rounded-full">
+                        <span key={tag} className="px-3 md:px-4 py-1 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-zinc-500 bg-zinc-50 border border-zinc-100 rounded-full">
                           {tag}
                         </span>
                       ))}
                     </div>
                     
-                    <h3 className="text-3xl font-bold text-zinc-950 mb-4 tracking-tight">
+                    <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 mb-3 md:mb-4 tracking-tight">
                       {project.title}
                     </h3>
                     
-                    <p className="text-zinc-500 leading-relaxed mb-10 line-clamp-2 font-medium">
+                    <p className="text-sm md:text-lg text-zinc-500 leading-relaxed mb-6 md:mb-10 line-clamp-2 font-medium">
                       {project.summary}
                     </p>
                     
@@ -174,6 +170,7 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
           </CarouselContent>
         </Carousel>
       </div>
+
     </section>
   );
 }

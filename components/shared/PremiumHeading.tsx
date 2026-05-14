@@ -72,7 +72,7 @@ export const PremiumHeading: React.FC<PremiumHeadingProps> = ({
           const isLast = index === words.length - 1;
           
           return (
-            <span key={index} className="inline-block overflow-hidden pb-2 mr-[0.25em] last:mr-0">
+            <span key={index} className="inline-block overflow-visible py-2 -my-2 mr-[0.25em] last:mr-0">
               <motion.span
                 variants={child}
                 className={`inline-block ${isHighlighted ? highlightClassName : ''}`}

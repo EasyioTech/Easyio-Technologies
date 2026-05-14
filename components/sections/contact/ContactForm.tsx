@@ -44,11 +44,11 @@ export default function ContactForm() {
       <div 
         className="py-20 text-center"
       >
-        <div className="w-24 h-24 rounded-full bg-blue-600 flex items-center justify-center mx-auto mb-12 shadow-2xl">
+        <div className="w-24 h-24 rounded-full bg-emerald-600 flex items-center justify-center mx-auto mb-12 shadow-2xl shadow-emerald-500/20">
           <CheckCircle2 className="w-10 h-10 text-white" />
         </div>
-        <h3 className="text-4xl font-bold text-zinc-950 tracking-tight mb-6">Message sent!</h3>
-        <p className="text-xl text-zinc-600 font-medium font-serif italic">We'll get back to you within 24 hours.</p>
+        <h3 className="text-4xl font-black text-zinc-950 tracking-tight mb-6 uppercase">Protocol Complete</h3>
+        <p className="text-xl text-zinc-600 font-medium font-serif italic">Your message has been successfully transmitted. We'll respond within 24 hours.</p>
       </div>
     );
   }
@@ -58,7 +58,7 @@ export default function ContactForm() {
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-3">
           <div className="flex justify-between items-center px-1">
-            <label className="text-[12px] font-bold uppercase tracking-widest text-zinc-950 block">
+            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-950 block">
               Full Name
             </label>
           </div>
@@ -66,13 +66,13 @@ export default function ContactForm() {
             {...register('name')}
             type="text"
             placeholder="e.g. John Doe"
-            className="w-full h-16 px-8 rounded-2xl bg-white border-2 border-zinc-200 text-zinc-950 placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-all font-medium text-base shadow-sm"
+            className="w-full h-16 px-8 rounded-2xl bg-[#F8FAFC] border border-zinc-200/60 text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all font-medium text-base"
           />
-          {errors.name && <p className="text-red-500 text-[10px] font-bold uppercase tracking-wider pl-1">{errors.name.message}</p>}
+          {errors.name && <p className="text-red-500 text-[9px] font-black uppercase tracking-wider pl-1">{errors.name.message}</p>}
         </div>
         <div className="space-y-3">
           <div className="flex justify-between items-center px-1">
-            <label className="text-[12px] font-bold uppercase tracking-widest text-zinc-950 block">
+            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-950 block">
               Email Address
             </label>
           </div>
@@ -80,49 +80,49 @@ export default function ContactForm() {
             {...register('email')}
             type="email"
             placeholder="john@example.com"
-            className="w-full h-16 px-8 rounded-2xl bg-white border-2 border-zinc-200 text-zinc-950 placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-all font-medium text-base shadow-sm"
+            className="w-full h-16 px-8 rounded-2xl bg-[#F8FAFC] border border-zinc-200/60 text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all font-medium text-base"
           />
-          {errors.email && <p className="text-red-500 text-[10px] font-bold uppercase tracking-wider pl-1">{errors.email.message}</p>}
+          {errors.email && <p className="text-red-500 text-[9px] font-black uppercase tracking-wider pl-1">{errors.email.message}</p>}
         </div>
       </div>
 
       <div className="space-y-3">
         <div className="flex justify-between items-center px-1">
-          <label className="text-[12px] font-bold uppercase tracking-widest text-zinc-950 block">
+          <label className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-950 block">
             Organization
           </label>
-          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest leading-none">Optional</span>
+          <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest leading-none">Optional</span>
         </div>
         <input
           {...register('company')}
           type="text"
           placeholder="Your company name"
-          className="w-full h-16 px-8 rounded-2xl bg-white border-2 border-zinc-200 text-zinc-950 placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-all font-medium text-base shadow-sm"
+          className="w-full h-16 px-8 rounded-2xl bg-[#F8FAFC] border border-zinc-200/60 text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all font-medium text-base"
         />
       </div>
 
       <div className="space-y-3">
         <div className="flex justify-between items-center px-1">
-          <label className="text-[12px] font-bold uppercase tracking-widest text-zinc-950 block">
-            What are you looking for?
+          <label className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-950 block">
+            Project Brief
           </label>
         </div>
         <textarea
           {...register('message')}
           rows={6}
-          placeholder="Tell us about your project or needs..."
-          className="w-full p-8 rounded-2xl bg-white border-2 border-zinc-200 text-zinc-950 placeholder:text-zinc-500 focus:outline-none focus:border-blue-500 transition-all resize-none font-medium text-lg leading-relaxed shadow-sm"
+          placeholder="Tell us about your technical requirements or mission-critical needs..."
+          className="w-full p-8 rounded-2xl bg-[#F8FAFC] border border-zinc-200/60 text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/5 transition-all resize-none font-medium text-lg leading-relaxed"
         />
-        {errors.message && <p className="text-red-500 text-[10px] font-bold uppercase tracking-wider pl-1">{errors.message.message}</p>}
+        {errors.message && <p className="text-red-500 text-[9px] font-black uppercase tracking-wider pl-1">{errors.message.message}</p>}
       </div>
 
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full h-18 py-6 bg-zinc-950 text-white text-xs font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-4 hover:bg-blue-600 rounded-2xl transition-all shadow-xl shadow-zinc-200/50 group"
+        className="w-full h-20 bg-zinc-950 text-white text-[11px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-4 hover:bg-emerald-600 rounded-2xl transition-all shadow-2xl shadow-emerald-500/10 group active:scale-[0.98]"
       >
         {isLoading ? (
-          <span className="animate-pulse">Sending...</span>
+          <span className="animate-pulse">Initializing...</span>
         ) : (
           <>
             Send Message
@@ -131,14 +131,14 @@ export default function ContactForm() {
         )}
       </button>
       
-      <div className="pt-4 flex items-center justify-center gap-8">
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Global Support</span>
+      <div className="pt-6 flex items-center justify-center gap-12">
+        <div className="flex items-center gap-2.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <span className="text-[9px] font-black text-zinc-400 uppercase tracking-widest">Global Support</span>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Fast Response</span>
+        <div className="flex items-center gap-2.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <span className="text-[9px] font-black text-zinc-400 uppercase tracking-widest">Priority Queue</span>
         </div>
       </div>
     </form>
