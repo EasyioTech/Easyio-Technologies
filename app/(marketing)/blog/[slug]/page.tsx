@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/shared/JsonLd";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
+import { getPostBySlug } from "@/lib/blog";
 
 export const dynamic = 'force-dynamic';
 
@@ -51,7 +52,12 @@ const getBlogPostBySlug = (slug: string) =>
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const [post] = await getBlogPostBySlug(slug)();
+  let [post] = await getBlogPostBySlug(slug)();
+
+  if (!post) {
+    // Check file-based posts
+    post = getPostBySlug(slug) as any;
+  }
 
   if (!post) return {};
 
@@ -95,9 +101,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [post] = await getBlogPostBySlug(slug)();
+  let [post] = await getBlogPostBySlug(slug)();
 
-  if (!post || post.published !== 'true') {
+  if (!post) {
+    // Check file-based posts
+    post = getPostBySlug(slug) as any;
+  }
+
+  if (!post) {
     notFound();
   }
 

@@ -5,6 +5,7 @@ import BlogIndex from "@/components/sections/blog/BlogIndex";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { Metadata } from "next";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
+import { getBlogPosts } from "@/lib/blog";
 
 export const dynamic = 'force-dynamic';
 
@@ -42,7 +43,6 @@ export default async function BlogListingPage() {
     // Only fetch published posts (cached)
     const rawPosts = await getCachedBlogPosts();
 
-    // Map database results to the BlogPost interface expected by the component
     const posts = rawPosts.map(post => ({
       slug: post.slug,
       title: post.title,
@@ -59,19 +59,31 @@ export default async function BlogListingPage() {
       toc: post.toc,
     }));
 
+    // Merge with file-based posts if database is empty or failing
+    const filePosts = getBlogPosts();
+    const mergedPosts = [...posts];
+    
+    // Add file posts that don't exist in DB (by slug)
+    filePosts.forEach(filePost => {
+      if (!mergedPosts.some(p => p.slug === filePost.slug)) {
+        mergedPosts.push(filePost);
+      }
+    });
+
     return (
       <PageWrapper>
-        <BlogIndex posts={posts as any} />
+        <BlogIndex posts={mergedPosts as any} />
       </PageWrapper>
     );
   } catch (error: any) {
     console.error("DATABASE_ERROR_IN_BLOG:", error);
+    
+    // Fallback to file-based posts on DB error
+    const filePosts = getBlogPosts();
+    
     return (
       <PageWrapper>
-        <div className="p-20 text-center">
-          <h1 className="text-2xl font-bold text-rose-500">Database Connection Error</h1>
-          <p className="text-zinc-500 mt-2">{error.message}</p>
-        </div>
+        <BlogIndex posts={filePosts as any} />
       </PageWrapper>
     );
   }

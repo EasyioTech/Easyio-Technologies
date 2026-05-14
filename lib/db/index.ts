@@ -19,7 +19,18 @@ if (isBuildTime) {
   // Mock client/db during build to avoid connection attempts
   client = {} as any;
   db = {
-    select: () => ({ from: () => ({ orderBy: () => Promise.resolve([]) }) }),
+    select: () => ({ 
+      from: () => ({ 
+        where: () => ({ 
+          orderBy: () => ({ limit: () => Promise.resolve([]) }),
+          limit: () => Promise.resolve([]),
+          orderBy: () => Promise.resolve([])
+        }),
+        orderBy: () => ({ limit: () => Promise.resolve([]) }),
+        limit: () => Promise.resolve([]),
+      }) 
+    }),
+    execute: () => Promise.resolve([])
   } as any;
 } else {
   client = globalForDb.client ?? postgres(connectionString, { 

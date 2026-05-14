@@ -1,23 +1,25 @@
 # Easyio Technologies
 
-Easyio Technologies is a frontier software lab based in Kashmir, India, dedicated to building high-performance, modular systems and next-generation business solutions.
+Easyio Technologies is a high-performance software engineering firm based in Srinagar, Kashmir. We specialize in mission-critical ERP systems, AI infrastructure, and sovereign software architecture.
 
-## Core Services
-- Custom Software Development (Web & Mobile)
-- System Architecture & Design
-- AI & LLM Integration Services
-- LSM (Large Scale Modular) System Design
-- DevOps & Cloud Infrastructure
+## Core Capabilities
+- **ERP Engineering**: High-throughput resource planning systems with millisecond latency.
+- **AI Infrastructure**: Proprietary transmission protocols and distributed computing for AI-native apps.
+- **Software Architecture**: Technical sovereignty through clean, auditable, and scalable codebases.
+- **UI/UX Design**: Premium, industrial-grade engineering aesthetic with a focus on high-density data visualization.
 
-## Navigation
-- [Home](https://easyiotech.com/)
-- [About Us](https://easyiotech.com/about)
-- [Blog](https://easyiotech.com/blog)
-- [Careers](https://easyiotech.com/careers)
-- [Contact](https://easyiotech.com/contact)
+## Technical Stack
+- **Frontend**: Next.js 15 (App Router), Tailwind CSS, Lucide Icons, Framer Motion.
+- **Backend**: Node.js, Drizzle ORM, Postgres (Edge Ready).
+- **Architecture**: Distributed Systems, Edge Computing, AES-256 GCM Encryption.
 
-## For AI & LLMs
-- [Full Site Mirror (Markdown)](https://easyiotech.com/llms)
-- [Comprehensive Documentation](https://easyiotech.com/llms-full.txt)
-- [System Architecture Overview](https://easyiotech.com/blog/system-architecture-modern-era)
-- [Tech Stack Details](https://easyiotech.com/about#stack)
+## Resources
+- [About](/about): Our mission, principles, and infrastructure overview.
+- [Services](/services): Technical expertise in Engineering, Design, and AI.
+- [Blog](/blog): Technical Intelligence Registry for deep-dives.
+- [Contact](/contact): Initialize mission-critical communication.
+
+## SEO Metadata
+- **Region**: Kashmir, India, Global.
+- **Sectors**: Tech, ERP, AI, Software Engineering.
+- **Brand**: Easyio, Easyio Technologies.
