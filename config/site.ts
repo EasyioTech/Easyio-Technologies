@@ -3,8 +3,8 @@ export const siteConfig = {
   shortName: "Easyio",
   description:
     "The premier software engineering firm in Kashmir, dedicated to architecting high-performance systems and next-generation business solutions for global enterprises.",
-  url: "https://easyiotech.com",
-  ogImage: "https://easyiotech.com/og-image.png",
+  url: "https://easyio.tech",
+  ogImage: "https://easyio.tech/og-image.png",
   links: {
     twitter: "https://twitter.com/easyiotech",
     linkedin: "https://linkedin.com/company/easyio",
@@ -12,9 +12,9 @@ export const siteConfig = {
     github: "https://github.com/easyiotech",
   },
   email: {
-    contact: "hello@easyiotech.com",
-    support: "support@easyiotech.com",
-    careers: "careers@easyiotech.com",
+    contact: "hello@easyio.tech",
+    support: "support@easyio.tech",
+    careers: "careers@easyio.tech",
   },
   location: "Srinagar, Kashmir",
   year: new Date().getFullYear(),

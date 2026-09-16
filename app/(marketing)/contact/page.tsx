@@ -87,6 +87,22 @@ export default function ContactPage() {
                   </div>
                 </div>
               </FadeIn>
+              
+              {/* Google Business Profile / Map Placeholder */}
+              <FadeIn delay={0.7}>
+                <div className="p-4 bg-white border border-zinc-100/60 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.02)] overflow-hidden">
+                  <div className="aspect-square md:aspect-[4/3] w-full rounded-[1.5rem] overflow-hidden relative bg-zinc-50">
+                    <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105658.26188410712!2d74.72124508493134!3d34.08365287968565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18f26da7347a3%3A0xc62eb4106cd4d6d6!2sSrinagar!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                      className="absolute inset-0 w-full h-full border-0"
+                      allowFullScreen={false} 
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Easyio Technologies Location Srinagar Kashmir"
+                    />
+                  </div>
+                </div>
+              </FadeIn>
             </div>
 
             {/* Right Side: The Interactive Interface */}

@@ -15,7 +15,7 @@ cp .env.example .env.local
 
 **Required:**
 - `RESEND_API_KEY` — Get from [Resend.com](https://resend.com)
-- `NEXT_PUBLIC_SITE_URL` — Your domain (default: https://easyiotech.com)
+- `NEXT_PUBLIC_SITE_URL` — Your domain (default: https://easyio.tech)
 
 **Optional:**
 - `UPSTASH_REDIS_REST_URL` — For rate limiting (uses in-memory fallback)

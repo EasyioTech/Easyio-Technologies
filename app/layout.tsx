@@ -36,13 +36,13 @@ const sacramento = Sacramento({
 
 export const metadata: Metadata = {
   ...generateSEOMetadata({
-    title: "Frontier Software Lab | Best Tech Company in Kashmir & India",
+    title: "Easyio Technologies | Best Tech & Software Company in Srinagar, Kashmir",
     description:
-      "Easyio Technologies: Premier software development and system architecture lab in Kashmir, India. We build high-performance web apps, mobile apps (iOS/Android), and modular LSM systems for the global market.",
+      "Easyio Technologies: Premier software development agency and system architecture lab in Srinagar, Kashmir. We build high-performance web apps, mobile apps, and custom software solutions for startups and enterprises.",
     keywords: [
       "software development Kashmir",
       "best tech company in Srinagar",
-      "web apps development India",
+      "web development agency Srinagar",
       "mobile app development Kashmir",
       "iOS app development India",
       "system architecture",

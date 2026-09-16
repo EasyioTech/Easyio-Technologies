@@ -5,58 +5,58 @@ import { FadeIn } from "@/components/shared/Animations";
 
 const testimonials = [
   {
-    text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100",
-    name: "Briana Patton",
-    role: "Operations Manager",
+    text: "Easyio developed a custom inventory system for our retail chain in Srinagar. It completely removed our manual bottlenecks and increased efficiency.",
+    image: "/avatars/kashmir-retail-owner-avatar.jpg", // Placeholder for actual image
+    name: "Tariq Ahmad",
+    role: "Director, Valley Retail Solutions",
   },
   {
-    text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100",
-    name: "Bilal Ahmed",
-    role: "IT Manager",
+    text: "The e-commerce platform they built helped our authentic Kashmiri handicrafts reach a global audience. The load times are incredible.",
+    image: "/avatars/handicraft-exporter-avatar.jpg", // Placeholder for actual image
+    name: "Ayesha Qazi",
+    role: "Founder, Kashmir Artisans",
   },
   {
-    text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=100",
-    name: "Saman Malik",
-    role: "Customer Support Lead",
+    text: "We needed a robust booking system for our hotel in Gulmarg. Easyio delivered a seamless solution that integrated perfectly with our payment gateways.",
+    image: "/avatars/hotel-manager-avatar.jpg", // Placeholder for actual image
+    name: "Muneeb Shah",
+    role: "Operations Manager, Highland Resorts",
   },
   {
-    text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=100",
-    name: "Omar Raza",
-    role: "CEO",
+    text: "Their team in Srinagar understands the local market constraints but delivers world-class software. Highly recommend them for MVP development.",
+    image: "/avatars/srinagar-startup-founder-avatar.jpg", // Placeholder for actual image
+    name: "Iqra Jan",
+    role: "Co-Founder, TechValley Logistics",
   },
   {
-    text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100",
-    name: "Zainab Hussain",
-    role: "Project Manager",
+    text: "Our educational institute needed a custom LMS. Easyio built a platform that handles thousands of students without a hitch.",
+    image: "/avatars/educator-avatar.jpg", // Placeholder for actual image
+    name: "Dr. Fayaz",
+    role: "Director, Apex Academy",
   },
   {
-    text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100",
-    name: "Aliza Khan",
-    role: "Business Analyst",
+    text: "The migration to a cloud-native architecture was handled brilliantly. We haven't had a single hour of downtime since.",
+    image: "/avatars/it-manager-avatar.jpg", // Placeholder for actual image
+    name: "Bilal Bhat",
+    role: "IT Head, Kashmir Healthcare",
   },
   {
-    text: "Our business functions improved with a user-friendly design and positive customer feedback.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100",
-    name: "Farhan Siddiqui",
-    role: "Marketing Director",
+    text: "Professional, communicative, and technically brilliant. They built our mobile delivery app from scratch in just three months.",
+    image: "/avatars/delivery-app-founder-avatar.jpg", // Placeholder for actual image
+    name: "Sameer Dar",
+    role: "CEO, QuickDeliver Srinagar",
   },
   {
-    text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100",
-    name: "Sana Sheikh",
-    role: "Sales Manager",
+    text: "We shifted from generic SaaS to a custom ERP built by Easyio. It fits our local supply chain needs perfectly.",
+    image: "/avatars/supply-chain-avatar.jpg", // Placeholder for actual image
+    name: "Umer Farooq",
+    role: "Operations Lead, J&K Distributors",
   },
   {
-    text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=100",
-    name: "Hassan Ali",
-    role: "E-commerce Manager",
+    text: "Their UI/UX design is unmatched in the valley. They gave our brand a modern, international feel.",
+    image: "/avatars/marketing-director-avatar.jpg", // Placeholder for actual image
+    name: "Zainab Wani",
+    role: "Marketing Director, Alpine Travels",
   },
 ];
 

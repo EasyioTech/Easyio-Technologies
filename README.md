@@ -81,7 +81,7 @@ Join waitlist.
 
 ```env
 RESEND_API_KEY=re_xxxxx
-NEXT_PUBLIC_SITE_URL=https://easyiotech.com
+NEXT_PUBLIC_SITE_URL=https://easyio.tech
 UPSTASH_REDIS_REST_URL=https://xxxxx.upstash.io
 UPSTASH_REDIS_REST_TOKEN=xxxxx
 ```

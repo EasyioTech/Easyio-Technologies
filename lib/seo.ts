@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://easyiotech.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://easyio.tech";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 export interface SEOMetadata {
@@ -66,7 +66,7 @@ export function generateMetadata({
       "max-video-preview": -1,
     },
     verification: {
-      google: "google-site-verification-placeholder", // User should update
+      google: "YOUR_GOOGLE_VERIFICATION_CODE", // User should update
     },
     other: {
       "geo.region": "IN-JK",
@@ -90,7 +90,7 @@ export const ORGANIZATION_SCHEMA = {
   url: SITE_URL,
   logo: `${SITE_URL}/logo.png`,
   description:
-    "Frontier software lab in Kashmir, India, building high-performance systems and modular business solutions.",
+    "Top software development company in Srinagar, Kashmir, building high-performance systems and custom digital solutions for startups and enterprises.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Srinagar",
@@ -105,7 +105,7 @@ export const ORGANIZATION_SCHEMA = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Customer Support",
-    email: "hello@easyiotech.com",
+    email: "hello@easyio.tech",
   },
 };
 
@@ -116,10 +116,10 @@ export const LOCAL_BUSINESS_SCHEMA = {
   image: `${SITE_URL}/og-image.png`,
   "@id": `${SITE_URL}/#localbusiness`,
   url: SITE_URL,
-  telephone: "+91-XXXXXXXXXX", // Placeholder, user should update
+  telephone: "+91-0000000000", // Placeholder, user should update
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Srinagar",
+    streetAddress: "Lal Chowk, Srinagar", // Placeholder, user should update
     addressLocality: "Srinagar",
     addressRegion: "Jammu and Kashmir",
     postalCode: "190001",

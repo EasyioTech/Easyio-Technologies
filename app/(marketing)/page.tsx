@@ -27,19 +27,19 @@ import Blogs from "@/components/sections/home/Blogs";
 import MarqueeText from "@/components/sections/home/MarqueeText";
 
 export const metadata = generateMetadata({
-  title: "Easyio Technologies | Modern Software Engineering Partner",
+  title: "Easyio Technologies | Best Software Development Company in Kashmir",
   description:
-    "The premier software engineering firm building high-performance digital products. We deliver clean, scalable, and user-focused applications that help startups grow and dominate their market.",
+    "The premier software engineering firm in Srinagar, Kashmir, building high-performance digital products. We deliver clean, scalable, and user-focused custom applications.",
   keywords: [
-    "software development company",
-    "web development agency",
+    "software development company Kashmir",
+    "web development agency Srinagar",
     "startup technology partner",
     "custom software development",
     "easyio technologies",
     "high performance web apps",
     "software engineering firm"
   ],
-  canonicalUrl: "https://easyiotech.com",
+  canonicalUrl: "https://easyio.tech",
 });
 
 const SectionLoader = () => (

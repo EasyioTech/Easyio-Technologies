@@ -67,7 +67,7 @@ const nextConfig: NextConfig = {
 
   // Environment
   env: {
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || "https://easyiotech.com",
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || "https://easyio.tech",
   },
   // Skip TS type-check during `next build` (Docker / CI).
   // Type safety is enforced locally before any push.
