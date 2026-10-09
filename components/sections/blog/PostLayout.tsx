@@ -1,49 +1,42 @@
 import { FadeIn } from "@/components/shared/Animations";
 import { BlogPost } from "@/lib/blog";
-import { ArrowLeft, Clock, User, Share2, HardDrive, Cpu, Terminal, ShieldCheck, Zap, ArrowRight } from "lucide-react";
+import { ArrowLeft, Clock, User, Share2, ArrowRight, List } from "lucide-react";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import LeadCapture from "./LeadCapture";
-
 import Image from "next/image";
-// Custom MDX components - Standardized High Density Technical Style
+
+// Custom MDX components - Clean, readable editorial style
 export const components = {
-  h1: (props: any) => <h1 className="text-4xl font-black tracking-tighter text-zinc-950 mt-16 mb-8 uppercase" {...props} />,
+  h1: (props: any) => <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 mt-16 mb-8 leading-tight" {...props} />,
   h2: (props: any) => {
     const id = props.children?.toString().toLowerCase().replace(/\s+/g, '-') || '';
-    return <h2 id={id} className="text-3xl font-black tracking-tighter text-zinc-950 mt-16 mb-8 pb-4 border-b-4 border-zinc-950 scroll-mt-32 uppercase" {...props} />;
+    return <h2 id={id} className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mt-16 mb-6 pb-2 border-b border-zinc-100 scroll-mt-32" {...props} />;
   },
   h3: (props: any) => {
     const id = props.children?.toString().toLowerCase().replace(/\s+/g, '-') || '';
-    return <h3 id={id} className="text-2xl font-black tracking-tighter text-zinc-950 mt-12 mb-6 border-l-8 border-emerald-500 pl-6 scroll-mt-32 uppercase" {...props} />;
+    return <h3 id={id} className="text-xl md:text-2xl font-bold tracking-tight text-zinc-900 mt-12 mb-4 scroll-mt-32" {...props} />;
   },
-  h4: (props: any) => <h4 className="text-xl font-bold tracking-tight text-zinc-950 mt-8 mb-4 uppercase" {...props} />,
-  p: (props: any) => <p className="text-zinc-600 mb-8 leading-relaxed text-lg font-medium" {...props} />,
-  ul: (props: any) => <ul className="list-none space-y-6 mb-10 my-8" {...props} />,
-  ol: (props: any) => <ol className="list-decimal space-y-6 mb-10 my-8 pl-8 text-zinc-600 text-lg" {...props} />,
-  li: (props: any) => (
-    <li className="flex gap-5 text-zinc-600 text-lg">
-      <span className="text-emerald-500 font-black text-sm mt-1.5">»</span>
-      <span className="flex-1 font-medium">{props.children}</span>
-    </li>
-  ),
+  h4: (props: any) => <h4 className="text-lg font-bold tracking-tight text-zinc-900 mt-8 mb-4" {...props} />,
+  p: (props: any) => <p className="text-zinc-700 mb-8 leading-relaxed text-lg" {...props} />,
+  ul: (props: any) => <ul className="list-disc list-outside space-y-3 mb-10 my-8 pl-6 text-zinc-700 text-lg marker:text-emerald-500" {...props} />,
+  ol: (props: any) => <ol className="list-decimal list-outside space-y-3 mb-10 my-8 pl-6 text-zinc-700 text-lg marker:text-zinc-400" {...props} />,
+  li: (props: any) => <li className="text-zinc-700 text-lg leading-relaxed">{props.children}</li>,
   blockquote: (props: any) => (
-    <blockquote className="my-12 p-10 bg-zinc-50 rounded-3xl border border-zinc-100 italic text-xl text-zinc-900 relative">
-      <div className="absolute top-0 left-0 w-2 h-full bg-emerald-500 rounded-l-3xl" />
-      <Zap className="w-8 h-8 text-emerald-500/20 absolute top-6 right-8" />
+    <blockquote className="my-10 pl-6 border-l-4 border-emerald-500 italic text-xl text-zinc-800 font-serif leading-relaxed">
       {props.children}
     </blockquote>
   ),
   code: (props: any) => (
-    <code className="bg-zinc-100 px-2 py-0.5 rounded text-sm font-mono font-bold text-emerald-700" {...props} />
+    <code className="bg-zinc-100 px-1.5 py-0.5 rounded-md text-sm font-mono text-zinc-800 before:content-[''] after:content-['']" {...props} />
   ),
   pre: (props: any) => (
-    <div className="relative group my-10">
-      <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/20 to-zinc-500/20 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-      <pre className="relative p-8 bg-zinc-950 rounded-xl border border-white/10 overflow-x-auto font-mono text-xs text-zinc-300 leading-relaxed shadow-2xl" {...props} />
+    <div className="relative my-10 overflow-hidden rounded-2xl shadow-sm border border-zinc-200">
+      <pre className="p-6 bg-zinc-950 overflow-x-auto font-mono text-[13px] text-zinc-300 leading-relaxed" {...props} />
     </div>
   ),
-  strong: (props: any) => <strong className="font-black text-zinc-950" {...props} />,
+  strong: (props: any) => <strong className="font-bold text-zinc-900" {...props} />,
+  a: (props: any) => <a className="text-emerald-600 underline decoration-emerald-200 hover:decoration-emerald-500 transition-colors" {...props} />
 };
 
 interface PostLayoutProps {
@@ -60,92 +53,89 @@ export default function PostLayout({ post }: PostLayoutProps) {
     console.error("Failed to parse TOC", e);
   }
 
+  const hasImage = !!post.image;
+
   return (
-    <div className="bg-white min-h-screen pt-32 md:pt-48 pb-24 selection:bg-emerald-500 selection:text-white">
-      {/* Reading Progress - Emerald Precision */}
-      <div className="fixed top-0 left-0 w-full h-1 z-[100] bg-zinc-100/50 backdrop-blur-sm">
+    <div className="bg-white min-h-screen pt-32 pb-24 selection:bg-emerald-200 selection:text-zinc-900 font-sans">
+      {/* Reading Progress */}
+      <div className="fixed top-0 left-0 w-full h-1 z-[100] bg-zinc-100">
         <div 
-          className="h-full bg-emerald-500 transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.5)]" 
+          className="h-full bg-emerald-500 transition-all duration-300" 
           style={{ width: '0%', animation: 'progress 1s ease-out forwards' }} 
         />
       </div>
 
-      <div className="max-w-[1600px] mx-auto px-6">
-        {/* Navigation / Header Sector */}
-        <div className="flex flex-wrap items-center justify-between gap-6 mb-16 py-6 border-b border-zinc-100">
-          <Link href="/blog" className="group inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.3em] text-zinc-400 hover:text-zinc-950 transition-all">
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Registry_Return
+      <div className="max-w-[1200px] mx-auto px-6">
+        {/* Breadcrumb Navigation */}
+        <div className="mb-12">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            Back to Blog
           </Link>
-          <div className="flex items-center gap-4">
-            <span className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest hidden md:block">Sector_ID: {post.slug.substring(0, 12).toUpperCase()}</span>
-            <div className="h-4 w-px bg-zinc-200 hidden md:block" />
-            <span className="text-[10px] font-mono text-emerald-500 font-black uppercase tracking-widest flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Live_Transmission
-            </span>
-          </div>
         </div>
 
-        {/* Main Content Asymmetric Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-16 lg:gap-32">
-          <article>
-            {/* Post Metadata */}
-            <header className="mb-16">
+        {/* Main Content Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-16 lg:gap-24">
+          <article className="min-w-0">
+            {/* Post Header */}
+            <header className="mb-12">
               <FadeIn>
-                <div className="flex flex-wrap items-center gap-6 mb-10">
-                  <div className="px-3 py-1.5 bg-zinc-950 text-white text-[10px] font-mono font-black tracking-[0.2em] uppercase rounded-sm flex items-center gap-2 shadow-lg shadow-zinc-950/20">
-                    <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="flex flex-wrap items-center gap-4 mb-6 text-sm font-medium text-zinc-500">
+                  <span className="text-emerald-600 font-semibold uppercase tracking-wider text-xs bg-emerald-50 px-3 py-1 rounded-full">
                     {post.category}
-                  </div>
-                  <div className="flex items-center gap-2.5 text-[11px] font-black text-zinc-400 uppercase tracking-[0.2em]">
-                    <Clock className="w-4 h-4 text-zinc-300" />
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-4 h-4 text-zinc-400" />
                     {post.readingTime}
                   </div>
                 </div>
               </FadeIn>
 
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-950 mb-12 leading-[0.9] uppercase">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 mb-8 leading-[1.1]">
                 {post.title}
               </h1>
 
               <FadeIn delay={0.2}>
-                <div className="flex flex-wrap items-center justify-between gap-8 py-8 border-y border-zinc-100">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:border-emerald-200 transition-colors">
-                      <User className="w-6 h-6 text-zinc-400" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-black text-zinc-950 uppercase tracking-wider">{post.author}</span>
-                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mt-1">Lead_Architect</span>
-                    </div>
+                <div className="flex items-center gap-4 py-6 border-y border-zinc-100">
+                  <div className="w-12 h-12 rounded-full bg-zinc-100 overflow-hidden border border-zinc-200 shrink-0">
+                    <Image 
+                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author}`} 
+                      alt={post.author}
+                      width={48}
+                      height={48}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <div className="flex flex-col md:text-right">
-                    <span className="text-xs font-black text-zinc-950 uppercase tracking-wider">{post.date}</span>
-                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] mt-1">Registry_Timestamp</span>
+                  <div>
+                    <div className="text-base font-bold text-zinc-900">{post.author}</div>
+                    <div className="text-sm text-zinc-500">{post.date}</div>
                   </div>
                 </div>
               </FadeIn>
             </header>
 
-            {/* Featured Visual */}
-            {post.image && (
-              <FadeIn delay={0.3}>
-                <div className="relative aspect-[21/10] mb-20 overflow-hidden rounded-[2.5rem] border border-zinc-200 grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
+            {/* Featured Image */}
+            <FadeIn delay={0.3}>
+              <div className="relative w-full aspect-[16/9] mb-16 overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50">
+                {hasImage ? (
                   <Image 
-                    src={post.image} 
+                    src={post.image!} 
                     alt={post.title}
-                    className="object-cover opacity-95"
-                  fill />
-                  <div className="absolute bottom-6 right-6 px-4 py-2 bg-black/80 backdrop-blur-md border border-white/10 text-[9px] font-mono text-white/70 uppercase tracking-[0.3em] rounded-full">
-                    Visual_Ref_01 // SECURE_ASSET
+                    className="object-cover"
+                    fill
+                    priority
+                    sizes="(max-width: 1200px) 100vw, 800px"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 to-zinc-100 flex items-center justify-center">
+                     <div className="w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay absolute inset-0 pointer-events-none" />
                   </div>
-                </div>
-              </FadeIn>
-            )}
+                )}
+              </div>
+            </FadeIn>
 
-            {/* Technical Body Content */}
-            <main className="prose prose-zinc max-w-none mb-32">
+            {/* Article Content */}
+            <main className="prose prose-zinc prose-lg max-w-none mb-24">
               <FadeIn delay={0.4}>
                 <MDXRemote source={post.content} components={components} />
               </FadeIn>
@@ -154,63 +144,40 @@ export default function PostLayout({ post }: PostLayoutProps) {
             <LeadCapture />
           </article>
 
-          {/* Fixed Side Navigation / Protocols */}
-          <aside>
-            <div className="sticky top-32 space-y-12">
+          {/* Sidebar */}
+          <aside className="hidden lg:block relative">
+            <div className="sticky top-32 space-y-8">
+              
+              {/* Table of Contents */}
               {tableOfContents.length > 0 && (
-                <div className="p-10 bg-zinc-50/50 border border-zinc-100 rounded-[2.5rem] backdrop-blur-sm">
-                  <div className="flex items-center gap-3 mb-10 pb-5 border-b border-zinc-200">
-                    <Cpu className="w-4 h-4 text-emerald-500" />
-                    <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-zinc-500">Navigation_Map</h4>
+                <div className="p-6 bg-zinc-50 rounded-3xl border border-zinc-100">
+                  <div className="flex items-center gap-2 mb-6">
+                    <List className="w-4 h-4 text-zinc-900" />
+                    <h4 className="text-sm font-bold text-zinc-900">In this article</h4>
                   </div>
-                  <nav className="space-y-6">
+                  <nav className="space-y-3">
                     {tableOfContents.map((item: any, index: number) => (
                       <a 
                         key={item.id || index} 
                         href={`#${item.id}`} 
-                        className="group flex gap-4 text-[11px] font-black text-zinc-400 hover:text-emerald-600 transition-all uppercase tracking-[0.2em]"
+                        className="block text-sm text-zinc-600 hover:text-emerald-600 transition-colors leading-relaxed"
                       >
-                        <span className="text-zinc-200 font-mono">[{index.toString().padStart(2, '0')}]</span>
-                        <span className="group-hover:translate-x-1 transition-transform">{item.title}</span>
+                        {item.title}
                       </a>
                     ))}
                   </nav>
                 </div>
               )}
 
-              {/* Protocol Status Badge */}
-              <div className="p-10 border-2 border-zinc-950 rounded-[2.5rem] bg-zinc-950 text-white shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-full" />
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-8">
-                    <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                    <h4 className="text-[11px] font-black uppercase tracking-[0.4em] text-zinc-400">Security_Manifest</h4>
-                  </div>
-                  <div className="space-y-6">
-                    <div className="flex justify-between items-center text-[10px] font-mono tracking-[0.2em] text-zinc-500 uppercase">
-                      <span>Origin</span>
-                      <span className="text-white">Easyio_Engineering</span>
-                    </div>
-                    <div className="flex justify-between items-center text-[10px] font-mono tracking-[0.2em] text-zinc-500 uppercase">
-                      <span>Verification</span>
-                      <span className="text-emerald-400">Validated_Auth</span>
-                    </div>
-                    <div className="flex justify-between items-center text-[10px] font-mono tracking-[0.2em] text-zinc-500 uppercase">
-                      <span>Protocol</span>
-                      <span className="text-white">HTTPS_TLS_1.3</span>
-                    </div>
-                  </div>
+              {/* Share Action */}
+              <button className="w-full group p-6 border border-zinc-200 rounded-3xl flex items-center justify-between hover:border-zinc-300 hover:shadow-sm transition-all bg-white">
+                <div className="flex items-center gap-3">
+                  <Share2 className="w-4 h-4 text-zinc-500 group-hover:text-zinc-900 transition-colors" />
+                  <span className="text-sm font-semibold text-zinc-900">Share this article</span>
                 </div>
-              </div>
-
-              {/* Action Sectors */}
-              <button className="w-full group p-8 border border-zinc-200 rounded-[2.5rem] flex items-center justify-between hover:bg-zinc-50 transition-all">
-                <div className="flex items-center gap-4">
-                  <Share2 className="w-5 h-5 text-zinc-400 group-hover:text-emerald-500 transition-colors" />
-                  <span className="text-[11px] font-black uppercase tracking-[0.3em] text-zinc-950">Share_Registry</span>
-                </div>
-                <ArrowRight className="w-4 h-4 text-zinc-300 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:translate-x-1 transition-transform" />
               </button>
+
             </div>
           </aside>
         </div>
