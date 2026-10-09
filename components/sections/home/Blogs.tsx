@@ -137,7 +137,7 @@ function BlogCard({ post, index }: { post: any; index: number }) {
                     loading="lazy"
                     decoding="async"
                     className=""
-                   fill />
+                   />
                 </div>
                 <div className="flex flex-col gap-0.5">
                    <span className="text-[10px] font-bold text-zinc-950 uppercase tracking-wide">{post.author}</span>
