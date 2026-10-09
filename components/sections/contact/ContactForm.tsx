@@ -43,124 +43,93 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <FadeIn>
-        <div className="py-24 text-center border-2 border-dashed border-emerald-100 rounded-[3rem] bg-emerald-50/20 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none" />
-          <div className="w-24 h-24 rounded-full bg-emerald-600 flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-emerald-500/20 relative z-10">
-            <CheckCircle2 className="w-10 h-10 text-white" />
+        <div className="py-20 text-center rounded-2xl bg-emerald-50/50 border border-emerald-100 flex flex-col items-center justify-center">
+          <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mb-6">
+            <CheckCircle2 className="w-8 h-8 text-emerald-600" />
           </div>
-          <h3 className="text-4xl font-black text-zinc-950 tracking-tight mb-6 uppercase relative z-10">Message Sent</h3>
-          <p className="text-xl text-zinc-600 font-medium font-serif italic relative z-10">Your message has been sent successfully. <br /> We'll get back to you within 24 hours.</p>
-          
-          <div className="mt-12 pt-8 border-t border-emerald-100/50 flex items-center justify-center gap-10 opacity-60">
-             <div className="text-[10px] font-mono font-black text-emerald-700 uppercase tracking-widest">SEQ_ID: {Math.random().toString(36).substring(7).toUpperCase()}</div>
-             <div className="text-[10px] font-mono font-black text-emerald-700 uppercase tracking-widest">STATUS: DELIVERED</div>
-          </div>
+          <h3 className="text-2xl font-bold text-zinc-900 mb-3">Message Sent</h3>
+          <p className="text-zinc-600 text-lg max-w-sm">
+            Thank you for reaching out! We'll get back to you within 24 hours.
+          </p>
         </div>
       </FadeIn>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
-      <div className="grid md:grid-cols-2 gap-10">
-        <div className="space-y-4">
-          <div className="flex justify-between items-center px-1">
-            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-950 block">
-              Full Name
-            </label>
-            <span className="text-[9px] font-mono text-zinc-300">STEP_01</span>
-          </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-zinc-900 block">
+            Full Name
+          </label>
           <input
             {...register('name')}
             type="text"
-            placeholder="e.g. John Doe"
-            className="w-full h-16 px-8 rounded-2xl bg-zinc-50 border-2 border-transparent text-zinc-950 placeholder:text-zinc-300 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all font-medium text-base shadow-sm"
+            placeholder="John Doe"
+            className="w-full h-12 px-4 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium"
           />
-          {errors.name && <p className="text-red-500 text-[9px] font-black uppercase tracking-wider pl-1">{errors.name.message}</p>}
+          {errors.name && <p className="text-red-500 text-xs font-medium mt-1">{errors.name.message}</p>}
         </div>
-        <div className="space-y-4">
-          <div className="flex justify-between items-center px-1">
-            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-950 block">
-              Email Address
-            </label>
-            <span className="text-[9px] font-mono text-zinc-300">STEP_02</span>
-          </div>
+        <div className="space-y-2">
+          <label className="text-sm font-semibold text-zinc-900 block">
+            Email Address
+          </label>
           <input
             {...register('email')}
             type="email"
             placeholder="john@example.com"
-            className="w-full h-16 px-8 rounded-2xl bg-zinc-50 border-2 border-transparent text-zinc-950 placeholder:text-zinc-300 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all font-medium text-base shadow-sm"
+            className="w-full h-12 px-4 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium"
           />
-          {errors.email && <p className="text-red-500 text-[9px] font-black uppercase tracking-wider pl-1">{errors.email.message}</p>}
+          {errors.email && <p className="text-red-500 text-xs font-medium mt-1">{errors.email.message}</p>}
         </div>
       </div>
 
-      <div className="space-y-4">
-        <div className="flex justify-between items-center px-1">
-          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-950 block">
+      <div className="space-y-2">
+        <div className="flex justify-between items-center">
+          <label className="text-sm font-semibold text-zinc-900 block">
             Organization
           </label>
-          <div className="flex items-center gap-3">
-            <span className="text-[9px] font-mono text-zinc-300 uppercase">Optional</span>
-            <span className="text-[9px] font-mono text-zinc-300">STEP_03</span>
-          </div>
+          <span className="text-xs text-zinc-500">Optional</span>
         </div>
         <input
           {...register('company')}
           type="text"
           placeholder="Your company name"
-          className="w-full h-16 px-8 rounded-2xl bg-zinc-50 border-2 border-transparent text-zinc-950 placeholder:text-zinc-300 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all font-medium text-base shadow-sm"
+          className="w-full h-12 px-4 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium"
         />
       </div>
 
-      <div className="space-y-4">
-        <div className="flex justify-between items-center px-1">
-          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-950 block">
-            Tell us about your project
-          </label>
-          <span className="text-[9px] font-mono text-zinc-300">STEP_04</span>
-        </div>
+      <div className="space-y-2">
+        <label className="text-sm font-semibold text-zinc-900 block">
+          Project Details
+        </label>
         <textarea
           {...register('message')}
-          rows={6}
-          placeholder="Tell us what you need and what your goals are..."
-          className="w-full p-8 rounded-2xl bg-zinc-50 border-2 border-transparent text-zinc-950 placeholder:text-zinc-300 focus:outline-none focus:border-emerald-500 focus:bg-white transition-all resize-none font-medium text-lg leading-relaxed shadow-sm"
+          rows={5}
+          placeholder="Tell us what you need..."
+          className="w-full p-4 rounded-xl bg-zinc-50 border border-zinc-200 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all resize-none font-medium leading-relaxed"
         />
-        {errors.message && <p className="text-red-500 text-[9px] font-black uppercase tracking-wider pl-1">{errors.message.message}</p>}
+        {errors.message && <p className="text-red-500 text-xs font-medium mt-1">{errors.message.message}</p>}
       </div>
 
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full h-20 bg-zinc-950 text-white text-[11px] font-black uppercase tracking-[0.4em] flex items-center justify-center gap-4 hover:bg-emerald-600 rounded-2xl transition-all shadow-2xl shadow-emerald-500/10 group active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+        className="w-full h-14 bg-zinc-900 text-white text-sm font-bold flex items-center justify-center gap-2 hover:bg-emerald-600 rounded-xl transition-all shadow-sm active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
       >
         {isLoading ? (
-          <div className="flex items-center gap-4">
-            <div className="w-2 h-2 rounded-full bg-white animate-ping" />
-            <span className="animate-pulse">Sending Message...</span>
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+            <span>Sending...</span>
           </div>
         ) : (
           <>
             Send Message
-            <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            <Send className="w-4 h-4" />
           </>
         )}
       </button>
-      
-      <div className="pt-8 flex flex-wrap items-center justify-center gap-x-16 gap-y-6">
-        <div className="flex items-center gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-          <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Safe & Secure</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-          <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Fast Support</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-          <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Works Everywhere</span>
-        </div>
-      </div>
     </form>
   );
 }

@@ -1,4 +1,4 @@
-import { Mail, MapPin, Globe, ArrowRight } from "lucide-react";
+import { Mail, ArrowRight, ArrowUpRight } from "lucide-react";
 import ContactForm from "@/components/sections/contact/ContactForm";
 import { siteConfig } from "@/config/site";
 import PageWrapper from "@/components/layout/PageWrapper";
@@ -9,31 +9,25 @@ import { generateMetadata } from "@/lib/seo";
 export const metadata = generateMetadata({
   title: "Contact",
   description: "Initialize communication with Easyio Technologies for mission-critical software engineering, architecture, and AI infrastructure projects in Kashmir and India.",
-  keywords: ["contact easyio", "software engineering kashmir", "tech company srinagar", "project initialization", "easyio technologies contact"],
 });
 
 export default function ContactPage() {
   return (
     <PageWrapper>
-      {/* Hero Section - Standardized with Homepage */}
-      <section className="min-h-[70vh] pt-32 md:pt-48 pb-20 relative flex items-center overflow-hidden">
-
-
-        <div className="max-w-[1600px] mx-auto px-6 relative z-10 w-full">
-          <div className="max-w-4xl">
-
-
+      {/* Hero Section */}
+      <section className="min-h-[60vh] pt-32 md:pt-48 pb-16 relative flex items-center">
+        <div className="max-w-[1200px] mx-auto px-6 relative w-full">
+          <div className="max-w-3xl">
             <PremiumHeading 
-              text="Start your project."
-              highlightWords={["project."]}
-              className="text-6xl md:text-8xl lg:text-[120px] font-bold tracking-tight text-zinc-900 mb-10 leading-[0.85]"
-              highlightClassName="font-serif italic font-medium text-zinc-400 block mt-2"
+              text="Let's build something great."
+              highlightWords={["great."]}
+              className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 mb-8 leading-[1.1]"
+              highlightClassName="text-emerald-600 block mt-2"
             />
-
             <PremiumSubheading 
               delay={0.4}
-              text="Have a big idea? We're ready to build your next great product. Send us a message below to get started."
-              className="text-zinc-500 text-lg md:text-2xl max-w-2xl leading-relaxed font-medium"
+              text="Have a project in mind? We'd love to hear about it. Send us a message and we'll get back to you within 24 hours."
+              className="text-zinc-600 text-lg md:text-xl max-w-2xl leading-relaxed"
             />
           </div>
         </div>
@@ -41,85 +35,56 @@ export default function ContactPage() {
 
       {/* Main Contact Surface */}
       <section className="pb-32 relative">
-        <div className="max-w-[1600px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-12 items-stretch">
+        <div className="max-w-[1200px] mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
             
-            {/* Left Side: Technical Metadata Cards */}
-            <div className="lg:w-1/3 flex flex-col gap-6">
+            {/* Left Side: Contact Information */}
+            <div className="lg:w-1/3 flex flex-col gap-12 pt-4">
               <FadeIn delay={0.6}>
-                <div className="p-10 bg-white border border-zinc-100/60 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.02)] h-full flex flex-col justify-between group hover:border-emerald-200/50 transition-colors duration-500">
-                  <div className="space-y-12">
-                    <div className="flex items-center justify-between border-b border-zinc-50 pb-6">
-                      <div className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-400">Project Details</div>
-                      <Mail className="w-4 h-4 text-emerald-500/50" />
+                <div className="space-y-12">
+                  
+                  {/* Direct Contact */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-zinc-900 mb-6 uppercase tracking-wider">Contact Details</h3>
+                    <div className="space-y-4">
+                      <a href={`mailto:${siteConfig.email.contact}`} className="group flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors text-lg">
+                        <Mail className="w-5 h-5 text-zinc-400 group-hover:text-emerald-500" />
+                        {siteConfig.email.contact}
+                      </a>
+                      <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} className="group flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors text-lg">
+                        <span className="w-5 h-5 flex items-center justify-center text-zinc-400 group-hover:text-emerald-500">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </span>
+                        {siteConfig.phone}
+                      </a>
                     </div>
-                    
-                    <div className="space-y-10">
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 block mb-4">Direct Link</span>
-                        <a href={`mailto:${siteConfig.email.contact}`} className="text-xl md:text-2xl font-black text-zinc-950 hover:text-emerald-600 transition-all tracking-tighter block group-hover:translate-x-2 duration-500 mb-2">
-                          {siteConfig.email.contact}
-                        </a>
-                        <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} className="text-xl md:text-2xl font-black text-zinc-950 hover:text-emerald-600 transition-all tracking-tighter block group-hover:translate-x-2 duration-500">
-                          {siteConfig.phone}
-                        </a>
-                      </div>
-                      
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 block mb-4">Base Operations</span>
-                        <div className="text-lg md:text-xl font-bold text-zinc-950 tracking-tight leading-tight max-w-[260px]">
-                          {siteConfig.location}
-                        </div>
-                      </div>
-                    </div>
+                  </div>
+                  
+                  {/* Location */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-zinc-900 mb-4 uppercase tracking-wider">Office Location</h3>
+                    <p className="text-lg text-zinc-600 leading-relaxed max-w-[260px]">
+                      {siteConfig.location}
+                    </p>
+                    <a href="https://maps.google.com/?q=Easyio+Technologies+Sopore" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-emerald-600 font-medium mt-4 hover:text-emerald-700 transition-colors">
+                      View on Maps
+                      <ArrowUpRight className="w-4 h-4" />
+                    </a>
                   </div>
 
-                  <div className="mt-20 pt-8 border-t border-zinc-50 flex items-center justify-between">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600/60">Status: Operational</span>
-                    <Globe className="w-5 h-5 text-zinc-200" />
-                  </div>
-                </div>
-              </FadeIn>
-              
-              {/* Google Business Profile / Map Placeholder */}
-              <FadeIn delay={0.7}>
-                <div className="p-4 bg-white border border-zinc-100/60 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.02)] overflow-hidden">
-                  <div className="aspect-square md:aspect-[4/3] w-full rounded-[1.5rem] overflow-hidden relative bg-zinc-50">
-                    <iframe 
-                      src="https://maps.google.com/maps?q=War%20complex,%20Block%20B,%20Main%20chowk%20Tehsil%20Road,%20Sopore,%20Jammu%20and%20Kashmir%20193201&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                      className="absolute inset-0 w-full h-full border-0"
-                      allowFullScreen={false} 
-                      loading="lazy" 
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Easyio Technologies Location Sopore Kashmir"
-                    />
-                  </div>
                 </div>
               </FadeIn>
             </div>
 
-            {/* Right Side: The Interactive Interface */}
-            <div className="flex-1">
+            {/* Right Side: The Contact Form */}
+            <div className="flex-1 w-full">
               <FadeIn delay={0.5}>
-                <div className="bg-white border border-zinc-100/80 rounded-[3rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.05)] p-10 md:p-16 lg:p-20 relative overflow-hidden group">
-                  {/* Internal Mesh Effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
-                    <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[50%] bg-emerald-50/50 blur-[100px] rounded-full" />
+                <div className="bg-white border border-zinc-200 rounded-3xl shadow-sm p-8 md:p-12 relative overflow-hidden">
+                  <div className="mb-10">
+                    <h2 className="text-2xl font-bold text-zinc-900 mb-2">Send us a message</h2>
+                    <p className="text-zinc-500">We'll get back to you as soon as possible.</p>
                   </div>
-                  
-                  <div className="relative z-10">
-                    <div className="flex items-center justify-between mb-16">
-                      <div className="space-y-1">
-                         <h2 className="text-3xl font-black text-zinc-950 tracking-tight uppercase">New Project</h2>
-                         <p className="text-sm text-zinc-400 font-medium">Step 01: Tell us what you need</p>
-                      </div>
-                      <div className="w-12 h-12 rounded-full border border-zinc-100 flex items-center justify-center">
-                        <ArrowRight className="w-5 h-5 text-zinc-300" />
-                      </div>
-                    </div>
-                    
-                    <ContactForm />
-                  </div>
+                  <ContactForm />
                 </div>
               </FadeIn>
             </div>
