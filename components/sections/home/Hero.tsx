@@ -1,7 +1,6 @@
 'use client';
 
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUpRight, Star, ArrowRight, Activity, Cloud, Database, Layout, Hexagon, Zap } from "lucide-react";
 import { FadeIn, Marquee } from "@/components/shared/Animations";
 import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHeading";
@@ -13,8 +12,8 @@ export default function Hero() {
     <section className="relative pt-32 pb-20 md:pt-56 md:pb-32 overflow-hidden flex flex-col items-center justify-center">
       {/* Enhanced Mesh Gradient Background - Matches CTA */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] bg-emerald-100/30 blur-[120px] rounded-full animate-pulse will-change-[opacity]" style={{ animationDuration: '10s' }} />
-        <div className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[70%] bg-yellow-100/30 blur-[120px] rounded-full animate-pulse will-change-[opacity]" style={{ animationDuration: '12s', animationDelay: '3s' }} />
+        <div className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] bg-emerald-100/30 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '10s' }} />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[70%] bg-yellow-100/30 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '12s', animationDelay: '3s' }} />
         <div className="absolute top-1/4 left-1/4 w-[50%] h-[50%] bg-white/40 blur-[100px] rounded-full" />
       </div>
       
@@ -27,11 +26,11 @@ export default function Hero() {
             className="text-5xl md:text-8xl lg:text-[110px] font-black tracking-tighter text-zinc-950 mb-8 leading-none max-w-[1200px]"
           />
 
-          <FadeIn delay={0.6}>
-            <p className="text-zinc-400 text-base md:text-xl font-medium max-w-2xl mx-auto mb-12 leading-tight">
-              We engineer scalable <Link href="/software-development-company-in-kashmir" className="text-zinc-950 underline decoration-zinc-300 hover:decoration-emerald-500 hover:text-emerald-600 transition-colors">custom software development</Link> and <Link href="/web-development-company-in-srinagar" className="text-zinc-950 underline decoration-zinc-300 hover:decoration-emerald-500 hover:text-emerald-600 transition-colors">high-performance web development</Link> solutions. From MVPs to global scale, view our <Link href="/case-studies" className="text-zinc-950 underline decoration-zinc-300 hover:decoration-emerald-500 hover:text-emerald-600 transition-colors">recent engineering projects</Link> to see how we help businesses move faster. Read <Link href="/about" className="text-zinc-950 underline decoration-zinc-300 hover:decoration-emerald-500 hover:text-emerald-600 transition-colors">about us</Link> to learn more.
-            </p>
-          </FadeIn>
+          <PremiumSubheading 
+            delay={0.6}
+            text="We design and build clean, scalable digital products. From mvps to global scale, we're the partner you need to move faster."
+            className="text-zinc-400 text-base md:text-xl font-medium max-w-xl mx-auto mb-12 leading-tight"
+          />
 
           <FadeIn delay={0.4}>
             <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
@@ -49,7 +48,7 @@ export default function Hero() {
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4].map((i) => (
                     <div key={i} className="w-10 h-10 rounded-full border-2 border-[#FEF9C3] bg-zinc-100 overflow-hidden shadow-sm">
-                       <Image src={`/images/avatar_${i}.jpg`} alt="User" width={40} height={40} sizes="40px" className="w-full h-full object-cover" />
+                       <img src={`/images/avatar_${i}.jpg`} alt="User" className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>
