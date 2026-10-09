@@ -16,7 +16,8 @@ export const siteConfig = {
     support: "support@easyio.tech",
     careers: "careers@easyio.tech",
   },
-  location: "Srinagar, Kashmir",
+  phone: "+91 60056 59527",
+  location: "War Complex, Block B, Sopore, J&K 193201",
   year: new Date().getFullYear(),
 };
 

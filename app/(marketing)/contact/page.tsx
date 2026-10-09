@@ -67,14 +67,17 @@ export default function ContactPage() {
                     <div className="space-y-10">
                       <div>
                         <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 block mb-4">Direct Link</span>
-                        <a href={`mailto:${siteConfig.email.contact}`} className="text-2xl md:text-3xl font-black text-zinc-950 hover:text-emerald-600 transition-all tracking-tighter block group-hover:translate-x-2 duration-500">
+                        <a href={`mailto:${siteConfig.email.contact}`} className="text-xl md:text-2xl font-black text-zinc-950 hover:text-emerald-600 transition-all tracking-tighter block group-hover:translate-x-2 duration-500 mb-2">
                           {siteConfig.email.contact}
+                        </a>
+                        <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} className="text-xl md:text-2xl font-black text-zinc-950 hover:text-emerald-600 transition-all tracking-tighter block group-hover:translate-x-2 duration-500">
+                          {siteConfig.phone}
                         </a>
                       </div>
                       
                       <div>
                         <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 block mb-4">Base Operations</span>
-                        <div className="text-xl md:text-2xl font-bold text-zinc-950 tracking-tight leading-tight max-w-[240px]">
+                        <div className="text-lg md:text-xl font-bold text-zinc-950 tracking-tight leading-tight max-w-[260px]">
                           {siteConfig.location}
                         </div>
                       </div>
@@ -93,12 +96,12 @@ export default function ContactPage() {
                 <div className="p-4 bg-white border border-zinc-100/60 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.02)] overflow-hidden">
                   <div className="aspect-square md:aspect-[4/3] w-full rounded-[1.5rem] overflow-hidden relative bg-zinc-50">
                     <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105658.26188410712!2d74.72124508493134!3d34.08365287968565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18f26da7347a3%3A0xc62eb4106cd4d6d6!2sSrinagar!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                      src="https://maps.google.com/maps?q=War%20complex,%20Block%20B,%20Main%20chowk%20Tehsil%20Road,%20Sopore,%20Jammu%20and%20Kashmir%20193201&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                       className="absolute inset-0 w-full h-full border-0"
                       allowFullScreen={false} 
                       loading="lazy" 
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Easyio Technologies Location Srinagar Kashmir"
+                      title="Easyio Technologies Location Sopore Kashmir"
                     />
                   </div>
                 </div>

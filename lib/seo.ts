@@ -70,9 +70,9 @@ export function generateMetadata({
     },
     other: {
       "geo.region": "IN-JK",
-      "geo.placename": "Srinagar",
-      "geo.position": "34.0837;74.7973",
-      "ICBM": "34.0837, 74.7973",
+      "geo.placename": "Sopore",
+      "geo.position": "34.2987;74.4728",
+      "ICBM": "34.2987, 74.4728",
     },
   };
 }
@@ -95,7 +95,7 @@ export const MASTER_SCHEMA = {
         "@type": "ImageObject",
         url: `${SITE_URL}/logo.png`,
       },
-      description: "Top software development company in Srinagar, Kashmir, building high-performance systems and custom digital solutions for startups and enterprises.",
+      description: "Top software development company in Sopore, Kashmir, building high-performance systems and custom digital solutions for startups and enterprises.",
       sameAs: [
         "https://twitter.com/easyiotech",
         "https://linkedin.com/company/easyiotech",
@@ -130,29 +130,30 @@ export const MASTER_SCHEMA = {
       name: "Easyio Technologies",
       image: `${SITE_URL}/og-image.png`,
       url: SITE_URL,
-      telephone: "+91-9596418226", 
+      telephone: "+91-6005659527", 
       parentOrganization: {
         "@id": `${SITE_URL}/#organization`
       },
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Rangreth STPI",
-        addressLocality: "Srinagar",
+        streetAddress: "First Floor, War Complex, Block 'B', Main Chowk Tehsil Road",
+        addressLocality: "Sopore",
         addressRegion: "Jammu and Kashmir",
-        postalCode: "191132",
+        postalCode: "193201",
         addressCountry: "IN"
       },
       geo: {
         "@type": "GeoCoordinates",
-        latitude: 33.9922,
-        longitude: 74.7925
+        latitude: 34.2987,
+        longitude: 74.4728
       },
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         opens: "09:00",
-        closes: "18:00"
+        closes: "17:00"
       }
     }
   ]
 };
+
