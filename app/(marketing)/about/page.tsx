@@ -31,8 +31,8 @@ const values = [
 ];
 
 const team = [
-  { name: "Mohammad Faheem", role: "CEO", image: "/images/avatar_1.jpg" },
-  { name: "Burhan Ali", role: "CTO", image: "/images/avatar_2.jpg" },
+  { name: "Mohammad Faheem", role: "CEO", image: "/images/avatar_4.jpg" },
+  { name: "Burhan Ali", role: "CTO", image: "/images/avatar_1.jpg" },
   { name: "Mohammad Ayoob", role: "CFO", image: "/images/avatar_3.jpg" }
 ];
 
