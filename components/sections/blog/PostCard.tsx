@@ -61,7 +61,10 @@ export default function PostCard({ post, index }: { post: BlogPost; index: numbe
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center overflow-hidden border border-zinc-200">
                  <Image 
-                    src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author}`} 
+                    src={post.author.toLowerCase().includes('arsalan') ? '/images/avatar_1.jpg' : 
+                         post.author.toLowerCase().includes('suhaib') ? '/images/avatar_2.jpg' : 
+                         post.author.toLowerCase().includes('shariq') ? '/images/avatar_3.jpg' : 
+                         '/images/avatar_4.jpg'} 
                     alt={post.author}
                     width={40}
                     height={40}

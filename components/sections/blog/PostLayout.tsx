@@ -99,7 +99,10 @@ export default function PostLayout({ post }: PostLayoutProps) {
                 <div className="flex items-center gap-4 py-6 border-y border-zinc-100">
                   <div className="w-12 h-12 rounded-full bg-zinc-100 overflow-hidden border border-zinc-200 shrink-0">
                     <Image 
-                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author}`} 
+                      src={post.author.toLowerCase().includes('arsalan') ? '/images/avatar_1.jpg' : 
+                           post.author.toLowerCase().includes('suhaib') ? '/images/avatar_2.jpg' : 
+                           post.author.toLowerCase().includes('shariq') ? '/images/avatar_3.jpg' : 
+                           '/images/avatar_4.jpg'} 
                       alt={post.author}
                       width={48}
                       height={48}
