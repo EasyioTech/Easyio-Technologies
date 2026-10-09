@@ -5,7 +5,12 @@ import { desc } from 'drizzle-orm';
 import { BlogManager } from '@/modules/admin/components/BlogManager';
 
 export default async function BlogAdminPage() {
-  const posts = await db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt));
+  let posts: any[] = [];
+  try {
+    posts = await db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt));
+  } catch (error) {
+    console.error("Database error in BlogAdminPage:", error);
+  }
 
   return (
     <BlogManager initialPosts={posts} />

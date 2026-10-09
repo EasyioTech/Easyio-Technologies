@@ -5,7 +5,12 @@ import { desc } from 'drizzle-orm';
 import { ProjectManager } from '@/modules/admin/components/ProjectManager';
 
 export default async function ProjectsAdminPage() {
-  const allProjects = await db.select().from(projects).orderBy(desc(projects.createdAt));
+  let allProjects: any[] = [];
+  try {
+    allProjects = await db.select().from(projects).orderBy(desc(projects.createdAt));
+  } catch (error) {
+    console.error("Database error in ProjectsAdminPage:", error);
+  }
 
   return (
     <ProjectManager initialProjects={allProjects} />
