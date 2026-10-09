@@ -1,18 +1,17 @@
 import PageWrapper from "@/components/layout/PageWrapper";
 import { FadeIn } from "@/components/shared/Animations";
-import Image from "next/image";
 import Link from "next/link";
 import { 
-  ArrowDownRight, Globe, Shield, Zap, Terminal, 
+  ArrowDownRight, Shield, Zap, Terminal, 
   Cpu, HardDrive, Network, Code2, Layers, 
-  ShieldCheck, Activity, Database, Fingerprint, ArrowRight
+  ShieldCheck, Database, Fingerprint, ArrowRight
 } from "lucide-react";
 import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHeading";
 
 export const metadata = {
   title: "About | Easyio Technologies",
   description: "Discover our commitment to mission-critical engineering, high-performance architectures, and technical sovereignty.",
-  keywords: "software company srinagar, it services kashmir, easyio team, software engineering india, high-performance systems"
+  keywords: "software company kashmir, it services sopore, easyio team, software engineering india, high-performance systems"
 };
 
 const principles = [
@@ -21,141 +20,106 @@ const principles = [
     title: "Fast & Reliable Systems",
     desc: "We build systems that work instantly. We focus on speed at every level, ensuring your software is always fast and responsive.",
     icon: Zap,
-    tag: "MAX_SPEED"
   },
   {
     index: "02",
     title: "You Own Everything",
     desc: "Software built for complete ownership. No hidden rules or vendor traps—just clean, custom tools made specifically for your business.",
     icon: ShieldCheck,
-    tag: "FULL_OWNERSHIP"
   },
   {
     index: "03",
     title: "Built to Last",
     desc: "We build for the long term. Our software is designed to grow with you, staying modern and useful for years to come.",
     icon: HardDrive,
-    tag: "LONG_TERM_VALUE"
   }
 ];
 
 const infrastructureNodes = [
-  { label: "Brain Layer", value: "Smart Computing", icon: Cpu },
-  { label: "Data Storage", value: "Always-On Storage", icon: Database },
-  { label: "Security", value: "Strong Encryption", icon: Fingerprint },
-  { label: "Network", value: "Lightning Fast Delivery", icon: Network }
+  { label: "Smart Computing", value: "Built for scale and rapid execution", icon: Cpu },
+  { label: "Data Storage", value: "Always-on, distributed databases", icon: Database },
+  { label: "Security", value: "Enterprise-grade strong encryption", icon: Fingerprint },
+  { label: "Network", value: "Lightning-fast global delivery", icon: Network }
 ];
 
 export default function AboutPage() {
   return (
     <PageWrapper>
-      <main className="w-full bg-white text-zinc-950 font-sans selection:bg-emerald-600 selection:text-white pb-20">
+      <main className="w-full bg-white text-zinc-900 font-sans pb-20">
         
-        {/* Hero Section - Standardized Premium Layout */}
+        {/* Hero Section */}
         <section className="pt-32 md:pt-48 pb-20 relative overflow-hidden">
-
-
-          <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
+          <div className="max-w-[1200px] mx-auto px-6 relative z-10 text-center">
             <div className="flex flex-col items-center">
-
-
               <PremiumHeading 
                 text="Building your digital future."
                 highlightWords={["future."]}
-                className="text-5xl md:text-8xl lg:text-[110px] font-bold tracking-tight text-zinc-900 mb-8 leading-none max-w-[1200px]"
-                highlightClassName="font-serif italic font-medium text-zinc-400"
+                className="text-5xl md:text-7xl lg:text-[90px] font-bold tracking-tight text-zinc-900 mb-8 leading-[1.1] max-w-[1000px]"
+                highlightClassName="text-emerald-600"
               />
 
               <PremiumSubheading 
                 delay={0.4}
-                text="Based in the beautiful city of Srinagar, we build powerful digital tools that help businesses grow worldwide."
-                className="text-zinc-500 text-base md:text-xl max-w-2xl leading-relaxed font-medium mb-12"
+                text="Based in Kashmir, we build powerful digital tools and software infrastructure that help businesses scale securely worldwide."
+                className="text-zinc-600 text-lg md:text-xl max-w-2xl leading-relaxed mt-6"
               />
             </div>
           </div>
         </section>
 
-        {/* Narrative Section - Clean Grid */}
-        <section className="py-24 border-y border-zinc-100 bg-zinc-50/50 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[800px] h-full bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.02)_0%,transparent_70%)] pointer-events-none" />
-          
-          <div className="max-w-[1440px] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
-              <div className="lg:col-span-5">
-                <FadeIn>
-                  <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden grayscale bg-zinc-100 border border-zinc-200 shadow-2xl relative group">
-                    <Image 
-                      src="/images/about_lab.png" 
-                      alt="Operations" 
-                      className="object-cover transition-transform duration-1000 group-hover:scale-105" 
-                    fill />
-                    <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        {/* Narrative Section */}
+        <section className="py-24 border-y border-zinc-100 bg-zinc-50 relative overflow-hidden">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <FadeIn delay={0.2}>
+                <div className="text-center mb-16">
+                  <ArrowDownRight className="w-10 h-10 text-emerald-500 mx-auto mb-8" />
+                  <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 mb-8 leading-tight">
+                    Beyond the traditional tech hub.
+                  </h2>
+                  <p className="text-lg text-zinc-600 leading-relaxed mb-12">
+                    We focus on deep work and great engineering. Our space in Sopore is built for creators who care more about making things work perfectly than just following the latest trends. We believe world-class software can be built from anywhere when you have the right team.
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="p-10 bg-white rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition-all">
+                    <Code2 className="w-8 h-8 text-emerald-500 mb-6" />
+                    <h4 className="text-xl font-bold text-zinc-900 mb-3">High-End Software</h4>
+                    <p className="text-zinc-600 leading-relaxed">Premium design and architecture engineered for exceptional performance.</p>
                   </div>
-                </FadeIn>
-              </div>
-              
-              <div className="lg:col-span-7">
-                <FadeIn delay={0.2}>
-                  <div className="mb-12">
-                    <ArrowDownRight className="w-12 h-12 text-emerald-500 mb-8" />
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-zinc-950 mb-8 leading-tight">
-                      Beyond the traditional <br /> <span className="text-zinc-400 font-serif italic">tech hub.</span>
-                    </h2>
-                    <p className="text-lg md:text-xl text-zinc-500 leading-relaxed font-medium mb-12 max-w-2xl">
-                      We focus on deep work and great engineering. Our space is built for creators who care more about making things work perfectly than just following the latest trends. To see where the magic happens, <Link href="/contact" className="text-emerald-600 hover:underline">visit our STPI Srinagar office</Link> or return to the <Link href="/" className="text-emerald-600 hover:underline">Easyio Technologies homepage</Link> to view our services.
-                    </p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10 border-t border-zinc-100">
-                      <div className="p-8 bg-white rounded-3xl border border-zinc-100 shadow-sm group hover:border-emerald-200 transition-all">
-                        <Code2 className="w-6 h-6 text-emerald-500 mb-4" />
-                        <h4 className="text-lg font-bold text-zinc-950 mb-2">High-End Software</h4>
-                        <p className="text-sm text-zinc-500">Premium design and architecture.</p>
-                      </div>
-                      <div className="p-8 bg-white rounded-3xl border border-zinc-100 shadow-sm group hover:border-emerald-200 transition-all">
-                        <Layers className="w-6 h-6 text-emerald-500 mb-4" />
-                        <h4 className="text-lg font-bold text-zinc-950 mb-2">Smart Growth</h4>
-                        <p className="text-sm text-zinc-500">Built to scale organically.</p>
-                      </div>
-                    </div>
+                  <div className="p-10 bg-white rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition-all">
+                    <Layers className="w-8 h-8 text-emerald-500 mb-6" />
+                    <h4 className="text-xl font-bold text-zinc-900 mb-3">Smart Growth</h4>
+                    <p className="text-zinc-600 leading-relaxed">Built to scale organically without bloated dependencies or lock-ins.</p>
                   </div>
-                </FadeIn>
-              </div>
+                </div>
+              </FadeIn>
             </div>
           </div>
         </section>
 
-        {/* Principles Section - Structural Cards */}
+        {/* Principles Section */}
         <section className="py-32">
-          <div className="max-w-[1440px] mx-auto px-6">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-12">
-              <div className="max-w-3xl">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600">Core Values</h2>
-                </div>
-                <h3 className="text-5xl md:text-7xl font-black tracking-tighter text-zinc-950 leading-none">
-                  Our Core <br />
-                  <span className="text-zinc-400 font-serif italic">Principles.</span>
-                </h3>
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <div className="inline-flex items-center gap-2 mb-6">
+                <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">Core Values</span>
               </div>
-              <div className="md:text-right">
-                <p className="text-lg font-medium text-zinc-500 max-w-sm">
-                  Built for the next generation of the internet.
-                </p>
-              </div>
+              <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-tight">
+                Our Core Principles
+              </h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {principles.map((p, i) => (
                 <FadeIn key={p.title} delay={i * 0.1}>
-                  <div className="p-10 bg-white border border-zinc-100 rounded-3xl shadow-sm h-full flex flex-col hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-500 group relative overflow-hidden">
-                    
-                    <div className="w-14 h-14 bg-zinc-50 border border-zinc-100 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-zinc-950 group-hover:border-zinc-950 transition-all duration-500">
-                      <p.icon className="w-6 h-6 text-zinc-400 group-hover:text-emerald-400 transition-colors" />
+                  <div className="p-10 bg-white border border-zinc-200 rounded-3xl shadow-sm h-full flex flex-col hover:border-zinc-300 hover:shadow-lg transition-all duration-300">
+                    <div className="w-14 h-14 bg-zinc-50 border border-zinc-200 rounded-2xl flex items-center justify-center mb-8">
+                      <p.icon className="w-6 h-6 text-emerald-600" />
                     </div>
-                    
-                    <h4 className="text-2xl font-black tracking-tight text-zinc-950 mb-4">{p.title}</h4>
-                    <p className="text-base text-zinc-500 leading-relaxed font-medium">
+                    <h4 className="text-xl font-bold text-zinc-900 mb-4">{p.title}</h4>
+                    <p className="text-zinc-600 leading-relaxed">
                       {p.desc}
                     </p>
                   </div>
@@ -165,29 +129,26 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Infrastructure Nodes Section */}
-        <section className="py-32 bg-zinc-950 rounded-[3rem] mx-6 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[60%] h-full bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
-          
-          <div className="max-w-[1440px] mx-auto px-6 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-20 items-center">
-              <div>
-                <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500 mb-8">Infrastructure</h2>
-                <h3 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-10 leading-none">
-                  Built for <br />
-                  <span className="text-zinc-500 italic font-serif">Perfect Connection.</span>
+        {/* Infrastructure Section */}
+        <section className="py-24 bg-zinc-50 border-y border-zinc-100">
+          <div className="max-w-[1200px] mx-auto px-6">
+            <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+              <div className="flex-1">
+                <h2 className="text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-6">Infrastructure</h2>
+                <h3 className="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight mb-8 leading-tight">
+                  Built for perfect connection.
                 </h3>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
                   {infrastructureNodes.map((node, i) => (
                     <FadeIn key={node.label} delay={i * 0.1}>
-                      <div className="flex items-start gap-5">
-                        <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                          <node.icon className="w-4 h-4 text-emerald-400" />
+                      <div className="flex flex-col gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-white border border-zinc-200 flex items-center justify-center shadow-sm">
+                          <node.icon className="w-5 h-5 text-emerald-600" />
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">{node.label}</p>
-                          <p className="text-lg font-bold text-white tracking-tight">{node.value}</p>
+                          <h4 className="text-lg font-bold text-zinc-900 mb-1">{node.label}</h4>
+                          <p className="text-sm text-zinc-600">{node.value}</p>
                         </div>
                       </div>
                     </FadeIn>
@@ -195,12 +156,11 @@ export default function AboutPage() {
                 </div>
               </div>
               
-              <div className="relative flex justify-center">
-                 <div className="aspect-square w-full max-w-sm bg-zinc-900 border border-white/5 rounded-full p-12 flex items-center justify-center relative group">
-                   <div className="absolute inset-0 border border-emerald-500/20 rounded-full animate-[spin_20s_linear_infinite]" />
+              <div className="relative w-full max-w-md flex justify-center lg:justify-end">
+                 <div className="aspect-square w-full max-w-sm bg-white border border-zinc-200 rounded-[3rem] p-12 flex items-center justify-center shadow-sm relative overflow-hidden">
                    <div className="text-center relative z-10">
-                     <p className="text-xs font-bold text-emerald-500 uppercase tracking-[0.2em] mb-2">Uptime</p>
-                     <p className="text-6xl font-black text-white tracking-tighter">99.9<span className="text-emerald-500 text-3xl">%</span></p>
+                     <p className="text-sm font-bold text-zinc-500 uppercase tracking-wider mb-3">Target Uptime</p>
+                     <p className="text-6xl font-bold text-zinc-900 tracking-tight">99.9<span className="text-emerald-500">%</span></p>
                    </div>
                  </div>
               </div>
@@ -209,37 +169,29 @@ export default function AboutPage() {
         </section>
 
         {/* Final CTA Section */}
-        <section className="py-40">
-          <div className="max-w-[1440px] mx-auto px-6">
+        <section className="py-32">
+          <div className="max-w-[1200px] mx-auto px-6">
             <div className="text-center max-w-3xl mx-auto">
               <FadeIn>
-                <div className="inline-flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full mb-10">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">Ready to build</span>
-                </div>
-                
-                <h2 className="text-5xl md:text-7xl font-black text-zinc-950 tracking-tighter mb-12 leading-none">
-                  Start your digital <br />
-                  <span className="text-zinc-400 italic font-serif">growth.</span>
+                <h2 className="text-4xl md:text-6xl font-bold text-zinc-900 tracking-tight mb-10 leading-tight">
+                  Start your digital growth.
                 </h2>
                 
-                <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-12">
-                  <a 
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Link 
                     href="/contact" 
-                    className="group relative inline-flex h-14 px-10 bg-zinc-950 text-white font-bold text-sm items-center justify-center overflow-hidden transition-all duration-300 hover:scale-[1.02] rounded-full shadow-lg shadow-zinc-950/10"
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 h-14 px-8 bg-zinc-900 text-white font-bold text-sm rounded-full hover:bg-emerald-600 hover:scale-105 transition-all shadow-md"
                   >
-                    <span className="relative z-10 transition-colors flex items-center gap-3">
-                      Get in Touch
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </a>
+                    Get in Touch
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                   
-                  <a 
+                  <Link 
                     href="/blog" 
-                    className="inline-flex h-14 px-10 border border-zinc-200 bg-white text-zinc-950 font-bold text-sm items-center justify-center hover:bg-zinc-50 transition-all rounded-full"
+                    className="w-full sm:w-auto flex items-center justify-center h-14 px-8 border border-zinc-200 bg-white text-zinc-900 font-bold text-sm hover:bg-zinc-50 transition-all rounded-full shadow-sm"
                   >
                     Read our Journal
-                  </a>
+                  </Link>
                 </div>
               </FadeIn>
             </div>
