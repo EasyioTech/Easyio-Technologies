@@ -7,6 +7,7 @@ import { desc } from "drizzle-orm";
 import Link from "next/link";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
 
+import Image from "next/image";
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
@@ -25,7 +26,7 @@ const iconMap: Record<string, any> = {
 
 // Cached query for projects
 const getCachedProjects = cacheQuery(
-  () => db.select().from(projects).orderBy(desc(projects.createdAt)),
+  async () => await db.select().from(projects).orderBy(desc(projects.createdAt)),
   [CACHE_TAGS.PROJECTS],
   CACHE_DURATION.MEDIUM
 );
@@ -74,7 +75,7 @@ export default async function CaseStudiesPage() {
                         
                         {p.image && (
                           <div className="mb-8 rounded-2xl overflow-hidden aspect-video border border-zinc-100 dark:border-zinc-800">
-                            <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            <Image src={p.image} alt={p.title} className="object-cover transition-transform duration-700 group-hover:scale-110" fill />
                           </div>
                         )}
 
@@ -98,6 +99,9 @@ export default async function CaseStudiesPage() {
           <FadeIn>
             <div className="p-12 md:p-24 border border-zinc-100 dark:border-zinc-900 rounded-[3rem] text-center bg-zinc-50/20 dark:bg-zinc-950/20">
                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic mb-12 text-zinc-950 dark:text-white">Ready to be the next <br /> <span className="text-zinc-400 dark:text-zinc-800">Operational Success?</span></h2>
+               <p className="text-lg text-zinc-500 mb-12 max-w-2xl mx-auto">
+                 These projects were built by our dedicated <Link href="/software-development-company-in-kashmir" className="text-zinc-950 dark:text-zinc-300 hover:underline">software engineering</Link> and <Link href="/web-development-company-in-srinagar" className="text-zinc-950 dark:text-zinc-300 hover:underline">web development</Link> teams. Let's discuss what we can build for you.
+               </p>
                <a href="/contact" className="inline-flex items-center gap-4 text-2xl font-black uppercase italic tracking-tighter group text-zinc-950 dark:text-white">
                 Initialize Consultation <ArrowUpRight className="w-8 h-8 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
               </a>

@@ -19,9 +19,9 @@ export default function CTA() {
           {/* High-Vibrancy Mesh Gradient Background */}
           <div className="absolute inset-0 transition-opacity duration-1000">
             {/* Emerald Primary Glow - More Intense */}
-            <div className="absolute -top-[30%] -left-[10%] w-[80%] h-[100%] bg-emerald-200/50 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '7s' }} />
+            <div className="absolute -top-[30%] -left-[10%] w-[80%] h-[100%] bg-emerald-200/50 blur-[120px] rounded-full animate-pulse will-change-[opacity]" style={{ animationDuration: '7s' }} />
             {/* Yellow Secondary Glow - More Intense */}
-            <div className="absolute -bottom-[30%] -right-[10%] w-[80%] h-[100%] bg-yellow-200/40 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '9s', animationDelay: '1.5s' }} />
+            <div className="absolute -bottom-[30%] -right-[10%] w-[80%] h-[100%] bg-yellow-200/40 blur-[120px] rounded-full animate-pulse will-change-[opacity]" style={{ animationDuration: '9s', animationDelay: '1.5s' }} />
             {/* Center High-Light */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-white/80 blur-[80px] rounded-full" />
           </div>

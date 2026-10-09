@@ -16,29 +16,20 @@ import { projects } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
 
-// Dynamic rendering (DB not available at build time)
-// ISR via Edge Functions in production deployment
-export const dynamic = 'force-dynamic';
+// ISR caching strategy replaces force-dynamic for better TTFB
+export const revalidate = 3600;
 
 import Protocol from "@/components/sections/home/Protocol";
 import Showcase from "@/components/sections/home/Showcase";
 import Blogs from "@/components/sections/home/Blogs";
+import LocalAdvantage from "@/components/sections/home/LocalAdvantage";
 
 import MarqueeText from "@/components/sections/home/MarqueeText";
 
 export const metadata = generateMetadata({
-  title: "Easyio Technologies | Best Software Development Company in Kashmir",
+  title: "Easyio Technologies | Srinagar Software & Web Development Company",
   description:
-    "The premier software engineering firm in Srinagar, Kashmir, building high-performance digital products. We deliver clean, scalable, and user-focused custom applications.",
-  keywords: [
-    "software development company Kashmir",
-    "web development agency Srinagar",
-    "startup technology partner",
-    "custom software development",
-    "easyio technologies",
-    "high performance web apps",
-    "software engineering firm"
-  ],
+    "Easyio Technologies is a Kashmir-based technology solutions provider. We specialize in software engineering, web development, and custom technical expertise to scale your business.",
   canonicalUrl: "https://easyio.tech",
 });
 
@@ -53,7 +44,7 @@ const SectionLoader = () => (
 
 // Cached query functions
 const getCachedProjects = cacheQuery(
-  () => db.select().from(projects).orderBy(desc(projects.createdAt)),
+  async () => await db.select().from(projects).orderBy(desc(projects.createdAt)),
   [CACHE_TAGS.PROJECTS],
   CACHE_DURATION.MEDIUM
 );
@@ -103,6 +94,8 @@ export default async function HomePage() {
         <Suspense fallback={<SectionLoader />}>
             <Protocol />
         </Suspense>
+        
+        <LocalAdvantage />
 
         <Suspense fallback={<SectionLoader />}>
             <Showcase initialProjects={allProjects} />

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import InfrastructureBackground from './InfrastructureBackground';
 
 export default function PageWrapper({ children }: { children: React.ReactNode }) {
@@ -16,7 +16,7 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
       {/* Background Infrastructure */}
       <InfrastructureBackground />
 
-      <div className="relative z-10 w-full overflow-x-hidden transition-opacity duration-300" style={{ opacity: mounted ? 1 : 0 }}>
+      <div className="relative z-10 w-full overflow-x-hidden">
         {children}
       </div>
     </div>

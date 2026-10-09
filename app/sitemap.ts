@@ -3,7 +3,7 @@ import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getPublishedBlogPosts();
-  const baseUrl = "https://easyiotech.com";
+  const baseUrl = "https://easyio.tech";
 
   const postUrls = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
@@ -22,7 +22,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/case-studies",
     "/pricing",
     "/changelog",
-    "/llms"
+    "/llms",
+    "/software-development-company-in-kashmir",
+    "/web-development-company-in-srinagar"
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),

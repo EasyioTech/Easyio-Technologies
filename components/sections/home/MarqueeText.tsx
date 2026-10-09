@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { m, useScroll, useTransform, useSpring } from "framer-motion";
 
 export default function MarqueeText() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,7 +22,7 @@ export default function MarqueeText() {
         
         {/* Row 1 - High Contrast Professional */}
         <div className="flex overflow-hidden">
-          <motion.div style={{ x: springX1 }} className="flex whitespace-nowrap">
+          <m.div style={{ x: springX1 }} className="flex whitespace-nowrap">
             <MarqueeItem text="Engineering" italicText="Excellence" color="text-zinc-950" />
             <MarqueeItem text="Technical" italicText="Sovereignty" color="text-zinc-950" />
             <MarqueeItem text="Mission" italicText="Critical" color="text-zinc-950" />
@@ -31,12 +31,12 @@ export default function MarqueeText() {
             <MarqueeItem text="Technical" italicText="Sovereignty" color="text-zinc-950" />
             <MarqueeItem text="Mission" italicText="Critical" color="text-zinc-950" />
             <MarqueeItem text="Industrial" italicText="Architecture" color="text-zinc-950" />
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Row 2 - Subtle Support */}
         <div className="flex overflow-hidden">
-          <motion.div style={{ x: springX2 }} className="flex whitespace-nowrap">
+          <m.div style={{ x: springX2 }} className="flex whitespace-nowrap">
             <MarqueeItem text="Resilient" italicText="Infrastructure" color="text-zinc-400" />
             <MarqueeItem text="Adaptive" italicText="Protocols" color="text-zinc-400" />
             <MarqueeItem text="Future" italicText="Proof" color="text-zinc-400" />
@@ -45,7 +45,7 @@ export default function MarqueeText() {
             <MarqueeItem text="Adaptive" italicText="Protocols" color="text-zinc-400" />
             <MarqueeItem text="Future" italicText="Proof" color="text-zinc-400" />
             <MarqueeItem text="Atomic" italicText="Consistency" color="text-zinc-400" />
-          </motion.div>
+          </m.div>
         </div>
 
       </div>

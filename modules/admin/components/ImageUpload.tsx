@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { X, ImageIcon, Loader2, Link as LinkIcon, Camera } from 'lucide-react';
 
 
+import Image from "next/image";
 interface ImageUploadProps {
   value: string;
   onChange: (url: string) => void;
@@ -86,7 +87,7 @@ export function ImageUpload({ value, onChange, label }: ImageUploadProps) {
       <div className="relative group">
         {value ? (
           <div className="relative h-48 md:h-64 rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-inner">
-            <img src={value} alt="Preview" className="w-full h-full object-cover" />
+            <Image src={value} alt="Preview" className="object-cover" fill />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             <button 
               type="button"

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Terminal, Activity, ShieldCheck, Globe, Zap, ArrowUpRight, Lock, Shield } from "lucide-react";
 import { footerLinks, siteConfig } from "@/config/site";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export default function Footer() {
   return (

@@ -83,85 +83,76 @@ export function generateJsonLd(schema: Record<string, any>) {
   };
 }
 
-export const ORGANIZATION_SCHEMA = {
+export const MASTER_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Easyio Technologies",
-  url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
-  description:
-    "Top software development company in Srinagar, Kashmir, building high-performance systems and custom digital solutions for startups and enterprises.",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Srinagar",
-    addressRegion: "Jammu and Kashmir",
-    addressCountry: "India",
-  },
-  sameAs: [
-    "https://twitter.com/easyiotech",
-    "https://linkedin.com/company/easyio",
-    "https://instagram.com/easyiotech",
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "Customer Support",
-    email: "hello@easyio.tech",
-  },
-};
-
-export const LOCAL_BUSINESS_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Easyio Technologies",
-  image: `${SITE_URL}/og-image.png`,
-  "@id": `${SITE_URL}/#localbusiness`,
-  url: SITE_URL,
-  telephone: "+91-0000000000", // Placeholder, user should update
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Lal Chowk, Srinagar", // Placeholder, user should update
-    addressLocality: "Srinagar",
-    addressRegion: "Jammu and Kashmir",
-    postalCode: "190001",
-    addressCountry: "India",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 34.0837,
-    longitude: 74.7973,
-  },
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    opens: "09:00",
-    closes: "18:00",
-  },
-  sameAs: [
-    "https://twitter.com/easyiotech",
-    "https://linkedin.com/company/easyio",
-  ],
-};
-
-export const WEBSITE_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  url: SITE_URL,
-  name: "Easyio Technologies",
-  description:
-    "Frontier software lab building high-performance, user-centric systems.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Easyio Technologies",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+      description: "Top software development company in Srinagar, Kashmir, building high-performance systems and custom digital solutions for startups and enterprises.",
+      sameAs: [
+        "https://twitter.com/easyiotech",
+        "https://linkedin.com/company/easyiotech",
+        "https://instagram.com/easyiotech"
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "Customer Support",
+        email: "hello@easyio.tech"
+      }
     },
-    "query-input": "required name=search_term_string",
-  },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Easyio Technologies",
+      publisher: {
+        "@id": `${SITE_URL}/#organization`
+      },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE_URL}/search?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#localbusiness`,
+      name: "Easyio Technologies",
+      image: `${SITE_URL}/og-image.png`,
+      url: SITE_URL,
+      telephone: "+91-9596418226", 
+      parentOrganization: {
+        "@id": `${SITE_URL}/#organization`
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Rangreth STPI",
+        addressLocality: "Srinagar",
+        addressRegion: "Jammu and Kashmir",
+        postalCode: "191132",
+        addressCountry: "IN"
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 33.9922,
+        longitude: 74.7925
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "09:00",
+        closes: "18:00"
+      }
+    }
+  ]
 };

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin/", "/api/"],
     },
-    sitemap: "https://easyiotech.com/sitemap.xml",
+    sitemap: "https://easyio.tech/sitemap.xml",
   };
 }

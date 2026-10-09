@@ -2,6 +2,7 @@ import { ArrowRight, Clock, User, HardDrive, Terminal } from "lucide-react";
 import Link from "next/link";
 import { BlogPost } from "@/lib/blog";
 
+import Image from "next/image";
 export default function PostCard({ post, index }: { post: BlogPost; index: number }) {
   return (
     <div className="group h-full">
@@ -9,11 +10,11 @@ export default function PostCard({ post, index }: { post: BlogPost; index: numbe
         {/* Featured Image - Technical Frame */}
         {post.image && (
           <div className="relative aspect-[16/10] mb-8 overflow-hidden bg-zinc-100 rounded-2xl border border-zinc-200">
-            <img 
+            <Image 
               src={post.image} 
               alt={post.title}
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100"
-            />
+              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+            fill />
             {/* Overlay Grid Pattern */}
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
             <div className="absolute top-4 left-4 px-3 py-1.5 bg-zinc-950/90 backdrop-blur-md text-white text-[9px] font-mono font-bold uppercase tracking-[0.2em] flex items-center gap-2 border border-white/10 rounded-sm">

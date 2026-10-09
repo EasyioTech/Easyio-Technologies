@@ -4,7 +4,8 @@ import { FadeIn, TextReveal } from "@/components/shared/Animations";
 import { ArrowLeft, ExternalLink, Cpu, Globe, Shield, Box, Zap } from "lucide-react";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote";
-import { components } from "@/components/sections/blog/PostLayout"; // Reuse high-fidelity MDX components
+import { components } from "@/components/sections/blog/PostLayout"; import Image from "next/image";
+// Reuse high-fidelity MDX components
 
 const iconMap: Record<string, any> = {
   INDUSTRIAL_LOGIC: Cpu,
@@ -84,11 +85,11 @@ export default function ProjectLayout({ project }: ProjectLayoutProps) {
         {project.image && (
           <FadeIn delay={0.8}>
             <div className="relative aspect-[21/9] mb-24 rounded-[3rem] overflow-hidden border border-zinc-200 dark:border-white/5 shadow-2xl">
-              <img 
+              <Image 
                 src={project.image} 
                 alt={project.title}
-                className="w-full h-full object-cover"
-              />
+                className="object-cover"
+              fill />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent" />
             </div>
           </FadeIn>

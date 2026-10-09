@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowUpRight, Zap, Shield, Cpu, Cloud } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ const FeatureCard = ({
   className?: string;
   delay?: number;
 }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -26,7 +26,7 @@ const FeatureCard = ({
     )}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 export default function EngineFeatures() {
@@ -51,7 +51,7 @@ export default function EngineFeatures() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[620px]">
           
           {/* Main Feature: Enterprise Engines */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -99,12 +99,12 @@ export default function EngineFeatures() {
                 <div className="absolute inset-0 bg-gradient-to-l from-[#FDE047] via-transparent to-transparent opacity-40" />
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Center Column: Small Cards */}
           <div className="md:col-span-3 md:row-span-2 flex flex-col gap-6">
             {/* Teal Card: Cloud Mesh */}
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -142,10 +142,10 @@ export default function EngineFeatures() {
                     <ArrowUpRight className="w-6 h-6 text-[#1AB896]" />
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Pink Card: Edge Caching */}
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -183,11 +183,11 @@ export default function EngineFeatures() {
                     <ArrowUpRight className="w-6 h-6 text-[#F272B6]" />
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Right Column: Tall Card: Security */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -205,7 +205,7 @@ export default function EngineFeatures() {
                 Industrial grade security as standard.
               </p>
               <div className="inline-flex items-center gap-3 px-4 py-2 bg-white rounded-full text-[10px] font-black text-emerald-600 uppercase tracking-[0.2em] border border-emerald-200">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse will-change-[opacity]" />
                 Privacy First
               </div>
             </div>
@@ -232,7 +232,7 @@ export default function EngineFeatures() {
                 <ArrowUpRight className="w-7 h-7 text-white" />
                 </div>
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

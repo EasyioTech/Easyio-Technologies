@@ -3,9 +3,10 @@
 import { ArrowRight, Calendar, Clock, User, HardDrive, Terminal } from 'lucide-react';
 import { FadeIn } from "@/components/shared/Animations";
 import Link from 'next/link';
+import Image from 'next/image';
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 import Magnetic from "@/components/shared/Magnetic";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const blogs = [
   {
@@ -81,7 +82,7 @@ export default function Blogs() {
 }
 function BlogCard({ post, index }: { post: any; index: number }) {
   return (
-    <motion.div 
+    <m.div 
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -94,10 +95,12 @@ function BlogCard({ post, index }: { post: any; index: number }) {
     >
         {/* Modern Image Frame */}
         <div className="relative aspect-[16/10] overflow-hidden rounded-[2.5rem] bg-zinc-50 border border-zinc-100 mb-8 transition-all group-hover:shadow-2xl group-hover:shadow-zinc-200/40">
-          <img 
+          <Image 
             src={post.image} 
             alt={post.title}
-            className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition duration-700 group-hover:scale-105"
           />
           <div className="absolute top-6 left-6 flex gap-2">
              <span className="px-4 py-1.5 bg-white shadow-sm border border-zinc-100 rounded-full text-[10px] font-bold text-zinc-950 uppercase tracking-widest">
@@ -126,11 +129,15 @@ function BlogCard({ post, index }: { post: any; index: number }) {
           <div className="mt-auto pt-6 flex items-center justify-between">
              <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center border border-zinc-200 overflow-hidden">
-                   <img 
+                   <Image 
                     src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author}`} 
                     alt={post.author}
-                    className="w-full h-full"
-                   />
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                    decoding="async"
+                    className=""
+                   fill />
                 </div>
                 <div className="flex flex-col gap-0.5">
                    <span className="text-[10px] font-bold text-zinc-950 uppercase tracking-wide">{post.author}</span>
@@ -142,6 +149,6 @@ function BlogCard({ post, index }: { post: any; index: number }) {
              </div>
           </div>
         </div>
-    </motion.div>
+    </m.div>
   );
 }

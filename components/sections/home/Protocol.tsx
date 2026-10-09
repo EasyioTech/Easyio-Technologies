@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Search, PenTool, Code, Rocket, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
@@ -70,7 +70,7 @@ export default function Protocol() {
         {/* Clean Process Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:auto-rows-[340px]">
           {stages.map((stage, i) => (
-            <motion.div
+            <m.div
               key={stage.id}
               layout
               initial={{ opacity: 0, y: 20 }}
@@ -114,7 +114,7 @@ export default function Protocol() {
               <div className="absolute top-10 right-10 opacity-5 group-hover:opacity-20 transition-all duration-700 group-hover:rotate-12">
                 {stage.icon}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
+import Image from "next/image";
 interface Testimonial {
   text: string;
   image: string;
@@ -16,7 +17,7 @@ export const TestimonialsColumn = (props: {
 }) => {
   return (
     <div className={props.className}>
-       <motion.div 
+       <m.div 
         animate={{
           y: [0, -1000],
         }}
@@ -31,7 +32,7 @@ export const TestimonialsColumn = (props: {
           <div className="p-10 rounded-3xl border border-zinc-100 bg-white shadow-xl shadow-zinc-950/5 max-w-xs w-full" key={i}>
             <div className="text-zinc-600 leading-relaxed font-medium italic mb-6">"{text}"</div>
             <div className="flex items-center gap-3 mt-5">
-              <img
+              <Image
                 width={40}
                 height={40}
                 src={image}
@@ -45,7 +46,7 @@ export const TestimonialsColumn = (props: {
             </div>
           </div>
         ))}
-      </motion.div>
+      </m.div>
     </div>
   );
 };

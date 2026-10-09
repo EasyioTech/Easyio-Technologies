@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Palette, Code2, Rocket, Layout, BarChart3, ArrowUpRight } from "lucide-react";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 
@@ -70,7 +70,7 @@ export default function Services() {
         {/* Services List - Clean & Editorial */}
         <div className="border-t border-zinc-100">
           {services.map((service, index) => (
-            <motion.div
+            <m.div
               key={service.id}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -115,7 +115,7 @@ export default function Services() {
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none -z-10"
                 style={{ background: `linear-gradient(to right, ${service.color}08, transparent)` }} 
               />
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
@@ -130,13 +130,13 @@ export default function Services() {
             </p>
           </div>
           
-          <motion.button 
+          <m.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="relative z-10 h-14 md:h-20 px-10 md:px-12 bg-white text-zinc-950 font-black tracking-widest text-[10px] md:text-sm rounded-full flex items-center gap-3 md:gap-4 hover:bg-[#FEF9C3] transition-colors"
           >
             GET STARTED <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
-          </motion.button>
+          </m.button>
 
           {/* Animated Background Decor */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 blur-[120px] -mr-48 -mt-48 group-hover:bg-emerald-500/20 transition-colors" />

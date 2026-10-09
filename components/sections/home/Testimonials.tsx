@@ -6,55 +6,55 @@ import { FadeIn } from "@/components/shared/Animations";
 const testimonials = [
   {
     text: "Easyio developed a custom inventory system for our retail chain in Srinagar. It completely removed our manual bottlenecks and increased efficiency.",
-    image: "/avatars/kashmir-retail-owner-avatar.jpg", // Placeholder for actual image
+    image: "/images/avatar_1.jpg",
     name: "Tariq Ahmad",
     role: "Director, Valley Retail Solutions",
   },
   {
     text: "The e-commerce platform they built helped our authentic Kashmiri handicrafts reach a global audience. The load times are incredible.",
-    image: "/avatars/handicraft-exporter-avatar.jpg", // Placeholder for actual image
+    image: "/images/avatar_2.jpg",
     name: "Ayesha Qazi",
     role: "Founder, Kashmir Artisans",
   },
   {
     text: "We needed a robust booking system for our hotel in Gulmarg. Easyio delivered a seamless solution that integrated perfectly with our payment gateways.",
-    image: "/avatars/hotel-manager-avatar.jpg", // Placeholder for actual image
+    image: "/images/avatar_3.jpg",
     name: "Muneeb Shah",
     role: "Operations Manager, Highland Resorts",
   },
   {
     text: "Their team in Srinagar understands the local market constraints but delivers world-class software. Highly recommend them for MVP development.",
-    image: "/avatars/srinagar-startup-founder-avatar.jpg", // Placeholder for actual image
+    image: "/images/avatar_4.jpg",
     name: "Iqra Jan",
     role: "Co-Founder, TechValley Logistics",
   },
   {
     text: "Our educational institute needed a custom LMS. Easyio built a platform that handles thousands of students without a hitch.",
-    image: "/avatars/educator-avatar.jpg", // Placeholder for actual image
+    image: "/images/avatar_1.jpg",
     name: "Dr. Fayaz",
     role: "Director, Apex Academy",
   },
   {
     text: "The migration to a cloud-native architecture was handled brilliantly. We haven't had a single hour of downtime since.",
-    image: "/avatars/it-manager-avatar.jpg", // Placeholder for actual image
+    image: "/images/avatar_2.jpg",
     name: "Bilal Bhat",
     role: "IT Head, Kashmir Healthcare",
   },
   {
     text: "Professional, communicative, and technically brilliant. They built our mobile delivery app from scratch in just three months.",
-    image: "/avatars/delivery-app-founder-avatar.jpg", // Placeholder for actual image
+    image: "/images/avatar_3.jpg",
     name: "Sameer Dar",
     role: "CEO, QuickDeliver Srinagar",
   },
   {
     text: "We shifted from generic SaaS to a custom ERP built by Easyio. It fits our local supply chain needs perfectly.",
-    image: "/avatars/supply-chain-avatar.jpg", // Placeholder for actual image
+    image: "/images/avatar_4.jpg",
     name: "Umer Farooq",
     role: "Operations Lead, J&K Distributors",
   },
   {
     text: "Their UI/UX design is unmatched in the valley. They gave our brand a modern, international feel.",
-    image: "/avatars/marketing-director-avatar.jpg", // Placeholder for actual image
+    image: "/images/avatar_1.jpg",
     name: "Zainab Wani",
     role: "Marketing Director, Alpine Travels",
   },

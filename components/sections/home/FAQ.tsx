@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Plus, Minus, Search, ArrowDown } from 'lucide-react';
 import { FadeIn, TextReveal } from "@/components/shared/Animations";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
@@ -60,7 +60,7 @@ export default function FAQ() {
           {/* List */}
           <div className="lg:col-span-7 space-y-2">
              {faqs.map((faq, i) => (
-               <motion.div 
+               <m.div 
                  key={i} 
                  initial={{ opacity: 0, y: 20 }}
                  whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export default function FAQ() {
 
                   <AnimatePresence>
                     {openIndex === i && (
-                      <motion.div 
+                      <m.div 
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -97,10 +97,10 @@ export default function FAQ() {
                                {faq.answer}
                             </p>
                          </div>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
-               </motion.div>
+               </m.div>
              ))}
           </div>
 

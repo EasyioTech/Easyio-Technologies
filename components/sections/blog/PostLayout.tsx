@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import LeadCapture from "./LeadCapture";
 
+import Image from "next/image";
 // Custom MDX components - Standardized High Density Technical Style
 export const components = {
   h1: (props: any) => <h1 className="text-4xl font-black tracking-tighter text-zinc-950 mt-16 mb-8 uppercase" {...props} />,
@@ -131,11 +132,11 @@ export default function PostLayout({ post }: PostLayoutProps) {
             {post.image && (
               <FadeIn delay={0.3}>
                 <div className="relative aspect-[21/10] mb-20 overflow-hidden rounded-[2.5rem] border border-zinc-200 grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl">
-                  <img 
+                  <Image 
                     src={post.image} 
                     alt={post.title}
-                    className="w-full h-full object-cover opacity-95"
-                  />
+                    className="object-cover opacity-95"
+                  fill />
                   <div className="absolute bottom-6 right-6 px-4 py-2 bg-black/80 backdrop-blur-md border border-white/10 text-[9px] font-mono text-white/70 uppercase tracking-[0.3em] rounded-full">
                     Visual_Ref_01 // SECURE_ASSET
                   </div>

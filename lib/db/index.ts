@@ -16,21 +16,23 @@ let client: ReturnType<typeof postgres>;
 let db: ReturnType<typeof drizzle>;
 
 if (isBuildTime) {
-  // Mock client/db during build to avoid connection attempts
+  const mockQuery = Object.assign(Promise.resolve([]), {
+    where: () => mockQuery,
+    orderBy: () => mockQuery,
+    limit: () => mockQuery,
+    execute: () => mockQuery
+  });
+  
   client = {} as any;
   db = {
     select: () => ({ 
-      from: () => ({ 
-        where: () => ({ 
-          orderBy: () => ({ limit: () => Promise.resolve([]) }),
-          limit: () => Promise.resolve([]),
-          orderBy: () => Promise.resolve([])
-        }),
-        orderBy: () => ({ limit: () => Promise.resolve([]) }),
-        limit: () => Promise.resolve([]),
-      }) 
+      from: () => mockQuery
     }),
-    execute: () => Promise.resolve([])
+    query: {
+      projects: { findMany: () => mockQuery, findFirst: () => mockQuery },
+      blogPosts: { findMany: () => mockQuery, findFirst: () => mockQuery }
+    },
+    execute: () => mockQuery
   } as any;
 } else {
   client = globalForDb.client ?? postgres(connectionString, { 

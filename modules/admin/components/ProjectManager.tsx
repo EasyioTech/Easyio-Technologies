@@ -6,6 +6,7 @@ import { PageHeader } from './PageHeader';
 import { deleteProject } from '@/modules/admin/actions/projects';
 import Link from 'next/link';
 
+import Image from "next/image";
 interface ProjectManagerProps {
   initialProjects: any[];
 }
@@ -33,7 +34,7 @@ export function ProjectManager({ initialProjects }: ProjectManagerProps) {
             <div key={project.id} className="group relative bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-all">
               <div className="aspect-video relative overflow-hidden bg-zinc-950">
                 {project.image ? (
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <Image src={project.image} alt={project.title} className="object-cover opacity-60 group-hover:opacity-100 transition-opacity" fill />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-zinc-800">No Image</div>
                 )}

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Hexagon, Phone, MessageSquare, ChevronRight } from "lucide-react";
 import { navigationLinks } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -107,7 +107,7 @@ export default function Navigation() {
         {isOpen && (
           <>
             {/* Backdrop Overlay */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -115,7 +115,7 @@ export default function Navigation() {
               className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[101] lg:hidden"
             />
             
-            <motion.div
+            <m.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -149,7 +149,7 @@ export default function Navigation() {
               <div className="flex flex-col h-full overflow-y-auto px-6 pb-10 pt-4">
                 <div className="flex flex-col gap-2 mb-10">
                   {navigationLinks.map((link, i) => (
-                    <motion.div
+                    <m.div
                       key={link.href}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -172,13 +172,13 @@ export default function Navigation() {
                           <ChevronRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-zinc-300" />
                         )}
                       </Link>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </div>
 
                 <div className="mt-auto">
                   <div className="grid grid-cols-2 gap-3 mb-8">
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
@@ -193,9 +193,9 @@ export default function Navigation() {
                         </div>
                         <span className="text-[10px] uppercase tracking-widest text-zinc-400">Support</span>
                       </Link>
-                    </motion.div>
+                    </m.div>
                     
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.35 }}
@@ -210,7 +210,7 @@ export default function Navigation() {
                         </div>
                         <span className="text-[10px] uppercase tracking-widest text-zinc-500">Contact</span>
                       </Link>
-                    </motion.div>
+                    </m.div>
                   </div>
 
                   <div className="flex flex-col items-center gap-4 py-8 border-t border-zinc-100">
@@ -223,7 +223,7 @@ export default function Navigation() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </>
         )}
       </AnimatePresence>

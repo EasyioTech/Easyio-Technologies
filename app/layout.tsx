@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono, Instrument_Serif, Bodoni_Moda, Sacramento } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Sacramento } from "next/font/google";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 import "./globals.css";
 
@@ -21,13 +21,6 @@ const instrumentSerif = Instrument_Serif({
   style: ["italic", "normal"],
 });
 
-const bodoniModa = Bodoni_Moda({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["italic", "normal"],
-});
-
 const sacramento = Sacramento({
   variable: "--font-cursive",
   subsets: ["latin"],
@@ -39,30 +32,15 @@ export const metadata: Metadata = {
     title: "Easyio Technologies | Best Tech & Software Company in Srinagar, Kashmir",
     description:
       "Easyio Technologies: Premier software development agency and system architecture lab in Srinagar, Kashmir. We build high-performance web apps, mobile apps, and custom software solutions for startups and enterprises.",
-    keywords: [
-      "software development Kashmir",
-      "best tech company in Srinagar",
-      "web development agency Srinagar",
-      "mobile app development Kashmir",
-      "iOS app development India",
-      "system architecture",
-      "LSM system design",
-      "custom software Srinagar",
-      "AI solutions Kashmir",
-      "LLM integration services",
-      "Easyio Technologies",
-      "Frontier Software Lab",
-    ],
   }),
-  metadataBase: new URL("https://easyiotech.com"),
+  metadataBase: new URL("https://easyio.tech"),
 };
 
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import MotionProvider from "@/components/providers/MotionProvider";
 import { 
-  ORGANIZATION_SCHEMA, 
-  WEBSITE_SCHEMA, 
-  LOCAL_BUSINESS_SCHEMA, 
+  MASTER_SCHEMA, 
   generateJsonLd 
 } from "@/lib/seo";
 
@@ -76,18 +54,10 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={generateJsonLd(ORGANIZATION_SCHEMA)}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={generateJsonLd(WEBSITE_SCHEMA)}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={generateJsonLd(LOCAL_BUSINESS_SCHEMA)}
+          dangerouslySetInnerHTML={generateJsonLd(MASTER_SCHEMA)}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${bodoniModa.variable} ${sacramento.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${sacramento.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -95,7 +65,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SmoothScroll>
-            {children}
+            <MotionProvider>{children}</MotionProvider>
           </SmoothScroll>
         </ThemeProvider>
       </body>

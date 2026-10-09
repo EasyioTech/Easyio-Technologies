@@ -6,6 +6,7 @@ import { PageHeader } from './PageHeader';
 import { deleteTestimonial } from '@/modules/admin/actions/testimonials';
 import Link from 'next/link';
 
+import Image from "next/image";
 interface TestimonialManagerProps {
   initialTestimonials: any[];
 }
@@ -34,7 +35,7 @@ export function TestimonialManager({ initialTestimonials }: TestimonialManagerPr
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full border border-zinc-800 overflow-hidden bg-zinc-950 flex-shrink-0">
                   {t.avatar ? (
-                    <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                    <Image src={t.avatar} alt={t.name} className="object-cover" fill />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-[10px] text-zinc-700">NA</div>
                   )}

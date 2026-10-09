@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useEffect, useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/shared/Animations";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 import Magnetic from "@/components/shared/Magnetic";
+import Image from "next/image";
 import {
   Carousel,
   CarouselApi,
@@ -120,7 +121,7 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
           <CarouselContent className="-ml-4 md:-ml-8">
             {displayProjects.map((project, index) => (
               <CarouselItem key={project.id} className="pl-4 md:pl-8 basis-[85%] md:basis-[520px]">
-                <motion.div 
+                <m.div 
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
@@ -132,11 +133,11 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
                   className="group relative flex flex-col bg-white border border-zinc-100/50 rounded-[2.5rem] md:rounded-[3rem] p-5 md:p-6 transition-all hover:shadow-2xl hover:shadow-zinc-200/60 h-full"
                 >
                   <div className="aspect-[16/11] overflow-hidden rounded-[1.8rem] md:rounded-[2.5rem] mb-6 md:mb-8">
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                    />
+                    fill />
                   </div>
                   
                   <div className="px-2 md:px-4 pb-2 md:pb-4">
@@ -164,7 +165,7 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
                       <ArrowUpRight className="ml-3 w-4 h-4 transition-transform group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
                     </a>
                   </div>
-                </motion.div>
+                </m.div>
               </CarouselItem>
             ))}
           </CarouselContent>

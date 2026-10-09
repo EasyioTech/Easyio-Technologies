@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion';
+import { m, Variants } from 'framer-motion';
 import React from 'react';
 
 interface PremiumHeadingProps {
@@ -60,7 +60,7 @@ export const PremiumHeading: React.FC<PremiumHeadingProps> = ({
 
   return (
     <Tag className={`${className} perspective-1000`}>
-      <motion.div
+      <m.div
         variants={container}
         initial="hidden"
         whileInView="visible"
@@ -73,16 +73,16 @@ export const PremiumHeading: React.FC<PremiumHeadingProps> = ({
           
           return (
             <span key={index} className="inline-block overflow-visible py-2 -my-2 mr-[0.25em] last:mr-0">
-              <motion.span
+              <m.span
                 variants={child}
                 className={`inline-block ${isHighlighted ? highlightClassName : ''}`}
               >
                 {word}
-              </motion.span>
+              </m.span>
             </span>
           );
         })}
-      </motion.div>
+      </m.div>
     </Tag>
   );
 };
@@ -93,7 +93,7 @@ export const PremiumSubheading: React.FC<{ text: string; className?: string; del
   delay = 0.5 
 }) => {
   return (
-    <motion.p
+    <m.p
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -105,6 +105,6 @@ export const PremiumSubheading: React.FC<{ text: string; className?: string; del
       className={className}
     >
       {text}
-    </motion.p>
+    </m.p>
   );
 };
