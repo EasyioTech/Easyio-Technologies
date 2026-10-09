@@ -52,7 +52,13 @@ const getBlogPostBySlug = (slug: string) =>
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  let [post] = await getBlogPostBySlug(slug)();
+  let post: any = null;
+  try {
+    const result = await getBlogPostBySlug(slug)();
+    post = result[0];
+  } catch (err) {
+    console.warn("Database query failed in generateMetadata, falling back to local file:", slug);
+  }
 
   if (!post) {
     // Check file-based posts
@@ -101,7 +107,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  let [post] = await getBlogPostBySlug(slug)();
+  let post: any = null;
+  try {
+    const result = await getBlogPostBySlug(slug)();
+    post = result[0];
+  } catch (err) {
+    console.warn("Database query failed in BlogPostPage, falling back to local file:", slug);
+  }
 
   if (!post) {
     // Check file-based posts
