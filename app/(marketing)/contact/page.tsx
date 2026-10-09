@@ -1,8 +1,7 @@
-import { Mail, ArrowRight, ArrowUpRight } from "lucide-react";
+import { Mail, ArrowUpRight, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/sections/contact/ContactForm";
 import { siteConfig } from "@/config/site";
 import PageWrapper from "@/components/layout/PageWrapper";
-import { FadeIn } from "@/components/shared/Animations";
 import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHeading";
 import { generateMetadata } from "@/lib/seo";
 
@@ -14,80 +13,96 @@ export const metadata = generateMetadata({
 export default function ContactPage() {
   return (
     <PageWrapper>
-      {/* Hero Section */}
-      <section className="min-h-[60vh] pt-32 md:pt-48 pb-16 relative flex items-center">
-        <div className="max-w-[1200px] mx-auto px-6 relative w-full">
-          <div className="max-w-3xl">
-            <PremiumHeading 
-              text="Let's build something great."
-              highlightWords={["great."]}
-              className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 mb-8 leading-[1.1]"
-              highlightClassName="text-emerald-600 block mt-2"
-            />
-            <PremiumSubheading 
-              delay={0.4}
-              text="Have a project in mind? We'd love to hear about it. Send us a message and we'll get back to you within 24 hours."
-              className="text-zinc-600 text-lg md:text-xl max-w-2xl leading-relaxed"
-            />
+      {/* Editorial Hero Section */}
+      <section className="pt-32 md:pt-48 pb-16 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.05)_0%,transparent_50%)] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end border-b border-zinc-100 pb-20">
+            <div>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full" />
+                <span className="text-[11px] font-bold tracking-[0.3em] text-zinc-400 uppercase">Start a Project</span>
+              </div>
+              <PremiumHeading 
+                text="Let's build something great."
+                highlightWords={["great."]}
+                className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-zinc-950 mb-6 leading-[1.05]"
+                highlightClassName="font-serif italic text-emerald-600 font-medium tracking-normal"
+              />
+            </div>
+            
+            <div className="pb-4">
+              <PremiumSubheading 
+                delay={0.2}
+                text="Have a complex project in mind? We'd love to hear about it. Send us a message and our engineering team will get back to you within 24 hours."
+                className="text-zinc-500 text-lg md:text-xl font-medium leading-relaxed"
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Main Contact Surface */}
-      <section className="pb-32 relative">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+      <section className="py-20 relative bg-zinc-50/50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
             
             {/* Left Side: Contact Information */}
-            <div className="lg:w-1/3 flex flex-col gap-12 pt-4">
-              <FadeIn delay={0.6}>
-                <div className="space-y-12">
-                  
-                  {/* Direct Contact */}
-                  <div>
-                    <h3 className="text-sm font-semibold text-zinc-900 mb-6 uppercase tracking-wider">Contact Details</h3>
-                    <div className="space-y-4">
-                      <a href={`mailto:${siteConfig.email.contact}`} className="group flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors text-lg">
-                        <Mail className="w-5 h-5 text-zinc-400 group-hover:text-emerald-500" />
-                        {siteConfig.email.contact}
-                      </a>
-                      <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} className="group flex items-center gap-3 text-zinc-600 hover:text-emerald-600 transition-colors text-lg">
-                        <span className="w-5 h-5 flex items-center justify-center text-zinc-400 group-hover:text-emerald-500">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                        </span>
-                        {siteConfig.phone}
-                      </a>
-                    </div>
-                  </div>
-                  
-                  {/* Location */}
-                  <div>
-                    <h3 className="text-sm font-semibold text-zinc-900 mb-4 uppercase tracking-wider">Office Location</h3>
-                    <p className="text-lg text-zinc-600 leading-relaxed max-w-[260px]">
-                      {siteConfig.location}
-                    </p>
-                    <a href="https://maps.google.com/?q=Easyio+Technologies+Sopore" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-emerald-600 font-medium mt-4 hover:text-emerald-700 transition-colors">
-                      View on Maps
-                      <ArrowUpRight className="w-4 h-4" />
+            <div className="lg:col-span-4 flex flex-col gap-12">
+              
+              <div className="p-8 bg-zinc-950 rounded-[2rem] text-white relative overflow-hidden shadow-xl shadow-zinc-950/10">
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.1] mix-blend-overlay pointer-events-none" />
+                <div className="relative z-10">
+                  <h3 className="text-xs font-black text-emerald-500 mb-8 uppercase tracking-[0.2em]">Contact Details</h3>
+                  <div className="space-y-6">
+                    <a href={`mailto:${siteConfig.email.contact}`} className="group flex items-center gap-4 text-zinc-300 hover:text-white transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:scale-110 transition-all border border-white/10">
+                        <Mail className="w-4 h-4" />
+                      </div>
+                      <span className="font-semibold text-lg">{siteConfig.email.contact}</span>
+                    </a>
+                    <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} className="group flex items-center gap-4 text-zinc-300 hover:text-white transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:scale-110 transition-all border border-white/10">
+                        <Phone className="w-4 h-4" />
+                      </div>
+                      <span className="font-semibold text-lg">{siteConfig.phone}</span>
                     </a>
                   </div>
-
                 </div>
-              </FadeIn>
+              </div>
+              
+              <div className="p-8 bg-white border border-zinc-200 rounded-[2rem] shadow-sm">
+                <h3 className="text-xs font-black text-zinc-400 mb-6 uppercase tracking-[0.2em]">Headquarters</h3>
+                <div className="flex gap-4">
+                  <div className="w-10 h-10 shrink-0 rounded-xl bg-emerald-50 flex items-center justify-center border border-emerald-100">
+                    <MapPin className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <div>
+                    <p className="text-zinc-900 font-semibold leading-relaxed mb-4">
+                      {siteConfig.location}
+                    </p>
+                    <a href="https://maps.google.com/?q=Easyio+Technologies+Sopore" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors uppercase tracking-widest">
+                      View on Maps
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
             {/* Right Side: The Contact Form */}
-            <div className="flex-1 w-full">
-              <FadeIn delay={0.5}>
-                <div className="bg-white border border-zinc-200 rounded-3xl shadow-sm p-8 md:p-12 relative overflow-hidden">
-                  <div className="mb-10">
-                    <h2 className="text-2xl font-bold text-zinc-900 mb-2">Send us a message</h2>
-                    <p className="text-zinc-500">We'll get back to you as soon as possible.</p>
-                  </div>
-                  <ContactForm />
+            <div className="lg:col-span-8">
+              <div className="bg-white border border-zinc-200 rounded-[2.5rem] shadow-xl shadow-zinc-200/20 p-8 md:p-14 relative overflow-hidden">
+                <div className="mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-3">Send us a message</h2>
+                  <p className="text-zinc-500 font-medium">We usually respond within a few hours.</p>
                 </div>
-              </FadeIn>
+                <ContactForm />
+              </div>
             </div>
+
           </div>
         </div>
       </section>

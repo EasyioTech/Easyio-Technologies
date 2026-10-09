@@ -1,56 +1,49 @@
 'use client';
 
 import Link from "next/link";
-import { Mail, MapPin, Terminal, Activity, ShieldCheck, Globe, Zap, ArrowUpRight, Lock, Shield } from "lucide-react";
+import { Mail, ArrowUpRight } from "lucide-react";
 import { footerLinks, siteConfig } from "@/config/site";
 import { m } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="bg-transparent px-6 py-24 relative overflow-hidden border-t border-zinc-100/50">
-      <div className="max-w-[1600px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 mb-32">
+    <footer className="bg-zinc-950 text-white pt-24 pb-12 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] mix-blend-overlay pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Top Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-32">
           
-          {/* Brand Identity / Logo System */}
-          <div className="lg:col-span-12 xl:col-span-5 flex flex-col items-start text-left">
-            <Link href="/" className="mb-10 group block">
-              <div className="relative">
-                <span className="block text-4xl md:text-5xl font-bold tracking-tighter text-zinc-950 uppercase leading-none">
-                  EASYIO
-                </span>
-                <span className="block text-3xl md:text-4xl font-cursive text-zinc-400 -mt-2 ml-1 low-caps opacity-80 group-hover:text-[#FEF9C3] transition-colors" style={{ fontFamily: 'Sacramento, cursive' }}>
-                  Technologies
-                </span>
-              </div>
+          <div className="max-w-md">
+            <Link href="/" className="inline-block mb-10">
+              <span className="text-3xl font-black tracking-tighter text-white uppercase leading-none">
+                EASYIO<span className="text-emerald-500">.</span>
+              </span>
             </Link>
-
-            <h2 className="text-2xl md:text-3xl font-bold text-zinc-400 italic uppercase tracking-tight leading-tight mb-12 max-w-sm">
-               Architecting high-performance <span className="text-zinc-950">business systems</span> with absolute precision.
+            <h2 className="text-3xl font-bold tracking-tight mb-8">
+              Architecting high-performance <span className="font-serif italic text-emerald-400 font-medium">business systems.</span>
             </h2>
-
-            <div className="flex flex-col gap-6 w-full">
-              <a href={`mailto:${siteConfig.email.contact}`} className="flex items-center gap-4 text-zinc-500 hover:text-zinc-950 transition-colors group">
-                 <div className="w-12 h-12 rounded-full border border-zinc-100 flex items-center justify-center group-hover:border-zinc-200 group-hover:bg-zinc-100/50 transition-all">
-                    <Mail className="w-5 h-5 text-zinc-400 group-hover:text-zinc-950" />
-                 </div>
-                 <span className="text-xl font-bold tracking-tight uppercase italic">{siteConfig.email.contact}</span>
-              </a>
-            </div>
+            <a href={`mailto:${siteConfig.email.contact}`} className="inline-flex items-center gap-3 text-zinc-400 hover:text-white transition-colors group text-lg">
+               <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:scale-110 transition-all">
+                  <Mail className="w-4 h-4 text-white" />
+               </div>
+               {siteConfig.email.contact}
+            </a>
           </div>
 
-          {/* Navigation Systems */}
-          <div className="lg:col-span-12 xl:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-16">
             {Object.entries(footerLinks).map(([key, section]) => (
                 <div key={key}>
-                  <h4 className="text-[11px] font-bold text-zinc-950 uppercase tracking-[0.3em] mb-10">
+                  <h4 className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em] mb-6">
                     {section.title}
                   </h4>
-                  <ul className="space-y-5">
+                  <ul className="space-y-4">
                     {section.links.map((link) => (
                       <li key={link.label}>
-                        <Link href={link.href} className="text-base font-bold text-zinc-400 hover:text-zinc-950 transition-all flex items-center gap-3 group relative w-fit">
-                          <span className="absolute -inset-x-4 -inset-y-1 bg-[#FEF9C3] scale-x-0 group-hover:scale-x-100 transition-transform origin-left -z-10 rounded-lg" />
-                          <span className="uppercase tracking-tight">{link.label}</span>
+                        <Link href={link.href} className="text-sm font-semibold text-zinc-300 hover:text-emerald-400 transition-colors flex items-center gap-2 group">
+                          {link.label}
+                          <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
                         </Link>
                       </li>
                     ))}
@@ -58,40 +51,33 @@ export default function Footer() {
                 </div>
               ))}
           </div>
+
         </div>
 
-        {/* Technical Footer Bar */}
-        <div className="pt-12 border-t border-zinc-100/50 flex flex-col md:flex-row items-center justify-between gap-10">
-            <div className="flex flex-wrap items-center justify-center gap-8 text-zinc-400">
-                <div className="flex items-center gap-2">
-                   <ShieldCheck className="w-4 h-4 text-zinc-950" />
-                   <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Secure Protocol</span>
-                </div>
-                <div className="flex items-center gap-2">
-                   <Globe className="w-4 h-4 text-emerald-500" />
-                   <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Global Infrastructure</span>
-                </div>
+        {/* Bottom Section */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4 text-zinc-500 text-sm font-semibold">
+               <span className="text-zinc-300">© 2026 Easyio Technologies</span>
+               <span>//</span>
+               <span>Built in Kashmir</span>
             </div>
 
-            <div className="flex flex-col md:items-end gap-3 text-center md:text-right">
-               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-400">© 2026 Easyio Technologies // Sovereign Systems</span>
-               <div className="flex items-center justify-center md:justify-end gap-8">
-                  {[
-                    { name: "Twitter", href: siteConfig.links.twitter },
-                    { name: "LinkedIn", href: siteConfig.links.linkedin },
-                    { name: "Github", href: siteConfig.links.github },
-                  ].map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[11px] font-bold text-zinc-400 hover:text-zinc-950 transition-colors tracking-widest uppercase hover:bg-zinc-100 px-3 py-1 rounded-md"
-                    >
-                      {social.name}
-                    </a>
-                  ))}
-               </div>
+            <div className="flex items-center gap-8">
+                {[
+                  { name: "Twitter", href: siteConfig.links.twitter },
+                  { name: "LinkedIn", href: siteConfig.links.linkedin },
+                  { name: "Github", href: siteConfig.links.github },
+                ].map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-bold text-zinc-500 hover:text-white transition-colors tracking-wider uppercase"
+                  >
+                    {social.name}
+                  </a>
+                ))}
             </div>
         </div>
       </div>

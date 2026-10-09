@@ -31,10 +31,9 @@ const values = [
 ];
 
 const team = [
-  { name: "Arsalan K.", role: "Founder & Lead Architect", image: "/images/avatar_1.jpg" },
-  { name: "Suhaib M.", role: "Senior Engineer", image: "/images/avatar_2.jpg" },
-  { name: "Shariq B.", role: "Product Designer", image: "/images/avatar_3.jpg" },
-  { name: "Ayaan R.", role: "Full Stack Developer", image: "/images/avatar_4.jpg" }
+  { name: "Mohammad Faheem", role: "CEO", image: "/images/avatar_1.jpg" },
+  { name: "Burhan Ali", role: "CTO", image: "/images/avatar_2.jpg" },
+  { name: "Mohammad Ayoob", role: "CFO", image: "/images/avatar_3.jpg" }
 ];
 
 export default function AboutPage() {
@@ -55,9 +54,9 @@ export default function AboutPage() {
                 </div>
                 <PremiumHeading 
                   text="Building digital infrastructure from the Valley."
-                  highlightWords={["infrastructure", "Valley."]}
+                  highlightWords={["Valley."]}
                   className="text-4xl md:text-6xl font-black tracking-tighter text-zinc-950 mb-6 leading-[1.05]"
-                  highlightClassName="text-emerald-600"
+                  highlightClassName="font-serif italic text-emerald-600 font-medium tracking-normal"
                 />
               </div>
               
@@ -150,7 +149,7 @@ export default function AboutPage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
               <div className="max-w-xl">
                 <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 tracking-tight mb-4">
-                  Meet the team.
+                  Meet the <span className="font-serif italic text-emerald-600 font-medium tracking-normal">team.</span>
                 </h2>
                 <p className="text-zinc-500 font-medium">
                   A tight-knit group of engineers, designers, and problem solvers dedicated to pushing the boundaries of what's possible.
