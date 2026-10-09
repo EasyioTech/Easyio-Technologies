@@ -11,30 +11,33 @@ import { m } from "framer-motion";
 const blogs = [
   {
     id: "LOG_01",
-    title: "Scaling Distributed Systems for Global High-Frequency Trading",
-    category: "Architecture",
-    author: "Arsalan K.",
-    date: "2024.04.18",
-    readTime: "08M_READ",
-    image: "https://images.unsplash.com/photo-1551288049-bb848a55a175?auto=format&fit=crop&q=80&w=800"
+    title: "Smart City Srinagar: The Role of IoT and Data Analytics",
+    category: "Smart City",
+    author: "Burhan Ali",
+    date: "2026.09.16",
+    readTime: "06M_READ",
+    image: "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?q=80&w=2070&auto=format&fit=crop",
+    slug: "/blog/smart-city-srinagar-iot-analytics"
   },
   {
     id: "LOG_02",
-    title: "The Zero-Trust Protocol: Moving Beyond Traditional Firewall Logic",
-    category: "Security",
-    author: "Zeeshan M.",
-    date: "2024.04.12",
-    readTime: "12M_READ",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
+    title: "Building Resilient Software for Kashmir's Digital Divide",
+    category: "Architecture",
+    author: "Burhan Ali",
+    date: "2026.09.16",
+    readTime: "08M_READ",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=2070&auto=format&fit=crop",
+    slug: "/blog/offline-first-software-architecture-kashmir"
   },
   {
     id: "LOG_03",
-    title: "Why Atomic Consistency is the New Standard for Enterprise Data",
-    category: "Databases",
-    author: "Faisal R.",
-    date: "2024.04.05",
-    readTime: "06M_READ",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
+    title: "Production LLMOps: Beyond Chatbots to Agentic Workflows",
+    category: "AI & ML",
+    author: "Burhan Ali",
+    date: "2024.04.15",
+    readTime: "10M_READ",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2070&auto=format&fit=crop",
+    slug: "/blog/production-llmops-agentic-workflows"
   }
 ];
 
@@ -93,6 +96,7 @@ function BlogCard({ post, index }: { post: any; index: number }) {
       }}
       className="group cursor-pointer flex flex-col h-full"
     >
+      <Link href={post.slug || "#"} className="flex flex-col h-full">
         {/* Modern Image Frame */}
         <div className="relative aspect-[16/10] overflow-hidden rounded-[2.5rem] bg-zinc-50 border border-zinc-100 mb-8 transition-all group-hover:shadow-2xl group-hover:shadow-zinc-200/40">
           <Image 
@@ -130,13 +134,13 @@ function BlogCard({ post, index }: { post: any; index: number }) {
              <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center border border-zinc-200 overflow-hidden">
                    <Image 
-                    src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${post.author}`} 
+                    src="/images/avatar_1.jpg"
                     alt={post.author}
                     width={40}
                     height={40}
                     loading="lazy"
                     decoding="async"
-                    className=""
+                    className="object-cover h-full w-full"
                    />
                 </div>
                 <div className="flex flex-col gap-0.5">
@@ -149,6 +153,7 @@ function BlogCard({ post, index }: { post: any; index: number }) {
              </div>
           </div>
         </div>
+      </Link>
     </m.div>
   );
 }
