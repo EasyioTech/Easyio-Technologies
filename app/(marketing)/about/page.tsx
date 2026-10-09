@@ -53,26 +53,16 @@ export default function AboutPage() {
         
         {/* Hero Section - Standardized Premium Layout */}
         <section className="pt-32 md:pt-48 pb-20 relative overflow-hidden">
-          {/* Elite Mesh Backdrop */}
-          <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-emerald-50/40 blur-[120px] rounded-full animate-pulse" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-zinc-50 blur-[120px] rounded-full" />
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] contrast-150" />
-          </div>
+
 
           <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
             <div className="flex flex-col items-center">
-              <FadeIn>
-                <div className="flex items-center gap-2.5 mb-8">
-                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                   <span className="text-[9px] font-black uppercase tracking-[0.3em] text-emerald-600/80">Who We Are</span>
-                </div>
-              </FadeIn>
+
 
               <PremiumHeading 
                 text="Building your digital future."
                 highlightWords={["future."]}
-                className="text-5xl md:text-8xl lg:text-[110px] font-black tracking-tighter text-zinc-950 mb-8 leading-none max-w-[1200px]"
+                className="text-5xl md:text-8xl lg:text-[110px] font-bold tracking-tight text-zinc-900 mb-8 leading-none max-w-[1200px]"
                 highlightClassName="font-serif italic font-medium text-zinc-400"
               />
 

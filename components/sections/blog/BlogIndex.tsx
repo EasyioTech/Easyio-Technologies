@@ -8,24 +8,14 @@ import { Terminal, Search, Filter, Hash } from "lucide-react";
 export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
   return (
     <section className="pt-32 md:pt-48 pb-12 md:pb-20 bg-white relative overflow-hidden">
-      {/* Premium Mesh Backdrop */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-50/30 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-zinc-50 blur-[100px] rounded-full" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.02] contrast-150" />
-      </div>
+
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Editorial Header - Standardized with Emerald Accents */}
         <div className="flex flex-col items-center text-center mb-16 pb-12 border-b border-zinc-200/60 max-w-4xl mx-auto">
-          <FadeIn>
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span className="text-[10px] font-black tracking-[0.3em] text-emerald-600/80 uppercase">Our Journal</span>
-            </div>
-          </FadeIn>
+
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-zinc-950 mb-6 leading-[0.9]">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-zinc-900 mb-6 leading-[0.9]">
             Insights & <br className="hidden md:block" />
             <span className="text-zinc-400 italic font-serif">Thoughts.</span>
           </h1>

@@ -15,12 +15,7 @@ export default function PostCard({ post, index }: { post: BlogPost; index: numbe
               alt={post.title}
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100"
             fill />
-            {/* Overlay Grid Pattern */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
-            <div className="absolute top-4 left-4 px-3 py-1.5 bg-zinc-950/90 backdrop-blur-md text-white text-[9px] font-mono font-bold uppercase tracking-[0.2em] flex items-center gap-2 border border-white/10 rounded-sm">
-              <Terminal className="w-3 h-3 text-emerald-400" />
-              BLOG_POST_{index + 1}
-            </div>
+
           </div>
         )}
 
@@ -40,7 +35,7 @@ export default function PostCard({ post, index }: { post: BlogPost; index: numbe
             </div>
           </div>
 
-          <h3 className="text-2xl font-black text-zinc-950 mb-4 group-hover:text-emerald-600 transition-colors leading-[1.1] tracking-tighter uppercase">
+          <h3 className="text-xl font-bold text-zinc-900 mb-4 group-hover:text-emerald-600 transition-colors leading-[1.3] tracking-tight">
             {post.title}
           </h3>
 

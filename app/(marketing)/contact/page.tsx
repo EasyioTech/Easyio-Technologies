@@ -17,26 +17,16 @@ export default function ContactPage() {
     <PageWrapper>
       {/* Hero Section - Standardized with Homepage */}
       <section className="min-h-[70vh] pt-32 md:pt-48 pb-20 relative flex items-center overflow-hidden">
-        {/* Elite Mesh Backdrop */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-emerald-100/40 blur-[120px] rounded-full animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-yellow-100/30 blur-[120px] rounded-full" />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] contrast-150" />
-        </div>
+
 
         <div className="max-w-[1600px] mx-auto px-6 relative z-10 w-full">
           <div className="max-w-4xl">
-            <FadeIn>
-              <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-emerald-100 px-4 py-2 rounded-full mb-10 shadow-sm">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-900 leading-none">Ready to Help</span>
-              </div>
-            </FadeIn>
+
 
             <PremiumHeading 
               text="Start your project."
               highlightWords={["project."]}
-              className="text-6xl md:text-8xl lg:text-[120px] font-black tracking-tight text-zinc-950 mb-10 leading-[0.85]"
+              className="text-6xl md:text-8xl lg:text-[120px] font-bold tracking-tight text-zinc-900 mb-10 leading-[0.85]"
               highlightClassName="font-serif italic font-medium text-zinc-400 block mt-2"
             />
 
