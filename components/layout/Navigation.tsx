@@ -24,12 +24,12 @@ export default function Navigation() {
   return (
     <>
       <nav className={cn(
-      "fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[calc(100%-3rem)] max-w-7xl transition-all duration-500 rounded-[2rem]",
+      "fixed top-0 left-0 right-0 lg:top-4 lg:left-1/2 lg:-translate-x-1/2 lg:right-auto z-[100] w-full lg:w-[calc(100%-3rem)] lg:max-w-7xl transition-all duration-300 lg:rounded-[2rem]",
       scrolled 
-        ? "bg-white/80 backdrop-blur-xl border border-zinc-200/50 shadow-2xl shadow-zinc-200/50 py-2.5" 
-        : "bg-transparent py-6"
+        ? "bg-white/90 backdrop-blur-xl border-b lg:border border-zinc-200/50 shadow-sm lg:shadow-2xl py-3.5 lg:py-2.5" 
+        : "bg-white/80 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none border-b lg:border-b-0 border-zinc-100/80 py-4 lg:py-6"
     )}>
-      <div className="px-8 flex items-center justify-between">
+      <div className="px-5 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo Systems */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 bg-zinc-950 text-white flex items-center justify-center rounded-xl shadow-lg transition-all group-hover:bg-zinc-900 group-hover:scale-105">

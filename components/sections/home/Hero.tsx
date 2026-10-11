@@ -9,7 +9,7 @@ import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHe
 
 export default function Hero() {
   return (
-    <section className="relative pt-24 pb-12 md:pt-56 md:pb-32 overflow-hidden flex flex-col items-center justify-center">
+    <section className="relative pt-32 pb-14 md:pt-56 md:pb-32 overflow-hidden flex flex-col items-center justify-center">
       {/* Enhanced Mesh Gradient Background - Desktop only to save mobile GPU */}
       <div className="hidden md:block absolute inset-0 pointer-events-none">
         <div className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] bg-emerald-100/30 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '10s' }} />
