@@ -60,16 +60,28 @@ export const PremiumHeading: React.FC<PremiumHeadingProps> = ({
 
   return (
     <Tag className={`${className} perspective-1000`}>
+      {/* Mobile rendering path: Direct rendered text to eliminate 20+ Framer Motion spring listeners on phone screens */}
+      <span className="block md:hidden">
+        {words.map((word, index) => {
+          const isHighlighted = highlightWords.some(h => word.toLowerCase().includes(h.toLowerCase()));
+          return (
+            <span key={index} className={`inline-block mr-[0.22em] last:mr-0 ${isHighlighted ? highlightClassName : ''}`}>
+              {word}
+            </span>
+          );
+        })}
+      </span>
+
+      {/* Desktop rendering path: High-fidelity stagger animation */}
       <m.div
         variants={container}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="inline-block"
+        className="hidden md:inline-block"
       >
         {words.map((word, index) => {
           const isHighlighted = highlightWords.some(h => word.toLowerCase().includes(h.toLowerCase()));
-          const isLast = index === words.length - 1;
           
           return (
             <span key={index} className="inline-block overflow-visible py-2 -my-2 mr-[0.25em] last:mr-0">

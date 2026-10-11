@@ -17,8 +17,29 @@ export default function MarqueeText() {
   const springX2 = useSpring(x2, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   return (
-    <section ref={containerRef} className="relative bg-transparent overflow-hidden py-10 md:py-24 border-y border-zinc-100/60">
-      <div className="flex flex-col gap-8">
+    <section ref={containerRef} className="relative bg-transparent overflow-hidden py-8 md:py-24 border-y border-zinc-100/60 mobile-section-content">
+      {/* Mobile view: Ultra-smooth CSS Marquee (zero main-thread JS scroll calculation) */}
+      <div className="flex md:hidden flex-col gap-4">
+        <div className="flex overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap gpu-layer">
+            <MarqueeItem text="Engineering" italicText="Excellence" color="text-zinc-950" />
+            <MarqueeItem text="Technical" italicText="Sovereignty" color="text-zinc-950" />
+            <MarqueeItem text="Mission" italicText="Critical" color="text-zinc-950" />
+            <MarqueeItem text="Industrial" italicText="Architecture" color="text-zinc-950" />
+          </div>
+        </div>
+        <div className="flex overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap gpu-layer" style={{ animationDirection: 'reverse' }}>
+            <MarqueeItem text="Resilient" italicText="Infrastructure" color="text-zinc-400" />
+            <MarqueeItem text="Adaptive" italicText="Protocols" color="text-zinc-400" />
+            <MarqueeItem text="Future" italicText="Proof" color="text-zinc-400" />
+            <MarqueeItem text="Atomic" italicText="Consistency" color="text-zinc-400" />
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop view: Interactive scroll-spring marquee */}
+      <div className="hidden md:flex flex-col gap-8">
         
         {/* Row 1 - High Contrast Professional */}
         <div className="flex overflow-hidden">

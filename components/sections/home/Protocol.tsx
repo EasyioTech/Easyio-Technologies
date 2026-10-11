@@ -53,6 +53,11 @@ export default function Protocol() {
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
+    // Disable interval on mobile (< 768px) to eliminate CPU cycle consumption
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return;
+    }
+
     let t1: NodeJS.Timeout, t2: NodeJS.Timeout, t3: NodeJS.Timeout;
     
     const runCycle = () => {
@@ -74,8 +79,8 @@ export default function Protocol() {
   }, []);
 
   return (
-    <section className="py-32 md:py-48 relative bg-transparent overflow-hidden" id="process">
-      <div className="max-w-7xl mx-auto px-6 relative">
+    <section className="py-14 md:py-48 relative bg-transparent overflow-hidden mobile-section-content" id="process">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 relative">
         
         {/* Background Vein/Line Animation */}
         <div className="absolute inset-0 pointer-events-none z-0 hidden md:block" style={{ top: '250px', height: 'calc(100% - 250px)' }}>
@@ -103,34 +108,29 @@ export default function Protocol() {
         </div>
 
         {/* Header - Simple & Focused */}
-        <div className="mb-24 flex flex-col items-center text-center relative z-10">
-            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-400 mb-6">Our Process</span>
+        <div className="mb-10 md:mb-24 flex flex-col items-center text-center relative z-10">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-zinc-400 mb-3 md:mb-6">Our Process</span>
             <PremiumHeading 
               text="How we bring ideas to life"
               highlightWords={["ideas", "life"]}
               as="h2"
-              className="text-5xl md:text-8xl font-black tracking-tighter text-zinc-950 mb-8 leading-none"
+              className="text-3xl sm:text-5xl md:text-8xl font-black tracking-tighter text-zinc-950 mb-4 md:mb-8 leading-tight md:leading-none"
             />
-            <p className="text-zinc-500 text-lg md:text-xl max-w-xl leading-relaxed font-medium">
+            <p className="text-zinc-500 text-sm sm:text-base md:text-xl max-w-xl leading-relaxed font-medium">
                 A simple, effective way to build products that people love.
             </p>
         </div>
 
         {/* Clean Process Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:auto-rows-[340px] relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 md:auto-rows-[340px] relative z-10">
           {stages.map((stage, i) => {
             const isActive = activeStep === i;
             return (
-              <m.div
+              <div
                 key={stage.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className={cn(
-                  "group relative overflow-hidden rounded-[3rem] border p-10 flex flex-col justify-between bg-white/70 backdrop-blur-md transition-all duration-700 min-h-[340px] md:min-h-0",
-                  isActive ? "border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.15)] scale-[1.02]" : "border-zinc-100 hover:border-zinc-200 hover:shadow-xl hover:shadow-zinc-100/50",
+                  "group relative overflow-hidden rounded-[2rem] md:rounded-[3rem] border p-6 sm:p-8 md:p-10 flex flex-col justify-between bg-white/70 backdrop-blur-md transition-all duration-300 min-h-[260px] md:min-h-0",
+                  isActive ? "border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.15)] md:scale-[1.02]" : "border-zinc-100 hover:border-zinc-200 hover:shadow-xl hover:shadow-zinc-100/50",
                   stage.className
                 )}
               >
@@ -182,7 +182,7 @@ export default function Protocol() {
                 )}>
                   {stage.icon}
                 </div>
-              </m.div>
+              </div>
             );
           })}
         </div>

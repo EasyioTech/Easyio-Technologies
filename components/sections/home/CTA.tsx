@@ -9,15 +9,15 @@ import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHe
 
 export default function CTA() {
   return (
-    <section className="py-8 md:py-16 bg-transparent relative overflow-hidden" id="contact">
-      <div className="max-w-[1600px] mx-auto px-6 relative z-10">
+    <section className="py-8 md:py-16 bg-transparent relative overflow-hidden mobile-section-content" id="contact">
+      <div className="max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10">
         
         {/* The Premium Card - High Visibility "Vibe" Card */}
         <div 
-          className="relative rounded-[3rem] p-10 md:p-16 lg:p-20 overflow-hidden group border border-emerald-200/50 shadow-[0_32px_64px_-16px_rgba(16,185,129,0.15)] bg-white backdrop-blur-md"
+          className="relative rounded-[2rem] md:rounded-[3rem] p-6 sm:p-10 md:p-16 lg:p-20 overflow-hidden group border border-emerald-200/50 shadow-xl md:shadow-[0_32px_64px_-16px_rgba(16,185,129,0.15)] bg-white backdrop-blur-md"
         >
-          {/* High-Vibrancy Mesh Gradient Background */}
-          <div className="absolute inset-0 transition-opacity duration-1000">
+          {/* High-Vibrancy Mesh Gradient Background - desktop only */}
+          <div className="hidden md:block absolute inset-0 transition-opacity duration-1000">
             {/* Emerald Primary Glow - More Intense */}
             <div className="absolute -top-[30%] -left-[10%] w-[80%] h-[100%] bg-emerald-200/50 blur-[120px] rounded-full animate-pulse will-change-[opacity]" style={{ animationDuration: '7s' }} />
             {/* Yellow Secondary Glow - More Intense */}
@@ -30,9 +30,9 @@ export default function CTA() {
              
              {/* Tagline - Refined Scale */}
              <FadeIn delay={0.2}>
-                <div className="flex items-center gap-2.5 mb-6 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80">
+                <div className="inline-flex items-center gap-2 mb-4 md:mb-6 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80">
                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-                   <span className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-800">The Best Tech Company in Kashmir</span>
+                   <span className="text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.25em] text-emerald-800">The Best Tech Company in Kashmir</span>
                 </div>
              </FadeIn>
 
@@ -40,23 +40,23 @@ export default function CTA() {
                text="Helping you build The Future."
                highlightWords={["Future."]}
                as="h2"
-               className="text-4xl md:text-5xl lg:text-6xl font-black text-zinc-950 tracking-[-0.03em] leading-[1.1] mb-6 md:mb-8 max-w-2xl mx-auto"
+               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-zinc-950 tracking-[-0.03em] leading-tight md:leading-[1.1] mb-4 md:mb-8 max-w-2xl mx-auto"
                highlightClassName="font-serif italic font-medium text-zinc-400 mt-1 block"
              />
 
              <PremiumSubheading 
                delay={0.4}
                text="We work with ambitious founders and teams to build high-quality software that solves real problems and scales beautifully."
-               className="text-sm md:text-lg text-zinc-500 max-w-xl mx-auto leading-relaxed mb-8 md:mb-10 font-medium"
+               className="text-xs sm:text-sm md:text-lg text-zinc-500 max-w-xl mx-auto leading-relaxed mb-6 md:mb-10 font-medium"
              />
 
              {/* Refined CTA Button - Psychological UI Scaling */}
              <div className="relative">
                    <Link 
                      href="/contact"
-                     className="group flex items-center gap-1 h-12 md:h-14 bg-zinc-950 rounded-full pl-8 pr-1.5 transition-all duration-500 shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/20 hover:scale-[1.02] active:scale-[0.98]"
+                     className="group flex items-center gap-1 h-12 md:h-14 bg-zinc-950 rounded-full pl-6 md:pl-8 pr-1.5 transition-all duration-300 shadow-xl shadow-emerald-500/10 hover:shadow-emerald-500/20 hover:scale-[1.02] active:scale-[0.98]"
                    >
-                     <span className="text-white text-[11px] md:text-xs font-black tracking-[0.25em] uppercase pr-4 pl-3">
+                     <span className="text-white text-[10px] md:text-xs font-black tracking-[0.2em] md:tracking-[0.25em] uppercase pr-3 md:pr-4 pl-2 md:pl-3">
                        Get Started
                      </span>
                      

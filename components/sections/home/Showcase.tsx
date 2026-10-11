@@ -110,16 +110,16 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
   }, [carouselApi]);
 
   return (
-    <section className="pt-24 pb-32 relative overflow-hidden bg-transparent" id="work">
-      {/* Hero-style Gradient Backdrop */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+    <section className="pt-14 pb-20 md:pt-24 md:pb-32 relative overflow-hidden bg-transparent mobile-section-content" id="work">
+      {/* Hero-style Gradient Backdrop - desktop only */}
+      <div className="hidden md:block absolute inset-0 z-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] h-full bg-[radial-gradient(circle_at_50%_100%,#FEF9C3_0%,transparent_50%)] opacity-20" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="mb-12 flex flex-col justify-between md:mb-20 md:flex-row md:items-end">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
+        <div className="mb-8 flex flex-col justify-between md:mb-20 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-zinc-100 px-3 py-1 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-zinc-100 px-3 py-1 rounded-full mb-4 md:mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Our Portfolio</span>
             </div>
@@ -127,36 +127,36 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
               text="Recent Work"
               highlightWords={["Work"]}
               as="h2"
-              className="text-4xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-6"
+              className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-3 md:mb-6"
             />
-            <p className="text-zinc-500 text-base md:text-lg font-medium leading-relaxed max-w-lg">
+            <p className="text-zinc-500 text-sm sm:text-base md:text-lg font-medium leading-relaxed max-w-lg">
               Explore how we help modern teams build and scale their ideas with custom software.
             </p>
           </div>
-          <div className="mt-8 flex shrink-0 items-center justify-start gap-4">
+          <div className="mt-6 md:mt-8 flex shrink-0 items-center justify-start gap-3 md:gap-4">
             <Button
               size="icon"
               variant="outline"
               onClick={() => carouselApi?.scrollPrev()}
               disabled={!mounted || !canScrollPrev}
-              className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
+              className="w-10 h-10 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
             >
-              <ArrowLeft className="size-5 md:size-6" />
+              <ArrowLeft className="size-4 md:size-6" />
             </Button>
             <Button
               size="icon"
               variant="outline"
               onClick={() => carouselApi?.scrollNext()}
               disabled={!mounted || !canScrollNext}
-              className="w-12 h-12 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
+              className="w-10 h-10 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
             >
-              <ArrowRight className="size-5 md:size-6" />
+              <ArrowRight className="size-4 md:size-6" />
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="w-full relative z-10 px-6 lg:px-0 overflow-visible">
+      <div className="w-full relative z-10 px-5 sm:px-6 lg:px-0 overflow-visible">
         <Carousel
           setApi={setCarouselApi}
           opts={{
@@ -167,58 +167,50 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
           plugins={[WheelGesturesPlugin()]}
           className="relative lg:left-[calc((100vw-1280px)/2)]"
         >
-          <CarouselContent className="-ml-4 md:-ml-8 cursor-grab active:cursor-grabbing">
-            {displayProjects.map((project, index) => (
-              <CarouselItem key={project.id} className="pl-4 md:pl-8 basis-[90%] md:basis-[520px]">
-                <m.div 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: index * 0.1,
-                    ease: [0.16, 1, 0.3, 1] 
-                  }}
-                  className="group relative flex flex-col bg-white border border-zinc-100/50 rounded-[2.5rem] md:rounded-[3rem] p-5 md:p-6 transition-all hover:shadow-xl hover:shadow-zinc-200/50 h-full"
+          <CarouselContent className="-ml-3 md:-ml-8 cursor-grab active:cursor-grabbing">
+            {displayProjects.map((project) => (
+              <CarouselItem key={project.id} className="pl-3 md:pl-8 basis-[85%] sm:basis-[70%] md:basis-[520px]">
+                <div 
+                  className="group relative flex flex-col bg-white border border-zinc-100/50 rounded-[2rem] md:rounded-[3rem] p-4 sm:p-5 md:p-6 transition-all hover:shadow-xl hover:shadow-zinc-200/50 h-full"
                 >
-                  <div className="relative aspect-[16/11] overflow-hidden rounded-[1.8rem] md:rounded-[2.5rem] mb-6 md:mb-8">
+                  <div className="relative aspect-[16/11] overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] mb-4 md:mb-8">
                     <Image
                       src={project.image}
                       alt={project.title}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                       fill 
                     />
-                    <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-20">
+                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap gap-1.5 z-20">
                       {project.tags.map((tag: string) => (
-                        <span key={tag} className="px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-zinc-900 bg-white/90 backdrop-blur-md rounded-full shadow-sm">
+                        <span key={tag} className="px-2.5 py-0.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-zinc-900 bg-white/90 backdrop-blur-md rounded-full shadow-sm">
                           {tag}
                         </span>
                       ))}
                     </div>
                   </div>
                   
-                  <div className="px-2 md:px-4 flex flex-col flex-grow">
-                    <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 mb-3 md:mb-4 tracking-tight group-hover:text-emerald-600 transition-colors">
+                  <div className="px-1 md:px-4 flex flex-col flex-grow">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-950 mb-2 md:mb-4 tracking-tight group-hover:text-emerald-600 transition-colors">
                       {project.title}
                     </h3>
                     
-                    <p className="text-sm md:text-base text-zinc-500 leading-relaxed mb-6 md:mb-8 line-clamp-3">
+                    <p className="text-xs sm:text-sm md:text-base text-zinc-500 leading-relaxed mb-4 md:mb-8 line-clamp-2 md:line-clamp-3">
                       {project.summary}
                     </p>
                     
                     <div className="mt-auto">
                       <a 
                         href={project.url}
-                        className="inline-flex items-center justify-between w-full p-4 rounded-2xl bg-zinc-50 text-xs font-black tracking-widest text-zinc-950 uppercase transition-all group-hover:bg-emerald-50 cursor-pointer relative z-50"
+                        className="inline-flex items-center justify-between w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-zinc-50 text-[11px] sm:text-xs font-black tracking-widest text-zinc-950 uppercase transition-all group-hover:bg-emerald-50 cursor-pointer relative z-50"
                       >
                         Visit Case Study
-                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-zinc-200 group-hover:border-emerald-200">
-                          <ArrowUpRight className="w-4 h-4 group-hover:text-emerald-600 group-hover:rotate-45 transition-all" />
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center border border-zinc-200 group-hover:border-emerald-200">
+                          <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:text-emerald-600 group-hover:rotate-45 transition-all" />
                         </div>
                       </a>
                     </div>
                   </div>
-                </m.div>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>

@@ -32,50 +32,50 @@ const FeatureCard = ({
 
 export default function EngineFeatures() {
   return (
-    <section className="py-16 md:py-24 bg-transparent overflow-hidden" id="engine">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-12 md:py-24 bg-transparent overflow-hidden mobile-section-content" id="engine">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6">
         
         {/* Header - Compact */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="mb-8 md:mb-12">
+          <div className="flex items-center gap-3 mb-3">
             <div className="w-1.5 h-1.5 bg-zinc-950" />
-            <span className="text-[10px] font-black tracking-[0.4em] text-zinc-400 uppercase">Engine Capabilities</span>
+            <span className="text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] text-zinc-400 uppercase">Engine Capabilities</span>
           </div>
           <PremiumHeading 
             text="Built for Business."
             highlightWords={["Performance"]}
-            className="text-4xl md:text-6xl font-black tracking-tighter text-zinc-950 leading-none"
+            className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tighter text-zinc-950 leading-tight md:leading-none"
           />
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[620px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 h-auto md:h-[620px]">
           
           {/* Main Feature: Enterprise Engines */}
           <m.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="md:col-span-6 md:row-span-2 bg-[#FDE047] rounded-[2.5rem] p-8 md:p-12 flex flex-col relative overflow-hidden group min-h-[400px] md:min-h-0 shadow-2xl shadow-yellow-400/10"
+            className="md:col-span-6 md:row-span-2 bg-[#FDE047] rounded-[2rem] md:rounded-[2.5rem] p-6 sm:p-8 md:p-12 flex flex-col relative overflow-hidden group min-h-[320px] md:min-h-0 shadow-2xl shadow-yellow-400/10"
           >
             <div className="relative z-20 max-w-[400px]">
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-3 mb-6 md:mb-8">
                 <span className="text-[10px] font-black tracking-[0.2em] text-zinc-900/40 uppercase">01 / CORE ENGINE</span>
                 <div className="px-3 py-1 bg-zinc-950 text-[9px] font-black text-white uppercase rounded-full">
                   98.4% Efficiency
                 </div>
               </div>
-              <h3 className="text-4xl md:text-6xl font-black text-zinc-950 tracking-tighter leading-[0.9] mb-6">
+              <h3 className="text-3xl sm:text-4xl md:text-6xl font-black text-zinc-950 tracking-tighter leading-[0.95] md:leading-[0.9] mb-4 md:mb-6">
                 Industrial Grade<br/>Software Engines.
               </h3>
-              <p className="text-zinc-950/60 text-base md:text-lg leading-snug font-bold max-w-[320px]">
+              <p className="text-zinc-950/70 text-sm sm:text-base md:text-lg leading-snug font-bold max-w-[320px]">
                 Building smart software that solves complex business problems.
               </p>
               
-              <div className="mt-10">
-                <button className="bg-zinc-950 text-white text-xs font-black py-4 px-10 rounded-full hover:scale-105 transition-all shadow-xl shadow-zinc-950/20 active:scale-95">
+              <div className="mt-6 md:mt-10">
+                <Link href="/case-studies" className="inline-block bg-zinc-950 text-white text-xs font-black py-3.5 px-8 md:py-4 md:px-10 rounded-full hover:scale-105 transition-all shadow-xl shadow-zinc-950/20 active:scale-95">
                   See Our Work
-                </button>
+                </Link>
               </div>
             </div>
 

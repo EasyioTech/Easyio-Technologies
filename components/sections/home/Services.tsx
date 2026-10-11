@@ -46,21 +46,21 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="relative py-24 md:py-40 bg-transparent overflow-hidden" id="services">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section className="relative py-14 md:py-40 bg-transparent overflow-hidden mobile-section-content" id="services">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
         
         {/* Header Section - Same as Hero Style */}
-        <div className="mb-32">
-          <div className="flex items-center gap-4 mb-10">
+        <div className="mb-10 md:mb-32">
+          <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-10">
             <div className="w-1.5 h-1.5 rounded-full bg-zinc-950" />
-            <span className="text-[10px] font-black tracking-[0.5em] text-zinc-400 uppercase">
+            <span className="text-[10px] font-black tracking-[0.3em] md:tracking-[0.5em] text-zinc-400 uppercase">
               What we offer
             </span>
           </div>
           <PremiumHeading
             text="Building the next big thing."
             highlightWords={["big", "thing."]}
-            className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter text-zinc-950 leading-none"
+            className="text-3xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-zinc-950 leading-tight md:leading-none"
           />
         </div>
 
@@ -68,21 +68,17 @@ export default function Services() {
         <div className="border-t border-zinc-100">
           {services.map((service, index) => (
             <Link href={service.href} key={service.id} className="block">
-              <m.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+              <div
                 style={{ '--hover-color': service.color } as any}
-                className="group relative border-b border-zinc-100 py-12 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 hover:bg-zinc-50/50 transition-all duration-500 px-4 -mx-4 rounded-3xl md:rounded-none"
+                className="group relative border-b border-zinc-100 py-6 sm:py-10 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 hover:bg-zinc-50/50 transition-all duration-300 px-3 md:px-4 -mx-3 md:-mx-4 rounded-2xl md:rounded-none"
               >
                 {/* Left: Index & Title */}
-                <div className="flex items-center gap-8 md:gap-16 flex-1">
-                  <span className="text-sm font-black text-zinc-300 uppercase tracking-widest">
+                <div className="flex items-center gap-4 sm:gap-8 md:gap-16 flex-1">
+                  <span className="text-xs sm:text-sm font-black text-zinc-300 uppercase tracking-widest">
                     {service.id}
                   </span>
-                  <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
-                    <h3 className="text-4xl md:text-7xl font-black text-zinc-950 tracking-tighter uppercase group-hover:translate-x-4 group-hover:text-[var(--hover-color)] transition-all duration-500">
+                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-8">
+                    <h3 className="text-2xl sm:text-4xl md:text-7xl font-black text-zinc-950 tracking-tighter uppercase group-hover:translate-x-2 md:group-hover:translate-x-4 group-hover:text-[var(--hover-color)] transition-all duration-300">
                       {service.title}
                     </h3>
                     <div 
@@ -93,26 +89,26 @@ export default function Services() {
                 </div>
 
                 {/* Right: Description & Icon */}
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12 w-full md:w-auto">
-                  <p className="text-lg md:text-xl text-zinc-500 font-medium max-w-sm leading-tight group-hover:text-zinc-900 transition-colors">
+                <div className="flex items-center justify-between gap-4 sm:gap-8 md:gap-12 w-full md:w-auto">
+                  <p className="text-sm sm:text-base md:text-xl text-zinc-500 font-medium max-w-sm leading-snug md:leading-tight group-hover:text-zinc-900 transition-colors">
                     {service.description}
                   </p>
-                  <div className="flex items-center justify-between w-full md:w-auto gap-12">
-                     <div className="w-14 h-14 rounded-full bg-white border border-zinc-100 flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:shadow-lg group-hover:bg-[var(--hover-color)] group-hover:border-[var(--hover-color)] transition-all duration-500">
-                        <service.icon className="w-6 h-6 text-zinc-950 group-hover:text-white transition-colors duration-500" />
+                  <div className="flex items-center justify-end shrink-0 gap-3 md:gap-12">
+                     <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white border border-zinc-100 flex items-center justify-center shadow-sm group-hover:scale-105 group-hover:bg-[var(--hover-color)] group-hover:border-[var(--hover-color)] transition-all duration-300">
+                        <service.icon className="w-4 h-4 md:w-6 md:h-6 text-zinc-950 group-hover:text-white transition-colors duration-300" />
                      </div>
                      <ArrowUpRight 
-                      className="w-8 h-8 text-zinc-200 group-hover:text-[var(--hover-color)] group-hover:rotate-45 transition-all duration-500" 
+                      className="w-5 h-5 md:w-8 md:h-8 text-zinc-200 group-hover:text-[var(--hover-color)] group-hover:rotate-45 transition-all duration-300" 
                      />
                   </div>
                 </div>
 
                 {/* Background Glow on Hover */}
                 <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none -z-10"
+                  className="hidden md:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none -z-10"
                   style={{ background: `linear-gradient(to right, ${service.color}08, transparent)` }} 
                 />
-              </m.div>
+              </div>
             </Link>
           ))}
         </div>

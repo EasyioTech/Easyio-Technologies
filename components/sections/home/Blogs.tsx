@@ -43,26 +43,26 @@ const blogs = [
 
 export default function Blogs() {
   return (
-    <section className="pt-24 pb-32 bg-transparent relative overflow-hidden" id="blog">
-      {/* Background Subtle Gradient */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+    <section className="pt-14 pb-20 md:pt-24 md:pb-32 bg-transparent relative overflow-hidden mobile-section-content" id="blog">
+      {/* Background Subtle Gradient - desktop only */}
+      <div className="hidden md:block absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] h-full bg-[radial-gradient(circle_at_50%_0%,#D1FAE5_0%,transparent_50%)] opacity-20" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mb-16">
+      <div className="container mx-auto px-5 sm:px-6 relative z-10">
+        <div className="max-w-4xl mb-8 md:mb-16">
             <PremiumHeading 
               text="Latest Insights"
               highlightWords={["Insights"]}
               as="h2"
-              className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-8 leading-tight"
+              className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-4 md:mb-8 leading-tight"
             />
-            <p className="text-zinc-500 text-lg font-medium leading-relaxed">
+            <p className="text-zinc-500 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
                Expert-led analysis on software engineering, security protocols, and enterprise infrastructure.
             </p>
           </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 md:gap-y-20 gap-x-12 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-y-20 gap-x-8 md:gap-x-12 mb-12 md:mb-20">
           {blogs.map((post, i) => (
             <BlogCard key={post.id} post={post} index={i} />
           ))}
@@ -72,7 +72,7 @@ export default function Blogs() {
             <Magnetic>
               <Link 
                 href="/blog" 
-                className="inline-flex items-center gap-3 px-10 py-4 bg-zinc-950 text-white rounded-2xl text-xs font-bold uppercase tracking-widest group hover:bg-emerald-600 transition-all shadow-xl shadow-zinc-200/50"
+                className="inline-flex items-center gap-3 px-8 py-3.5 md:px-10 md:py-4 bg-zinc-950 text-white rounded-2xl text-xs font-bold uppercase tracking-widest group hover:bg-emerald-600 transition-all shadow-xl shadow-zinc-200/50"
               >
                 Read more
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -85,29 +85,21 @@ export default function Blogs() {
 }
 function BlogCard({ post, index }: { post: any; index: number }) {
   return (
-    <m.div 
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ 
-        duration: 0.8, 
-        delay: index * 0.1,
-        ease: [0.16, 1, 0.3, 1] 
-      }}
+    <div 
       className="group cursor-pointer flex flex-col h-full"
     >
       <Link href={post.slug || "#"} className="flex flex-col h-full">
         {/* Modern Image Frame */}
-        <div className="relative aspect-[16/10] overflow-hidden rounded-[2.5rem] bg-zinc-50 border border-zinc-100 mb-8 transition-all group-hover:shadow-2xl group-hover:shadow-zinc-200/40">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-[1.8rem] md:rounded-[2.5rem] bg-zinc-50 border border-zinc-100 mb-5 md:mb-8 transition-all group-hover:shadow-2xl group-hover:shadow-zinc-200/40">
           <Image 
             src={post.image} 
             alt={post.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition duration-700 group-hover:scale-105"
+            className="object-cover transition duration-500 group-hover:scale-105"
           />
-          <div className="absolute top-6 left-6 flex gap-2">
-             <span className="px-4 py-1.5 bg-white shadow-sm border border-zinc-100 rounded-full text-[10px] font-bold text-zinc-950 uppercase tracking-widest">
+          <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex gap-2">
+             <span className="px-3 py-1 sm:px-4 sm:py-1.5 bg-white shadow-sm border border-zinc-100 rounded-full text-[9px] sm:text-[10px] font-bold text-zinc-950 uppercase tracking-widest">
                {post.category}
              </span>
           </div>
@@ -154,6 +146,6 @@ function BlogCard({ post, index }: { post: any; index: number }) {
           </div>
         </div>
       </Link>
-    </m.div>
+    </div>
   );
 }

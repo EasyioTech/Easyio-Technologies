@@ -23,6 +23,12 @@ const Reveal: React.FC<AnimationProps> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // On small screens (< 768px), immediately mark visible to avoid scroll-driven lag and jitter
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -32,7 +38,7 @@ const Reveal: React.FC<AnimationProps> = ({
           }
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: '50px' }
     );
 
     if (ref.current) {
@@ -50,7 +56,7 @@ const Reveal: React.FC<AnimationProps> = ({
   return (
     <div 
       ref={ref} 
-      className={`${className} ${isVisible ? animationClass : 'opacity-0'}`}
+      className={`${className} ${isVisible ? `md:${animationClass}` : 'opacity-100 md:opacity-0'}`}
       style={{ animationDelay: `${delay}ms` }}
     >
       {children}

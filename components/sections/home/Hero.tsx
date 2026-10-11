@@ -9,21 +9,21 @@ import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHe
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-56 md:pb-32 overflow-hidden flex flex-col items-center justify-center">
-      {/* Enhanced Mesh Gradient Background - Matches CTA */}
-      <div className="absolute inset-0 pointer-events-none">
+    <section className="relative pt-24 pb-12 md:pt-56 md:pb-32 overflow-hidden flex flex-col items-center justify-center">
+      {/* Enhanced Mesh Gradient Background - Desktop only to save mobile GPU */}
+      <div className="hidden md:block absolute inset-0 pointer-events-none">
         <div className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] bg-emerald-100/30 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '10s' }} />
         <div className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[70%] bg-yellow-100/30 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '12s', animationDelay: '3s' }} />
         <div className="absolute top-1/4 left-1/4 w-[50%] h-[50%] bg-white/40 blur-[100px] rounded-full" />
       </div>
       
-      <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-6 relative z-10 text-center">
         <div className="flex flex-col items-center">
           
           <FadeIn>
-            <div className="flex items-center gap-2.5 mb-6 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 shadow-sm">
+            <div className="inline-flex items-center gap-2 mb-5 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 shadow-sm">
               <div className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-              <span className="text-[11px] font-black uppercase tracking-[0.25em] text-emerald-800">
+              <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-800">
                 The Best Tech & Software Company in Kashmir
               </span>
             </div>
@@ -32,17 +32,17 @@ export default function Hero() {
           <PremiumHeading 
             text="Building products people actually love"
             highlightWords={["products", "love"]}
-            className="text-5xl md:text-8xl lg:text-[110px] font-black tracking-tighter text-zinc-950 mb-8 leading-none max-w-[1200px]"
+            className="text-4xl sm:text-6xl md:text-8xl lg:text-[110px] font-black tracking-tighter text-zinc-950 mb-5 md:mb-8 leading-[1.05] md:leading-none max-w-[1200px]"
           />
 
           <PremiumSubheading 
             delay={0.6}
             text="Headquartered in Kashmir, we engineer high-performance custom ERPs, scalable mobile apps, web applications, and AI systems built to scale businesses from Srinagar and Sopore to global markets."
-            className="text-zinc-500 text-base md:text-xl font-medium max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-zinc-500 text-sm sm:text-base md:text-xl font-medium max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed"
           />
 
           <FadeIn delay={0.4}>
-            <div className="flex flex-col md:flex-row items-center gap-8 mb-20">
+            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mb-10 md:mb-20">
                 <Link 
                   href="/contact" 
                   className="group h-14 pl-8 pr-2 flex items-center justify-center bg-zinc-950 text-white font-medium rounded-full hover:bg-zinc-800 transition-all shadow-xl shadow-emerald-500/10 active:scale-95"

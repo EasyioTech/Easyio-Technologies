@@ -5,8 +5,9 @@ import React from 'react';
 export default function InfrastructureBackground() {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-transparent">
-      {/* 1. Subtle Base Mesh */}
-      <div className="absolute inset-0 opacity-[0.4] pointer-events-none" 
+      {/* 1. Subtle Base Mesh - simplified on mobile */}
+      <div 
+        className="hidden md:block absolute inset-0 opacity-[0.35] pointer-events-none" 
         style={{
           background: `
             radial-gradient(at 10% 10%, rgba(209, 250, 229, 0.1) 0px, transparent 50%),
@@ -18,18 +19,18 @@ export default function InfrastructureBackground() {
         }}
       />
 
-      {/* 2. Precision Grid */}
+      {/* 2. Precision Grid - desktop only */}
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="hidden md:block absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `linear-gradient(to right, #09090b 1px, transparent 1px), linear-gradient(to bottom, #09090b 1px, transparent 1px)`,
           backgroundSize: '80px 80px'
         }}
       />
 
-      {/* 3. Fine Grain Texture */}
+      {/* 3. Fine Grain Texture - disabled on mobile to prevent GPU texture rasterization stall */}
       <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="hidden md:block absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `url("https://grainy-gradients.vercel.app/noise.svg")`,
           filter: 'contrast(120%) brightness(100%)'
