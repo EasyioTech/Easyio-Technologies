@@ -23,6 +23,13 @@ services:
     restart: always
     ports:
       - "3001:3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.easyio.rule=Host(`easyio.tech`) || Host(`www.easyio.tech`)"
+      - "traefik.http.routers.easyio.entrypoints=websecure"
+      - "traefik.http.routers.easyio.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.easyio.priority=1"
+      - "traefik.http.services.easyio.loadbalancer.server.url=http://127.0.0.1:3001"
     environment:
       DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD:-admin}@db:5432/${DB_NAME:-easyio_db}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
