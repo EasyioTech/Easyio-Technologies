@@ -6,15 +6,38 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import LeadCapture from "./LeadCapture";
 import Image from "next/image";
 
+// Helper to extract text from React children safely
+function getTextContent(children: any): string {
+  if (typeof children === 'string' || typeof children === 'number') {
+    return children.toString();
+  }
+  if (Array.isArray(children)) {
+    return children.map(getTextContent).join('');
+  }
+  if (children && typeof children === 'object' && children.props && children.props.children) {
+    return getTextContent(children.props.children);
+  }
+  return '';
+}
+
+function generateSlug(children: any): string {
+  const text = getTextContent(children);
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
 // Custom MDX components - Clean, readable editorial style
 export const components = {
   h1: (props: any) => <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 mt-16 mb-8 leading-tight" {...props} />,
   h2: (props: any) => {
-    const id = props.children?.toString().toLowerCase().replace(/\s+/g, '-') || '';
+    const id = generateSlug(props.children);
     return <h2 id={id} className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mt-16 mb-6 pb-2 border-b border-zinc-100 scroll-mt-32" {...props} />;
   },
   h3: (props: any) => {
-    const id = props.children?.toString().toLowerCase().replace(/\s+/g, '-') || '';
+    const id = generateSlug(props.children);
     return <h3 id={id} className="text-xl md:text-2xl font-bold tracking-tight text-zinc-900 mt-12 mb-4 scroll-mt-32" {...props} />;
   },
   h4: (props: any) => <h4 className="text-lg font-bold tracking-tight text-zinc-900 mt-8 mb-4" {...props} />,
@@ -35,6 +58,16 @@ export const components = {
       <pre className="p-6 bg-zinc-950 overflow-x-auto font-mono text-[13px] text-zinc-300 leading-relaxed" {...props} />
     </div>
   ),
+  table: (props: any) => (
+    <div className="my-10 overflow-x-auto rounded-2xl border border-zinc-200 shadow-sm">
+      <table className="w-full text-left text-sm text-zinc-700 border-collapse" {...props} />
+    </div>
+  ),
+  thead: (props: any) => <thead className="bg-zinc-50 border-b border-zinc-200 text-xs uppercase font-bold text-zinc-900" {...props} />,
+  tbody: (props: any) => <tbody className="divide-y divide-zinc-100" {...props} />,
+  tr: (props: any) => <tr className="hover:bg-zinc-50/50 transition-colors" {...props} />,
+  th: (props: any) => <th className="px-6 py-4 font-bold tracking-wider" {...props} />,
+  td: (props: any) => <td className="px-6 py-4 leading-relaxed" {...props} />,
   strong: (props: any) => <strong className="font-bold text-zinc-900" {...props} />,
   a: (props: any) => <a className="text-emerald-600 underline decoration-emerald-200 hover:decoration-emerald-500 transition-colors" {...props} />
 };
