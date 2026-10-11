@@ -57,6 +57,15 @@ export const footerLinks = {
       { label: "Contact Support", href: "/contact" },
     ],
   },
+  solutions: {
+    title: "Locations & Solutions",
+    links: [
+      { label: "Tech Company Sopore", href: "/software-development-company-in-sopore" },
+      { label: "Software Company Kashmir", href: "/software-development-company-in-kashmir" },
+      { label: "Web Development Srinagar", href: "/web-development-company-in-srinagar" },
+      { label: "Custom ERP Systems J&K", href: "/custom-erp-software-development-kashmir" },
+    ],
+  },
   legal: {
     title: "Legal",
     links: [

@@ -8,6 +8,11 @@ import { m, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
+    question: "Why is Easyio Technologies considered the best tech company in Kashmir?",
+    answer: "Easyio Technologies combines Silicon Valley engineering standards with deep regional expertise. Headquartered in Sopore with active operations across Srinagar, we build custom business ERPs, high-performance web applications, iOS/Android mobile apps, and enterprise AI integrations with full source-code ownership and zero vendor lock-in.",
+    category: "Recognition"
+  },
+  {
     question: "Do you offer support after the project is done?",
     answer: "Yes, we provide 3 months of priority support once your project is live. This ensures everything runs smoothly during the launch. We also offer long-term maintenance plans if you need ongoing help.",
     category: "Support"

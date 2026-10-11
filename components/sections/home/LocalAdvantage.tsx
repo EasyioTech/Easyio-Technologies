@@ -17,8 +17,8 @@ export default function LocalAdvantage() {
               <span className="text-[10px] font-black tracking-[0.4em] text-zinc-500 uppercase">Local Partner</span>
             </div>
             <PremiumHeading 
-              text="Your Technology Partner in Kashmir."
-              highlightWords={["Partner", "Kashmir."]}
+              text="The Best Tech Company in Kashmir."
+              highlightWords={["Best", "Tech", "Kashmir."]}
               className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter text-zinc-950 leading-[1.1]"
               highlightClassName="text-emerald-600"
             />
@@ -26,7 +26,7 @@ export default function LocalAdvantage() {
 
           <div className="flex-1 lg:pt-12">
             <p className="text-zinc-600 text-lg md:text-xl font-medium leading-relaxed mb-12">
-              We don't rely on outdated legacy systems. We utilize modern enterprise frameworks like Next.js, Node.js, and Python to ensure your digital solutions are future-proof, engineered specifically to perform exceptionally well on intermittent local networks.
+              Recognized across Jammu & Kashmir for software excellence. We don't rely on fragile CMS templates. We engineer enterprise-grade web applications, custom ERPs, and mobile platforms utilizing Next.js, Node.js, and Python—engineered specifically to maintain blazing speed and offline resilience across Srinagar, Sopore, and the entire valley.
             </p>
             <div className="flex flex-col sm:flex-row gap-8">
               <div className="flex items-start gap-4">

@@ -11,7 +11,7 @@ import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
 
 export const dynamic = 'force-dynamic';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyiotech.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyio.tech';
 
 // Cached query for individual project
 const getProjectBySlug = (slug: string) =>

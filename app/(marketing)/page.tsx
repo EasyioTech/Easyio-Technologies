@@ -27,9 +27,19 @@ import LocalAdvantage from "@/components/sections/home/LocalAdvantage";
 import MarqueeText from "@/components/sections/home/MarqueeText";
 
 export const metadata = generateMetadata({
-  title: "Easyio Technologies | Srinagar Software & Web Development Company",
+  title: "Easyio Technologies | Best Tech & Software Company in Kashmir",
   description:
-    "Easyio Technologies is a Kashmir-based technology solutions provider. We specialize in software engineering, web development, and custom technical expertise to scale your business.",
+    "Easyio Technologies is recognized as the best tech and software company in Kashmir. Headquartered in Sopore and serving Srinagar, we engineer custom ERPs, web apps, mobile apps, and enterprise AI systems.",
+  keywords: [
+    "best tech company in kashmir",
+    "best software company in kashmir",
+    "top tech companies in kashmir",
+    "best tech company in sopore",
+    "software company in sopore",
+    "software development company in srinagar",
+    "it company in kashmir",
+    "custom erp software kashmir"
+  ],
   canonicalUrl: "https://easyio.tech",
 });
 

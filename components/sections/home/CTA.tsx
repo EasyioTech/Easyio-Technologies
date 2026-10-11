@@ -30,9 +30,9 @@ export default function CTA() {
              
              {/* Tagline - Refined Scale */}
              <FadeIn delay={0.2}>
-                <div className="flex items-center gap-2.5 mb-6">
-                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                   <span className="text-[9px] font-black uppercase tracking-[0.3em] text-emerald-600/80">Ready to start?</span>
+                <div className="flex items-center gap-2.5 mb-6 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80">
+                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+                   <span className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-800">The Best Tech Company in Kashmir</span>
                 </div>
              </FadeIn>
 

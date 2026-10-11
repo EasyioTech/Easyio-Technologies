@@ -95,7 +95,7 @@ export const MASTER_SCHEMA = {
         "@type": "ImageObject",
         url: `${SITE_URL}/logo.png`,
       },
-      description: "Top software development company in Sopore, Kashmir, building high-performance systems and custom digital solutions for startups and enterprises.",
+      description: "The best tech and software development company in Kashmir, building high-performance ERP systems, mobile apps, and custom digital solutions for startups and enterprises.",
       sameAs: [
         "https://twitter.com/easyiotech",
         "https://linkedin.com/company/easyiotech",
@@ -127,9 +127,15 @@ export const MASTER_SCHEMA = {
     {
       "@type": "ProfessionalService",
       "@id": `${SITE_URL}/#localbusiness`,
-      name: "Easyio Technologies",
+      name: "Easyio Technologies - Best Tech Company in Kashmir",
       image: `${SITE_URL}/og-image.png`,
       url: SITE_URL,
+      description: "Recognized as the premier tech and software company in Kashmir. Custom software engineering, enterprise ERP systems, and cloud infrastructure.",
+      areaServed: [
+        { "@type": "State", "name": "Jammu and Kashmir" },
+        { "@type": "City", "name": "Srinagar" },
+        { "@type": "City", "name": "Sopore" }
+      ],
       telephone: "+91-6005659527", 
       parentOrganization: {
         "@id": `${SITE_URL}/#organization`

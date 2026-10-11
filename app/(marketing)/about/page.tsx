@@ -50,11 +50,11 @@ export default function AboutPage() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-                  <span className="text-[11px] font-bold tracking-[0.3em] text-zinc-400 uppercase">Our Story</span>
+                  <span className="text-[11px] font-bold tracking-[0.3em] text-zinc-400 uppercase">The Best Tech Company in Kashmir</span>
                 </div>
                 <PremiumHeading 
-                  text="Building digital infrastructure from the Valley."
-                  highlightWords={["Valley."]}
+                  text="Architecting the premier software company in Kashmir."
+                  highlightWords={["premier", "Kashmir."]}
                   className="text-4xl md:text-6xl font-black tracking-tighter text-zinc-950 mb-6 leading-[1.05]"
                   highlightClassName="font-serif italic text-emerald-600 font-medium tracking-normal"
                 />

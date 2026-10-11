@@ -2,7 +2,7 @@ import { getBlogPosts } from "@/lib/blog";
 
 export async function GET() {
   const posts = getBlogPosts();
-  const baseUrl = "https://easyiotech.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://easyio.tech";
   
   const rssElements = posts.map((post) => `
     <item>

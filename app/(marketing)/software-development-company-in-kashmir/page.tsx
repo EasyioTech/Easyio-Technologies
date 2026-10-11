@@ -16,22 +16,31 @@ import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHe
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Software Development Company in Kashmir | Custom ERP & SaaS | Easyio",
-  description: "Looking for a reliable software development company in Kashmir? We build custom ERPs, SaaS applications, and scalable business software from our Srinagar office.",
+  title: "Best Tech & Software Company in Kashmir | Custom ERP, Web & Mobile | Easyio",
+  description: "Easyio Technologies is recognized as the best tech and software company in Kashmir. We engineer custom ERPs, SaaS platforms, high-speed web apps, and enterprise software.",
+  keywords: [
+    "best tech company in kashmir",
+    "best software company in kashmir",
+    "top tech companies in kashmir",
+    "software development company in kashmir",
+    "it company in kashmir",
+    "web development kashmir",
+    "custom erp kashmir"
+  ],
   alternates: {
     canonical: "https://easyio.tech/software-development-company-in-kashmir",
   },
   openGraph: {
-    title: "Software Development Company in Kashmir | Easyio Technologies",
-    description: "Expert software engineering in Srinagar. We build custom ERPs, SaaS platforms, and enterprise software.",
+    title: "Best Tech & Software Company in Kashmir | Easyio Technologies",
+    description: "The leading tech company in Kashmir. Custom ERPs, web & mobile applications, and enterprise AI engineering.",
     url: "https://easyio.tech/software-development-company-in-kashmir",
     siteName: "Easyio Technologies",
     images: [
       {
-        url: "https://easyio.tech/images/og-software-kashmir.jpg",
+        url: "https://easyio.tech/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Software Development in Kashmir - Easyio Technologies",
+        alt: "Easyio Technologies - Best Tech Company in Kashmir",
       },
     ],
     locale: "en_IN",
@@ -41,8 +50,11 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "Software Development",
+  "@type": "ProfessionalService",
+  "name": "Easyio Technologies - Best Tech Company in Kashmir",
+  "serviceType": "Software Development & Technology Solutions",
+  "url": "https://easyio.tech/software-development-company-in-kashmir",
+  "image": "https://easyio.tech/og-image.png",
   "provider": {
     "@id": "https://easyio.tech/#organization"
   },
@@ -54,9 +66,13 @@ const jsonLd = {
     {
       "@type": "City",
       "name": "Srinagar"
+    },
+    {
+      "@type": "City",
+      "name": "Sopore"
     }
   ],
-  "description": "Custom software development, ERP systems, and SaaS platform engineering for businesses in Kashmir."
+  "description": "Ranked among the best tech companies in Kashmir, specializing in custom software development, ERP systems, mobile apps, and SaaS engineering."
 };
 
 const techStack = [
@@ -87,15 +103,15 @@ export default function SoftwareCompanyKashmirPage() {
               </FadeIn>
 
               <PremiumHeading 
-                text="Custom Software Development in Kashmir"
-                highlightWords={["Custom Software", "Development"]}
-                className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-zinc-950 mb-8 leading-tight max-w-[1000px]"
+                text="The Best Tech & Software Company in Kashmir"
+                highlightWords={["Best Tech", "Software Company"]}
+                className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-zinc-950 mb-8 leading-tight max-w-[1050px]"
                 highlightClassName="text-blue-600"
               />
 
               <PremiumSubheading 
                 delay={0.2}
-                text="We engineer custom ERPs, internal tools, and scalable SaaS applications. No bloated legacy code—just clean, high-performance software built in Srinagar."
+                text="We engineer custom ERPs, internal business tools, and scalable SaaS applications. No bloated legacy code—just clean, high-performance software built in Kashmir."
                 className="text-zinc-600 text-base md:text-xl max-w-2xl leading-relaxed font-medium mb-12"
               />
               

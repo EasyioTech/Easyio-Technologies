@@ -9,7 +9,7 @@ import { getBlogPosts } from "@/lib/blog";
 
 export const dynamic = 'force-dynamic';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyiotech.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyio.tech';
 
 export const metadata: Metadata = {
   title: "Engineering Blog | ERP Systems, AI Infrastructure & Software Architecture | Easyio",

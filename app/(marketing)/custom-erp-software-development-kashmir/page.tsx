@@ -119,18 +119,49 @@ export default function CustomERPPage() {
           </div>
         </section>
 
-        {/* Introduction */}
+        {/* Introduction / Comprehensive SEO Section */}
         <section className="py-24">
           <div className="max-w-[1000px] mx-auto px-6 prose prose-zinc prose-lg">
-            <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-zinc-900 mb-6">Digital Transformation for Kashmir's Enterprises</h2>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-zinc-900 mb-8">Digital Transformation for Kashmir's Growing Enterprises</h2>
             <p className="text-zinc-600 leading-relaxed mb-6">
-              As businesses in Jammu & Kashmir expand across manufacturing, retail, horticulture, and logistics, traditional management methods are breaking down. Relying on disconnected Excel sheets, paper ledgers, or generic accounting software creates massive inefficiencies, data silos, and prevents leadership from getting a clear, real-time view of company performance.
+              As businesses in Jammu & Kashmir scale their operations across manufacturing, retail, horticulture, and logistics, traditional management methods are rapidly breaking down. Relying on disconnected Excel spreadsheets, paper ledgers, or generic accounting software creates massive inefficiencies. It leads to data silos, duplicate data entry, inventory shrinkage, and prevents leadership from getting a clear, real-time view of the company's performance. The solution to these growing pains is an Enterprise Resource Planning (ERP) system.
             </p>
             <p className="text-zinc-600 leading-relaxed mb-6">
-              At Easyio Technologies, we specialize in Custom ERP (Enterprise Resource Planning) software development. Instead of forcing your unique business processes into a rigid, off-the-shelf software box, we build the software around your exact operations. 
+              At Easyio Technologies, based right here in Srinagar, we specialize in Custom ERP Software Development. Instead of forcing your unique business processes into a rigid, off-the-shelf software box that doesn't quite fit, we build the digital infrastructure completely around your exact daily operations. A custom ERP acts as the central nervous system of your company. It connects your inventory, human resources, payroll, customer relationships, and financial reporting into one secure, unified digital platform.
+            </p>
+
+            <h3 className="text-2xl md:text-3xl font-black tracking-tighter text-zinc-900 mt-12 mb-6">The Hidden Costs of Off-The-Shelf ERPs</h3>
+            <p className="text-zinc-600 leading-relaxed mb-6">
+              Many local businesses initially try to adopt popular off-the-shelf software like SAP, Zoho, or Oracle. While these are powerful tools, they are designed for the "average" global corporation. They come with two massive drawbacks for regional enterprises:
+            </p>
+            <ul className="list-disc pl-6 text-zinc-600 space-y-3 mb-8">
+              <li><strong>The Subscription Trap:</strong> Off-the-shelf software charges you per user, per month. As you hire more staff—warehouse workers, sales reps, accountants—your software bill increases exponentially. A custom ERP requires a higher upfront investment, but there are zero per-user licensing fees. You own the software IP entirely. Over a 2-3 year period, a custom ERP almost always results in a significantly lower Total Cost of Ownership (TCO).</li>
+              <li><strong>Rigid Workflows:</strong> Standardized software forces you to change how your company operates to fit the software's limitations. If your local supply chain requires a specific 3-step verification process, an off-the-shelf product won't support it without incredibly expensive vendor customizations. Our custom ERPs are built to mirror your exact real-world processes, drastically reducing the learning curve for your employees.</li>
+            </ul>
+
+            <h3 className="text-2xl md:text-3xl font-black tracking-tighter text-zinc-900 mt-12 mb-6">Engineering a Scalable Business Core</h3>
+            <p className="text-zinc-600 leading-relaxed mb-6">
+              Building a robust ERP system requires deep technical architecture. We don't just build a web interface; we build a highly secure, relational data engine that can handle thousands of transactions per minute without locking or corrupting data.
+            </p>
+            <p className="text-zinc-600 leading-relaxed mb-6">
+              <strong>Data Integrity & Security:</strong> Financial and operational data is the lifeblood of your enterprise. We utilize enterprise-grade PostgreSQL databases that enforce strict ACID (Atomicity, Consistency, Isolation, Durability) compliance. This ensures that every transaction—whether it's a stock transfer between warehouses or a payroll execution—is perfectly recorded and mathematically sound. We also implement AES-256 encryption at rest, ensuring your data is safe from unauthorized access.
+            </p>
+            <p className="text-zinc-600 leading-relaxed mb-6">
+              <strong>Role-Based Access Control (RBAC):</strong> A warehouse clerk should not see the company's profit and loss statements, and an accountant shouldn't be able to delete inventory records. We implement complex, granular permission systems. Every user gets a personalized dashboard showing exactly what they need to do their job, and nothing more.
+            </p>
+            <p className="text-zinc-600 leading-relaxed mb-6">
+              <strong>Offline-First Resilience:</strong> Given the occasional network instability in regions like Kashmir, we can architect specific ERP modules (like Point of Sale or Warehouse barcode scanning) to operate offline. They cache data locally and automatically sync with the central server the moment an internet connection is restored, ensuring zero downtime on the factory floor.
+            </p>
+
+            <h3 className="text-2xl md:text-3xl font-black tracking-tighter text-zinc-900 mt-12 mb-6">Phased Development & Integration Strategy</h3>
+            <p className="text-zinc-600 leading-relaxed mb-6">
+              A "Big Bang" launch of an entire ERP system often causes chaos within a company as employees struggle to learn entirely new software overnight. Instead, we advocate for a highly strategic, phased rollout.
+            </p>
+            <p className="text-zinc-600 leading-relaxed mb-6">
+              We generally start by auditing your most painful bottleneck—often Inventory Management or HR/Payroll. We build and deploy that single module first. Once your staff is comfortable and you are seeing a positive return on investment, we move on to digitizing the next department (e.g., CRM or Financials). This modular approach minimizes operational risk and ensures smooth digital adoption across your enterprise.
             </p>
             <p className="text-zinc-600 leading-relaxed mb-12">
-              A custom ERP acts as the digital nervous system of your company. It connects inventory management, human resources, payroll, customer relationships, and financial reporting into one secure, unified platform. The result? Reduced human error, massive time savings, and the ability to scale your operations without friction.
+              If you are ready to stop fighting with spreadsheets and start scaling your Kashmir-based enterprise with world-class digital infrastructure, Easyio Technologies is your dedicated local partner. We handle the code, so you can handle the growth.
             </p>
           </div>
         </section>

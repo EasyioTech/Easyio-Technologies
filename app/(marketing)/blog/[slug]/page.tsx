@@ -12,7 +12,7 @@ import { getPostBySlug } from "@/lib/blog";
 
 export const dynamic = 'force-dynamic';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyiotech.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyio.tech';
 
 function extractFaqs(content: string): { question: string; answer: string }[] {
   const faqSection = content.split(/##\s+Frequently Asked Questions/i)[1];
