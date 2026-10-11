@@ -20,25 +20,16 @@ export default function Hero() {
       <div className="max-w-[1440px] mx-auto px-5 sm:px-6 relative z-10 text-center">
         <div className="flex flex-col items-center">
           
-          <FadeIn>
-            <div className="inline-flex items-center gap-2 mb-5 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 shadow-sm">
-              <div className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-              <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-800">
-                The Best Tech & Software Company in Kashmir
-              </span>
-            </div>
-          </FadeIn>
-
           <PremiumHeading 
             text="Building products people actually love"
             highlightWords={["products", "love"]}
-            className="text-4xl sm:text-6xl md:text-8xl lg:text-[110px] font-black tracking-tighter text-zinc-950 mb-5 md:mb-8 leading-[1.05] md:leading-none max-w-[1200px]"
+            className="text-4xl sm:text-6xl md:text-8xl lg:text-[110px] font-black tracking-tighter text-zinc-950 mb-6 md:mb-8 leading-[1.05] md:leading-none max-w-[1200px]"
           />
 
           <PremiumSubheading 
             delay={0.6}
-            text="Headquartered in Kashmir, we engineer high-performance custom ERPs, scalable mobile apps, web applications, and AI systems built to scale businesses from Srinagar and Sopore to global markets."
-            className="text-zinc-500 text-sm sm:text-base md:text-xl font-medium max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed"
+            text="We design and build clean, scalable digital products. From mvps to global scale, we're the partner you need to move faster."
+            className="text-zinc-400 text-sm sm:text-base md:text-xl font-medium max-w-xl mx-auto mb-8 md:mb-12 leading-relaxed md:leading-tight"
           />
 
           <FadeIn delay={0.4}>
