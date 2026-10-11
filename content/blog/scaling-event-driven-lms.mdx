@@ -66,7 +66,7 @@ To withstand massive spikes in user traffic, Easyio decouples user interaction f
 +───────────────────────────────────────────────────────────────+
 ```
 
-### 1. Stateless Intake Workers (<5ms Response)
+### 1. Stateless Intake Workers (&lt;5ms Response)
 When a student clicks "Submit Answer", the request hits a lightweight Go intake worker that validates the session token and pushes the event into Kafka before immediately returning an HTTP 200 response to the student's browser. The student experiences zero lag, and the submission is safely buffered in the persistent queue.
 
 ### 2. High-Throughput Event Streaming via Apache Kafka
@@ -95,8 +95,8 @@ Under automated distributed load testing simulating 1,200,000 concurrent user se
 | Factor | Legacy Monolithic LMS (Moodle / Canvas) | Easyio Event-Driven LMS Architecture |
 | :--- | :--- | :--- |
 | **Peak Concurrency Limit** | 5,000 to 15,000 users before crashing | 1,000,000+ users with horizontal auto-scaling |
-| **Exam Submission Speed** | 2 to 8 seconds (often times out) | < 10 milliseconds instant queue acknowledgment |
-| **Real-Time Leaderboard** | Heavy SQL queries (crashes database) | Redis In-Memory Sorted Sets (< 2ms query) |
+| **Exam Submission Speed** | 2 to 8 seconds (often times out) | &lt; 10 milliseconds instant queue acknowledgment |
+| **Real-Time Leaderboard** | Heavy SQL queries (crashes database) | Redis In-Memory Sorted Sets (&lt; 2ms query) |
 | **Video Streaming** | Buffers and freezes on weak signals | Adaptive HLS edge streaming with low-bandwidth mode |
 | **Infrastructure Scalability**| Expensive manual server resizing | Dynamic Kubernetes pod autoscaling in seconds |
 

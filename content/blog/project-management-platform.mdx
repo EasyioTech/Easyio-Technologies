@@ -53,7 +53,7 @@ To eliminate lag and project drift, Easyio architected a state synchronization e
 +───────────────────────────────────────────────────────────────+
 ```
 
-### 1. Optimistic UI Updates (<50ms Latency)
+### 1. Optimistic UI Updates (&lt;50ms Latency)
 Every card drag-and-drop, state change, and comment relies on optimistic client-side execution. The UI updates instantly on the engineer's screen before the network round-trip finishes, providing a tactile, fluid experience that keeps developers focused on writing code.
 
 ### 2. Automated Critical Path & Block Resolution
@@ -81,7 +81,7 @@ Deploying this agile management architecture across distributed engineering team
 
 | Feature | Legacy Enterprise Tools (Jira) | Easyio Agile Platform |
 | :--- | :--- | :--- |
-| **Interface Load Speed** | ⚠️ 3 to 6 seconds per view | ✅ Instantaneous (<100ms) |
+| **Interface Load Speed** | ⚠️ 3 to 6 seconds per view | ✅ Instantaneous (&lt;100ms) |
 | **Dependency Engine** | Static visual links | Dynamic automated DAG critical-path calculation |
 | **Git & CI/CD Sync** | Complex plugins and webhooks | Native repository and build integration |
 | **Offline Task Caching** | ❌ Completely unusable offline | ✅ Optimistic offline queue with auto-sync |

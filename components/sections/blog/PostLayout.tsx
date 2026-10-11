@@ -29,6 +29,14 @@ function generateSlug(children: any): string {
     .replace(/\s+/g, '-');
 }
 
+// Helper to safely prepare MDX content for next-mdx-remote
+function sanitizeMdxContent(content: string): string {
+  if (!content) return '';
+  // In MDX, unescaped `<` followed by digits, spaces, or non-tag characters (e.g. `<5ms` or `< 10`)
+  // trigger JSX parsing errors. Replace `<` with `&lt;` when not followed by a tag name or comment.
+  return content.replace(/<(?![a-zA-Z/!_?])/g, '&lt;');
+}
+
 // Custom MDX components - Clean, readable editorial style
 export const components = {
   h1: (props: any) => <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 mt-16 mb-8 leading-tight" {...props} />,
@@ -173,7 +181,7 @@ export default function PostLayout({ post }: PostLayoutProps) {
             {/* Article Content */}
             <main className="prose prose-zinc prose-lg max-w-none mb-24">
               <FadeIn delay={0.4}>
-                <MDXRemote source={post.content} components={components} />
+                <MDXRemote source={sanitizeMdxContent(post.content)} components={components} />
               </FadeIn>
             </main>
             
