@@ -12,7 +12,7 @@ export const siteConfig = {
     github: "https://github.com/easyiotech",
   },
   email: {
-    contact: "hello@easyio.tech",
+    contact: "contact@easyio.tech",
     support: "support@easyio.tech",
     careers: "careers@easyio.tech",
   },

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { contactFormSchema } from '@/lib/validations';
 import { sendContactEmail } from '@/lib/email';
+import { sendTelegramNotification } from '@/lib/telegram';
 import { rateLimit } from '@/lib/rate-limit';
 
 export async function POST(req: NextRequest) {
@@ -26,9 +27,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Send email
-    const emailResult = await sendContactEmail(validation.data);
-    if (!emailResult.success) {
+    // Send email & Telegram notification
+    const [emailResult, telegramResult] = await Promise.allSettled([
+      sendContactEmail(validation.data),
+      sendTelegramNotification(validation.data),
+    ]);
+
+    const isEmailOk = emailResult.status === 'fulfilled' && emailResult.value.success;
+    const isTelegramOk = telegramResult.status === 'fulfilled' && telegramResult.value.success;
+
+    // Succeed if at least one notification went through or both attempted
+    if (!isEmailOk && !isTelegramOk && process.env.RESEND_API_KEY) {
       return NextResponse.json(
         { error: 'Failed to send message. Try again.' },
         { status: 500 }

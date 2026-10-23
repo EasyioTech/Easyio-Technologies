@@ -172,7 +172,7 @@ export default function PostLayout({ post }: PostLayoutProps) {
                   />
                 ) : (
                   <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 to-zinc-100 flex items-center justify-center">
-                     <div className="w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay absolute inset-0 pointer-events-none" />
+                     <div className="w-full h-full bg-[url('/noise.svg')] opacity-10 mix-blend-overlay absolute inset-0 pointer-events-none" />
                   </div>
                 )}
               </div>

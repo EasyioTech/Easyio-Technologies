@@ -1,87 +1,65 @@
 'use client';
 
 import { m } from "framer-motion";
-import { ArrowUpRight, Zap, Shield, Cpu, Cloud } from "lucide-react";
+import { ArrowUpRight, Zap, Shield, Cloud } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 
-const FeatureCard = ({ 
-  children, 
-  className, 
-  delay = 0 
-}: { 
-  children: React.ReactNode; 
-  className?: string;
-  delay?: number;
-}) => (
-  <m.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
-    className={cn(
-      "group relative overflow-hidden rounded-[2rem] border border-zinc-100 bg-white p-6 transition-all hover:border-zinc-200 hover:shadow-2xl hover:shadow-zinc-100/50",
-      className
-    )}
-  >
-    {children}
-  </m.div>
-);
-
 export default function EngineFeatures() {
   return (
-    <section className="py-12 md:py-24 bg-transparent overflow-hidden mobile-section-content" id="engine">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6">
+    <section className="py-8 md:py-16 bg-transparent overflow-hidden mobile-section-content" id="engine">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6">
         
         {/* Header - Compact */}
-        <div className="mb-8 md:mb-12">
-          <div className="flex items-center gap-3 mb-3">
+        <div className="mb-6 md:mb-8">
+          <div className="flex items-center gap-2.5 mb-2.5">
             <div className="w-1.5 h-1.5 bg-zinc-950" />
-            <span className="text-[10px] font-black tracking-[0.3em] md:tracking-[0.4em] text-zinc-400 uppercase">Engine Capabilities</span>
+            <span className="text-[10px] font-black tracking-[0.3em] text-zinc-400 uppercase">Engine Capabilities</span>
           </div>
           <PremiumHeading 
             text="Built for Business."
-            highlightWords={["Performance"]}
-            className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tighter text-zinc-950 leading-tight md:leading-none"
+            highlightWords={["Business."]}
+            className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter text-zinc-950 leading-tight md:leading-none"
           />
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 h-auto md:h-[620px]">
+        {/* Bento Grid - Refined Compact Size */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5 min-h-0 lg:h-[500px]">
           
-          {/* Main Feature: Enterprise Engines */}
+          {/* Main Feature: Enterprise Systems (Yellow Card) */}
           <m.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="md:col-span-6 md:row-span-2 bg-[#FDE047] rounded-[2rem] md:rounded-[2.5rem] p-6 sm:p-8 md:p-12 flex flex-col relative overflow-hidden group min-h-[320px] md:min-h-0 shadow-2xl shadow-yellow-400/10"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 bg-[#FDE047] rounded-[1.75rem] md:rounded-[2rem] p-6 sm:p-7 md:p-9 flex flex-col justify-between relative overflow-hidden group min-h-[340px] lg:min-h-0 shadow-2xl shadow-yellow-400/10 hover:shadow-yellow-400/20 transition-all"
           >
-            <div className="relative z-20 max-w-[400px]">
-              <div className="flex items-center gap-3 mb-6 md:mb-8">
-                <span className="text-[10px] font-black tracking-[0.2em] text-zinc-900/40 uppercase">01 / CORE ENGINE</span>
-                <div className="px-3 py-1 bg-zinc-950 text-[9px] font-black text-white uppercase rounded-full">
+            <div className="relative z-20 max-w-[380px]">
+              <div className="flex items-center gap-3 mb-4 md:mb-6">
+                <span className="text-[10px] font-black tracking-[0.2em] text-zinc-900/50 uppercase">01 / CORE SYSTEMS</span>
+                <div className="px-2.5 py-0.5 bg-zinc-950 text-[9px] font-black text-white uppercase tracking-wider rounded-full shadow-sm">
                   98.4% Efficiency
                 </div>
               </div>
-              <h3 className="text-3xl sm:text-4xl md:text-6xl font-black text-zinc-950 tracking-tighter leading-[0.95] md:leading-[0.9] mb-4 md:mb-6">
-                Industrial Grade<br/>Software Engines.
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-zinc-950 tracking-tighter leading-[0.95] md:leading-[0.92] mb-3 md:mb-4">
+                Enterprise-Grade<br/>Software Systems.
               </h3>
-              <p className="text-zinc-950/70 text-sm sm:text-base md:text-lg leading-snug font-bold max-w-[320px]">
-                Building smart software that solves complex business problems.
+              <p className="text-zinc-950/75 text-xs sm:text-sm md:text-base leading-snug font-bold max-w-[320px]">
+                Building smart, scalable software that solves complex business operations.
               </p>
               
-              <div className="mt-6 md:mt-10">
-                <Link href="/case-studies" className="inline-block bg-zinc-950 text-white text-xs font-black py-3.5 px-8 md:py-4 md:px-10 rounded-full hover:scale-105 transition-all shadow-xl shadow-zinc-950/20 active:scale-95">
-                  See Our Work
+              <div className="mt-5 md:mt-7">
+                <Link href="/case-studies" className="inline-flex items-center gap-2 bg-zinc-950 text-white text-xs font-black py-3 px-7 md:py-3.5 md:px-8 rounded-full hover:scale-105 transition-all shadow-xl shadow-zinc-950/20 active:scale-95">
+                  See Our Work <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
 
             {/* Blended Image Peeking from Bottom-Right */}
             <div 
-              className="absolute bottom-0 right-0 w-[90%] h-[70%] translate-x-16 translate-y-16 group-hover:translate-x-12 group-hover:translate-y-12 transition-transform duration-1000 pointer-events-none rounded-[3rem] overflow-hidden"
+              className="absolute bottom-0 right-0 w-[85%] h-[65%] translate-x-12 translate-y-12 group-hover:translate-x-8 group-hover:translate-y-8 transition-transform duration-1000 pointer-events-none rounded-[2.5rem] overflow-hidden"
               style={{
                 maskImage: 'linear-gradient(to top left, black 40%, transparent 85%)',
                 WebkitMaskImage: 'linear-gradient(to top left, black 40%, transparent 85%)'
@@ -90,151 +68,188 @@ export default function EngineFeatures() {
               <div className="relative w-full h-full">
                 <Image 
                   src="/enterprise_engine.png" 
-                  alt="Enterprise Architecture"
+                  alt="Enterprise Software Systems" 
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover opacity-40 grayscale-[0.8] contrast-[1.2]"
                 />
-                {/* Additional color matching gradients */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#FDE047] via-transparent to-transparent opacity-40" />
                 <div className="absolute inset-0 bg-gradient-to-l from-[#FDE047] via-transparent to-transparent opacity-40" />
               </div>
             </div>
           </m.div>
 
-          {/* Center Column: Small Cards */}
-          <div className="md:col-span-3 md:row-span-2 flex flex-col gap-6">
-            {/* Teal Card: Cloud Mesh */}
+          {/* Right Column Container */}
+          <div className="lg:col-span-6 flex flex-col gap-4 md:gap-5 lg:h-full">
+            
+            {/* Top Wide Card: Cloud Infrastructure */}
             <m.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="flex-1 bg-[#1AB896] rounded-[2.5rem] p-8 flex flex-col relative group cursor-pointer shadow-xl shadow-emerald-500/10 overflow-hidden"
+              transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="flex-1 bg-[#1AB896] rounded-[1.75rem] md:rounded-[2rem] p-5 sm:p-6 flex flex-col justify-between relative group cursor-pointer shadow-xl shadow-emerald-500/10 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all overflow-hidden min-h-[210px]"
             >
-              <div className="relative z-20">
-                <div className="flex items-center justify-between mb-6">
-                    <div className="p-2.5 bg-zinc-950 rounded-xl">
-                        <Cloud className="w-5 h-5 text-white" />
+              <div className="relative z-20 max-w-[380px]">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="p-2 bg-zinc-950 rounded-lg shadow-md">
+                      <Cloud className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-[10px] font-black text-white/50 uppercase tracking-widest">99.999% Uptime</span>
+                    <span className="text-[10px] font-black text-white/90 uppercase tracking-wider">Cloud & DevOps</span>
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-black/20 backdrop-blur-md rounded-full border border-white/10 text-[9px] font-black text-white uppercase tracking-widest">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-300"></span>
+                    </span>
+                    99.99% Uptime
+                  </div>
                 </div>
-                <h3 className="text-3xl font-black text-white tracking-tighter mb-1">
-                  Cloud Mesh
+
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tighter mb-1.5 leading-tight">
+                  Cloud Infrastructure.
                 </h3>
-                <p className="text-sm font-bold text-white/60">
-                  Global Resilience
+                <p className="text-xs sm:text-[13px] font-bold text-white/80 leading-relaxed mb-3 max-w-[340px]">
+                  Resilient, auto-scaling cloud deployments with multi-region backup and zero downtime.
                 </p>
+
+                {/* Capability Badges */}
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-[9px] font-extrabold text-white/90 bg-white/15 backdrop-blur-sm px-2 py-0.5 rounded-md border border-white/15">
+                    Auto-Scaling
+                  </span>
+                  <span className="text-[9px] font-extrabold text-white/90 bg-white/15 backdrop-blur-sm px-2 py-0.5 rounded-md border border-white/15">
+                    Multi-Region
+                  </span>
+                  <span className="text-[9px] font-extrabold text-white/90 bg-white/15 backdrop-blur-sm px-2 py-0.5 rounded-md border border-white/15">
+                    Zero Downtime
+                  </span>
+                </div>
               </div>
-              
-              {/* Blended Image */}
+
+              {/* Blended Network Illustration on the Right */}
               <div 
-                className="absolute bottom-0 right-0 w-full h-full translate-x-1/4 translate-y-1/4 opacity-30 group-hover:translate-x-1/5 transition-transform duration-700 pointer-events-none rounded-3xl overflow-hidden"
+                className="absolute right-0 top-0 bottom-0 w-2/3 translate-x-12 opacity-35 group-hover:scale-105 group-hover:opacity-45 transition-all duration-700 pointer-events-none overflow-hidden"
                 style={{
-                  maskImage: 'radial-gradient(circle at bottom right, black 20%, transparent 80%)',
-                  WebkitMaskImage: 'radial-gradient(circle at bottom right, black 20%, transparent 80%)'
+                  maskImage: 'radial-gradient(ellipse at center right, black 30%, transparent 80%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse at center right, black 30%, transparent 80%)'
                 }}
               >
-                <Image src="/cloud_mesh.png" alt="Cloud" fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover grayscale" />
-              </div>
-
-              <div className="mt-auto relative z-20">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-all shadow-lg">
-                    <ArrowUpRight className="w-6 h-6 text-[#1AB896]" />
-                </div>
-              </div>
-            </m.div>
-
-            {/* Pink Card: Edge Caching */}
-            <m.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="flex-1 bg-[#F272B6] rounded-[2.5rem] p-8 flex flex-col relative group cursor-pointer shadow-xl shadow-pink-500/10 overflow-hidden"
-            >
-              <div className="relative z-20">
-                <div className="flex items-center justify-between mb-6">
-                    <div className="p-2.5 bg-zinc-950 rounded-xl">
-                        <Zap className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-[10px] font-black text-white/50 uppercase tracking-widest">0.12ms Ping</span>
-                </div>
-                <h3 className="text-3xl font-black text-white tracking-tighter mb-1">
-                  Edge Caching
-                </h3>
-                <p className="text-sm font-bold text-white/60">
-                  Invisible Latency
-                </p>
-              </div>
-
-              {/* Blended Image */}
-              <div 
-                className="absolute bottom-0 right-0 w-full h-full translate-x-1/4 translate-y-1/4 opacity-30 group-hover:translate-x-1/5 transition-transform duration-700 pointer-events-none rounded-3xl overflow-hidden"
-                style={{
-                  maskImage: 'radial-gradient(circle at bottom right, black 20%, transparent 80%)',
-                  WebkitMaskImage: 'radial-gradient(circle at bottom right, black 20%, transparent 80%)'
-                }}
-              >
-                <Image src="/edge_caching.png" alt="Speed" fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover grayscale" />
-              </div>
-
-              <div className="mt-auto relative z-20">
-                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:scale-110 transition-all shadow-lg">
-                    <ArrowUpRight className="w-6 h-6 text-[#F272B6]" />
-                </div>
-              </div>
-            </m.div>
-          </div>
-
-          {/* Right Column: Tall Card: Global Standards */}
-          <Link href="/contact" className="md:col-span-3 md:row-span-2 block h-full">
-            <m.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="h-full bg-[#6366F1] rounded-[2.5rem] p-8 flex flex-col relative group cursor-pointer shadow-xl shadow-indigo-500/20 overflow-hidden"
-            >
-              <div className="relative z-20">
-                <div className="flex items-center justify-between mb-8">
-                    <div className="p-3 bg-zinc-950 rounded-xl">
-                        <Cpu className="w-6 h-6 text-white" />
-                    </div>
-                    <span className="text-[10px] font-black text-white/50 uppercase tracking-widest">Future Proof</span>
-                </div>
-                <h3 className="text-4xl font-black text-white tracking-tighter mb-2 leading-none">
-                  Global<br/>Standards.
-                </h3>
-                <p className="text-sm font-bold text-white/60">
-                  Built in Sopore.
-                </p>
-              </div>
-
-              {/* Blended Security Image */}
-              <div 
-                  className="absolute bottom-0 right-0 w-full h-[60%] translate-x-1/4 translate-y-1/4 opacity-30 group-hover:translate-x-1/5 group-hover:opacity-40 transition-all duration-1000 pointer-events-none rounded-[3rem] overflow-hidden"
-                  style={{
-                      maskImage: 'radial-gradient(circle at bottom right, black 30%, transparent 90%)',
-                      WebkitMaskImage: 'radial-gradient(circle at bottom right, black 30%, transparent 90%)'
-                  }}
-              >
-                 <Image 
-                  src="/security_protocols.png" 
-                  alt="Global Tech" 
+                <Image 
+                  src="/cloud_mesh.png" 
+                  alt="Cloud Infrastructure" 
                   fill 
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                  className="object-cover object-top grayscale"
+                  sizes="(max-width: 1024px) 100vw, 35vw" 
+                  className="object-cover object-center grayscale contrast-125" 
                 />
               </div>
 
-              <div className="mt-auto pt-10 relative z-20">
-                <div className="inline-flex items-center gap-3 px-6 py-3.5 bg-white text-[#6366F1] rounded-full text-xs font-black uppercase tracking-wider transition-all shadow-lg group-hover:scale-105 w-fit">
-                  Work With Us <ArrowUpRight className="w-4 h-4" />
+              {/* Action Button at Bottom */}
+              <div className="mt-3 relative z-20 flex justify-end">
+                <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center group-hover:scale-110 group-hover:rotate-45 transition-all shadow-lg">
+                  <ArrowUpRight className="w-4 h-4 text-[#1AB896]" />
                 </div>
               </div>
             </m.div>
-          </Link>
+
+            {/* Bottom Row: Speed & Security Side by Side */}
+            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 min-h-[210px]">
+              
+              {/* Pink Card: Ultra-Fast Speed */}
+              <m.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-[#F272B6] rounded-[1.75rem] md:rounded-[2rem] p-5 sm:p-5.5 flex flex-col justify-between relative group cursor-pointer shadow-xl shadow-pink-500/10 hover:shadow-2xl hover:shadow-pink-500/20 transition-all overflow-hidden"
+              >
+                <div className="relative z-20">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="p-2 bg-zinc-950 rounded-lg shadow-md">
+                      <Zap className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-[9px] font-black text-white/80 uppercase tracking-widest bg-black/15 px-2 py-0.5 rounded-full border border-white/10">0.12ms Latency</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white tracking-tighter mb-1 leading-tight">
+                    Ultra-Fast Speed.
+                  </h3>
+                  <p className="text-xs font-bold text-white/80 leading-snug">
+                    Sub-millisecond data delivery for instant, seamless user experiences.
+                  </p>
+                </div>
+
+                {/* Blended Image */}
+                <div 
+                  className="absolute bottom-0 right-0 w-full h-full translate-x-1/4 translate-y-1/4 opacity-30 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700 pointer-events-none rounded-3xl overflow-hidden"
+                  style={{
+                    maskImage: 'radial-gradient(circle at bottom right, black 25%, transparent 80%)',
+                    WebkitMaskImage: 'radial-gradient(circle at bottom right, black 25%, transparent 80%)'
+                  }}
+                >
+                  <Image src="/edge_caching.png" alt="Speed Performance" fill sizes="(max-width: 1024px) 100vw, 25vw" className="object-cover grayscale" />
+                </div>
+
+                <div className="mt-3 pt-1 relative z-20 flex justify-between items-end">
+                  <span className="text-[9px] font-extrabold text-white/70 uppercase tracking-widest">Global Edge</span>
+                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center group-hover:scale-110 group-hover:rotate-45 transition-all shadow-lg">
+                    <ArrowUpRight className="w-4 h-4 text-[#F272B6]" />
+                  </div>
+                </div>
+              </m.div>
+
+              {/* Indigo Card: Enterprise Security */}
+              <Link href="/contact" className="block h-full group">
+                <m.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="h-full bg-[#6366F1] rounded-[1.75rem] md:rounded-[2rem] p-5 sm:p-5.5 flex flex-col justify-between relative cursor-pointer shadow-xl shadow-indigo-500/20 hover:shadow-2xl hover:shadow-indigo-500/30 transition-all overflow-hidden"
+                >
+                  <div className="relative z-20">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="p-2 bg-zinc-950 rounded-lg shadow-md">
+                        <Shield className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-[9px] font-black text-white/80 uppercase tracking-widest bg-black/15 px-2 py-0.5 rounded-full border border-white/10">Bank-Grade</span>
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tighter mb-1 leading-tight">
+                      Enterprise Security.
+                    </h3>
+                    <p className="text-xs font-bold text-white/80 leading-snug">
+                      Bank-grade encryption & global standards, engineered in Sopore.
+                    </p>
+                  </div>
+
+                  {/* Blended Security Image */}
+                  <div 
+                    className="absolute bottom-0 right-0 w-full h-[65%] translate-x-1/6 translate-y-1/6 opacity-30 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700 pointer-events-none rounded-[2rem] overflow-hidden"
+                    style={{
+                      maskImage: 'radial-gradient(circle at bottom right, black 30%, transparent 90%)',
+                      WebkitMaskImage: 'radial-gradient(circle at bottom right, black 30%, transparent 90%)'
+                    }}
+                  >
+                    <Image 
+                      src="/security_protocols.png" 
+                      alt="Enterprise Security Protocols" 
+                      fill 
+                      sizes="(max-width: 1024px) 100vw, 25vw"
+                      className="object-cover object-top grayscale"
+                    />
+                  </div>
+
+                  <div className="mt-3 pt-1 relative z-20">
+                    <div className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white text-[#6366F1] rounded-full text-[11px] font-black uppercase tracking-wider group-hover:scale-105 group-hover:bg-zinc-950 group-hover:text-white transition-all shadow-lg w-fit">
+                      Work With Us <ArrowUpRight className="w-3 h-3" />
+                    </div>
+                  </div>
+                </m.div>
+              </Link>
+
+            </div>
+
+          </div>
 
         </div>
       </div>

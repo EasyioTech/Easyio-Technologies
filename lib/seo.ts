@@ -104,7 +104,7 @@ export const MASTER_SCHEMA = {
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "Customer Support",
-        email: "hello@easyio.tech"
+        email: "contact@easyio.tech"
       }
     },
     {

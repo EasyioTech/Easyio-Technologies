@@ -17,7 +17,7 @@ export async function sendContactEmail(data: {
 
     const result = await resend.emails.send({
       from: 'contact@easyiotech.com',
-      to: 'hello@easyiotech.com',
+      to: 'contact@easyio.tech',
       replyTo: data.email,
       subject: `New contact from ${data.name}`,
       html: `

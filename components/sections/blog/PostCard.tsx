@@ -24,7 +24,7 @@ export default function PostCard({ post, index }: { post: BlogPost; index: numbe
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 to-zinc-100 flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
-               <div className="w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] mix-blend-overlay absolute inset-0 pointer-events-none" />
+               <div className="w-full h-full bg-[url('/noise.svg')] opacity-[0.15] mix-blend-overlay absolute inset-0 pointer-events-none" />
                <Terminal className="w-10 h-10 text-zinc-300 relative z-10" />
             </div>
           )}
