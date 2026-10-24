@@ -54,7 +54,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/custom-erp-software-development-kashmir",
     "/ecommerce-website-development-srinagar",
     "/saas-application-development-kashmir",
-    "/mobile-app-development-company-kashmir"
+    "/mobile-app-development-company-kashmir",
+    "/enterprise-software-systems",
+    "/cloud-infrastructure",
+    "/ultra-fast-speed",
+    "/enterprise-security"
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date().toISOString(),
