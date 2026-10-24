@@ -85,13 +85,6 @@ export default function CustomERPPage() {
         <section className="pt-32 md:pt-48 pb-24 relative overflow-hidden bg-zinc-50 border-b border-zinc-100">
           <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
             <div className="flex flex-col items-center">
-              <FadeIn>
-                <div className="flex items-center gap-2.5 mb-8">
-                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                   <span className="text-[9px] font-black uppercase tracking-[0.3em] text-emerald-600/80">Enterprise Systems</span>
-                </div>
-              </FadeIn>
-
               <PremiumHeading 
                 text="Custom ERP Software Development in Kashmir"
                 highlightWords={["Custom ERP", "Software", "Kashmir"]}

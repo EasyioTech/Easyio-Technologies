@@ -32,13 +32,6 @@ export default function PricingPage() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
           <div className="max-w-4xl mb-32">
-            <FadeIn>
-              <div className="flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-zinc-200 dark:border-white/10 w-fit bg-zinc-50 dark:bg-white/5">
-                <Terminal className="w-4 h-4 text-zinc-400" />
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">Value_Audit</span>
-              </div>
-            </FadeIn>
-
             <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 uppercase italic leading-[0.85]">
               <TextReveal>Investment</TextReveal> <br />
               <TextReveal delay={0.2} className="text-zinc-400 dark:text-zinc-800">Protocols</TextReveal>

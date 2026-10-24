@@ -246,15 +246,6 @@ export default function SoporeSoftwareCompanyPage() {
         <section className="pt-32 md:pt-48 pb-24 relative overflow-hidden bg-white border-b border-zinc-100">
           <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
             <div className="flex flex-col items-center">
-              <FadeIn>
-                <div className="flex items-center gap-2.5 mb-8 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/60">
-                   <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-                   <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-blue-700">
-                     Headquartered in Sopore, Jammu & Kashmir
-                   </span>
-                </div>
-              </FadeIn>
-
               <PremiumHeading 
                 text="The Leading Tech & Software Company in Sopore"
                 highlightWords={["Leading Tech", "Software Company", "Sopore"]}
@@ -350,7 +341,7 @@ export default function SoporeSoftwareCompanyPage() {
                       <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
                         <svc.icon className="w-6 h-6" />
                       </div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+                      <span className="text-[11px] font-semibold uppercase tracking-wider text-blue-700 bg-blue-50 border border-blue-200/80 px-2.5 py-1 rounded-md">
                         {svc.tag}
                       </span>
                     </div>

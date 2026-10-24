@@ -84,13 +84,6 @@ export default function EcommercePage() {
         <section className="pt-32 md:pt-48 pb-24 relative overflow-hidden bg-zinc-50 border-b border-zinc-100">
           <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
             <div className="flex flex-col items-center">
-              <FadeIn>
-                <div className="flex items-center gap-2.5 mb-8">
-                   <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-                   <span className="text-[9px] font-black uppercase tracking-[0.3em] text-orange-600/80">Digital Commerce</span>
-                </div>
-              </FadeIn>
-
               <PremiumHeading 
                 text="E-Commerce Website Development in Srinagar"
                 highlightWords={["E-Commerce", "Website", "Srinagar"]}

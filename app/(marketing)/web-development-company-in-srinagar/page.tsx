@@ -271,15 +271,6 @@ export default function WebCompanySrinagarPage() {
         <section className="pt-32 md:pt-48 pb-24 relative overflow-hidden bg-zinc-50 border-b border-zinc-100">
           <div className="max-w-[1440px] mx-auto px-6 relative z-10 text-center">
             <div className="flex flex-col items-center">
-              <FadeIn>
-                <div className="flex items-center gap-2.5 mb-8 px-4 py-1.5 rounded-full bg-orange-50 border border-orange-200/60">
-                   <div className="w-2 h-2 rounded-full bg-orange-600 animate-pulse" />
-                   <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-orange-700">
-                     Srinagar&apos;s High-Performance Web Agency
-                   </span>
-                </div>
-              </FadeIn>
-
               <PremiumHeading 
                 text="Web Development Company in Srinagar"
                 highlightWords={["Web Development", "Srinagar"]}
@@ -405,7 +396,7 @@ export default function WebCompanySrinagarPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {webVerticals.map((vert, idx) => (
                 <div key={idx} className="p-8 rounded-3xl bg-white border border-zinc-200/80 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-3 py-1 rounded-full inline-block mb-4">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-orange-700 bg-orange-50 border border-orange-200/80 px-2.5 py-1 rounded-md inline-block mb-4">
                     {vert.tag}
                   </div>
                   <h3 className="text-2xl font-bold text-zinc-900 mb-3">{vert.title}</h3>
@@ -467,7 +458,7 @@ export default function WebCompanySrinagarPage() {
                   }`}
                 >
                   {tier.popular && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-orange-600 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-0.5 rounded-md shadow-sm">
                       Most Popular
                     </div>
                   )}

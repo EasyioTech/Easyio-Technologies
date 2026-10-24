@@ -50,7 +50,7 @@ export default function EngineFeatures() {
             <div className="relative z-20 max-w-[380px]">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <span className="text-[10px] font-black tracking-[0.2em] text-zinc-900/50 uppercase">01 / CORE SYSTEMS</span>
-                <div className="px-2.5 py-0.5 bg-zinc-950 text-[9px] font-black text-white uppercase tracking-wider rounded-full shadow-sm">
+                <div className="px-2 py-0.5 bg-zinc-950 text-[9px] font-mono font-bold text-white uppercase tracking-wider rounded-md shadow-sm">
                   98.4% Efficiency
                 </div>
               </div>
@@ -117,7 +117,7 @@ export default function EngineFeatures() {
                   <div className="p-1.5 sm:p-2 bg-zinc-950 rounded-lg shadow-md shrink-0">
                     <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                   </div>
-                  <span className="text-[8px] sm:text-[9px] font-black text-white/90 uppercase tracking-widest bg-black/15 px-2 py-0.5 rounded-full border border-white/10 truncate">
+                  <span className="text-[8px] sm:text-[9px] font-mono font-bold text-white/95 uppercase tracking-widest bg-black/20 px-2 py-0.5 rounded-md border border-white/10 truncate">
                     0.12ms Latency
                   </span>
                 </div>
@@ -167,7 +167,7 @@ export default function EngineFeatures() {
                   <div className="p-1.5 sm:p-2 bg-zinc-950 rounded-lg shadow-md shrink-0">
                     <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                   </div>
-                  <span className="text-[8px] sm:text-[9px] font-black text-white/90 uppercase tracking-widest bg-black/15 px-2 py-0.5 rounded-full border border-white/10 truncate">
+                  <span className="text-[8px] sm:text-[9px] font-mono font-bold text-white/95 uppercase tracking-widest bg-black/20 px-2 py-0.5 rounded-md border border-white/10 truncate">
                     Bank-Grade
                   </span>
                 </div>
@@ -225,11 +225,8 @@ export default function EngineFeatures() {
                     </div>
                     <span className="text-[10px] font-black text-white/90 uppercase tracking-wider">Cloud & DevOps</span>
                   </div>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-black/20 backdrop-blur-md rounded-full border border-white/10 text-[9px] font-black text-white uppercase tracking-widest">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-300"></span>
-                    </span>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-black/20 backdrop-blur-md rounded-md border border-white/10 text-[9px] font-mono font-bold text-white uppercase tracking-widest">
+                    <span className="w-1.5 h-1.5 rounded-sm bg-emerald-300"></span>
                     99.99% Uptime
                   </div>
                 </div>

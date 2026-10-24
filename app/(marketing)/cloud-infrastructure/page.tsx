@@ -143,15 +143,6 @@ export default function CloudInfrastructurePage() {
         <section className="pt-32 md:pt-48 pb-20 relative overflow-hidden bg-zinc-50 border-b border-zinc-100">
           <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
             <div className="flex flex-col items-center">
-              <FadeIn>
-                <div className="flex items-center gap-2.5 mb-8 px-4 py-1.5 rounded-full bg-emerald-100/70 border border-emerald-300/80">
-                   <div className="w-2 h-2 rounded-full bg-[#1AB896] animate-pulse" />
-                   <span className="text-[11px] font-black uppercase tracking-[0.25em] text-emerald-900">
-                     Cloud & DevOps Engineering
-                   </span>
-                </div>
-              </FadeIn>
-
               <PremiumHeading 
                 text="Resilient Cloud Infrastructure."
                 highlightWords={["Resilient", "Cloud Infrastructure."]}
@@ -275,7 +266,7 @@ export default function CloudInfrastructurePage() {
                       <div className="w-12 h-12 rounded-2xl bg-emerald-400/10 border border-emerald-400/20 flex items-center justify-center text-[#1AB896]">
                         <p.icon className="w-6 h-6" />
                       </div>
-                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full border border-emerald-400/20">
+                      <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-emerald-300 bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
                         {p.badge}
                       </span>
                     </div>
