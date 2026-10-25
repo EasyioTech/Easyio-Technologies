@@ -9,6 +9,9 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
 
   React.useEffect(() => {
     setMounted(true);
+    if (typeof window !== 'undefined' && !window.location.hash) {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   return (

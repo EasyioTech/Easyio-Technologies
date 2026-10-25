@@ -6,6 +6,8 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 export async function sendContactEmail(data: {
   name: string;
   email: string;
+  phone?: string;
+  service?: string;
   company?: string;
   message: string;
 }) {
@@ -19,11 +21,13 @@ export async function sendContactEmail(data: {
       from: 'contact@easyiotech.com',
       to: 'contact@easyio.tech',
       replyTo: data.email,
-      subject: `New contact from ${data.name}`,
+      subject: `New contact from ${data.name}${data.service ? ` [${data.service}]` : ''}`,
       html: `
         <h2>New Contact Submission</h2>
         <p><strong>Name:</strong> ${data.name}</p>
         <p><strong>Email:</strong> ${data.email}</p>
+        ${data.phone ? `<p><strong>Phone / WhatsApp:</strong> ${data.phone}</p>` : ''}
+        ${data.service ? `<p><strong>Interested Service:</strong> ${data.service}</p>` : ''}
         ${data.company ? `<p><strong>Company:</strong> ${data.company}</p>` : ''}
         <p><strong>Message:</strong></p>
         <p>${data.message.replace(/\n/g, '<br>')}</p>

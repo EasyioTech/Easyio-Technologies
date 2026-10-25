@@ -28,7 +28,7 @@ export function ImageUpload({ value, onChange, label }: ImageUploadProps) {
         reader.readAsDataURL(file);
       });
 
-      const img = new Image();
+      const img = new window.Image();
       await new Promise((resolve) => {
         img.onload = resolve;
         img.src = imageData;

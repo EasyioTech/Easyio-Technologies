@@ -45,7 +45,11 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(
-      { success: true, message: 'Message sent successfully', id: emailResult.id },
+      { 
+        success: true, 
+        message: 'Message sent successfully', 
+        id: emailResult.status === 'fulfilled' ? (emailResult.value as any)?.id : undefined 
+      },
       { status: 200 }
     );
   } catch (error) {

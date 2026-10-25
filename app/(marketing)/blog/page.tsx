@@ -66,7 +66,7 @@ export default async function BlogListingPage() {
     // Add file posts that don't exist in DB (by slug)
     filePosts.forEach(filePost => {
       if (!mergedPosts.some(p => p.slug === filePost.slug)) {
-        mergedPosts.push(filePost);
+        mergedPosts.push(filePost as any);
       }
     });
 

@@ -44,13 +44,15 @@ import {
   generateJsonLd 
 } from "@/lib/seo";
 
+import FloatingLeadWidget from "@/components/shared/FloatingLeadWidget";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -66,6 +68,7 @@ export default function RootLayout({
         >
           <SmoothScroll>
             <MotionProvider>{children}</MotionProvider>
+            <FloatingLeadWidget />
           </SmoothScroll>
         </ThemeProvider>
       </body>

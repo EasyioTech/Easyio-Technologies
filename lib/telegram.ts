@@ -1,6 +1,8 @@
 interface ContactData {
   name: string;
   email: string;
+  phone?: string;
+  service?: string;
   company?: string;
   message: string;
 }
@@ -15,11 +17,13 @@ export async function sendTelegramNotification(data: ContactData): Promise<{ suc
   }
 
   // Using HTML mode for reliable, bulletproof formatting without MarkdownV2 escaping bugs
-  const htmlText = `📬 <b>New Contact Submission - Easyio</b>\n\n` +
+  const htmlText = `📬 <b>New Lead Submission - Easyio Technologies</b>\n\n` +
     `👤 <b>Name:</b> ${escapeHtml(data.name)}\n` +
+    (data.phone ? `📞 <b>Phone / WhatsApp:</b> <code>${escapeHtml(data.phone)}</code>\n` : '') +
     `📧 <b>Email:</b> ${escapeHtml(data.email)}\n` +
+    (data.service ? `🛠 <b>Interested In:</b> <b>${escapeHtml(data.service)}</b>\n` : '') +
     (data.company ? `🏢 <b>Company:</b> ${escapeHtml(data.company)}\n` : '') +
-    `💬 <b>Message:</b>\n${escapeHtml(data.message)}`;
+    `💬 <b>Project Details:</b>\n${escapeHtml(data.message)}`;
 
   try {
     const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {

@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/shared/JsonLd";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
-import { getPostBySlug } from "@/lib/blog";
+import { getPostBySlug, getBlogPosts } from "@/lib/blog";
 
 export const dynamic = 'force-dynamic';
 
@@ -73,7 +73,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.seoTitle || post.title,
     description: post.seoDescription || post.excerpt,
-    keywords: post.keywords?.split(',').map(k => k.trim()),
+    keywords: post.keywords?.split(',').map((k: string) => k.trim()),
     authors: [{ name: post.author }],
     alternates: {
       canonical,
@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
       modifiedTime: post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
       authors: [post.author],
-      tags: post.keywords?.split(',').map(k => k.trim()),
+      tags: post.keywords?.split(',').map((k: string) => k.trim()),
       images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
@@ -211,12 +211,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     toc: post.toc,
   };
 
+  const allPosts = getBlogPosts();
+  const relatedPosts = allPosts
+    .filter(p => p.slug !== post.slug)
+    .slice(0, 3);
+
   return (
     <PageWrapper>
       <JsonLd data={articleSchema} />
       <JsonLd data={breadcrumbSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
-      <PostLayout post={mappedPost as any} />
+      <PostLayout post={mappedPost as any} relatedPosts={relatedPosts as any} />
     </PageWrapper>
   );
 }

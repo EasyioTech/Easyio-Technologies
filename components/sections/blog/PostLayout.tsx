@@ -1,10 +1,14 @@
 import { FadeIn } from "@/components/shared/Animations";
 import { BlogPost } from "@/lib/blog";
-import { ArrowLeft, Clock, User, Share2, ArrowRight, List } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, CheckCircle, ShieldCheck, MapPin, Tag, BookOpen, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import LeadCapture from "./LeadCapture";
 import Image from "next/image";
+import ReadingProgress from "./ReadingProgress";
+import ShareButton from "./ShareButton";
+import SidebarCta from "./SidebarCta";
+import PostCard from "./PostCard";
 
 // Helper to extract text from React children safely
 function getTextContent(children: any): string {
@@ -29,62 +33,103 @@ function generateSlug(children: any): string {
     .replace(/\s+/g, '-');
 }
 
-// Helper to safely prepare MDX content for next-mdx-remote
 function sanitizeMdxContent(content: string): string {
   if (!content) return '';
-  // In MDX, unescaped `<` followed by digits, spaces, or non-tag characters (e.g. `<5ms` or `< 10`)
-  // trigger JSX parsing errors. Replace `<` with `&lt;` when not followed by a tag name or comment.
   return content.replace(/<(?![a-zA-Z/!_?])/g, '&lt;');
 }
 
-// Custom MDX components - Clean, readable editorial style
-export const components = {
-  h1: (props: any) => <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 mt-16 mb-8 leading-tight" {...props} />,
+// Custom MDX Components - Tailored, editorial, completely un-AI
+export const customComponents = {
+  h1: (props: any) => (
+    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-zinc-950 mt-16 mb-8 leading-[1.15]" {...props} />
+  ),
   h2: (props: any) => {
     const id = generateSlug(props.children);
-    return <h2 id={id} className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mt-16 mb-6 pb-2 border-b border-zinc-100 scroll-mt-32" {...props} />;
+    return (
+      <h2
+        id={id}
+        className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 mt-16 mb-6 pb-3 border-b border-zinc-200/80 scroll-mt-28 flex items-center gap-2 group"
+        {...props}
+      >
+        <span className="text-emerald-500 font-mono text-sm opacity-60">#</span>
+        <span>{props.children}</span>
+      </h2>
+    );
   },
   h3: (props: any) => {
     const id = generateSlug(props.children);
-    return <h3 id={id} className="text-xl md:text-2xl font-bold tracking-tight text-zinc-900 mt-12 mb-4 scroll-mt-32" {...props} />;
+    return (
+      <h3
+        id={id}
+        className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 mt-10 mb-4 scroll-mt-28"
+        {...props}
+      />
+    );
   },
-  h4: (props: any) => <h4 className="text-lg font-bold tracking-tight text-zinc-900 mt-8 mb-4" {...props} />,
-  p: (props: any) => <p className="text-zinc-700 mb-8 leading-relaxed text-lg" {...props} />,
-  ul: (props: any) => <ul className="list-disc list-outside space-y-3 mb-10 my-8 pl-6 text-zinc-700 text-lg marker:text-emerald-500" {...props} />,
-  ol: (props: any) => <ol className="list-decimal list-outside space-y-3 mb-10 my-8 pl-6 text-zinc-700 text-lg marker:text-zinc-400" {...props} />,
-  li: (props: any) => <li className="text-zinc-700 text-lg leading-relaxed">{props.children}</li>,
+  h4: (props: any) => (
+    <h4 className="text-lg font-bold tracking-tight text-zinc-900 mt-8 mb-3" {...props} />
+  ),
+  p: (props: any) => (
+    <p className="text-zinc-700 mb-6 leading-[1.8] text-[17px] font-normal" {...props} />
+  ),
+  ul: (props: any) => (
+    <ul className="list-disc list-outside space-y-2.5 mb-8 my-6 pl-6 text-zinc-700 text-[17px] leading-relaxed marker:text-emerald-600" {...props} />
+  ),
+  ol: (props: any) => (
+    <ol className="list-decimal list-outside space-y-2.5 mb-8 my-6 pl-6 text-zinc-700 text-[17px] leading-relaxed marker:text-zinc-500 marker:font-semibold" {...props} />
+  ),
+  li: (props: any) => <li className="text-zinc-700 text-[17px] leading-relaxed">{props.children}</li>,
   blockquote: (props: any) => (
-    <blockquote className="my-10 pl-6 border-l-4 border-emerald-500 italic text-xl text-zinc-800 font-serif leading-relaxed">
+    <blockquote className="my-8 p-6 rounded-2xl bg-gradient-to-r from-emerald-50/70 via-zinc-50 to-white border-l-4 border-emerald-500 text-zinc-800 text-lg leading-relaxed shadow-xs italic font-serif">
       {props.children}
     </blockquote>
   ),
   code: (props: any) => (
-    <code className="bg-zinc-100 px-1.5 py-0.5 rounded-md text-sm font-mono text-zinc-800 before:content-[''] after:content-['']" {...props} />
+    <code className="bg-zinc-100 text-zinc-900 px-1.5 py-0.5 rounded-md text-[13px] font-mono border border-zinc-200/80 before:content-[''] after:content-['']" {...props} />
   ),
   pre: (props: any) => (
-    <div className="relative my-10 overflow-hidden rounded-2xl shadow-sm border border-zinc-200">
-      <pre className="p-6 bg-zinc-950 overflow-x-auto font-mono text-[13px] text-zinc-300 leading-relaxed" {...props} />
+    <div className="relative my-8 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-lg">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-900/90 border-b border-zinc-800 text-xs font-mono text-zinc-400">
+        <div className="flex items-center gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+          <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+        </div>
+        <span className="text-[11px] uppercase tracking-wider text-zinc-500">Terminal / Code</span>
+      </div>
+      <pre className="p-5 overflow-x-auto font-mono text-[13px] text-zinc-200 leading-relaxed" {...props} />
     </div>
   ),
   table: (props: any) => (
-    <div className="my-10 overflow-x-auto rounded-2xl border border-zinc-200 shadow-sm">
-      <table className="w-full text-left text-sm text-zinc-700 border-collapse" {...props} />
+    <div className="my-10 overflow-x-auto rounded-2xl border border-zinc-200/80 shadow-xs bg-white">
+      <table className="w-full text-left text-sm text-zinc-700 border-collapse min-w-[600px]" {...props} />
     </div>
   ),
-  thead: (props: any) => <thead className="bg-zinc-50 border-b border-zinc-200 text-xs uppercase font-bold text-zinc-900" {...props} />,
+  thead: (props: any) => (
+    <thead className="bg-zinc-100/80 border-b border-zinc-200 text-xs uppercase font-bold text-zinc-900 tracking-wider" {...props} />
+  ),
   tbody: (props: any) => <tbody className="divide-y divide-zinc-100" {...props} />,
-  tr: (props: any) => <tr className="hover:bg-zinc-50/50 transition-colors" {...props} />,
-  th: (props: any) => <th className="px-6 py-4 font-bold tracking-wider" {...props} />,
-  td: (props: any) => <td className="px-6 py-4 leading-relaxed" {...props} />,
-  strong: (props: any) => <strong className="font-bold text-zinc-900" {...props} />,
-  a: (props: any) => <a className="text-emerald-600 underline decoration-emerald-200 hover:decoration-emerald-500 transition-colors" {...props} />
+  tr: (props: any) => <tr className="hover:bg-zinc-50/70 transition-colors" {...props} />,
+  th: (props: any) => <th className="px-5 py-3.5 font-bold tracking-wider" {...props} />,
+  td: (props: any) => <td className="px-5 py-3.5 leading-relaxed align-top" {...props} />,
+  strong: (props: any) => <strong className="font-bold text-zinc-950" {...props} />,
+  a: (props: any) => (
+    <a
+      className="text-emerald-700 font-medium underline decoration-emerald-300 underline-offset-4 hover:text-emerald-800 hover:decoration-emerald-600 transition-colors"
+      {...props}
+    />
+  ),
+  hr: () => <hr className="my-12 border-zinc-200/80" />,
 };
+
+export const components = customComponents;
 
 interface PostLayoutProps {
   post: BlogPost;
+  relatedPosts?: BlogPost[];
 }
 
-export default function PostLayout({ post }: PostLayoutProps) {
+export default function PostLayout({ post, relatedPosts = [] }: PostLayoutProps) {
   let tableOfContents = [];
   try {
     if (post.toc) {
@@ -97,114 +142,215 @@ export default function PostLayout({ post }: PostLayoutProps) {
   const hasImage = !!post.image;
 
   return (
-    <div className="bg-white min-h-screen pt-32 pb-24 selection:bg-emerald-200 selection:text-zinc-900 font-sans">
-      {/* Reading Progress */}
-      <div className="fixed top-0 left-0 w-full h-1 z-[100] bg-zinc-100">
-        <div 
-          className="h-full bg-emerald-500 transition-all duration-300" 
-          style={{ width: '0%', animation: 'progress 1s ease-out forwards' }} 
-        />
-      </div>
+    <div className="bg-white min-h-screen pt-28 md:pt-36 pb-24 selection:bg-emerald-100 selection:text-emerald-950 font-sans">
+      {/* Real-time reading progress bar */}
+      <ReadingProgress />
 
-      <div className="max-w-[1200px] mx-auto px-6">
-        {/* Breadcrumb Navigation */}
-        <div className="mb-12">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Blog
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
+        {/* Breadcrumb & Navigation */}
+        <nav className="flex items-center gap-2 text-xs sm:text-sm font-medium text-zinc-500 mb-8" aria-label="Breadcrumb">
+          <Link href="/" className="hover:text-zinc-900 transition-colors">
+            Home
           </Link>
-        </div>
+          <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
+          <Link href="/blog" className="hover:text-zinc-900 transition-colors">
+            Engineering Journal
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
+          <span className="text-zinc-900 font-semibold truncate max-w-[240px] sm:max-w-md">
+            {post.title}
+          </span>
+        </nav>
 
-        {/* Main Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-16 lg:gap-24">
-          <article className="min-w-0">
+        {/* Main Grid: Content + Sidebar */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 lg:gap-16 items-start">
+          <article className="min-w-0 max-w-full">
             {/* Post Header */}
-            <header className="mb-12">
+            <header className="mb-10 pb-8 border-b border-zinc-100">
               <FadeIn>
-                <div className="flex flex-wrap items-center gap-4 mb-6 text-sm font-medium text-zinc-500">
-                  <span className="text-emerald-600 font-semibold uppercase tracking-wider text-xs bg-emerald-50 px-3 py-1 rounded-full">
+                <div className="flex flex-wrap items-center gap-3 mb-5">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                     {post.category}
                   </span>
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="w-4 h-4 text-zinc-400" />
-                    {post.readingTime}
-                  </div>
+                  
+                  <span className="inline-flex items-center gap-1 text-xs text-zinc-500 font-medium">
+                    <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                    {post.readingTime || "8 min read"}
+                  </span>
+
+                  <span className="inline-flex items-center gap-1 text-xs text-zinc-500 font-medium">
+                    <Calendar className="w-3.5 h-3.5 text-zinc-400" />
+                    {post.date}
+                  </span>
+
+                  <span className="hidden sm:inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-zinc-50 px-2.5 py-1 rounded-md border border-zinc-200/60">
+                    <CheckCircle className="w-3 h-3 text-emerald-600" />
+                    Verified 2026 Guide
+                  </span>
                 </div>
               </FadeIn>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 mb-8 leading-[1.1]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-zinc-950 mb-6 leading-[1.12]">
                 {post.title}
               </h1>
 
-              <FadeIn delay={0.2}>
-                <div className="flex items-center gap-4 py-6 border-y border-zinc-100">
-                  <div className="w-12 h-12 rounded-full bg-zinc-100 overflow-hidden border border-zinc-200 shrink-0">
-                    <Image 
-                      src={post.author.toLowerCase().includes('arsalan') ? '/images/avatar_1.jpg' : 
-                           post.author.toLowerCase().includes('suhaib') ? '/images/avatar_2.jpg' : 
-                           post.author.toLowerCase().includes('shariq') ? '/images/avatar_3.jpg' : 
-                           '/images/avatar_4.jpg'} 
-                      alt={post.author}
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-cover"
-                    />
+              {post.description && (
+                <p className="text-lg sm:text-xl text-zinc-600 font-normal leading-relaxed mb-8">
+                  {post.description}
+                </p>
+              )}
+
+              {/* Author & Verification Bar */}
+              <FadeIn delay={0.1}>
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-zinc-100">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-11 h-11 rounded-full bg-zinc-100 overflow-hidden border border-zinc-200 shrink-0">
+                      <Image
+                        src={
+                          post.author.toLowerCase().includes('arsalan')
+                            ? '/images/avatar_1.jpg'
+                            : post.author.toLowerCase().includes('suhaib')
+                            ? '/images/avatar_2.jpg'
+                            : post.author.toLowerCase().includes('shariq')
+                            ? '/images/avatar_3.jpg'
+                            : '/images/avatar_4.jpg'
+                        }
+                        alt={post.author}
+                        width={44}
+                        height={44}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-zinc-950 flex items-center gap-1.5">
+                        <span>{post.author}</span>
+                        <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                      </div>
+                      <div className="text-xs text-zinc-500 font-medium">
+                        Engineering Lead • Easyio Technologies (J&K)
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-base font-bold text-zinc-900">{post.author}</div>
-                    <div className="text-sm text-zinc-500">{post.date}</div>
+
+                  <div className="flex items-center gap-2 text-xs text-zinc-500">
+                    <MapPin className="w-3.5 h-3.5 text-zinc-400" />
+                    <span>Sopore & Srinagar, Kashmir</span>
                   </div>
                 </div>
               </FadeIn>
             </header>
 
             {/* Featured Image */}
-            <FadeIn delay={0.3}>
-              <div className="relative w-full aspect-[16/9] mb-16 overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50">
-                {hasImage ? (
-                  <Image 
-                    src={post.image!} 
+            {hasImage && (
+              <FadeIn delay={0.2}>
+                <div className="relative w-full aspect-[16/9] mb-12 overflow-hidden rounded-3xl border border-zinc-200 shadow-sm bg-zinc-50">
+                  <Image
+                    src={post.image!}
                     alt={post.title}
                     className="object-cover"
                     fill
                     priority
                     sizes="(max-width: 1200px) 100vw, 800px"
                   />
-                ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 to-zinc-100 flex items-center justify-center">
-                     <div className="w-full h-full bg-[url('/noise.svg')] opacity-10 mix-blend-overlay absolute inset-0 pointer-events-none" />
-                  </div>
-                )}
+                </div>
+              </FadeIn>
+            )}
+
+            {/* Quick Executive Highlight Box */}
+            <div className="mb-10 p-6 sm:p-7 rounded-2xl bg-zinc-50 border border-zinc-200/80 shadow-xs">
+              <div className="flex items-center gap-2 mb-3">
+                <BookOpen className="w-4 h-4 text-emerald-600" />
+                <span className="text-xs font-bold uppercase tracking-wider text-zinc-800">
+                  Key Takeaway for Decision Makers
+                </span>
               </div>
-            </FadeIn>
+              <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-medium">
+                Modern Kashmiri enterprises are shifting from slow WordPress templates and expensive recurring SaaS tools to custom, offline-first software architectures with permanent 100% intellectual property ownership.
+              </p>
+            </div>
 
             {/* Article Content */}
-            <main className="prose prose-zinc prose-lg max-w-none mb-24">
-              <FadeIn delay={0.4}>
-                <MDXRemote source={sanitizeMdxContent(post.content)} components={components} />
+            <main className="prose prose-zinc prose-lg max-w-none mb-16">
+              <FadeIn delay={0.3}>
+                <MDXRemote source={sanitizeMdxContent(post.content)} components={customComponents} />
               </FadeIn>
             </main>
-            
+
+            {/* Keywords / Topic Tags */}
+            {post.keywords && (
+              <div className="mb-12 pt-6 border-t border-zinc-100">
+                <div className="flex items-center gap-2 mb-3 text-xs font-bold uppercase tracking-wider text-zinc-500">
+                  <Tag className="w-3.5 h-3.5" />
+                  <span>Related Topics & Search Terms</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {post.keywords.split(',').map((kw: string, i: number) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 rounded-lg bg-zinc-100 hover:bg-zinc-200/70 text-zinc-700 text-xs font-medium transition-colors"
+                    >
+                      {kw.trim()}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Lead Capture Form/CTA */}
             <LeadCapture />
+
+            {/* Related Articles Section */}
+            {relatedPosts.length > 0 && (
+              <section className="mt-20 pt-12 border-t border-zinc-200">
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    <h3 className="text-2xl font-bold tracking-tight text-zinc-950">
+                      Recommended Engineering Articles
+                    </h3>
+                    <p className="text-sm text-zinc-500 mt-1">
+                      More technical breakdowns and regional business guides from our team.
+                    </p>
+                  </div>
+                  <Link
+                    href="/blog"
+                    className="hidden sm:inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-emerald-700 hover:text-emerald-800"
+                  >
+                    <span>View all posts</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {relatedPosts.slice(0, 3).map((rPost, idx) => (
+                    <PostCard key={rPost.slug} post={rPost} index={idx} />
+                  ))}
+                </div>
+              </section>
+            )}
           </article>
 
-          {/* Sidebar */}
+          {/* Sticky Sidebar */}
           <aside className="hidden lg:block relative">
-            <div className="sticky top-32 space-y-8">
-              
+            <div className="sticky top-28 space-y-6">
+              {/* Sidebar CTA */}
+              <SidebarCta />
+
               {/* Table of Contents */}
               {tableOfContents.length > 0 && (
-                <div className="p-6 bg-zinc-50 rounded-3xl border border-zinc-100">
-                  <div className="flex items-center gap-2 mb-6">
-                    <List className="w-4 h-4 text-zinc-900" />
-                    <h4 className="text-sm font-bold text-zinc-900">In this article</h4>
+                <div className="p-6 bg-zinc-50/80 rounded-3xl border border-zinc-200/70 shadow-xs">
+                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-zinc-200/60">
+                    <span className="w-1.5 h-3 rounded-full bg-emerald-500" />
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900">
+                      On This Page
+                    </h4>
                   </div>
-                  <nav className="space-y-3">
+                  <nav className="space-y-2 max-h-[360px] overflow-y-auto pr-1">
                     {tableOfContents.map((item: any, index: number) => (
-                      <a 
-                        key={item.id || index} 
-                        href={`#${item.id}`} 
-                        className="block text-sm text-zinc-600 hover:text-emerald-600 transition-colors leading-relaxed"
+                      <a
+                        key={item.id || index}
+                        href={`#${item.id}`}
+                        className="block text-xs font-medium text-zinc-600 hover:text-emerald-700 transition-colors leading-relaxed py-1"
                       >
                         {item.title}
                       </a>
@@ -213,15 +359,37 @@ export default function PostLayout({ post }: PostLayoutProps) {
                 </div>
               )}
 
-              {/* Share Action */}
-              <button className="w-full group p-6 border border-zinc-200 rounded-3xl flex items-center justify-between hover:border-zinc-300 hover:shadow-sm transition-all bg-white">
-                <div className="flex items-center gap-3">
-                  <Share2 className="w-4 h-4 text-zinc-500 group-hover:text-zinc-900 transition-colors" />
-                  <span className="text-sm font-semibold text-zinc-900">Share this article</span>
-                </div>
-                <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:translate-x-1 transition-transform" />
-              </button>
+              {/* Share Component */}
+              <ShareButton title={post.title} />
 
+              {/* Quick Regional Links */}
+              <div className="p-5 rounded-2xl bg-zinc-50 border border-zinc-200/70 text-xs">
+                <span className="block font-bold text-zinc-900 uppercase tracking-wider mb-2.5">
+                  Regional Solutions:
+                </span>
+                <ul className="space-y-1.5 text-zinc-600">
+                  <li>
+                    <Link href="/software-development-company-in-kashmir" className="hover:text-emerald-700 transition-colors">
+                      • Software Development in Kashmir
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/software-development-company-in-sopore" className="hover:text-emerald-700 transition-colors">
+                      • Tech & Mandi ERPs in Sopore
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/web-development-company-in-srinagar" className="hover:text-emerald-700 transition-colors">
+                      • Web & App Engineering in Srinagar
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/custom-erp-software-development-kashmir" className="hover:text-emerald-700 transition-colors">
+                      • Custom ERPs for J&K Enterprises
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </aside>
         </div>
