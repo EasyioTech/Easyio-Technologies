@@ -99,7 +99,7 @@ export default function FloatingLeadWidget() {
       {/* Main Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group flex items-center gap-2.5 px-4 sm:px-5 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-900 text-white border border-zinc-800 shadow-2xl transition-all hover:scale-105 active:scale-95"
+        className="group flex items-center gap-2.5 px-4 sm:px-5 py-3 rounded-2xl bg-zinc-950 hover:bg-zinc-900 text-white border border-zinc-800 shadow-2xl transition-all hover:scale-105 active:scale-95"
         aria-label="Open contact and WhatsApp consultation options"
       >
         <span className="relative flex h-3 w-3">

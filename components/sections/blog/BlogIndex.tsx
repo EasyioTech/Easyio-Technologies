@@ -54,10 +54,9 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
       <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
         {/* Editorial Header */}
         <div className="flex flex-col items-center text-center mb-14 pb-12 border-b border-zinc-200/80 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/70 text-xs font-bold uppercase tracking-wider text-emerald-800 mb-6 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-            <span>The Easyio Engineering & Technology Journal</span>
-          </div>
+          <p className="text-xs font-mono font-bold tracking-widest text-emerald-800 uppercase mb-4">
+            The Easyio Engineering Journal
+          </p>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-zinc-950 mb-6 leading-[0.95]">
             Engineering & <br className="hidden sm:block" />
@@ -79,7 +78,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by topic, keyword, or district (e.g. Sopore, ERP, Srinagar)..."
-                className="w-full bg-zinc-50 border border-zinc-300/80 rounded-full py-3.5 pl-12 pr-10 text-sm font-medium text-zinc-900 outline-none focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-zinc-400 shadow-xs"
+                className="w-full bg-zinc-50 border border-zinc-300/80 rounded-2xl py-3.5 pl-12 pr-10 text-sm font-medium text-zinc-900 outline-none focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-zinc-400 shadow-xs"
               />
               {searchQuery && (
                 <button
@@ -101,10 +100,10 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                   key={tag}
                   type="button"
                   onClick={() => setSearchQuery(tag)}
-                  className={`text-xs px-2.5 py-1 rounded-full border transition-all ${
+                  className={`text-xs px-2.5 py-1 rounded-lg border transition-all ${
                     searchQuery.toLowerCase() === tag.toLowerCase()
-                      ? 'bg-emerald-600 text-white border-emerald-600'
-                      : 'bg-zinc-100 hover:bg-zinc-200/80 text-zinc-600 border-zinc-200'
+                      ? 'bg-zinc-950 text-white border-zinc-950 font-semibold'
+                      : 'bg-zinc-100 hover:bg-zinc-200/80 text-zinc-600 border-zinc-200 font-medium'
                   }`}
                 >
                   {tag}
@@ -123,9 +122,9 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap ${
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap ${
                     selectedCategory.toLowerCase() === cat.toLowerCase()
-                      ? 'bg-zinc-900 text-white shadow-xs'
+                      ? 'bg-zinc-950 text-white shadow-xs'
                       : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-900'
                   }`}
                 >
