@@ -45,15 +45,15 @@ export default function Navigation() {
           </div>
           <div className="flex flex-col leading-none">
             <span className={cn(
-              "font-bold tracking-tighter text-zinc-950 uppercase transition-all duration-500",
+              "font-bold tracking-tight text-zinc-950 transition-all duration-500",
               scrolled ? "text-lg md:text-xl" : "text-xl md:text-2xl"
             )}>
-              EASYIO
+              Easyio
             </span>
             <span 
               className={cn(
-                "font-cursive text-zinc-400 opacity-80 transition-all duration-500",
-                scrolled ? "text-base -mt-1" : "text-lg -mt-1.5"
+                "font-cursive text-zinc-500 transition-all duration-500",
+                scrolled ? "text-lg md:text-xl -mt-1" : "text-xl md:text-2xl -mt-1.5"
               )} 
               style={{ fontFamily: 'Sacramento, cursive' }}
             >
@@ -143,10 +143,10 @@ export default function Navigation() {
                     />
                   </div>
                   <div className="flex flex-col leading-none">
-                    <span className="font-bold tracking-tight text-zinc-950 uppercase text-base">
-                      EASYIO
+                    <span className="font-bold tracking-tight text-zinc-950 text-base">
+                      Easyio
                     </span>
-                    <span className="font-cursive text-zinc-400 opacity-90 text-sm -mt-0.5" style={{ fontFamily: 'Sacramento, cursive' }}>
+                    <span className="font-cursive text-zinc-500 text-base -mt-0.5" style={{ fontFamily: 'Sacramento, cursive' }}>
                       Technologies
                     </span>
                   </div>

@@ -201,11 +201,11 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
                     <div className="mt-auto">
                       <a 
                         href={project.url}
-                        className="inline-flex items-center justify-between w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-zinc-50 text-[11px] sm:text-xs font-black tracking-widest text-zinc-950 uppercase transition-all group-hover:bg-emerald-50 cursor-pointer relative z-50"
+                        className="inline-flex items-center justify-between w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-zinc-50 text-[11px] sm:text-xs font-black tracking-widest text-zinc-950 uppercase transition-all group-hover:bg-zinc-100 cursor-pointer relative z-50 border border-zinc-100"
                       >
                         Visit Case Study
-                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center border border-zinc-200 group-hover:border-emerald-200">
-                          <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:text-emerald-600 group-hover:rotate-45 transition-all" />
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center border border-zinc-200 group-hover:border-zinc-400">
+                          <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:text-zinc-950 group-hover:rotate-45 transition-all" />
                         </div>
                       </a>
                     </div>

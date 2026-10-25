@@ -43,32 +43,32 @@ export default function LeadCapture() {
               </div>
             </div>
 
-            {/* Professional Clean Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            {/* Professional Clean Action Buttons - Never wrap into two lines */}
+            <div className="flex flex-wrap items-center gap-3">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-zinc-950 hover:bg-zinc-800 text-white px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm active:scale-98"
+                className="inline-flex items-center justify-center gap-2 bg-zinc-950 hover:bg-zinc-800 text-white px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-sm active:scale-98 whitespace-nowrap shrink-0"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-400" />
-                <span>Chat on WhatsApp (+91 60056 59527)</span>
+                <MessageCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span className="whitespace-nowrap">WhatsApp (+91 60056 59527)</span>
               </a>
 
               <a
                 href="tel:+916005659527"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-zinc-100 border border-zinc-300 px-5 py-3.5 rounded-xl text-xs sm:text-sm font-semibold text-zinc-900 transition-all active:scale-98"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-zinc-100 border border-zinc-300 px-4 py-3 rounded-xl text-xs sm:text-sm font-semibold text-zinc-900 transition-all active:scale-98 whitespace-nowrap shrink-0"
               >
-                <Phone className="w-4 h-4 text-zinc-500" />
-                <span>Call Directly</span>
+                <Phone className="w-4 h-4 text-zinc-500 shrink-0" />
+                <span className="whitespace-nowrap">Call Directly</span>
               </a>
 
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 text-zinc-600 hover:text-zinc-950 px-4 py-3.5 text-xs sm:text-sm font-semibold transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 text-zinc-600 hover:text-zinc-950 px-3 py-3 text-xs sm:text-sm font-semibold transition-colors whitespace-nowrap shrink-0"
               >
-                <span>Request Project Scope</span>
-                <ArrowRight className="w-4 h-4" />
+                <span className="whitespace-nowrap">Request Project Scope</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
               </Link>
             </div>
           </div>

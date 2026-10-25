@@ -38,10 +38,10 @@ export default function Footer() {
           >
             <Link href="/" className="mb-10 group block">
               <div className="relative">
-                <span className="block text-4xl md:text-5xl font-bold tracking-tighter text-zinc-950 uppercase leading-none group-hover:scale-105 transition-transform origin-left">
-                  EASYIO
+                <span className="block text-4xl md:text-5xl font-bold tracking-tight text-zinc-950 leading-none group-hover:scale-105 transition-transform origin-left">
+                  Easyio
                 </span>
-                <span className="block text-3xl md:text-4xl font-cursive text-zinc-400 -mt-2 ml-1 low-caps opacity-80 group-hover:text-[#FEF9C3] transition-colors" style={{ fontFamily: 'Sacramento, cursive' }}>
+                <span className="block text-3xl md:text-4xl lg:text-5xl font-cursive text-zinc-500 -mt-2 ml-1 low-caps transition-colors" style={{ fontFamily: 'Sacramento, cursive' }}>
                   Technologies
                 </span>
               </div>
@@ -52,9 +52,9 @@ export default function Footer() {
             </h2>
 
             <div className="flex flex-col gap-6 w-full">
-              <a href={`mailto:${siteConfig.email.contact}`} className="flex items-center gap-4 text-zinc-500 hover:text-emerald-600 transition-colors group">
-                 <div className="w-12 h-12 rounded-full border border-zinc-100 flex items-center justify-center group-hover:border-emerald-200 group-hover:bg-emerald-50 transition-all shadow-sm">
-                    <Mail className="w-5 h-5 text-zinc-400 group-hover:text-emerald-600" />
+              <a href={`mailto:${siteConfig.email.contact}`} className="flex items-center gap-4 text-zinc-500 hover:text-zinc-950 transition-colors group">
+                 <div className="w-12 h-12 rounded-2xl border border-zinc-200 flex items-center justify-center group-hover:border-zinc-300 group-hover:bg-zinc-100 transition-all shadow-sm">
+                    <Mail className="w-5 h-5 text-zinc-500 group-hover:text-zinc-950 transition-colors" />
                  </div>
                  <span className="text-xl font-bold tracking-tight uppercase italic">{siteConfig.email.contact}</span>
               </a>

@@ -82,9 +82,9 @@ export default function ShareButton({ title, url }: ShareButtonProps) {
         <button
           onClick={handleWhatsAppShare}
           type="button"
-          className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition-all shadow-xs"
+          className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold transition-all shadow-xs"
         >
-          <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+          <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
           <span>WhatsApp</span>
         </button>
       </div>

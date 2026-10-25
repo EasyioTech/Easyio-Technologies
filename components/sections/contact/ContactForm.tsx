@@ -67,21 +67,21 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <FadeIn>
-        <div className="py-16 px-8 text-center rounded-3xl bg-emerald-50/70 border border-emerald-200/80 flex flex-col items-center justify-center shadow-sm">
-          <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mb-5 shadow-xs">
-            <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+        <div className="py-16 px-8 text-center rounded-3xl bg-zinc-50 border border-zinc-200/90 flex flex-col items-center justify-center shadow-xs">
+          <div className="w-14 h-14 rounded-2xl bg-zinc-950 text-white flex items-center justify-center mb-5 shadow-xs">
+            <CheckCircle2 className="w-7 h-7 text-emerald-400" />
           </div>
           <h3 className="text-2xl font-bold text-zinc-950 mb-2">Inquiry Received!</h3>
-          <p className="text-zinc-600 text-base max-w-md leading-relaxed mb-6">
+          <p className="text-zinc-600 text-sm sm:text-base max-w-md leading-relaxed mb-6 font-normal">
             Thank you for reaching out. A senior systems engineer will review your project requirements and contact you within <strong>15–30 minutes</strong>.
           </p>
           <a
             href={whatsappDirectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold transition-all shadow-xs"
           >
-            <MessageCircle className="w-4 h-4" />
+            <MessageCircle className="w-4 h-4 text-emerald-400" />
             <span>Chat on WhatsApp for Instant Response</span>
           </a>
         </div>
@@ -91,21 +91,22 @@ export default function ContactForm() {
 
   return (
     <div className="space-y-8">
-      {/* Fast WhatsApp Reach Banner */}
-      <div className="p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-emerald-500 text-zinc-950 flex items-center justify-center shrink-0">
-            <MessageCircle className="w-5 h-5" />
+      {/* Fast WhatsApp Reach Banner - Clean Editorial Styling without green glass */}
+      <div className="p-4 sm:p-5 rounded-2xl bg-zinc-50 border border-zinc-200/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-zinc-950 text-white flex items-center justify-center shrink-0 shadow-xs">
+            <MessageCircle className="w-5 h-5 text-emerald-400" />
           </div>
           <div>
-            <div className="text-xs sm:text-sm font-bold text-zinc-900 flex items-center gap-1.5">
+            <div className="text-xs sm:text-sm font-bold text-zinc-950 flex items-center gap-2">
               <span>Need a faster project scope?</span>
-              <span className="text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded-full font-bold uppercase">
-                Active
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-800">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Live Online
               </span>
             </div>
-            <p className="text-xs text-zinc-600">
-              Chat directly with our engineering team on WhatsApp.
+            <p className="text-xs text-zinc-600 mt-0.5 font-normal">
+              Chat directly with our senior engineering team on WhatsApp.
             </p>
           </div>
         </div>
@@ -113,9 +114,9 @@ export default function ContactForm() {
           href={whatsappDirectUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs shrink-0"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold transition-all shadow-xs shrink-0 active:scale-98"
         >
-          <MessageCircle className="w-3.5 h-3.5" />
+          <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
           <span>WhatsApp (+91 60056 59527)</span>
         </a>
       </div>

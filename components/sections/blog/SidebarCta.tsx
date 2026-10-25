@@ -45,18 +45,18 @@ export default function SidebarCta() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs tracking-wide transition-colors shadow-xs"
+          className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs tracking-wide transition-colors shadow-xs whitespace-nowrap"
         >
-          <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-          <span>Chat on WhatsApp (+91 60056 59527)</span>
+          <MessageCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+          <span className="whitespace-nowrap">WhatsApp (+91 60056 59527)</span>
         </a>
 
         <a
           href="tel:+916005659527"
-          className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-white hover:bg-zinc-100 border border-zinc-200 text-zinc-900 font-semibold text-xs transition-colors"
+          className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-white hover:bg-zinc-100 border border-zinc-200 text-zinc-900 font-semibold text-xs transition-colors whitespace-nowrap"
         >
-          <Phone className="w-3.5 h-3.5 text-zinc-500" />
-          <span>Call Us: +91 60056 59527</span>
+          <Phone className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+          <span className="whitespace-nowrap">Call Us: +91 60056 59527</span>
         </a>
 
         <Link

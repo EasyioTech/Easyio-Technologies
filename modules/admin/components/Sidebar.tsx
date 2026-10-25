@@ -44,7 +44,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean, onClose?: () =>
             <Box className="w-5 h-5 text-black" />
           </div>
           {!isDesktopCollapsed && (
-            <span className="font-bold tracking-tighter text-lg text-white">EASYIO <span className="text-zinc-500 font-light">HUD</span></span>
+            <span className="font-bold tracking-tight text-lg text-white">Easyio <span className="text-zinc-500 font-light">HUD</span></span>
           )}
         </Link>
         <button 

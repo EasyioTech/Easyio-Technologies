@@ -30,8 +30,8 @@ export default function LocalAdvantage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
               <div className="flex items-start gap-3.5 sm:gap-4">
-                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
+                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-zinc-900" />
                  </div>
                  <div>
                     <h4 className="text-sm sm:text-base font-bold text-zinc-950 mb-0.5 sm:mb-1">Direct Communication</h4>
@@ -39,8 +39,8 @@ export default function LocalAdvantage() {
                  </div>
               </div>
               <div className="flex items-start gap-3.5 sm:gap-4">
-                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                    <Network className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
+                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center shrink-0">
+                    <Network className="w-4 h-4 sm:w-5 sm:h-5 text-zinc-900" />
                  </div>
                  <div>
                     <h4 className="text-sm sm:text-base font-bold text-zinc-950 mb-0.5 sm:mb-1">Local Understanding</h4>
@@ -56,8 +56,8 @@ export default function LocalAdvantage() {
            className="bg-white border border-zinc-200 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8 hover:shadow-xl hover:shadow-zinc-200/40 transition-all group"
         >
           <div className="flex items-center gap-6">
-            <div className="w-16 h-16 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center shrink-0 group-hover:bg-emerald-50 group-hover:border-emerald-100 transition-colors">
-              <MapPin className="w-6 h-6 text-zinc-400 group-hover:text-emerald-500 transition-colors" />
+            <div className="w-16 h-16 rounded-2xl bg-zinc-50 border border-zinc-200 flex items-center justify-center shrink-0 group-hover:bg-zinc-100 transition-colors">
+              <MapPin className="w-6 h-6 text-zinc-700 transition-colors" />
             </div>
             <div>
               <h4 className="text-xl font-black text-zinc-950 tracking-tight mb-2">Easyio Technologies HQ</h4>

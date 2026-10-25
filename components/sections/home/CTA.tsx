@@ -12,27 +12,23 @@ export default function CTA() {
     <section className="py-8 md:py-16 bg-transparent relative overflow-hidden mobile-section-content" id="contact">
       <div className="max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10">
         
-        {/* The Premium Card - High Visibility "Vibe" Card */}
+        {/* The Premium Card - High Visibility Editorial Card */}
         <div 
-          className="relative rounded-[2rem] md:rounded-[3rem] p-6 sm:p-10 md:p-16 lg:p-20 overflow-hidden group border border-emerald-200/50 shadow-xl md:shadow-[0_32px_64px_-16px_rgba(16,185,129,0.15)] bg-white backdrop-blur-md"
+          className="relative rounded-[2rem] md:rounded-[3rem] p-6 sm:p-10 md:p-16 lg:p-20 overflow-hidden group border border-zinc-200/90 shadow-xl shadow-zinc-200/40 bg-zinc-50/70"
         >
-          {/* High-Vibrancy Mesh Gradient Background - desktop only */}
+          {/* Subtle Warm Gradient Accent - desktop only */}
           <div className="hidden md:block absolute inset-0 transition-opacity duration-1000">
-            {/* Emerald Primary Glow - More Intense */}
-            <div className="absolute -top-[30%] -left-[10%] w-[80%] h-[100%] bg-emerald-200/50 blur-[120px] rounded-full animate-pulse will-change-[opacity]" style={{ animationDuration: '7s' }} />
-            {/* Yellow Secondary Glow - More Intense */}
-            <div className="absolute -bottom-[30%] -right-[10%] w-[80%] h-[100%] bg-yellow-200/40 blur-[120px] rounded-full animate-pulse will-change-[opacity]" style={{ animationDuration: '9s', animationDelay: '1.5s' }} />
-            {/* Center High-Light */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-white/80 blur-[80px] rounded-full" />
+            <div className="absolute -top-[30%] -left-[10%] w-[60%] h-[80%] bg-zinc-200/40 blur-[100px] rounded-full" />
+            <div className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[80%] bg-zinc-200/30 blur-[100px] rounded-full" />
           </div>
           
           <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center text-center">
              
-             {/* Tagline - Refined Scale */}
+             {/* Tagline - Clean Typographic Eyebrow without capsule */}
              <FadeIn delay={0.2}>
-                <div className="inline-flex items-center gap-2 mb-4 md:mb-6 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80">
-                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-                   <span className="text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.25em] text-emerald-800">The Best Tech Company in Kashmir</span>
+                <div className="flex items-center gap-2.5 mb-4 md:mb-6">
+                   <div className="w-1.5 h-1.5 rounded-full bg-zinc-950" />
+                   <span className="text-[10px] md:text-xs font-mono font-bold uppercase tracking-[0.25em] text-zinc-500">The Best Tech Company in Kashmir</span>
                 </div>
              </FadeIn>
 

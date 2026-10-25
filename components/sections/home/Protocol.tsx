@@ -45,7 +45,7 @@ const stages = [
     highlights: ["Launch Strategy", "Ongoing Growth"],
     icon: <Rocket className="w-6 h-6" />,
     className: "md:col-span-2 md:row-span-1",
-    color: "bg-emerald-50/30"
+    color: "bg-zinc-100/60"
   }
 ];
 
@@ -130,7 +130,7 @@ export default function Protocol() {
                 key={stage.id}
                 className={cn(
                   "group relative overflow-hidden rounded-[2rem] md:rounded-[3rem] border p-6 sm:p-8 md:p-10 flex flex-col justify-between bg-white/70 backdrop-blur-md transition-all duration-300 min-h-[260px] md:min-h-0",
-                  isActive ? "border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.15)] md:scale-[1.02]" : "border-zinc-100 hover:border-zinc-200 hover:shadow-xl hover:shadow-zinc-100/50",
+                  isActive ? "border-zinc-400 shadow-xl shadow-zinc-200/50 md:scale-[1.02]" : "border-zinc-100 hover:border-zinc-200 hover:shadow-xl hover:shadow-zinc-100/50",
                   stage.className
                 )}
               >
@@ -143,19 +143,14 @@ export default function Protocol() {
                        <div className={cn(
                          "w-10 h-10 rounded-full border flex items-center justify-center text-xs font-black transition-all duration-500",
                          isActive 
-                          ? "border-emerald-500 text-emerald-500 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)] bg-emerald-50" 
+                          ? "border-zinc-950 text-white bg-zinc-950" 
                           : "border-zinc-100 text-zinc-300 group-hover:text-zinc-950 group-hover:border-zinc-200"
                        )}>
                           {stage.id}
                        </div>
                     </div>
                     
-                    <h3 className={cn(
-                      "text-3xl md:text-4xl font-black mb-6 tracking-tighter transition-all duration-500",
-                      isActive 
-                        ? "text-emerald-600 drop-shadow-[0_0_12px_rgba(16,185,129,0.4)]" 
-                        : "text-zinc-950"
-                    )}>
+                    <h3 className="text-3xl md:text-4xl font-black mb-6 tracking-tighter text-zinc-950 transition-all duration-500">
                       {stage.title}
                     </h3>
                     

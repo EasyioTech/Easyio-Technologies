@@ -75,8 +75,8 @@ export default function ContactPage() {
               <div className="p-8 bg-white border border-zinc-200 rounded-[2rem] shadow-sm">
                 <h3 className="text-xs font-black text-zinc-400 mb-6 uppercase tracking-[0.2em]">Headquarters</h3>
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 shrink-0 rounded-xl bg-emerald-50 flex items-center justify-center border border-emerald-100">
-                    <MapPin className="w-4 h-4 text-emerald-600" />
+                  <div className="w-10 h-10 shrink-0 rounded-xl bg-zinc-100 flex items-center justify-center border border-zinc-200">
+                    <MapPin className="w-4 h-4 text-zinc-900" />
                   </div>
                   <div>
                     <p className="text-zinc-900 font-semibold leading-relaxed mb-4">
