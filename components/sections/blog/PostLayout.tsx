@@ -342,27 +342,42 @@ export default function PostLayout({ post, relatedPosts = [] }: PostLayoutProps)
               {/* Quick Regional Links */}
               <div className="p-5 rounded-2xl bg-zinc-50 border border-zinc-200/70 text-xs">
                 <span className="block font-bold text-zinc-900 uppercase tracking-wider mb-2.5">
-                  Regional Solutions:
+                  District Engineering Guides:
                 </span>
                 <ul className="space-y-1.5 text-zinc-600">
                   <li>
+                    <Link href="/blog/best-tech-company-in-kashmir" className="hover:text-emerald-700 transition-colors">
+                      • Best Tech Company in Kashmir
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog/best-software-company-kashmir" className="hover:text-emerald-700 transition-colors">
+                      • Best Software Company in Kashmir
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog/best-tech-company-in-sopore-kashmir" className="hover:text-emerald-700 transition-colors">
+                      • Best Tech Company in Sopore
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog/best-tech-company-in-baramulla" className="hover:text-emerald-700 transition-colors">
+                      • Best Tech Company in Baramulla
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog/best-tech-company-in-srinagar" className="hover:text-emerald-700 transition-colors">
+                      • Best Tech Company in Srinagar
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog/best-tech-company-in-anantnag-south-kashmir" className="hover:text-emerald-700 transition-colors">
+                      • Best Tech Company in Anantnag
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/software-development-company-in-kashmir" className="hover:text-emerald-700 transition-colors">
                       • Software Development in Kashmir
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/software-development-company-in-sopore" className="hover:text-emerald-700 transition-colors">
-                      • Tech & Mandi ERPs in Sopore
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/web-development-company-in-srinagar" className="hover:text-emerald-700 transition-colors">
-                      • Web & App Engineering in Srinagar
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/custom-erp-software-development-kashmir" className="hover:text-emerald-700 transition-colors">
-                      • Custom ERPs for J&K Enterprises
                     </Link>
                   </li>
                 </ul>

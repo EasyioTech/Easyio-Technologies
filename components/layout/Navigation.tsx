@@ -82,13 +82,14 @@ export default function Navigation() {
 
         {/* Actions Infrastructure */}
         <div className="flex items-center gap-3">
-          <Link
-            href="tel:+919596418226"
-            className="hidden sm:flex items-center justify-center h-10 px-3 border border-zinc-200 text-zinc-900 text-xs font-bold uppercase tracking-widest rounded-full hover:bg-zinc-50 transition-all gap-2"
+          <a
+            href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`}
+            className="hidden sm:flex items-center justify-center h-10 px-4 border border-zinc-200 text-zinc-900 text-xs font-bold uppercase tracking-wider rounded-full hover:bg-zinc-50 transition-all gap-2"
+            title="Call Easyio Engineering"
           >
-            <Phone className="w-3.5 h-3.5" />
-            
-          </Link>
+            <Phone className="w-3.5 h-3.5 text-emerald-600" />
+            <span className="font-mono text-zinc-700">{siteConfig.phone}</span>
+          </a>
           <Link
             href="/contact"
             className="hidden sm:flex items-center justify-center h-10 px-6 bg-zinc-950 text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-zinc-800 transition-all shadow-xl shadow-zinc-950/10 gap-2"

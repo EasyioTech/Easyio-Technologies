@@ -58,12 +58,15 @@ export const footerLinks = {
     ],
   },
   solutions: {
-    title: "Locations & Solutions",
+    title: "Locations & Districts",
     links: [
-      { label: "Tech Company Sopore", href: "/software-development-company-in-sopore" },
-      { label: "Software Company Kashmir", href: "/software-development-company-in-kashmir" },
-      { label: "Web Development Srinagar", href: "/web-development-company-in-srinagar" },
-      { label: "Custom ERP Systems J&K", href: "/custom-erp-software-development-kashmir" },
+      { label: "Best Tech Company Kashmir", href: "/blog/best-tech-company-in-kashmir" },
+      { label: "Best Software Company Kashmir", href: "/software-development-company-in-kashmir" },
+      { label: "Best Tech Company Sopore", href: "/software-development-company-in-sopore" },
+      { label: "Best Tech Company Baramulla", href: "/blog/best-tech-company-in-baramulla" },
+      { label: "Best Tech Company Srinagar", href: "/blog/best-tech-company-in-srinagar" },
+      { label: "Best Tech Company Anantnag", href: "/blog/best-tech-company-in-anantnag-south-kashmir" },
+      { label: "Custom ERP Systems Kashmir", href: "/custom-erp-software-development-kashmir" },
     ],
   },
   legal: {

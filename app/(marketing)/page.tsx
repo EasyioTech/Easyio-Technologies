@@ -27,14 +27,15 @@ import LocalAdvantage from "@/components/sections/home/LocalAdvantage";
 import MarqueeText from "@/components/sections/home/MarqueeText";
 
 export const metadata = generateMetadata({
-  title: "Easyio Technologies | Best Tech & Software Company in Kashmir",
+  title: "Easyio Technologies | Best Tech Company & Best Software Company in Kashmir",
   description:
-    "Easyio Technologies is recognized as the best tech and software company in Kashmir. Headquartered in Sopore and serving Srinagar, we engineer custom ERPs, web apps, mobile apps, and enterprise AI systems.",
+    "Easyio Technologies is recognized as the best tech company and best software company in Kashmir. Headquartered in Sopore with Srinagar operations, we engineer custom enterprise ERPs, high-speed web apps, mobile apps, and cloud AI systems.",
   keywords: [
     "best tech company in kashmir",
     "best software company in kashmir",
     "top tech companies in kashmir",
     "best tech company in sopore",
+    "best software company in sopore",
     "software company in sopore",
     "software development company in srinagar",
     "it company in kashmir",

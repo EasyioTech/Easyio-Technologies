@@ -28,13 +28,15 @@ import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHe
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Best Tech & Software Company in Sopore, Kashmir | Easyio Technologies",
-  description: "Easyio Technologies is Sopore's premier software development company. Headquartered at War Complex Tehsil Road, Sopore, we engineer custom ERPs, fruit mandi accounting, cold storage systems, mobile apps, web applications, and AI systems.",
+  title: "Best Tech Company in Sopore | Best Software Company in Sopore | Easyio",
+  description: "Easyio Technologies is recognized as the best tech company in Sopore and premier software company in North Kashmir. Headquartered at War Complex Tehsil Road, Sopore, we engineer custom ERPs, fruit mandi accounting, cold storage software, mobile apps, and web platforms.",
   alternates: {
     canonical: "https://easyio.tech/software-development-company-in-sopore",
   },
   keywords: [
     "best tech company in sopore",
+    "best software company in sopore",
+    "tech company in sopore",
     "software company in sopore",
     "IT company in sopore",
     "web development in sopore",
