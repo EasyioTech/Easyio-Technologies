@@ -1,6 +1,8 @@
 import { FadeIn } from "@/components/shared/Animations";
 import { BlogPost } from "@/lib/blog";
-import { ArrowLeft, Clock, Calendar, CheckCircle, ShieldCheck, MapPin, Tag, BookOpen, ChevronRight } from "lucide-react";
+import React from "react";
+import remarkGfm from "remark-gfm";
+import { ArrowLeft, Clock, Calendar, CheckCircle, ShieldCheck, MapPin, Tag, BookOpen, ChevronRight, CheckCircle2, XCircle, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import LeadCapture from "./LeadCapture";
@@ -38,6 +40,70 @@ function sanitizeMdxContent(content: string): string {
   return content.replace(/<(?![a-zA-Z/!_?])/g, '&lt;');
 }
 
+
+// Editorial Status Icon & Badge Components (Replacing raw emojis across all blogs)
+export function Check({ className = "w-4 h-4 text-emerald-600 inline-block align-middle mr-1.5 shrink-0" }: { className?: string }) {
+  return <CheckCircle2 className={className} />;
+}
+
+export function Cross({ className = "w-4 h-4 text-rose-500 inline-block align-middle mr-1.5 shrink-0" }: { className?: string }) {
+  return <XCircle className={className} />;
+}
+
+export function Alert({ className = "w-4 h-4 text-amber-500 inline-block align-middle mr-1.5 shrink-0" }: { className?: string }) {
+  return <AlertCircle className={className} />;
+}
+
+export function Badge({
+  variant = "neutral",
+  children,
+}: {
+  variant?: 'success' | 'danger' | 'warning' | 'neutral';
+  children: React.ReactNode;
+}) {
+  const styles: Record<string, string> = {
+    success: "bg-emerald-50 text-emerald-700 border-emerald-200/80",
+    danger: "bg-rose-50 text-rose-700 border-rose-200/80",
+    warning: "bg-amber-50 text-amber-800 border-amber-200/80",
+    neutral: "bg-zinc-100 text-zinc-700 border-zinc-200/80",
+  };
+  return (
+    <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-xs font-semibold border ${styles[variant] || styles.neutral}`}>
+      {children}
+    </span>
+  );
+}
+
+// Recursively replaces any leftover emoji markers (✅, ❌, ⚠️) with clean Lucide icons
+function formatEmojiContent(children: any): any {
+  if (typeof children === 'string') {
+    if (!/[✅❌⚠️⚠]/.test(children)) return children;
+    const parts = children.split(/([✅❌⚠️⚠])/g);
+    return parts.map((part, i) => {
+      if (part === '✅') {
+        return <Check key={i} />;
+      }
+      if (part === '❌') {
+        return <Cross key={i} />;
+      }
+      if (part === '⚠️' || part === '⚠') {
+        return <Alert key={i} />;
+      }
+      return part;
+    });
+  }
+  if (Array.isArray(children)) {
+    return children.map((c, i) => <React.Fragment key={i}>{formatEmojiContent(c)}</React.Fragment>);
+  }
+  if (children && typeof children === 'object' && children.props && children.props.children) {
+    return React.cloneElement(children, {
+      ...children.props,
+      children: formatEmojiContent(children.props.children),
+    });
+  }
+  return children;
+}
+
 // Custom MDX Components - Tailored, editorial, completely un-AI
 export const customComponents = {
   h1: (props: any) => (
@@ -70,7 +136,7 @@ export const customComponents = {
     <h4 className="text-lg font-bold tracking-tight text-zinc-900 mt-8 mb-3" {...props} />
   ),
   p: (props: any) => (
-    <p className="text-zinc-700 mb-6 leading-[1.8] text-[17px] font-normal" {...props} />
+    <p className="text-zinc-700 mb-6 leading-[1.8] text-[17px] font-normal" {...props}>{formatEmojiContent(props.children)}</p>
   ),
   ul: (props: any) => (
     <ul className="list-disc list-outside space-y-2.5 mb-8 my-6 pl-6 text-zinc-700 text-[17px] leading-relaxed marker:text-emerald-600" {...props} />
@@ -78,7 +144,7 @@ export const customComponents = {
   ol: (props: any) => (
     <ol className="list-decimal list-outside space-y-2.5 mb-8 my-6 pl-6 text-zinc-700 text-[17px] leading-relaxed marker:text-zinc-500 marker:font-semibold" {...props} />
   ),
-  li: (props: any) => <li className="text-zinc-700 text-[17px] leading-relaxed">{props.children}</li>,
+  li: (props: any) => <li className="text-zinc-700 text-[17px] leading-relaxed">{formatEmojiContent(props.children)}</li>,
   blockquote: (props: any) => (
     <blockquote className="my-8 p-6 rounded-2xl bg-gradient-to-r from-emerald-50/70 via-zinc-50 to-white border-l-4 border-emerald-500 text-zinc-800 text-lg leading-relaxed shadow-xs italic font-serif">
       {props.children}
@@ -100,18 +166,29 @@ export const customComponents = {
       <pre className="p-5 overflow-x-auto font-mono text-[13px] text-zinc-200 leading-relaxed" {...props} />
     </div>
   ),
+  Check,
+  Cross,
+  Alert,
+  Badge,
+  CheckCircle2,
+  XCircle,
+  AlertCircle,
   table: (props: any) => (
-    <div className="my-10 overflow-x-auto rounded-2xl border border-zinc-200/80 shadow-xs bg-white">
-      <table className="w-full text-left text-sm text-zinc-700 border-collapse min-w-[600px]" {...props} />
+    <div className="my-10 overflow-x-auto rounded-2xl border border-zinc-200 shadow-sm bg-white">
+      <table className="w-full text-left text-sm text-zinc-700 border-collapse min-w-[640px]" {...props} />
     </div>
   ),
   thead: (props: any) => (
-    <thead className="bg-zinc-100/80 border-b border-zinc-200 text-xs uppercase font-bold text-zinc-900 tracking-wider" {...props} />
+    <thead className="bg-zinc-50/90 border-b border-zinc-200 text-xs uppercase font-bold text-zinc-900 tracking-wider" {...props} />
   ),
   tbody: (props: any) => <tbody className="divide-y divide-zinc-100" {...props} />,
-  tr: (props: any) => <tr className="hover:bg-zinc-50/70 transition-colors" {...props} />,
-  th: (props: any) => <th className="px-5 py-3.5 font-bold tracking-wider" {...props} />,
-  td: (props: any) => <td className="px-5 py-3.5 leading-relaxed align-top" {...props} />,
+  tr: (props: any) => <tr className="hover:bg-zinc-50/80 transition-colors" {...props} />,
+  th: (props: any) => <th className="px-5 py-3.5 font-bold tracking-wider text-zinc-900" {...props} />,
+  td: (props: any) => (
+    <td className="px-5 py-3.5 leading-relaxed align-middle text-zinc-700 text-sm">
+      {formatEmojiContent(props.children)}
+    </td>
+  ),
   strong: (props: any) => <strong className="font-bold text-zinc-950" {...props} />,
   a: (props: any) => (
     <a
@@ -278,7 +355,15 @@ export default function PostLayout({ post, relatedPosts = [] }: PostLayoutProps)
             {/* Article Content */}
             <main className="prose prose-zinc prose-lg max-w-none mb-16">
               <FadeIn delay={0.3}>
-                <MDXRemote source={sanitizeMdxContent(post.content)} components={customComponents} />
+                <MDXRemote
+                  source={sanitizeMdxContent(post.content)}
+                  components={customComponents}
+                  options={{
+                    mdxOptions: {
+                      remarkPlugins: [remarkGfm],
+                    },
+                  }}
+                />
               </FadeIn>
             </main>
 
