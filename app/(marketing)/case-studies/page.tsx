@@ -32,7 +32,52 @@ const getCachedProjects = cacheQuery(
 );
 
 export default async function CaseStudiesPage() {
-  const deployments = await getCachedProjects();
+  let deployments: any[] = [];
+  try {
+    deployments = await getCachedProjects();
+  } catch (e) {
+    console.error("Failed to fetch case studies:", e);
+  }
+
+  if (!deployments || deployments.length === 0) {
+    deployments = [
+      {
+        slug: "enterprise-resource-protocol",
+        title: "Enterprise Resource Protocol (ERP)",
+        description: "Custom operational software engineered for apple cold storage and fruit mandi distribution networks across Sopore & Kashmir.",
+        category: "DISTRIBUTED_SYSTEMS",
+        image: "https://itx-ali.netlify.app/oruerp.png"
+      },
+      {
+        slug: "global-commerce-gateway",
+        title: "Global Commerce Gateway",
+        description: "Headless Next.js international e-commerce platform exporting luxury Kashmir handicrafts & saffron to clients in the USA, UK & UAE.",
+        category: "CLOUD_ARCHITECTURE",
+        image: "https://itx-ali.netlify.app/serique.png"
+      },
+      {
+        slug: "institutional-learning-management",
+        title: "Institutional Learning Management (LMS)",
+        description: "Scalable live learning and testing infrastructure supporting 14,000+ active students with sub-second video sync.",
+        category: "AI_INFRASTRUCTURE",
+        image: "https://itx-ali.netlify.app/technnurture.png"
+      },
+      {
+        slug: "financial-management-suite",
+        title: "Financial Management Suite",
+        description: "Instant UPI and ledger reconciliation engine processing over ₹1.4Cr in daily wholesale transactions with zero latency.",
+        category: "FINTECH_SECURITY",
+        image: "https://itx-ali.netlify.app/orulabs.png"
+      },
+      {
+        slug: "hotel-management-platform",
+        title: "Hotel Management Platform",
+        description: "Automated booking and reservation pipeline for luxury hospitality chains with real-time payment gateway settlement.",
+        category: "INDUSTRIAL_LOGIC",
+        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80"
+      }
+    ];
+  }
 
   return (
     <PageWrapper>

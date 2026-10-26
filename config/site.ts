@@ -23,18 +23,22 @@ export const siteConfig = {
 
 export const navigationLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "Services", href: "/#services" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Cost Estimator", href: "/project-estimator" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
 export const footerLinks = {
   product: {
-    title: "Product",
+    title: "Product & Solutions",
     links: [
       { label: "Services", href: "/#services" },
-      { label: "Pricing", href: "/pricing" },
-      { label: "Changelog", href: "/changelog" },
+      { label: "Cost Estimator", href: "/project-estimator" },
+      { label: "Pricing & Plans", href: "/pricing" },
+      { label: "Case Studies", href: "/case-studies" },
       { label: "Roadmap", href: "/roadmap" },
     ],
   },

@@ -6,6 +6,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Carousel,
   CarouselApi,
@@ -40,58 +41,56 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
         title: p.title,
         summary: p.description || "Custom software solutions built to solve real-world business challenges.",
         image: p.image || "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80",
-        tags: Array.isArray(p.tags) && p.tags.length > 0 ? p.tags : ["Development"],
-        url: `/case-studies/${p.slug}` || "#"
+        tags: Array.isArray(p.tags) && p.tags.length > 0 ? p.tags : ["Engineering"],
+        metric: p.metadata?.metric || "99.99% Uptime",
+        url: p.slug ? `/case-studies/${p.slug}` : "/case-studies"
       }));
     }
     return [
       {
         id: "p1",
-        title: "TechNurture Labs",
-        summary: "THE ONLINE LEARNING PLATFORM STUDENTS ACTUALLY LOVE.",
-        image: "https://itx-ali.netlify.app/technnurture.png",
-        tags: ["EdTech", "Platform"],
-        url: "#"
+        title: "Enterprise Resource Protocol (ERP)",
+        summary: "High-throughput operational ERP system for cold storage and multi-branch distribution.",
+        image: "https://itx-ali.netlify.app/oruerp.png",
+        tags: ["ERP", "Supply Chain"],
+        metric: "₹1.4Cr/mo Volume",
+        url: "/case-studies/enterprise-resource-protocol"
       },
       {
         id: "p2",
-        title: "OruLabs",
-        summary: "REAL-TIME LIVE TRAINING PLATFORM FOR EDUCATORS",
-        image: "https://itx-ali.netlify.app/orulabs.png",
-        tags: ["EdTech", "Live Streaming"],
-        url: "#"
+        title: "Global Commerce Gateway",
+        summary: "Headless Next.js international storefront connecting artisan exports to the USA & Europe.",
+        image: "https://itx-ali.netlify.app/serique.png",
+        tags: ["Next.js", "Global E-Com"],
+        metric: "1.1s Page Speed",
+        url: "/case-studies/global-commerce-gateway"
       },
       {
         id: "p3",
-        title: "OruErp",
-        summary: "Comprehensive ERP System for Agencies",
-        image: "https://itx-ali.netlify.app/oruerp.png",
-        tags: ["Enterprise", "ERP"],
-        url: "#"
+        title: "TechNurture Labs & LMS",
+        summary: "Real-time educational platform handling 14,000+ active learners with live stream pipelines.",
+        image: "https://itx-ali.netlify.app/technnurture.png",
+        tags: ["EdTech", "Streaming"],
+        metric: "14,000+ Students",
+        url: "/case-studies/institutional-learning-management"
       },
       {
         id: "p4",
-        title: "Easyio Technologies",
-        summary: "Simplifying Complex Technology",
-        image: "https://itx-ali.netlify.app/easyio.png",
-        tags: ["Agency", "Web"],
-        url: "#"
+        title: "Financial Management Suite",
+        summary: "Instant ledger and billing reconciliation processing thousands of daily transactions.",
+        image: "https://itx-ali.netlify.app/orulabs.png",
+        tags: ["FinTech", "Ledger"],
+        metric: "0% Error Rate",
+        url: "/case-studies/financial-management-suite"
       },
       {
         id: "p5",
-        title: "Serique Avenue",
-        summary: "PREMIUM E-COMMERCE EXPERIENCE",
-        image: "https://itx-ali.netlify.app/serique.png",
-        tags: ["E-Commerce", "Shopify"],
-        url: "#"
-      },
-      {
-        id: "p8",
-        title: "Hi Tech Teleprompter",
-        summary: "Professional desktop teleprompter app",
-        image: "https://itx-ali.netlify.app/teleprompter.jpeg",
-        tags: ["Desktop App", "Electron"],
-        url: "#"
+        title: "Hotel Management Platform",
+        summary: "Multi-property booking engine with integrated payment gateway and channel management.",
+        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80",
+        tags: ["Hospitality", "Booking"],
+        metric: "+68% Direct Bookings",
+        url: "/case-studies/hotel-management-platform"
       }
     ];
   }, [initialProjects]);
@@ -187,6 +186,13 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
                         </span>
                       ))}
                     </div>
+                    {project.metric && (
+                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
+                        <span className="px-2.5 py-0.5 text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-900 bg-emerald-300/90 backdrop-blur-md rounded-full shadow-sm">
+                          {project.metric}
+                        </span>
+                      </div>
+                    )}
                   </div>
                   
                   <div className="px-1 md:px-4 flex flex-col flex-grow">
@@ -199,15 +205,15 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
                     </p>
                     
                     <div className="mt-auto">
-                      <a 
+                      <Link 
                         href={project.url}
                         className="inline-flex items-center justify-between w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-zinc-50 text-[11px] sm:text-xs font-black tracking-widest text-zinc-950 uppercase transition-all group-hover:bg-zinc-100 cursor-pointer relative z-50 border border-zinc-100"
                       >
-                        Visit Case Study
+                        Explore Case Study
                         <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center border border-zinc-200 group-hover:border-zinc-400">
                           <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:text-zinc-950 group-hover:rotate-45 transition-all" />
                         </div>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -215,6 +221,27 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
             ))}
           </CarouselContent>
         </Carousel>
+      </div>
+
+      {/* Bottom Showcase CTA */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-zinc-100">
+        <p className="text-xs font-medium text-zinc-500">
+          Want a similar high-performance system engineered for your operations?
+        </p>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/case-studies"
+            className="px-5 py-2.5 rounded-full border border-zinc-200 text-xs font-bold uppercase tracking-wider text-zinc-800 hover:bg-zinc-50 transition-all"
+          >
+            All Case Studies
+          </Link>
+          <Link
+            href="/project-estimator"
+            className="px-5 py-2.5 rounded-full bg-zinc-950 text-white text-xs font-bold uppercase tracking-wider hover:bg-emerald-600 transition-all shadow-md"
+          >
+            Calculate System Cost &rarr;
+          </Link>
+        </div>
       </div>
 
     </section>

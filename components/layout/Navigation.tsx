@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, MessageSquare, ChevronRight } from "lucide-react";
+import { Menu, X, Phone, MessageSquare, ChevronRight, Calculator } from "lucide-react";
 import { navigationLinks, siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { m, AnimatePresence } from "framer-motion";
@@ -63,13 +63,13 @@ export default function Navigation() {
         </Link>
 
         {/* Desktop Nav - Capsule Style */}
-        <div className="hidden lg:flex items-center bg-zinc-100/50 p-1.5 rounded-full border border-zinc-200/50 backdrop-blur-md">
+        <div className="hidden lg:flex items-center bg-zinc-100/60 p-1 rounded-full border border-zinc-200/50 backdrop-blur-md">
           {navigationLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "px-6 py-2 text-sm font-bold transition-all rounded-full uppercase tracking-tight",
+                "px-3.5 xl:px-4 py-1.5 text-xs font-bold transition-all rounded-full uppercase tracking-tight",
                 pathname === link.href
                   ? "bg-white text-zinc-950 shadow-sm"
                   : "text-zinc-500 hover:text-zinc-950"
@@ -81,10 +81,18 @@ export default function Navigation() {
         </div>
 
         {/* Actions Infrastructure */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <Link
+            href="/project-estimator"
+            className="hidden sm:flex items-center justify-center h-9 px-3.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider rounded-full border border-emerald-200 transition-all gap-1.5 shadow-2xs"
+            title="Calculate Project Scope & Cost"
+          >
+            <Calculator className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Estimator</span>
+          </Link>
           <a
             href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`}
-            className="hidden sm:flex items-center justify-center h-10 px-4 border border-zinc-200 text-zinc-900 text-xs font-bold uppercase tracking-wider rounded-full hover:bg-zinc-50 transition-all gap-2"
+            className="hidden xl:flex items-center justify-center h-9 px-3.5 border border-zinc-200 text-zinc-900 text-xs font-bold uppercase tracking-wider rounded-full hover:bg-zinc-50 transition-all gap-1.5"
             title="Call Easyio Engineering"
           >
             <Phone className="w-3.5 h-3.5 text-emerald-600" />
@@ -92,9 +100,9 @@ export default function Navigation() {
           </a>
           <Link
             href="/contact"
-            className="hidden sm:flex items-center justify-center h-10 px-6 bg-zinc-950 text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-zinc-800 transition-all shadow-xl shadow-zinc-950/10 gap-2"
+            className="hidden sm:flex items-center justify-center h-9 px-5 bg-zinc-950 text-white text-xs font-bold uppercase tracking-widest rounded-full hover:bg-zinc-800 transition-all shadow-md shadow-zinc-950/10 gap-1.5"
           >
-            <MessageSquare className="w-3.5 h-3.5" />
+            <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
             Contact
           </Link>
 
@@ -196,7 +204,16 @@ export default function Navigation() {
               </div>
 
               {/* Bottom Quick Actions & Info */}
-              <div className="p-5 border-t border-zinc-100 bg-zinc-50/50 space-y-3">
+              <div className="p-5 border-t border-zinc-100 bg-zinc-50/50 space-y-2.5">
+                <Link
+                  href="/project-estimator"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs font-bold transition-all active:scale-95 shadow-sm"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Calculator className="w-4 h-4 text-zinc-950" />
+                  <span>Instant Project Cost Calculator</span>
+                </Link>
+
                 <div className="grid grid-cols-2 gap-2.5">
                   <Link
                     href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`}

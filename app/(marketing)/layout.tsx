@@ -1,5 +1,6 @@
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
+import FloatingContactWidget from "@/components/shared/FloatingContactWidget";
 
 export default function MarketingLayout({
   children,
@@ -11,6 +12,7 @@ export default function MarketingLayout({
       <Navigation />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <FloatingContactWidget />
     </div>
   );
 }

@@ -23,6 +23,9 @@ import Protocol from "@/components/sections/home/Protocol";
 import Showcase from "@/components/sections/home/Showcase";
 import Blogs from "@/components/sections/home/Blogs";
 import LocalAdvantage from "@/components/sections/home/LocalAdvantage";
+import GlobalAdvantage from "@/components/sections/home/GlobalAdvantage";
+import Guarantees from "@/components/sections/home/Guarantees";
+import ProjectEstimator from "@/components/sections/estimator/ProjectEstimator";
 
 import MarqueeText from "@/components/sections/home/MarqueeText";
 
@@ -103,10 +106,33 @@ export default async function HomePage() {
         <MarqueeText />
 
         <Suspense fallback={<SectionLoader />}>
+            <GlobalAdvantage />
+        </Suspense>
+
+        <Suspense fallback={<SectionLoader />}>
             <Protocol />
         </Suspense>
         
         <LocalAdvantage />
+
+        <Guarantees />
+
+        {/* Interactive Scope & Cost Calculator */}
+        <section className="py-16 md:py-28 px-5 sm:px-6 relative bg-zinc-50/70 border-b border-zinc-100" id="estimator">
+          <div className="max-w-7xl mx-auto mb-10 text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-mono font-bold uppercase tracking-widest mb-3 border border-emerald-200">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Self-Service Cost Estimator</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-zinc-950 tracking-tight mb-3">
+              Instant Scope &amp; Cost Calculator
+            </h2>
+            <p className="text-zinc-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto font-medium">
+              Calculate software investment and timelines for custom ERPs, SaaS platforms, and mobile apps.
+            </p>
+          </div>
+          <ProjectEstimator />
+        </section>
 
         <Suspense fallback={<SectionLoader />}>
             <Showcase initialProjects={allProjects} />
