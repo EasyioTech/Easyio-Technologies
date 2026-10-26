@@ -69,9 +69,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const canonical = `${siteUrl}/blog/${post.slug}`;
   const ogImage = post.image || `${siteUrl}/og-image.png`;
+  const rawTitle = post.seoTitle || post.title;
+  const pageTitle = rawTitle.toLowerCase().includes("easyio") ? rawTitle : `${rawTitle} | Easyio Technologies`;
 
   return {
-    title: post.seoTitle || post.title,
+    title: pageTitle,
     description: post.seoDescription || post.excerpt,
     keywords: post.keywords?.split(',').map((k: string) => k.trim()),
     authors: [{ name: post.author }],
@@ -80,7 +82,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     openGraph: {
       type: 'article',
-      title: post.seoTitle || post.title,
+      title: pageTitle,
       description: post.seoDescription || post.excerpt,
       url: canonical,
       publishedTime: post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined,
@@ -91,7 +93,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.seoTitle || post.title,
+      title: pageTitle,
       description: post.seoDescription || post.excerpt,
       images: [ogImage],
     },
@@ -128,7 +130,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const wordCount = post.content.split(/\s+/).filter(Boolean).length;
   const faqs = extractFaqs(post.content);
 
-  // Main TechArticle schema
+  // Main TechArticle schema linked to Organization graph
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
@@ -141,9 +143,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       '@type': 'Person',
       'name': post.author,
       'url': `${siteUrl}/about`,
+      'worksFor': {
+        '@type': 'Organization',
+        '@id': `${siteUrl}/#organization`,
+        'name': 'Easyio Technologies',
+      },
     },
     'publisher': {
       '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
       'name': 'Easyio Technologies',
       'url': siteUrl,
       'logo': {

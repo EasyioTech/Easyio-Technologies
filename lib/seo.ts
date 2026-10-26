@@ -24,7 +24,8 @@ export function generateMetadata({
   canonicalUrl,
   twitterCard = "summary_large_image",
 }: SEOMetadata): Metadata {
-  const fullTitle = `${title} | Easyio Technologies`;
+  // Prevent duplicate brand suffix if title already contains Easyio
+  const fullTitle = title.toLowerCase().includes("easyio") ? title : `${title} | Easyio Technologies`;
   const fullCanonicalUrl = canonicalUrl || `${SITE_URL}`;
 
   return {
@@ -66,7 +67,7 @@ export function generateMetadata({
       "max-video-preview": -1,
     },
     verification: {
-      google: "YOUR_GOOGLE_VERIFICATION_CODE", // User should update
+      google: "YOUR_GOOGLE_VERIFICATION_CODE",
     },
     other: {
       "geo.region": "IN-JK",
@@ -90,21 +91,73 @@ export const MASTER_SCHEMA = {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: "Easyio Technologies",
+      alternateName: [
+        "Easyio",
+        "Easy io",
+        "Easyio Tech",
+        "Easyio Technologies Sopore",
+        "Easyio Kashmir"
+      ],
+      legalName: "Easyio Technologies",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
         url: `${SITE_URL}/logo.png`,
       },
-      description: "The best tech and software development company in Kashmir, building high-performance ERP systems, mobile apps, and custom digital solutions for startups and enterprises.",
+      image: `${SITE_URL}/og-image.png`,
+      description: "Easyio Technologies is Kashmir's premier software engineering firm and technology consultancy. We build mission-critical enterprise ERPs, cloud architecture, AI workflows, and high-concurrency digital platforms for startups and established enterprises across Jammu & Kashmir and India.",
+      foundingDate: "2024",
+      founder: [
+        {
+          "@type": "Person",
+          name: "Mohammad Faheem",
+          jobTitle: "Founder & CEO",
+          url: `${SITE_URL}/about`
+        },
+        {
+          "@type": "Person",
+          name: "Burhan Ali",
+          jobTitle: "Co-Founder & CTO",
+          url: `${SITE_URL}/about`
+        },
+        {
+          "@type": "Person",
+          name: "Mohammad Ayoob",
+          jobTitle: "Co-Founder & CFO",
+          url: `${SITE_URL}/about`
+        }
+      ],
       sameAs: [
+        "https://github.com/EasyioTech",
         "https://twitter.com/easyiotech",
         "https://linkedin.com/company/easyiotech",
         "https://instagram.com/easyiotech"
       ],
+      knowsAbout: [
+        "Custom Software Engineering",
+        "Enterprise Resource Planning (ERP)",
+        "Distributed Cloud Architecture",
+        "Next.js and Full-Stack Development",
+        "PostgreSQL and High-Concurrency Databases",
+        "Supply Chain and Cold Storage Software",
+        "Point of Sale (POS) Systems",
+        "Mobile Application Development"
+      ],
       contactPoint: {
         "@type": "ContactPoint",
-        contactType: "Customer Support",
-        email: "contact@easyio.tech"
+        contactType: "Customer Support and Project Inquiries",
+        telephone: "+91-6005659527",
+        email: "contact@easyio.tech",
+        areaServed: ["IN", "Jammu and Kashmir"],
+        availableLanguage: ["English", "Kashmiri", "Urdu", "Hindi"]
+      },
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "First Floor, War Complex, Block 'B', Main Chowk Tehsil Road",
+        addressLocality: "Sopore",
+        addressRegion: "Jammu and Kashmir",
+        postalCode: "193201",
+        addressCountry: "IN"
       }
     },
     {
@@ -112,6 +165,7 @@ export const MASTER_SCHEMA = {
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
       name: "Easyio Technologies",
+      alternateName: ["Easyio", "Easy io", "Easyio Tech"],
       publisher: {
         "@id": `${SITE_URL}/#organization`
       },
@@ -119,24 +173,30 @@ export const MASTER_SCHEMA = {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: `${SITE_URL}/search?q={search_term_string}`
+          urlTemplate: `${SITE_URL}/blog?q={search_term_string}`
         },
         "query-input": "required name=search_term_string"
       }
     },
     {
-      "@type": "ProfessionalService",
+      "@type": ["ProfessionalService", "LocalBusiness"],
       "@id": `${SITE_URL}/#localbusiness`,
-      name: "Easyio Technologies - Best Tech Company in Kashmir",
+      name: "Easyio Technologies",
+      alternateName: ["Easyio", "Easy io", "Easyio Tech", "Easyio Technologies Sopore"],
       image: `${SITE_URL}/og-image.png`,
       url: SITE_URL,
-      description: "Recognized as the premier tech and software company in Kashmir. Custom software engineering, enterprise ERP systems, and cloud infrastructure.",
+      description: "Premier software engineering firm and technology consultancy based in Sopore, Kashmir. Designing high-scale ERP systems, mobile applications, and enterprise digital solutions.",
       areaServed: [
-        { "@type": "State", "name": "Jammu and Kashmir" },
-        { "@type": "City", "name": "Srinagar" },
-        { "@type": "City", "name": "Sopore" }
+        { "@type": "AdministrativeArea", name: "Jammu and Kashmir" },
+        { "@type": "City", name: "Sopore" },
+        { "@type": "City", name: "Baramulla" },
+        { "@type": "City", name: "Srinagar" },
+        { "@type": "City", name: "Anantnag" },
+        { "@type": "Country", name: "India" }
       ],
       telephone: "+91-6005659527", 
+      email: "contact@easyio.tech",
+      priceRange: "$$",
       parentOrganization: {
         "@id": `${SITE_URL}/#organization`
       },
@@ -157,9 +217,8 @@ export const MASTER_SCHEMA = {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         opens: "09:00",
-        closes: "17:00"
+        closes: "18:00"
       }
     }
   ]
 };
-

@@ -3,16 +3,50 @@ import ContactForm from "@/components/sections/contact/ContactForm";
 import { siteConfig } from "@/config/site";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHeading";
-import { generateMetadata } from "@/lib/seo";
+import { generateMetadata, generateJsonLd } from "@/lib/seo";
 
 export const metadata = generateMetadata({
-  title: "Contact",
-  description: "Initialize communication with Easyio Technologies for mission-critical software engineering, architecture, and AI infrastructure projects in Kashmir and India.",
+  title: "Contact Easyio Technologies | Software Lab in Sopore & Kashmir",
+  description: "Get in touch with Easyio Technologies for custom software engineering, enterprise ERP architecture, mobile applications, and tech consulting in Sopore, Srinagar, and across Kashmir.",
+  canonicalUrl: "https://easyio.tech/contact",
+  keywords: [
+    "Easyio Technologies contact",
+    "contact Easyio",
+    "software company in Sopore address",
+    "Easyio phone number",
+    "Kashmir software development contact"
+  ]
 });
+
+const CONTACT_PAGE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://easyio.tech/contact/#webpage",
+      url: "https://easyio.tech/contact",
+      name: "Contact Easyio Technologies",
+      isPartOf: {
+        "@id": "https://easyio.tech/#website",
+      },
+      about: {
+        "@id": "https://easyio.tech/#organization",
+      },
+      mainEntity: {
+        "@id": "https://easyio.tech/#localbusiness",
+      },
+      inLanguage: "en-IN",
+    },
+  ],
+};
 
 export default function ContactPage() {
   return (
     <PageWrapper>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateJsonLd(CONTACT_PAGE_SCHEMA)}
+      />
       {/* Editorial Hero Section */}
       <section className="pt-32 md:pt-48 pb-16 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.05)_0%,transparent_50%)] pointer-events-none" />
