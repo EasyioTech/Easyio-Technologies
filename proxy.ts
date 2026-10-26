@@ -2,6 +2,14 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function proxy(request: NextRequest) {
+  const host = request.headers.get('host') || '';
+  // Canonical redirect: force non-www to prevent duplicate indexation in Google Search Console
+  if (host.startsWith('www.')) {
+    const newHost = host.replace(/^www\./, '');
+    const url = new URL(request.nextUrl.pathname + request.nextUrl.search, `https://${newHost}`);
+    return NextResponse.redirect(url, 301);
+  }
+
   const response = NextResponse.next();
   const isDev = process.env.NODE_ENV === 'development';
 

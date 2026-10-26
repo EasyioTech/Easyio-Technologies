@@ -77,6 +77,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.easyio.tech" }],
+        destination: "https://easyio.tech/:path*",
+        permanent: true,
+      },
+      {
         source: "/technology-company-in-kashmir",
         destination: "/",
         permanent: true,

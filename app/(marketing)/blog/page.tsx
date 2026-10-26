@@ -12,13 +12,13 @@ export const dynamic = 'force-dynamic';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://easyio.tech';
 
 export const metadata: Metadata = {
-  title: "Engineering Blog | ERP Systems, AI Infrastructure & Software Architecture | Easyio",
-  description: "Technical deep dives into ERP systems, AI infrastructure, and high-performance software architecture by the Easyio engineering team.",
-  keywords: ["ERP systems", "software architecture", "AI infrastructure", "engineering blog", "technical articles"],
+  title: "Software & Tech Guides Kashmir | Custom ERPs & Architecture | Easyio",
+  description: "Explore in-depth software engineering guides, apple mandi ERPs, cold storage logistics, and technology benchmarks in Kashmir by Easyio Technologies.",
+  keywords: ["software company in kashmir", "tech company in kashmir", "ERP systems kashmir", "software architecture", "apple mandi software", "engineering blog"],
   openGraph: {
     type: 'website',
-    title: "Engineering Blog | Easyio Technologies",
-    description: "Deep dives into ERP systems, AI infrastructure, and software architecture.",
+    title: "Software & Tech Guides Kashmir | Easyio Technologies",
+    description: "In-depth engineering guides, custom ERPs, cold storage software, and tech benchmarks in Kashmir.",
     images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
     url: `${siteUrl}/blog`,
   },
