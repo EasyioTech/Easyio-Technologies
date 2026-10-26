@@ -23,11 +23,7 @@ export const siteConfig = {
 
 export const navigationLinks = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/#services" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Cost Estimator", href: "/project-estimator" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 

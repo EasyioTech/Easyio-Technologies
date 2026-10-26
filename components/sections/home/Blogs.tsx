@@ -85,64 +85,47 @@ export default function Blogs() {
 }
 function BlogCard({ post, index }: { post: any; index: number }) {
   return (
-    <div 
-      className="group cursor-pointer flex flex-col h-full"
-    >
-      <Link href={post.slug || "#"} className="flex flex-col h-full">
-        {/* Modern Image Frame */}
-        <div className="relative aspect-[16/10] overflow-hidden rounded-[1.8rem] md:rounded-[2.5rem] bg-zinc-50 border border-zinc-100 mb-5 md:mb-8 transition-all group-hover:shadow-2xl group-hover:shadow-zinc-200/40">
-          <Image 
-            src={post.image} 
-            alt={post.title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition duration-500 group-hover:scale-105"
-          />
-          <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex gap-2">
-             <span className="px-3 py-1 sm:px-4 sm:py-1.5 bg-white shadow-sm border border-zinc-100 rounded-full text-[9px] sm:text-[10px] font-bold text-zinc-950 uppercase tracking-widest">
-               {post.category}
-             </span>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="flex flex-col flex-1 px-4">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3 text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-                <Calendar className="w-3 h-3" />
-                {post.date}
-            </div>
-            <div className="flex items-center gap-3 text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-                <Clock className="w-3 h-3" />
-                {post.readTime.replace('0', '').replace('_', ' ')}
+    <div className="group cursor-pointer flex flex-col h-full">
+      <Link 
+        href={post.slug || "#"} 
+        className="flex flex-col h-full bg-white rounded-3xl border border-zinc-200/90 p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-200/50 hover:border-zinc-300 justify-between"
+      >
+        <div className="flex flex-col flex-1">
+          <div className="flex items-center justify-between mb-4">
+            <span className="px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-lg text-[10px] font-mono font-bold text-emerald-800 uppercase tracking-widest">
+              {post.category}
+            </span>
+            <div className="flex items-center gap-2 text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">
+              <Clock className="w-3 h-3" />
+              {post.readTime.replace('0', '').replace('_', ' ')}
             </div>
           </div>
 
-          <h3 className="text-xl md:text-2xl font-bold text-zinc-950 tracking-tight leading-[1.2] mb-8 group-hover:text-emerald-600 transition-colors">
+          <h3 className="text-xl md:text-2xl font-bold text-zinc-950 tracking-tight leading-[1.25] mb-4 group-hover:text-emerald-600 transition-colors">
             {post.title}
           </h3>
+        </div>
 
-          <div className="mt-auto pt-6 flex items-center justify-between">
-             <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center border border-zinc-200 overflow-hidden">
-                   <Image 
-                    src="/images/avatar_1.jpg"
-                    alt={post.author}
-                    width={40}
-                    height={40}
-                    loading="lazy"
-                    decoding="async"
-                    className="object-cover h-full w-full"
-                   />
-                </div>
-                <div className="flex flex-col gap-0.5">
-                   <span className="text-[10px] font-bold text-zinc-950 uppercase tracking-wide">{post.author}</span>
-                   <span className="text-[8px] font-bold text-zinc-400 uppercase tracking-widest">Author</span>
-                </div>
-             </div>
-             <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:bg-zinc-950 group-hover:text-white transition-all duration-300">
-                <ArrowRight className="w-4 h-4 translate-x-0 group-hover:translate-x-0.5" />
-             </div>
+        <div className="mt-auto pt-6 border-t border-zinc-100 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-zinc-100 flex items-center justify-center border border-zinc-200 overflow-hidden shrink-0">
+              <Image 
+                src="/images/avatar_1.jpg"
+                alt={post.author}
+                width={36}
+                height={36}
+                loading="lazy"
+                decoding="async"
+                className="object-cover h-full w-full"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xs font-bold text-zinc-950">{post.author}</span>
+              <span className="text-[10px] text-zinc-400 font-mono">{post.date}</span>
+            </div>
+          </div>
+          <div className="w-8 h-8 rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center group-hover:bg-zinc-950 group-hover:text-white group-hover:border-zinc-950 transition-all">
+            <ArrowRight className="w-3.5 h-3.5" />
           </div>
         </div>
       </Link>
