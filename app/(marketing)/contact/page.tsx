@@ -48,29 +48,29 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={generateJsonLd(CONTACT_PAGE_SCHEMA)}
       />
       {/* Editorial Hero Section */}
-      <section className="pt-32 md:pt-48 pb-16 relative">
+      <section className="pt-32 md:pt-44 pb-12 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.05)_0%,transparent_50%)] pointer-events-none" />
         
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end border-b border-zinc-100 pb-20">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-end border-b border-zinc-200/70 pb-14">
             <div>
-              <div className="flex items-center gap-3 mb-8">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-zinc-200/80 mb-6 shadow-2xs">
                 <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-                <span className="text-[11px] font-bold tracking-[0.3em] text-zinc-400 uppercase">Start a Project</span>
+                <span className="text-xs font-semibold text-zinc-700">Start a Project</span>
               </div>
               <PremiumHeading 
                 text="Let's build something great."
                 highlightWords={["great."]}
-                className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-zinc-950 mb-6 leading-[1.05]"
-                highlightClassName="font-serif italic text-emerald-600 font-medium tracking-normal"
+                className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-zinc-950 leading-[1.05]"
+                highlightClassName="font-serif italic text-emerald-700 font-medium tracking-normal"
               />
             </div>
             
-            <div className="pb-4">
+            <div className="pb-2">
               <PremiumSubheading 
                 delay={0.2}
-                text="Have a complex project in mind? We'd love to hear about it. Send us a message and our engineering team will get back to you within 24 hours."
-                className="text-zinc-500 text-lg md:text-xl font-medium leading-relaxed"
+                text="Have a software project or ERP requirement in mind? Send us a message below and a senior systems architect will respond within 15–30 minutes during business hours."
+                className="text-zinc-600 text-base sm:text-lg md:text-xl leading-relaxed"
               />
             </div>
           </div>
@@ -78,47 +78,55 @@ export default function ContactPage() {
       </section>
 
       {/* Main Contact Surface */}
-      <section className="py-20 relative bg-zinc-50/50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+      <section className="py-16 md:py-20 relative bg-zinc-50/50">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             
             {/* Left Side: Contact Information */}
-            <div className="lg:col-span-4 flex flex-col gap-12">
+            <div className="lg:col-span-4 flex flex-col gap-6">
               
-              <div className="p-8 bg-zinc-950 rounded-[2rem] text-white relative overflow-hidden shadow-xl shadow-zinc-950/10">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.1] mix-blend-overlay pointer-events-none" />
+              <div className="p-7 sm:p-8 bg-zinc-950 rounded-3xl text-white relative overflow-hidden shadow-xl shadow-zinc-950/10">
                 <div className="relative z-10">
-                  <h3 className="text-xs font-black text-emerald-500 mb-8 uppercase tracking-[0.2em]">Contact Details</h3>
-                  <div className="space-y-6">
-                    <a href={`mailto:${siteConfig.email.contact}`} className="group flex items-center gap-4 text-zinc-300 hover:text-white transition-colors">
-                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:scale-110 transition-all border border-white/10">
+                  <h2 className="text-xs font-mono font-bold text-emerald-400 mb-6 uppercase tracking-widest">
+                    Direct Contact
+                  </h2>
+                  <div className="space-y-5">
+                    <a href={`mailto:${siteConfig.email.contact}`} className="group flex items-center gap-4 text-zinc-200 hover:text-white transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-emerald-500 transition-all border border-white/10 shrink-0">
                         <Mail className="w-4 h-4" />
                       </div>
-                      <span className="font-semibold text-lg">{siteConfig.email.contact}</span>
+                      <span className="font-semibold text-sm sm:text-base break-all">{siteConfig.email.contact}</span>
                     </a>
-                    <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} className="group flex items-center gap-4 text-zinc-300 hover:text-white transition-colors">
-                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:scale-110 transition-all border border-white/10">
+                    <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} className="group flex items-center gap-4 text-zinc-200 hover:text-white transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-emerald-500 transition-all border border-white/10 shrink-0">
                         <Phone className="w-4 h-4" />
                       </div>
-                      <span className="font-semibold text-lg">{siteConfig.phone}</span>
+                      <span className="font-semibold text-sm sm:text-base">{siteConfig.phone}</span>
                     </a>
                   </div>
                 </div>
               </div>
               
-              <div className="p-8 bg-white border border-zinc-200 rounded-[2rem] shadow-sm">
-                <h3 className="text-xs font-black text-zinc-400 mb-6 uppercase tracking-[0.2em]">Headquarters</h3>
+              <div className="p-7 sm:p-8 bg-white border border-zinc-200/90 rounded-3xl shadow-2xs">
+                <h2 className="text-xs font-mono font-bold text-zinc-500 mb-5 uppercase tracking-widest">
+                  Headquarters
+                </h2>
                 <div className="flex gap-4">
                   <div className="w-10 h-10 shrink-0 rounded-xl bg-zinc-100 flex items-center justify-center border border-zinc-200">
                     <MapPin className="w-4 h-4 text-zinc-900" />
                   </div>
                   <div>
-                    <p className="text-zinc-900 font-semibold leading-relaxed mb-4">
+                    <p className="text-zinc-900 text-sm sm:text-base font-semibold leading-relaxed mb-3">
                       {siteConfig.location}
                     </p>
-                    <a href="https://maps.google.com/?q=Easyio+Technologies+Sopore" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 hover:text-emerald-700 transition-colors uppercase tracking-widest">
-                      View on Maps
-                      <ArrowUpRight className="w-3 h-3" />
+                    <a
+                      href="https://maps.google.com/?q=Easyio+Technologies+Sopore"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 transition-colors uppercase tracking-wider"
+                    >
+                      <span>Open in Google Maps</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 </div>
@@ -128,10 +136,14 @@ export default function ContactPage() {
 
             {/* Right Side: The Contact Form */}
             <div className="lg:col-span-8">
-              <div className="bg-white border border-zinc-200 rounded-[2.5rem] shadow-xl shadow-zinc-200/20 p-8 md:p-14 relative overflow-hidden">
-                <div className="mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 tracking-tight mb-3">Send us a message</h2>
-                  <p className="text-zinc-500 font-medium">We usually respond within a few hours.</p>
+              <div className="bg-white border border-zinc-200/90 rounded-3xl shadow-lg shadow-zinc-200/30 p-6 sm:p-10 md:p-12 relative overflow-hidden">
+                <div className="mb-8">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight mb-2">
+                    Send us a project inquiry
+                  </h2>
+                  <p className="text-sm sm:text-base text-zinc-600">
+                    Tell us about your requirements and our engineering team will reply within 15–30 minutes.
+                  </p>
                 </div>
                 <ContactForm />
               </div>

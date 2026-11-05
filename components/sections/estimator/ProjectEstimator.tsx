@@ -1,26 +1,19 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
 import {
   Database,
   Globe,
   Smartphone,
   Bot,
   ShoppingCart,
-  Zap,
-  ShieldCheck,
-  Clock,
-  ArrowRight,
-  ArrowLeft,
   CheckCircle2,
   MessageCircle,
   Send,
-  Layers,
-  Sparkles,
-  HelpCircle,
   IndianRupee,
-  DollarSign
+  DollarSign,
+  RotateCcw,
+  AlertCircle
 } from 'lucide-react';
 
 type Currency = 'INR' | 'USD';
@@ -144,11 +137,19 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
   const [notes, setNotes] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const toggleAddon = (id: string) => {
     setSelectedAddons((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
+  };
+
+  const handleReset = () => {
+    setSelectedType(PROJECT_TYPES[0].id);
+    setSelectedScope(SCOPE_OPTIONS[0].id);
+    setSelectedAddons([]);
+    setSubmitError(null);
   };
 
   // Calculations
@@ -192,6 +193,7 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
     if (!name || !email || !phone) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
       const addonNames = selectedAddons
         .map((id) => ADDONS.find((a) => a.id === id)?.name)
@@ -224,9 +226,12 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
 
       if (res.ok) {
         setIsSubmitted(true);
+      } else {
+        setSubmitError('Could not send proposal request. Please try again or use the WhatsApp button above.');
       }
     } catch (err) {
       console.error('Estimator submit error:', err);
+      setSubmitError('Network error while sending request. Please use the WhatsApp button above.');
     } finally {
       setIsSubmitting(false);
     }
@@ -238,54 +243,74 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
     )} - ${formatPrice(calculation.maxCost)}). I'd like to discuss the technical architecture and timeline.`
   );
 
+  const isCustomized =
+    selectedType !== PROJECT_TYPES[0].id ||
+    selectedScope !== SCOPE_OPTIONS[0].id ||
+    selectedAddons.length > 0;
+
   return (
     <div className={`w-full max-w-6xl mx-auto ${className}`}>
       {/* Container Card */}
-      <div className="bg-white border border-zinc-200/90 rounded-[2.5rem] shadow-2xl shadow-zinc-200/40 overflow-hidden">
+      <div className="bg-white border border-zinc-200/90 rounded-[2.5rem] shadow-xl shadow-zinc-200/40 overflow-hidden">
         
         {/* Top Header Bar */}
         <div className="px-6 py-6 sm:px-10 sm:py-8 border-b border-zinc-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-zinc-50/50">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500">
-                Interactive Project Scope & Cost Engine
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-zinc-600">
+                Interactive Project Scope &amp; Cost Engine
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-zinc-950 tracking-tight">
-              Instant Scope & Cost Calculator
+              Instant Scope &amp; Cost Calculator
             </h2>
-            <p className="text-zinc-500 text-xs sm:text-sm mt-0.5">
+            <p className="text-zinc-600 text-xs sm:text-sm mt-0.5">
               Select your requirements below to calculate an immediate cost breakdown and delivery roadmap.
             </p>
           </div>
 
-          {/* Currency Toggle */}
-          <div className="flex items-center gap-1 p-1 bg-white border border-zinc-200 rounded-full shadow-xs shrink-0">
-            <button
-              type="button"
-              onClick={() => setCurrency('INR')}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all ${
-                currency === 'INR'
-                  ? 'bg-zinc-950 text-white shadow-xs'
-                  : 'text-zinc-600 hover:text-zinc-950'
-              }`}
-            >
-              <IndianRupee className="w-3.5 h-3.5" />
-              <span>INR (Kashmir & India)</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setCurrency('USD')}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all ${
-                currency === 'USD'
-                  ? 'bg-zinc-950 text-white shadow-xs'
-                  : 'text-zinc-600 hover:text-zinc-950'
-              }`}
-            >
-              <DollarSign className="w-3.5 h-3.5" />
-              <span>USD (USA & Global)</span>
-            </button>
+          {/* Currency Toggle & Reset */}
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            {isCustomized && (
+              <button
+                type="button"
+                onClick={handleReset}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-zinc-600 hover:text-zinc-950 bg-white border border-zinc-200 hover:bg-zinc-50 transition-colors"
+                title="Reset selections to default"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Reset</span>
+              </button>
+            )}
+            <div className="flex items-center gap-1 p-1 bg-white border border-zinc-200 rounded-full shadow-2xs">
+              <button
+                type="button"
+                onClick={() => setCurrency('INR')}
+                aria-pressed={currency === 'INR'}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                  currency === 'INR'
+                    ? 'bg-zinc-950 text-white shadow-2xs'
+                    : 'text-zinc-600 hover:text-zinc-950'
+                }`}
+              >
+                <IndianRupee className="w-3.5 h-3.5" />
+                <span>INR (Kashmir &amp; India)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setCurrency('USD')}
+                aria-pressed={currency === 'USD'}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                  currency === 'USD'
+                    ? 'bg-zinc-950 text-white shadow-2xs'
+                    : 'text-zinc-600 hover:text-zinc-950'
+                }`}
+              >
+                <DollarSign className="w-3.5 h-3.5" />
+                <span>USD (USA &amp; Global)</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -298,13 +323,13 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
             {/* Step 1: Project Type */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-black uppercase tracking-wider text-zinc-400">
-                  Step 01 / Select Project Type
+                <span className="text-xs font-bold uppercase tracking-wider text-zinc-700">
+                  Step 01 / Select System Architecture
                 </span>
-                <span className="text-[11px] font-mono text-emerald-600 font-bold">1 of 3</span>
+                <span className="text-xs font-mono text-emerald-700 font-bold">1 of 3</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" role="radiogroup" aria-label="Select project type">
                 {PROJECT_TYPES.map((type) => {
                   const Icon = type.icon;
                   const isSelected = selectedType === type.id;
@@ -312,6 +337,8 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
                     <button
                       key={type.id}
                       type="button"
+                      role="radio"
+                      aria-checked={isSelected}
                       onClick={() => setSelectedType(type.id)}
                       className={`text-left p-4 rounded-2xl border transition-all relative group flex flex-col justify-between ${
                         isSelected
@@ -337,7 +364,7 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
                         <h4 className="font-bold text-sm tracking-tight mb-1">{type.name}</h4>
                         <p
                           className={`text-xs leading-relaxed ${
-                            isSelected ? 'text-zinc-300' : 'text-zinc-500'
+                            isSelected ? 'text-zinc-300' : 'text-zinc-600'
                           }`}
                         >
                           {type.description}
@@ -351,29 +378,34 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
 
             {/* Step 2: Project Scope / Scale */}
             <div className="space-y-3">
-              <span className="text-xs font-black uppercase tracking-wider text-zinc-400">
-                Step 02 / Choose Development Scope
-              </span>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold uppercase tracking-wider text-zinc-700">
+                  Step 02 / Choose Development Scope
+                </span>
+                <span className="text-xs font-mono text-emerald-700 font-bold">2 of 3</span>
+              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3" role="radiogroup" aria-label="Choose development scope">
                 {SCOPE_OPTIONS.map((scope) => {
                   const isSelected = selectedScope === scope.id;
                   return (
                     <button
                       key={scope.id}
                       type="button"
+                      role="radio"
+                      aria-checked={isSelected}
                       onClick={() => setSelectedScope(scope.id)}
                       className={`text-left p-4 rounded-2xl border transition-all ${
                         isSelected
-                          ? 'border-emerald-600 bg-emerald-50/40 text-zinc-950 shadow-xs ring-1 ring-emerald-500'
+                          ? 'border-emerald-600 bg-emerald-50/50 text-zinc-950 shadow-2xs ring-1 ring-emerald-500'
                           : 'border-zinc-200 bg-white hover:border-zinc-300 text-zinc-900'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-bold text-xs tracking-tight">{scope.name}</h4>
-                        {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />}
+                        {isSelected && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />}
                       </div>
-                      <p className="text-[11px] text-zinc-500 leading-relaxed">{scope.description}</p>
+                      <p className="text-xs text-zinc-600 leading-relaxed">{scope.description}</p>
                     </button>
                   );
                 })}
@@ -382,9 +414,12 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
 
             {/* Step 3: Add-on Capabilities */}
             <div className="space-y-3">
-              <span className="text-xs font-black uppercase tracking-wider text-zinc-400">
-                Step 03 / Specialized Integrations & Add-Ons
-              </span>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold uppercase tracking-wider text-zinc-700">
+                  Step 03 / Optional Integrations ({selectedAddons.length} selected)
+                </span>
+                <span className="text-xs font-mono text-emerald-700 font-bold">3 of 3</span>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {ADDONS.map((addon) => {
@@ -393,16 +428,18 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
                     <button
                       key={addon.id}
                       type="button"
+                      role="checkbox"
+                      aria-checked={isChecked}
                       onClick={() => toggleAddon(addon.id)}
                       className={`text-left p-3.5 rounded-xl border flex items-center justify-between transition-all ${
                         isChecked
-                          ? 'border-zinc-900 bg-zinc-900 text-white shadow-xs'
+                          ? 'border-zinc-900 bg-zinc-900 text-white shadow-2xs'
                           : 'border-zinc-200 bg-zinc-50/50 hover:bg-zinc-100/70 text-zinc-800'
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
                         <div
-                          className={`w-4 h-4 rounded-md border flex items-center justify-center ${
+                          className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 ${
                             isChecked
                               ? 'bg-emerald-500 border-emerald-500 text-white'
                               : 'border-zinc-300 bg-white'
@@ -413,8 +450,8 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
                         <span className="text-xs font-semibold">{addon.name}</span>
                       </div>
                       <span
-                        className={`text-[11px] font-mono font-bold shrink-0 ml-2 ${
-                          isChecked ? 'text-emerald-400' : 'text-zinc-500'
+                        className={`text-xs font-mono font-bold shrink-0 ml-2 ${
+                          isChecked ? 'text-emerald-400' : 'text-zinc-600'
                         }`}
                       >
                         +{formatPrice(currency === 'INR' ? addon.priceINR : addon.priceUSD)}
@@ -432,7 +469,10 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
             
             {/* Live Pricing Breakdown Card */}
             <div>
-              <div className="p-6 rounded-2xl bg-zinc-950 text-white shadow-xl shadow-zinc-950/15 mb-6 relative overflow-hidden">
+              <div
+                aria-live="polite"
+                className="p-6 rounded-2xl bg-zinc-950 text-white shadow-xl shadow-zinc-950/15 mb-6 relative overflow-hidden"
+              >
                 <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
                 <div className="flex items-center justify-between text-xs text-zinc-400 uppercase font-mono tracking-wider mb-3">
@@ -447,9 +487,9 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
                   </span>
                 </div>
 
-                <p className="text-xs text-zinc-400 leading-relaxed mb-6 font-medium">
+                <p className="text-xs text-zinc-300 leading-relaxed mb-6">
                   {currency === 'USD'
-                    ? 'Includes full architecture, source code repository handover, and 4-5 hrs daily US timezone overlap.'
+                    ? 'Includes full architecture, source code repository handover, and 4–5 hrs daily US timezone overlap.'
                     : 'Includes full local deployment, billing modules, offline-first local database, and on-site training in Kashmir.'}
                 </p>
 
@@ -457,7 +497,7 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
                 <div className="space-y-2 pt-4 border-t border-white/10 text-xs text-zinc-300">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>100% Code & Intellectual Property Ownership</span>
+                    <span>100% Code &amp; Intellectual Property Ownership</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
@@ -465,27 +505,27 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Direct WhatsApp & Video Standups with Lead Architect</span>
+                    <span>Direct WhatsApp &amp; Video Standups with Lead Architect</span>
                   </div>
                 </div>
               </div>
 
               {/* Fast WhatsApp Bridge */}
-              <div className="mb-6 p-4 rounded-2xl bg-white border border-zinc-200 flex items-center justify-between gap-3 shadow-xs">
+              <div className="mb-6 p-4 rounded-2xl bg-white border border-zinc-200 flex items-center justify-between gap-3 shadow-2xs">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-2xs">
                     <MessageCircle className="w-4 h-4" />
                   </div>
                   <div>
                     <h5 className="text-xs font-bold text-zinc-950">Prefer direct WhatsApp?</h5>
-                    <p className="text-[11px] text-zinc-500">Send this scope to our architects now</p>
+                    <p className="text-xs text-zinc-600">Send this scope to our architects now</p>
                   </div>
                 </div>
                 <a
                   href={`https://wa.me/916005659527?text=${whatsappMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shrink-0 shadow-xs"
+                  className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shrink-0 shadow-2xs"
                 >
                   Chat Now
                 </a>
@@ -493,7 +533,7 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
 
               {/* Instant Proposal Request Form */}
               {isSubmitted ? (
-                <div className="p-6 rounded-2xl bg-white border border-emerald-300 text-center space-y-3">
+                <div role="status" className="p-6 rounded-2xl bg-white border border-emerald-300 text-center space-y-3">
                   <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
@@ -501,65 +541,102 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
                   <p className="text-xs text-zinc-600 leading-relaxed">
                     Our lead architect has received your specifications and estimate. We will deliver a formal milestone breakdown to your email and WhatsApp within <strong>15–30 minutes</strong>.
                   </p>
-                  <a
-                    href={`https://wa.me/916005659527?text=${whatsappMessage}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-950 text-white text-xs font-bold hover:bg-zinc-800 transition-all"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Follow Up on WhatsApp</span>
-                  </a>
+                  <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+                    <a
+                      href={`https://wa.me/916005659527?text=${whatsappMessage}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-950 text-white text-xs font-bold hover:bg-zinc-800 transition-all"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Follow Up on WhatsApp</span>
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setIsSubmitted(false)}
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-semibold transition-all"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                      <span>Edit Scope</span>
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="p-5 rounded-2xl bg-white border border-zinc-200 space-y-3.5">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900">
-                    Get Formal Architecture Spec & Fixed Quote
+                    Get Formal Architecture Spec &amp; Fixed Quote
                   </h4>
 
+                  {submitError && (
+                    <div role="alert" className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                      <span>{submitError}</span>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div>
+                      <label htmlFor="est-name" className="sr-only">Your Name</label>
+                      <input
+                        id="est-name"
+                        type="text"
+                        required
+                        placeholder="Your Name *"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full h-10 px-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="est-phone" className="sr-only">Phone or WhatsApp</label>
+                      <input
+                        id="est-phone"
+                        type="tel"
+                        required
+                        placeholder="Phone / WhatsApp *"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        className="w-full h-10 px-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="est-email" className="sr-only">Work Email Address</label>
                     <input
-                      type="text"
+                      id="est-email"
+                      type="email"
                       required
-                      placeholder="Your Name *"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full h-10 px-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-                    />
-                    <input
-                      type="tel"
-                      required
-                      placeholder="Phone / WhatsApp *"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full h-10 px-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                      placeholder="Work Email Address *"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full h-10 px-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
                     />
                   </div>
 
-                  <input
-                    type="email"
-                    required
-                    placeholder="Work Email Address *"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full h-10 px-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-                  />
+                  <div>
+                    <label htmlFor="est-company" className="sr-only">Company or Organization</label>
+                    <input
+                      id="est-company"
+                      type="text"
+                      placeholder="Company or Organization (Optional)"
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                      className="w-full h-10 px-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
+                    />
+                  </div>
 
-                  <input
-                    type="text"
-                    placeholder="Company or Organization (Optional)"
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    className="w-full h-10 px-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-                  />
-
-                  <textarea
-                    rows={2}
-                    placeholder="Any specific features, deadlines, or existing systems to migrate? (Optional)"
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
-                    className="w-full p-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-500 resize-none leading-relaxed"
-                  />
+                  <div>
+                    <label htmlFor="est-notes" className="sr-only">Project Notes</label>
+                    <textarea
+                      id="est-notes"
+                      rows={2}
+                      placeholder="Any specific features, deadlines, or existing systems to migrate? (Optional)"
+                      value={notes}
+                      onChange={(e) => setNotes(e.target.value)}
+                      className="w-full p-3 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-medium text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 resize-none leading-relaxed"
+                    />
+                  </div>
 
                   <button
                     type="submit"
@@ -579,8 +656,8 @@ export default function ProjectEstimator({ className = '' }: { className?: strin
                     )}
                   </button>
 
-                  <p className="text-[10px] text-zinc-400 text-center font-medium">
-                    Strict NDA Protected • Zero obligation • Guaranteed reply in 30 mins
+                  <p className="text-[11px] text-zinc-500 text-center font-medium">
+                    Strict NDA Protected &bull; Zero obligation &bull; Reply in 15–30 mins
                   </p>
                 </form>
               )}

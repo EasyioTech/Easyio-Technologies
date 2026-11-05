@@ -71,7 +71,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={generateJsonLd(MASTER_SCHEMA)}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${sacramento.variable} antialiased select-none`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${sacramento.variable} antialiased selection:bg-emerald-500/20 selection:text-zinc-950`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

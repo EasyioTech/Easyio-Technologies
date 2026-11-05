@@ -1,18 +1,19 @@
-import { Terminal, ArrowUpRight, Cpu, Zap, Globe, Shield, Box } from "lucide-react";
+import { ArrowUpRight, Cpu, Zap, Globe, Shield, Box, Calculator } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
-import { TextReveal, FadeIn } from "@/components/shared/Animations";
+import { FadeIn } from "@/components/shared/Animations";
+import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHeading";
 import { db } from "@/lib/db";
 import { projects } from "@/lib/db/schema";
 import { desc } from "drizzle-orm";
 import Link from "next/link";
 import { CACHE_TAGS, CACHE_DURATION, cacheQuery } from "@/lib/cache";
-
 import Image from "next/image";
+
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: "Proof of Execution | Easyio Engineering",
-  description: "Concrete outcomes for ambitious organizations. Explore our technical deployments in enterprise software, AI, and industrial automation.",
+  title: "Case Studies & Portfolio | Easyio Technologies",
+  description: "Concrete technical outcomes for ambitious organizations. Explore our production deployments in enterprise ERP software, cloud commerce, and EdTech systems.",
   keywords: "software case studies kashmir, it projects srinagar, easyio portfolio, enterprise automation results"
 };
 
@@ -24,7 +25,14 @@ const iconMap: Record<string, any> = {
   CLOUD_ARCHITECTURE: Box,
 };
 
-// Cached query for projects
+const categoryLabelMap: Record<string, string> = {
+  INDUSTRIAL_LOGIC: "Hospitality & Automation",
+  DISTRIBUTED_SYSTEMS: "Enterprise ERP",
+  FINTECH_SECURITY: "FinTech & Billing",
+  AI_INFRASTRUCTURE: "EdTech & Streaming",
+  CLOUD_ARCHITECTURE: "Global E-Commerce",
+};
+
 const getCachedProjects = cacheQuery(
   async () => await db.select().from(projects).orderBy(desc(projects.createdAt)),
   [CACHE_TAGS.PROJECTS],
@@ -81,68 +89,112 @@ export default async function CaseStudiesPage() {
 
   return (
     <PageWrapper>
-      <section className="py-24 md:py-40">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="pt-32 md:pt-44 pb-20 md:pb-32">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6">
           {/* Header */}
-          <div className="max-w-4xl mb-32">
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-zinc-950 dark:text-white mb-12 uppercase italic leading-[0.85]">
-              <TextReveal>Proof of</TextReveal> <br />
-              <TextReveal delay={0.2} className="text-zinc-400 dark:text-zinc-800">Execution</TextReveal>
-            </h1>
+          <div className="max-w-3xl mb-14 md:mb-20">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-zinc-200/90 text-zinc-700 text-xs font-semibold shadow-2xs mb-6">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span>Selected Deployments</span>
+            </div>
 
-            <FadeIn delay={0.4}>
-              <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed italic">
-                Concrete technical outcomes for the ambitious. We transform chaotic legacy logic into structured architectural clarity.
-              </p>
-            </FadeIn>
+            <PremiumHeading
+              text="Proven outcomes in production."
+              highlightWords={["outcomes", "production."]}
+              className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-zinc-950 mb-6 leading-[1.06]"
+              highlightClassName="font-serif italic text-emerald-700 font-medium"
+            />
+
+            <PremiumSubheading
+              delay={0.2}
+              text="Explore how we transform complex operational bottlenecks into reliable, high-speed software platforms for businesses in Kashmir and worldwide."
+              className="text-base sm:text-lg md:text-xl text-zinc-600 leading-relaxed"
+            />
           </div>
 
           {/* Project Gallery */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-40">
-             {deployments.map((p, i) => {
-                const Icon = iconMap[p.category || ''] || Cpu;
-                return (
-                  <FadeIn key={p.slug} delay={0.1 * i}>
-                     <div className="group border border-zinc-100 dark:border-zinc-900 rounded-[3rem] p-10 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-sm hover:border-zinc-950 dark:hover:border-white transition-all duration-700 h-full flex flex-col">
-                        <div className="flex justify-between items-start mb-12">
-                           <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 group-hover:bg-zinc-950 dark:group-hover:bg-white transition-all duration-700">
-                              <Icon className="w-6 h-6 text-zinc-400 group-hover:text-white dark:group-hover:text-black transition-colors" />
-                           </div>
-                           <span className="text-[8px] font-mono font-black tracking-widest text-zinc-300 dark:text-zinc-700 uppercase">{p.category || 'PROJECT'}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-20 md:mb-28">
+            {deployments.map((p, i) => {
+              const Icon = iconMap[p.category || ''] || Cpu;
+              const categoryLabel = categoryLabelMap[p.category || ''] || p.category || 'Case Study';
+              return (
+                <FadeIn key={p.slug} delay={60 * i}>
+                  <Link
+                    href={`/case-studies/${p.slug}`}
+                    className="group border border-zinc-200/90 rounded-3xl p-6 sm:p-7 bg-white hover:border-zinc-950 hover:shadow-xl hover:shadow-zinc-200/40 transition-all duration-300 h-full flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex justify-between items-center mb-5">
+                        <div className="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-200/80 flex items-center justify-center group-hover:bg-zinc-950 transition-colors">
+                          <Icon className="w-5 h-5 text-zinc-700 group-hover:text-emerald-400 transition-colors" />
                         </div>
-                        
-                        {p.image && (
-                          <div className="mb-8 rounded-2xl overflow-hidden aspect-video border border-zinc-100 dark:border-zinc-800">
-                            <Image src={p.image} alt={p.title} className="object-cover transition-transform duration-700 group-hover:scale-110" fill />
-                          </div>
-                        )}
+                        <span className="text-[11px] font-mono font-bold tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200/70 px-3 py-1 rounded-full">
+                          {categoryLabel}
+                        </span>
+                      </div>
 
-                        <h3 className="text-3xl font-black uppercase tracking-tighter italic mb-6 text-zinc-950 dark:text-white group-hover:translate-x-2 transition-transform duration-700">
-                          {p.title}
-                        </h3>
-                        <p className="text-lg text-zinc-500 dark:text-zinc-400 font-medium italic mb-12 flex-grow leading-relaxed line-clamp-3">
-                          {p.description}
-                        </p>
+                      {p.image && (
+                        <div className="mb-6 rounded-2xl overflow-hidden aspect-[16/10] border border-zinc-100 bg-zinc-100 relative">
+                          <Image
+                            src={p.image}
+                            alt={p.title}
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            fill
+                          />
+                        </div>
+                      )}
 
-                        <Link href={`/case-studies/${p.slug}`} className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.25em] text-zinc-400 group-hover:text-zinc-950 dark:group-hover:text-white transition-all">
-                          VIEW_FULL_MANIFEST <ArrowUpRight className="w-4 h-4 translate-x-1" />
-                        </Link>
-                     </div>
-                  </FadeIn>
-                );
-             })}
+                      <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-2.5 text-zinc-950 group-hover:text-emerald-700 transition-colors">
+                        {p.title}
+                      </h2>
+                      <p className="text-sm sm:text-base text-zinc-600 mb-6 leading-relaxed line-clamp-3">
+                        {p.description}
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-zinc-100 inline-flex items-center justify-between text-xs font-bold uppercase tracking-wider text-zinc-800 group-hover:text-zinc-950 transition-colors">
+                      <span>Read Case Study</span>
+                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
+                  </Link>
+                </FadeIn>
+              );
+            })}
           </div>
 
           {/* Bottom CTA */}
           <FadeIn>
-            <div className="p-12 md:p-24 border border-zinc-100 dark:border-zinc-900 rounded-[3rem] text-center bg-zinc-50/20 dark:bg-zinc-950/20">
-               <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic mb-12 text-zinc-950 dark:text-white">Ready to be the next <br /> <span className="text-zinc-400 dark:text-zinc-800">Operational Success?</span></h2>
-               <p className="text-lg text-zinc-500 mb-12 max-w-2xl mx-auto">
-                 These projects were built by our dedicated <Link href="/software-development-company-in-kashmir" className="text-zinc-950 dark:text-zinc-300 hover:underline">software engineering</Link> and <Link href="/web-development-company-in-srinagar" className="text-zinc-950 dark:text-zinc-300 hover:underline">web development</Link> teams. Let's discuss what we can build for you.
-               </p>
-               <a href="/contact" className="inline-flex items-center gap-4 text-2xl font-black uppercase italic tracking-tighter group text-zinc-950 dark:text-white">
-                Initialize Consultation <ArrowUpRight className="w-8 h-8 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
-              </a>
+            <div className="p-8 sm:p-12 md:p-16 border border-zinc-200/90 rounded-3xl text-center bg-white shadow-sm max-w-4xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4 text-zinc-950">
+                Ready to build your next flagship system?
+              </h2>
+              <p className="text-sm sm:text-base text-zinc-600 mb-8 max-w-xl mx-auto leading-relaxed">
+                These platforms were architected by our senior{' '}
+                <Link href="/software-development-company-in-kashmir" className="text-emerald-700 font-semibold hover:underline">
+                  software engineering
+                </Link>{' '}
+                and{' '}
+                <Link href="/web-development-company-in-srinagar" className="text-emerald-700 font-semibold hover:underline">
+                  web development
+                </Link>{' '}
+                teams. Let&apos;s discuss what we can build for your organization.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href="/contact"
+                  className="h-12 px-7 rounded-full bg-zinc-950 hover:bg-emerald-600 text-white text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 transition-colors shadow-sm"
+                >
+                  <span>Start a Project</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/project-estimator"
+                  className="h-12 px-6 rounded-full bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-900 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 transition-colors"
+                >
+                  <Calculator className="w-4 h-4 text-emerald-600" />
+                  <span>Calculate System Cost</span>
+                </Link>
+              </div>
             </div>
           </FadeIn>
         </div>

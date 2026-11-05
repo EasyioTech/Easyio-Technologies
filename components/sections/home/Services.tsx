@@ -1,143 +1,142 @@
 'use client';
 
-import { m } from "framer-motion";
-import { Palette, Code2, Rocket, Layout, BarChart3, ArrowUpRight, Database, Smartphone, ShoppingCart } from "lucide-react";
+import { Code2, ArrowUpRight, Database, Smartphone, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 
 const services = [
   {
     id: "01",
-    title: "SaaS Apps",
+    title: "SaaS Applications",
     href: "/saas-application-development-kashmir",
     icon: Code2,
-    description: "Transform your startup vision into a scalable, revenue-generating SaaS product.",
-    color: "#3b82f6", // Blue
-    bgHover: "bg-blue-50"
+    description: "Transform your startup vision into a scalable, multi-tenant SaaS product.",
+    tag: "Cloud Native"
   },
   {
     id: "02",
     title: "Custom ERP",
     href: "/custom-erp-software-development-kashmir",
     icon: Database,
-    description: "Tailored business management software for enterprises in Jammu & Kashmir.",
-    color: "#10b981", // Emerald
-    bgHover: "bg-emerald-50"
+    description: "Tailored operational & billing software for enterprises in Jammu & Kashmir.",
+    tag: "Enterprise"
   },
   {
     id: "03",
     title: "Mobile Apps",
     href: "/mobile-app-development-company-kashmir",
     icon: Smartphone,
-    description: "World-class iOS and Android applications designed for growth and scale.",
-    color: "#a855f7", // Purple
-    bgHover: "bg-purple-50"
+    description: "High-performance iOS and Android applications engineered for offline resilience.",
+    tag: "iOS & Android"
   },
   {
     id: "04",
     title: "E-Commerce",
     href: "/ecommerce-website-development-srinagar",
     icon: ShoppingCart,
-    description: "Launch a high-conversion online store and sell globally from Kashmir.",
-    color: "#f97316", // Orange
-    bgHover: "bg-orange-50"
+    description: "Launch a high-conversion online storefront and sell globally with instant checkout.",
+    tag: "Global Commerce"
   }
 ];
 
 export default function Services() {
   return (
-    <section className="relative py-14 md:py-40 bg-transparent overflow-hidden mobile-section-content" id="services">
+    <section className="relative py-16 md:py-28 bg-transparent overflow-hidden mobile-section-content" id="services">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
         
-        {/* Header Section - Same as Hero Style */}
-        <div className="mb-10 md:mb-32">
-          <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-10">
-            <div className="w-1.5 h-1.5 rounded-full bg-zinc-950" />
-            <span className="text-[10px] font-black tracking-[0.3em] md:tracking-[0.5em] text-zinc-400 uppercase">
-              What we offer
-            </span>
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-20">
+          <div>
+            <div className="flex items-center gap-2.5 mb-3">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-xs font-bold tracking-[0.2em] text-zinc-500 uppercase">
+                What We Offer
+              </span>
+            </div>
+            <PremiumHeading
+              text="Building the next big thing."
+              highlightWords={["big", "thing."]}
+              as="h2"
+              className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight text-zinc-950 leading-tight"
+            />
           </div>
-          <PremiumHeading
-            text="Building the next big thing."
-            highlightWords={["big", "thing."]}
-            className="text-3xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-zinc-950 leading-tight md:leading-none"
-          />
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-700 hover:text-emerald-600 transition-colors shrink-0"
+          >
+            <span>View All Technical Services</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
         </div>
 
-        {/* Services List - Clean & Editorial */}
-        <div className="border-t border-zinc-100">
-          {services.map((service, index) => (
-            <Link href={service.href} key={service.id} className="block">
-              <div
-                style={{ '--hover-color': service.color } as any}
-                className="group relative border-b border-zinc-100 py-6 sm:py-10 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 hover:bg-zinc-50/50 transition-all duration-300 px-3 md:px-4 -mx-3 md:-mx-4 rounded-2xl md:rounded-none"
-              >
+        {/* Services List - Editorial & Cohesive */}
+        <div className="border-t border-zinc-200/80">
+          {services.map((service) => (
+            <Link href={service.href} key={service.id} className="block group">
+              <div className="relative border-b border-zinc-200/80 py-7 sm:py-10 md:py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8 hover:bg-white/80 transition-all duration-300 px-4 -mx-4 rounded-2xl">
                 {/* Left: Index & Title */}
-                <div className="flex items-center gap-4 sm:gap-8 md:gap-16 flex-1">
-                  <span className="text-xs sm:text-sm font-black text-zinc-300 uppercase tracking-widest">
+                <div className="flex items-center gap-4 sm:gap-8 md:gap-12 flex-1">
+                  <span className="text-xs sm:text-sm font-mono font-bold text-zinc-400 group-hover:text-emerald-600 transition-colors">
                     {service.id}
                   </span>
-                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-8">
-                    <h3 className="text-2xl sm:text-4xl md:text-7xl font-black text-zinc-950 tracking-tighter uppercase group-hover:translate-x-2 md:group-hover:translate-x-4 group-hover:text-[var(--hover-color)] transition-all duration-300">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                    <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-zinc-950 tracking-tight group-hover:translate-x-1.5 group-hover:text-emerald-700 transition-all duration-300">
                       {service.title}
                     </h3>
-                    <div 
-                      className="hidden md:block w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                      style={{ backgroundColor: 'var(--hover-color)' }}
-                    />
+                    <span className="w-fit text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-600 border border-zinc-200/70">
+                      {service.tag}
+                    </span>
                   </div>
                 </div>
 
                 {/* Right: Description & Icon */}
-                <div className="flex items-center justify-between gap-4 sm:gap-8 md:gap-12 w-full md:w-auto">
-                  <p className="text-sm sm:text-base md:text-xl text-zinc-500 font-medium max-w-sm leading-snug md:leading-tight group-hover:text-zinc-900 transition-colors">
+                <div className="flex items-center justify-between gap-6 md:gap-10 w-full md:w-auto pl-8 sm:pl-12 md:pl-0">
+                  <p className="text-sm sm:text-base text-zinc-600 font-normal max-w-sm leading-relaxed group-hover:text-zinc-900 transition-colors">
                     {service.description}
                   </p>
-                  <div className="flex items-center justify-end shrink-0 gap-3 md:gap-12">
-                     <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white border border-zinc-100 flex items-center justify-center shadow-sm group-hover:scale-105 group-hover:bg-[var(--hover-color)] group-hover:border-[var(--hover-color)] transition-all duration-300">
-                        <service.icon className="w-4 h-4 md:w-6 md:h-6 text-zinc-950 group-hover:text-white transition-colors duration-300" />
-                     </div>
-                     <ArrowUpRight 
-                      className="w-5 h-5 md:w-8 md:h-8 text-zinc-200 group-hover:text-[var(--hover-color)] group-hover:rotate-45 transition-all duration-300" 
-                     />
+                  <div className="flex items-center justify-end shrink-0 gap-3 md:gap-6">
+                    <div className="w-11 h-11 md:w-13 md:h-13 rounded-2xl bg-white border border-zinc-200/90 flex items-center justify-center shadow-2xs group-hover:bg-zinc-950 group-hover:border-zinc-950 transition-all duration-300">
+                      <service.icon className="w-5 h-5 text-zinc-800 group-hover:text-emerald-400 transition-colors duration-300" />
+                    </div>
+                    <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-zinc-400 group-hover:text-zinc-950 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                   </div>
                 </div>
-
-                {/* Background Glow on Hover */}
-                <div 
-                  className="hidden md:block absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none -z-10"
-                  style={{ background: `linear-gradient(to right, ${service.color}08, transparent)` }} 
-                />
               </div>
             </Link>
           ))}
         </div>
 
-        {/* Join Us CTA - Optimized for Mobile & Desktop */}
-        <div className="mt-20 md:mt-32 p-8 md:p-24 rounded-[2rem] md:rounded-[3.5rem] bg-zinc-950 text-white flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12 overflow-hidden relative group">
-          <div className="relative z-10 text-center md:text-left">
-            <h3 className="text-3xl md:text-6xl font-black tracking-tighter mb-4 md:mb-6 leading-none">
-              READY TO BUILD<br />YOUR VISION?
+        {/* Focused CTA Banner */}
+        <div className="mt-16 md:mt-24 p-8 sm:p-12 md:p-16 rounded-3xl bg-zinc-950 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-8 overflow-hidden relative">
+          <div className="relative z-10 max-w-xl">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400 block mb-2">
+              Custom Architecture &amp; Delivery
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-black tracking-tight mb-3 leading-tight">
+              Ready to build your vision?
             </h3>
-            <p className="text-zinc-400 font-medium text-base md:text-lg max-w-md">
-              Let's create something extraordinary together. Start your project today.
+            <p className="text-zinc-300 text-sm sm:text-base leading-relaxed">
+              Partner with our senior engineering team to design, build, and launch your custom software system.
             </p>
           </div>
           
-          <Link
-            href="/contact"
-            className="relative z-10 h-14 md:h-20 px-10 md:px-12 bg-white text-zinc-950 font-black tracking-widest text-[10px] md:text-sm rounded-full flex items-center gap-3 md:gap-4 hover:bg-[#FEF9C3] transition-all hover:scale-105 active:scale-95 shadow-xl shadow-white/10"
-          >
-            GET STARTED <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
-          </Link>
+          <div className="relative z-10 flex flex-wrap items-center gap-3 shrink-0">
+            <Link
+              href="/contact"
+              className="h-12 sm:h-14 px-7 sm:px-8 bg-white text-zinc-950 font-bold tracking-wide text-xs sm:text-sm rounded-full flex items-center gap-2.5 hover:bg-emerald-400 transition-colors shadow-lg active:scale-95"
+            >
+              <span>Start Your Project</span>
+              <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </Link>
+            <Link
+              href="/project-estimator"
+              className="h-12 sm:h-14 px-6 bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-800 font-semibold text-xs sm:text-sm rounded-full flex items-center transition-colors"
+            >
+              <span>Cost Calculator</span>
+            </Link>
+          </div>
 
-          {/* Animated Background Decor */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 blur-[120px] -mr-48 -mt-48 group-hover:bg-emerald-500/20 transition-colors" />
-        </div>
-
-        {/* Footer Note */}
-        <div className="mt-20 pt-8 border-t border-zinc-100 flex justify-center text-zinc-300">
-           <span className="text-[10px] font-black uppercase tracking-[0.5em]">Systems Engineering for the Modern Web</span>
+          <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 blur-[100px] -mr-32 -mt-32 pointer-events-none" />
         </div>
 
       </div>

@@ -1,8 +1,6 @@
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { generateMetadata } from "@/lib/seo";
-import Navigation from "@/components/layout/Navigation";
-import Footer from "@/components/layout/Footer";
 import PageWrapper from "@/components/layout/PageWrapper";
 import Hero from "@/components/sections/home/Hero";
 import EngineFeatures from "@/components/sections/home/EngineFeatures";
@@ -25,7 +23,6 @@ import Blogs from "@/components/sections/home/Blogs";
 import LocalAdvantage from "@/components/sections/home/LocalAdvantage";
 import GlobalAdvantage from "@/components/sections/home/GlobalAdvantage";
 import Guarantees from "@/components/sections/home/Guarantees";
-
 import MarqueeText from "@/components/sections/home/MarqueeText";
 
 export const metadata = generateMetadata({
@@ -50,7 +47,7 @@ const SectionLoader = () => (
   <div className="w-full h-96 flex items-center justify-center py-20">
     <div className="space-y-8 w-full max-w-4xl px-4">
       <Skeleton className="h-20 w-3/4 mx-auto rounded-full" />
-      <Skeleton className="h-96 w-full rounded-[3.5rem]" />
+      <Skeleton className="h-96 w-full rounded-[2.5rem]" />
     </div>
   </div>
 );
@@ -66,7 +63,6 @@ export default async function HomePage() {
   let allProjects: any[] = [];
 
   try {
-    // Add a race to prevent hanging indefinitely in production
     const fetchWithTimeout = (promise: Promise<any>, ms: number) => {
       let timeout = new Promise((_, reject) => {
         const id = setTimeout(() => {
@@ -81,7 +77,7 @@ export default async function HomePage() {
       fetchWithTimeout(getCachedProjects(), 15000)
     ]).catch(err => {
       console.error("Home Page Data Fetch Timeout/Error:", err);
-      return [[]]; // Fallback to empty projects
+      return [[]];
     });
     
     allProjects = (results as any[])[0] || [];
@@ -91,25 +87,25 @@ export default async function HomePage() {
 
   return (
     <PageWrapper>
-      <main className="w-full relative overflow-hidden">
+      <div className="w-full relative overflow-hidden">
         <Hero />
 
         <Suspense fallback={<SectionLoader />}>
-            <EngineFeatures />
+          <EngineFeatures />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <Services />
+          <Services />
         </Suspense>
 
         <MarqueeText />
 
         <Suspense fallback={<SectionLoader />}>
-            <GlobalAdvantage />
+          <GlobalAdvantage />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <Protocol />
+          <Protocol />
         </Suspense>
         
         <LocalAdvantage />
@@ -117,25 +113,25 @@ export default async function HomePage() {
         <Guarantees />
 
         <Suspense fallback={<SectionLoader />}>
-            <Showcase initialProjects={allProjects} />
+          <Showcase initialProjects={allProjects} />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <Testimonials />
+          <Testimonials />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <Blogs />
+          <Blogs />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <FAQ />
+          <FAQ />
         </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
-            <CTA />
+          <CTA />
         </Suspense>
-      </main>
+      </div>
     </PageWrapper>
   );
 }

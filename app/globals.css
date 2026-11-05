@@ -35,6 +35,7 @@
 
   html {
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    scroll-behavior: smooth;
   }
 
   nav {
@@ -70,10 +71,10 @@
       inset: 0;
       z-index: -1;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(209, 250, 229, 0.3) 0, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(254, 249, 195, 0.3) 0, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(241, 245, 249, 0.4) 0, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(241, 245, 249, 0.4) 0, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(209, 250, 229, 0.25) 0, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(241, 245, 249, 0.35) 0, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(241, 245, 249, 0.35) 0, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(241, 245, 249, 0.35) 0, transparent 50%);
       background-size: 100% 100%;
       background-repeat: no-repeat;
       pointer-events: none;
@@ -87,8 +88,8 @@
   .mesh-gradient {
     background-color: #ffffff;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(209, 250, 229, 0.6) 0, transparent 40%),
-      radial-gradient(at 100% 0%, rgba(254, 249, 195, 0.6) 0, transparent 40%),
+      radial-gradient(at 0% 0%, rgba(209, 250, 229, 0.5) 0, transparent 40%),
+      radial-gradient(at 100% 0%, rgba(244, 244, 245, 0.5) 0, transparent 40%),
       radial-gradient(at 100% 100%, rgba(244, 244, 245, 0.5) 0, transparent 40%),
       radial-gradient(at 0% 100%, rgba(244, 244, 245, 0.5) 0, transparent 40%);
     background-size: 100% 100%;
@@ -96,7 +97,23 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-black tracking-tighter leading-none;
+    @apply font-bold tracking-tight leading-tight;
+  }
+
+  :focus-visible {
+    outline: 2px solid #059669;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -110,11 +127,11 @@
   }
 
   .btn-primary {
-    @apply h-14 md:h-20 px-8 md:px-16 bg-zinc-950 text-white font-black uppercase tracking-widest text-sm md:text-lg flex items-center justify-center transition-all duration-300 hover:scale-[1.02] hover:bg-emerald-600 shadow-2xl;
+    @apply h-14 md:h-16 px-8 md:px-12 bg-zinc-950 text-white font-bold uppercase tracking-widest text-xs md:text-sm rounded-full flex items-center justify-center transition-all duration-300 hover:bg-emerald-600 shadow-lg;
   }
 
   .btn-secondary {
-    @apply h-14 md:h-20 px-8 md:px-16 border-2 border-zinc-950 text-zinc-950 font-black uppercase tracking-widest text-sm md:text-lg flex items-center justify-center transition-all duration-300 hover:bg-zinc-950 hover:text-white;
+    @apply h-14 md:h-16 px-8 md:px-12 border border-zinc-300 text-zinc-950 font-bold uppercase tracking-widest text-xs md:text-sm rounded-full flex items-center justify-center transition-all duration-300 hover:bg-zinc-950 hover:text-white;
   }
 
   .section-light {
@@ -154,7 +171,7 @@
     background-color: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(10, 10, 10, 0.1);
+    background-color: rgba(10, 10, 10, 0.15);
     border-radius: 99px;
   }
 

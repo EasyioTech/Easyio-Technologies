@@ -1,7 +1,7 @@
 "use client";
 
-import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
-import { FadeIn } from "@/components/shared/Animations";
+import { PremiumHeading } from "@/components/shared/PremiumHeading";
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
@@ -40,98 +40,65 @@ const testimonials = [
     name: "Bilal Bhat",
     role: "IT Head, Kashmir Healthcare",
   },
-  {
-    text: "Professional, communicative, and technically brilliant. They built our mobile delivery app from scratch in just three months.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sameer Dar",
-    name: "Sameer Dar",
-    role: "CEO, QuickDeliver Srinagar",
-  },
-  {
-    text: "We shifted from generic SaaS to a custom ERP built by Easyio. It fits our local supply chain needs perfectly.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Umer Farooq",
-    name: "Umer Farooq",
-    role: "Operations Lead, J&K Distributors",
-  },
-  {
-    text: "Their UI/UX design is unmatched in the valley. They gave our brand a modern, international feel.",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Zainab Wani",
-    name: "Zainab Wani",
-    role: "Marketing Director, Alpine Travels",
-  },
 ];
-
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
-
-import { PremiumHeading } from "@/components/shared/PremiumHeading";
 
 const Testimonials = () => {
   return (
-    <section className="pt-10 pb-16 md:pt-12 md:pb-48 bg-transparent relative overflow-hidden mobile-section-content" id="testimonials">
-      <div className="container relative z-10 mx-auto px-5 sm:px-6">
-        {/* Stylish Hero-style Background Overlay - desktop only */}
-        <div className="hidden md:block absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] h-full bg-[radial-gradient(circle_at_50%_0%,#FEF9C3_0%,transparent_50%)] opacity-20" />
-        </div>
-
-        {/* Header - Hero Style Hierarchy */}
-        <div className="text-center mb-10 md:mb-24 relative z-10">
-          <PremiumHeading 
+    <section className="py-16 md:py-28 bg-zinc-50/60 border-y border-zinc-200/70 relative overflow-hidden mobile-section-content" id="testimonials">
+      <div className="max-w-7xl relative z-10 mx-auto px-5 sm:px-6">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-zinc-200/90 text-zinc-700 text-xs font-semibold shadow-2xs mb-4">
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+            <span>Client Outcomes</span>
+          </div>
+          <PremiumHeading
             text="Trusted by Industry Leaders"
             highlightWords={["Leaders"]}
             as="h2"
-            className="text-3xl sm:text-5xl md:text-8xl font-bold tracking-tight text-zinc-950 mb-4 md:mb-8 leading-tight"
+            className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-950 mb-4 leading-tight"
           />
-          <p className="text-zinc-500 max-w-xl mx-auto text-sm sm:text-base md:text-xl leading-relaxed font-medium">
-            See how modern teams transform their business and ship faster 
-            using our custom software solutions.
+          <p className="text-zinc-600 max-w-xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed">
+            See how modern organizations transform their operations and ship faster using our custom software solutions.
           </p>
         </div>
 
-        {/* Mobile View: High-performance snap-scrolling carousel (zero main-thread animation lag) */}
-        <div className="md:hidden flex gap-4 overflow-x-auto pb-6 pt-2 px-1 scrollbar-hide snap-x snap-mandatory">
+        {/* Clean, Readable Static Grid on Desktop & Snap Carousel on Mobile */}
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 overflow-x-auto md:overflow-visible pb-4 md:pb-0 scrollbar-hide snap-x snap-mandatory">
           {testimonials.map(({ text, image, name, role }, i) => (
-            <div 
-              key={i} 
-              className="snap-center shrink-0 w-[85%] max-w-[320px] p-6 rounded-2xl border border-zinc-100 bg-white shadow-lg shadow-zinc-950/5 flex flex-col justify-between"
+            <div
+              key={i}
+              className="snap-center shrink-0 w-[85%] sm:w-[340px] md:w-auto p-6 sm:p-8 rounded-3xl border border-zinc-200/80 bg-white shadow-2xs hover:border-zinc-300 hover:shadow-md transition-all flex flex-col justify-between"
             >
-              <div className="text-zinc-600 text-sm leading-relaxed font-medium italic mb-6">"{text}"</div>
-              <div className="flex items-center gap-3 mt-auto">
+              <div>
+                <div className="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <p className="text-zinc-700 text-sm sm:text-base leading-relaxed mb-6">
+                  &ldquo;{text}&rdquo;
+                </p>
+              </div>
+              <div className="flex items-center gap-3 pt-4 border-t border-zinc-100 mt-auto">
                 <img
                   width={40}
                   height={40}
                   src={image}
                   alt={name}
-                  className="h-10 w-10 rounded-full border border-zinc-100 object-cover"
+                  className="h-10 w-10 rounded-full border border-zinc-200 object-cover bg-zinc-50"
                 />
                 <div className="flex flex-col">
-                  <div className="font-bold text-zinc-950 tracking-tight leading-none mb-1 text-sm">{name}</div>
-                  <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{role}</div>
+                  <div className="font-bold text-zinc-950 tracking-tight leading-snug text-sm">
+                    {name}
+                  </div>
+                  <div className="text-xs font-medium text-zinc-500">
+                    {role}
+                  </div>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Desktop View: Animated 3-Column Layout */}
-        <div className="hidden md:flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[800px] overflow-hidden">
-          {/* Column 1 */}
-          <TestimonialsColumn testimonials={firstColumn} duration={15} />
-          
-          {/* Column 2 */}
-          <TestimonialsColumn 
-            testimonials={secondColumn} 
-            className="hidden md:block" 
-            duration={22} 
-          />
-          
-          {/* Column 3 */}
-          <TestimonialsColumn 
-            testimonials={thirdColumn} 
-            className="hidden lg:block" 
-            duration={18} 
-          />
         </div>
       </div>
     </section>

@@ -1,31 +1,47 @@
 import Link from 'next/link';
-import { Terminal } from 'lucide-react';
+import { ArrowLeft, Compass, MessageSquare } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-white dark:bg-zinc-950 text-center selection:bg-zinc-200 dark:selection:bg-zinc-800">
-      <div className="mb-12 inline-flex items-center gap-3 px-6 py-2 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-black shadow-2xl">
-          <Terminal className="w-4 h-4" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Protocol Breach</span>
-      </div>
-      
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-[12rem] font-bold tracking-tighter text-zinc-900 dark:text-white leading-none uppercase select-none opacity-50 italic">
-          404.
-        </h1>
-        <h2 className="heading-2 mt-8 mb-12">SYSTEM VOID.</h2>
-        <p className="text-2xl text-zinc-500 font-medium italic mb-20 max-w-xl mx-auto">
-          The requested coordinate does not exist within our current architectural manifest.
-        </p>
-        <Link href="/" className="btn-primary inline-flex">
-          Initialize Reset
-        </Link>
-      </div>
+    <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-[#F8FAFC] text-center">
+      <div className="max-w-xl mx-auto bg-white border border-zinc-200/90 rounded-3xl p-8 sm:p-12 shadow-xl shadow-zinc-200/40">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 text-zinc-700 text-xs font-bold uppercase tracking-wider mb-6">
+          <span>Error 404</span>
+        </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-12 opacity-10 grayscale select-none">
-          <div className="text-[8px] font-bold uppercase tracking-[1em]">Architecture</div>
-          <div className="text-[8px] font-bold uppercase tracking-[1em]">Latency</div>
-          <div className="text-[8px] font-bold uppercase tracking-[1em]">Scale</div>
+        <h1 className="text-5xl sm:text-7xl font-black tracking-tight text-zinc-950 leading-none mb-4">
+          Page not found.
+        </h1>
+
+        <p className="text-base sm:text-lg text-zinc-600 leading-relaxed mb-8">
+          The page you are looking for might have been moved, renamed, or doesn&apos;t exist. Use the links below to get back on track.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            href="/"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-zinc-950 hover:bg-emerald-600 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Home</span>
+          </Link>
+
+          <Link
+            href="/services"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 text-zinc-900 text-xs font-bold uppercase tracking-wider transition-colors"
+          >
+            <Compass className="w-4 h-4 text-emerald-600" />
+            <span>Explore Services</span>
+          </Link>
+
+          <Link
+            href="/contact"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full bg-white hover:bg-zinc-50 border border-zinc-200 text-zinc-700 text-xs font-bold uppercase tracking-wider transition-colors"
+          >
+            <MessageSquare className="w-4 h-4 text-zinc-500" />
+            <span>Contact Us</span>
+          </Link>
+        </div>
       </div>
     </div>
   );
