@@ -59,6 +59,17 @@ export function generateMetadata({
     alternates: {
       canonical: fullCanonicalUrl,
     },
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/icon.png", type: "image/png", sizes: "360x360" },
+        { url: "/easyio_logo.png", type: "image/png", sizes: "360x360" },
+      ],
+      shortcut: "/favicon.ico",
+      apple: [
+        { url: "/easyio_logo.png", sizes: "180x180", type: "image/png" },
+      ],
+    },
     robots: {
       index: true,
       follow: true,
@@ -102,7 +113,9 @@ export const MASTER_SCHEMA = {
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/logo.png`,
+        url: `${SITE_URL}/easyio_logo.png`,
+        width: "360",
+        height: "360",
       },
       image: `${SITE_URL}/og-image.png`,
       description: "Easyio Technologies is Kashmir's premier software engineering firm and technology consultancy. We build mission-critical enterprise ERPs, cloud architecture, AI workflows, and high-concurrency digital platforms for startups and established enterprises across Jammu & Kashmir and India.",
@@ -184,6 +197,7 @@ export const MASTER_SCHEMA = {
       name: "Easyio Technologies",
       alternateName: ["Easyio", "Easy io", "Easyio Tech", "Easyio Technologies Sopore"],
       image: `${SITE_URL}/og-image.png`,
+      logo: `${SITE_URL}/easyio_logo.png`,
       url: SITE_URL,
       description: "Premier software engineering firm and technology consultancy based in Sopore, Kashmir. Designing high-scale ERP systems, mobile applications, and enterprise digital solutions.",
       areaServed: [
