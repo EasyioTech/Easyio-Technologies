@@ -1,143 +1,167 @@
 'use client';
 
-import { m } from "framer-motion";
-import { Globe, Clock, DollarSign, ShieldCheck, Zap, ArrowUpRight, CheckCircle2, Laptop } from "lucide-react";
+import { Users, Clock, ShieldCheck, GitBranch, ArrowUpRight, CheckCircle2, Star, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 
-const advantages = [
+const partnershipPillars = [
   {
-    icon: DollarSign,
-    title: "65% Cost Efficiency",
-    subtitle: "High-Caliber Engineering",
-    description: "Access elite senior engineers (Next.js, Python, PostgreSQL) at offshore rates ($30–$45/hr) without sacrificing code quality or velocity.",
-    badge: "Maximum Runway"
+    icon: Users,
+    title: "Direct Engineer Access",
+    subtitle: "No Middlemen",
+    description: "Collaborate directly with senior full-stack architects and systems engineers. Daily communication with the people actually writing your code.",
+    badge: "Senior Pods"
   },
   {
     icon: Clock,
-    title: "Guaranteed US Timezone Overlap",
-    subtitle: "4–5 Hours Synchronous Daily",
-    description: "We work directly alongside your team during US Eastern (EST) and Pacific (PST) hours for daily video standups, Slack, and sprint reviews.",
-    badge: "Real-Time Comms"
+    title: "Synchronous Timezone Overlap",
+    subtitle: "Real-Time Collaboration",
+    description: "4 to 5 hours of guaranteed daily overlap with US (EST/PST), European, and Gulf working hours for live standups, Slack, and sprint demos.",
+    badge: "Global Teams"
   },
   {
     icon: ShieldCheck,
     title: "100% IP & Code Ownership",
-    subtitle: "Zero Vendor Lock-In",
-    description: "Every commit, Docker container, and architectural design is committed directly to your private GitHub repo under a signed mutual NDA.",
-    badge: "Enterprise Safe"
+    subtitle: "Zero Lock-In",
+    description: "Every commit, Docker container, and architecture config is pushed directly to your company's private GitHub repository from day one.",
+    badge: "Client Freedom"
   },
   {
-    icon: Zap,
-    title: "2-Week Risk-Free Pilot",
-    subtitle: "Experience Our Speed First",
-    description: "Kick off with a focused 2-week sprint. If you are not completely blown away by our technical speed and craftsmanship, you owe nothing.",
-    badge: "Zero Downside"
+    icon: GitBranch,
+    title: "Transparent Sprints",
+    subtitle: "Verified Delivery",
+    description: "Two-week agile milestones with live preview deployments on staging servers. You review and approve tangible progress every single sprint.",
+    badge: "Bi-Weekly Demos"
   }
 ];
 
 export default function GlobalAdvantage() {
+  const whatsappUrl = `https://wa.me/916005659527?text=${encodeURIComponent(
+    "Hi Easyio! I'm interested in discussing custom software development for our product roadmap."
+  )}`;
+
   return (
-    <section className="py-16 md:py-36 bg-zinc-950 text-white relative overflow-hidden mobile-section-content" id="global-advantage">
-      {/* Mesh Accent Backdrop */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-emerald-500/10 blur-[140px] rounded-full" />
+    <section className="py-20 md:py-32 bg-gradient-to-b from-white via-zinc-50/40 to-white text-zinc-950 relative overflow-hidden mobile-section-content" id="global-advantage">
+      {/* Soft Ambient Mesh Background (Matching Homepage Hero) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-emerald-100/25 blur-[120px] rounded-full" />
+        <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-yellow-100/25 blur-[100px] rounded-full" />
       </div>
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
         
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 md:mb-24">
+        {/* Header Section */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 md:mb-20">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-emerald-400 text-[10px] font-mono font-bold uppercase tracking-widest mb-4">
-              <Globe className="w-3.5 h-3.5" />
-              <span>International Engineering Partnerships</span>
+            {/* Pill Eyebrow */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-zinc-200/90 text-zinc-800 text-xs font-semibold shadow-2xs mb-5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Global Engineering Standards</span>
             </div>
             
             <PremiumHeading
-              text="Why US & Global Founders Build With Easyio."
-              highlightWords={["US", "Global", "Easyio."]}
-              className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter text-white leading-[1.05]"
-              highlightClassName="text-emerald-400"
+              text="Built for Founders Who Value Speed and Craftsmanship"
+              highlightWords={["Speed", "Craftsmanship"]}
+              as="h2"
+              className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-950 leading-[1.1]"
+              highlightClassName="text-emerald-700"
             />
           </div>
 
           <div className="lg:max-w-md">
-            <p className="text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed font-medium">
-              Scale your product roadmap faster without burning your seed round. We provide dedicated full-stack engineering pods and high-speed delivery for startups and scaleups across the United States, Europe, and the Middle East.
+            <p className="text-zinc-600 text-sm sm:text-base md:text-lg leading-relaxed font-normal">
+              We partner with founders and technical leaders across India, the United States, Europe, and the Middle East to deliver high-performance web applications, enterprise ERPs, and cloud systems.
             </p>
           </div>
         </div>
 
-        {/* 4 Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
-          {advantages.map((item, i) => {
+        {/* 4 Clean Feature Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-16">
+          {partnershipPillars.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.title}
-                className="p-6 sm:p-8 rounded-[2rem] bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-white/[0.08] transition-all flex flex-col justify-between group"
+                className="p-7 sm:p-8 rounded-3xl bg-white border border-zinc-200/80 hover:border-zinc-950 hover:shadow-xl hover:shadow-zinc-200/40 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-zinc-950 transition-all">
+                    <div className="w-12 h-12 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex items-center justify-center text-zinc-900 group-hover:bg-zinc-950 group-hover:text-white transition-all">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-zinc-400 bg-white/5 px-2.5 py-1 rounded-md border border-white/5">
+                    <span className="text-[11px] font-semibold text-zinc-600 bg-zinc-100/80 px-3 py-1 rounded-full">
                       {item.badge}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold tracking-tight text-white mb-1">
+                  <h3 className="text-xl font-bold tracking-tight text-zinc-950 mb-1">
                     {item.title}
                   </h3>
-                  <div className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider mb-3">
+                  <div className="text-xs text-emerald-700 font-semibold mb-3">
                     {item.subtitle}
                   </div>
 
-                  <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-medium">
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-white/5 flex items-center gap-1.5 text-xs text-zinc-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Verified Standard</span>
+                <div className="mt-8 pt-4 border-t border-zinc-100 flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Standard on every contract</span>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Global Conversion Bar */}
-        <div className="p-8 sm:p-12 rounded-[2.5rem] bg-gradient-to-r from-emerald-950/60 to-zinc-900 border border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <div className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest mb-2">
-              Ready to Accelerate Your Roadmap?
+        {/* Conversion Banner (Hero Section Style) */}
+        <div className="p-8 sm:p-12 rounded-3xl bg-white border border-zinc-200/90 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative overflow-hidden">
+          <div className="max-w-xl">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="flex -space-x-2">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="w-6 h-6 rounded-full border border-white bg-zinc-100 overflow-hidden shadow-2xs">
+                    <img src={`/images/avatar_${i}.jpg`} alt="Client" className="w-full h-full object-cover" />
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center gap-1 text-xs text-zinc-600 font-medium">
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <span>Trusted by growing businesses</span>
+              </div>
             </div>
-            <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight mb-2">
-              Calculate Your Project Scope or Book an Architecture Review
-            </h4>
-            <p className="text-zinc-400 text-xs sm:text-sm max-w-xl">
-              Get an instant cost estimate in USD or connect with our lead architect to discuss your system requirements.
+
+            <h3 className="text-2xl sm:text-3xl font-black text-zinc-950 tracking-tight mb-2">
+              Have an upcoming product or system to build?
+            </h3>
+            <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed">
+              Calculate your budget estimate in 60 seconds or speak directly with our engineering team.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Link
               href="/project-estimator"
-              className="h-12 px-6 rounded-full bg-white text-zinc-950 text-xs font-bold uppercase tracking-wider hover:bg-emerald-400 transition-all flex items-center gap-2 shadow-lg"
+              className="group h-12 pl-6 pr-2.5 flex items-center justify-center bg-zinc-950 text-white font-medium text-xs sm:text-sm rounded-full hover:bg-zinc-800 transition-all shadow-md active:scale-95"
             >
-              <span>Instant Cost Calculator</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <span>Instant Cost Estimator</span>
+              <div className="w-8 h-8 ml-3 bg-white rounded-full flex items-center justify-center text-zinc-950 group-hover:bg-[#FEF9C3] group-hover:scale-105 transition-all duration-300 group-hover:rotate-45 -rotate-[22.5deg]">
+                <ArrowUpRight className="w-4 h-4 flex-shrink-0" />
+              </div>
             </Link>
+
             <a
-              href="https://wa.me/916005659527?text=Hi%20Easyio!%20I'm%20a%20US/Global%20founder%20interested%20in%20discussing%20a%20dedicated%20dev%20pod%20or%20MVP."
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="h-12 px-6 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2"
+              className="h-12 px-6 flex items-center justify-center bg-white hover:bg-zinc-50 border border-zinc-300 text-zinc-900 font-semibold text-xs sm:text-sm rounded-full transition-all shadow-2xs active:scale-95"
             >
-              <span>WhatsApp Us (+91 60056 59527)</span>
+              <span>Chat on WhatsApp</span>
             </a>
           </div>
         </div>

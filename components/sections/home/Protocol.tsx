@@ -79,36 +79,11 @@ export default function Protocol() {
   }, []);
 
   return (
-    <section className="py-14 md:py-48 relative bg-transparent overflow-hidden mobile-section-content" id="process">
+    <section className="py-14 md:py-36 relative bg-transparent overflow-hidden mobile-section-content" id="process">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 relative">
         
-        {/* Background Vein/Line Animation */}
-        <div className="absolute inset-0 pointer-events-none z-0 hidden md:block" style={{ top: '250px', height: 'calc(100% - 250px)' }}>
-          <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-            {/* Subtle base track */}
-            <path 
-              d="M 333 250 L 833 250 C 833 500, 166 500, 166 750 L 666 750" 
-              stroke="rgba(16,185,129,0.1)" 
-              strokeWidth="2" 
-              fill="none" 
-            />
-            {/* Glowing line perfectly synced with React state */}
-            <m.path 
-              d="M 333 250 L 833 250 C 833 500, 166 500, 166 750 L 666 750" 
-              stroke="rgba(16,185,129,1)" 
-              strokeWidth="4" 
-              fill="none" 
-              strokeLinecap="round"
-              strokeDasharray="2000 2000"
-              animate={{ strokeDashoffset: [2000, 0, 0] }}
-              transition={{ duration: 9, times: [0, 8/9, 1], repeat: Infinity, ease: "linear" }}
-              style={{ filter: "drop-shadow(0 0 8px rgba(16,185,129,0.8))" }}
-            />
-          </svg>
-        </div>
-
         {/* Header - Simple & Focused */}
-        <div className="mb-10 md:mb-24 flex flex-col items-center text-center relative z-10">
+        <div className="mb-10 md:mb-20 flex flex-col items-center text-center relative z-10">
             <span className="text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-zinc-400 mb-3 md:mb-6">Our Process</span>
             <PremiumHeading 
               text="How we bring ideas to life"
