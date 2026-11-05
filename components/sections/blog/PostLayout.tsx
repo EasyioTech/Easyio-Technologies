@@ -11,6 +11,7 @@ import ReadingProgress from "./ReadingProgress";
 import ShareButton from "./ShareButton";
 import SidebarCta from "./SidebarCta";
 import PostCard from "./PostCard";
+import MidArticleCta from "./MidArticleCta";
 
 // Helper to extract text from React children safely
 function getTextContent(children: any): string {
@@ -35,9 +36,23 @@ function generateSlug(children: any): string {
     .replace(/\s+/g, '-');
 }
 
-function sanitizeMdxContent(content: string): string {
+function sanitizeMdxContent(content: string, postTitle: string = ''): string {
   if (!content) return '';
-  return content.replace(/<(?![a-zA-Z/!_?])/g, '&lt;');
+  let sanitized = content.replace(/<(?![a-zA-Z/!_?])/g, '&lt;');
+  
+  // Automatically inject high-converting MidArticleCta if not already explicitly present
+  if (!sanitized.includes('<MidArticleCta')) {
+    const h2Matches = [...sanitized.matchAll(/\n##\s+/g)];
+    if (h2Matches.length >= 2) {
+      const targetMatch = h2Matches[Math.min(2, h2Matches.length - 1)];
+      const index = targetMatch.index!;
+      const cleanTitle = postTitle.replace(/"/g, "'");
+      const ctaSnippet = `\n\n<MidArticleCta title="Planning a software or digital system project in 2026?" description="Get a fixed-price milestone estimate and architecture roadmap within 24 hours. Talk directly with senior engineers — no sales pitch, zero vendor lock-in." primaryActionText="Chat on WhatsApp (+91 60056 59527)" whatsappMessage="Hello Easyio team, I am reading about ${cleanTitle} and want to discuss a software project." />\n\n`;
+      sanitized = sanitized.slice(0, index) + ctaSnippet + sanitized.slice(index);
+    }
+  }
+
+  return sanitized;
 }
 
 
@@ -173,6 +188,7 @@ export const customComponents = {
   CheckCircle2,
   XCircle,
   AlertCircle,
+  MidArticleCta,
   table: (props: any) => (
     <div className="my-10 overflow-x-auto rounded-2xl border border-zinc-200 shadow-sm bg-white">
       <table className="w-full text-left text-sm text-zinc-700 border-collapse min-w-[640px]" {...props} />
@@ -356,7 +372,7 @@ export default function PostLayout({ post, relatedPosts = [] }: PostLayoutProps)
             <main className="prose prose-zinc prose-lg max-w-none mb-16">
               <FadeIn delay={0.3}>
                 <MDXRemote
-                  source={sanitizeMdxContent(post.content)}
+                  source={sanitizeMdxContent(post.content, post.title)}
                   components={customComponents}
                   options={{
                     mdxOptions: {
