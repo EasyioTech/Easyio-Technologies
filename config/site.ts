@@ -23,54 +23,58 @@ export const siteConfig = {
 
 export const navigationLinks = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Work", href: "/case-studies" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Estimator", href: "/project-estimator" },
   { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const footerLinks = {
   product: {
     title: "Product & Solutions",
     links: [
-      { label: "All Services", href: "/services" },
+      { label: "Services", href: "/#services" },
       { label: "Cost Estimator", href: "/project-estimator" },
       { label: "Pricing & Plans", href: "/pricing" },
       { label: "Case Studies", href: "/case-studies" },
-      { label: "Enterprise Systems", href: "/enterprise-software-systems" },
-      { label: "Cloud Infrastructure", href: "/cloud-infrastructure" },
+      { label: "Roadmap", href: "/roadmap" },
     ],
   },
   company: {
     title: "Company",
     links: [
-      { label: "About Us", href: "/about" },
-      { label: "Engineering Blog", href: "/blog" },
+      { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
       { label: "Careers", href: "/careers" },
-      { label: "Product Roadmap", href: "/roadmap" },
-      { label: "Changelog", href: "/changelog" },
+      { label: "Press", href: "/press" },
       { label: "Contact", href: "/contact" },
     ],
   },
-  solutions: {
-    title: "Regional & Specialized",
+  resources: {
+    title: "Resources",
     links: [
-      { label: "Software Company Kashmir", href: "/software-development-company-in-kashmir" },
-      { label: "Software Company Sopore", href: "/software-development-company-in-sopore" },
-      { label: "Web Development Srinagar", href: "/web-development-company-in-srinagar" },
-      { label: "Custom ERP Kashmir", href: "/custom-erp-software-development-kashmir" },
-      { label: "SaaS Application Dev", href: "/saas-application-development-kashmir" },
-      { label: "Mobile App Development", href: "/mobile-app-development-company-kashmir" },
+      { label: "Documentation", href: "/docs" },
+      { label: "Guides", href: "/guides" },
+      { label: "Community", href: "/community" },
+      { label: "Contact Support", href: "/contact" },
+    ],
+  },
+  solutions: {
+    title: "Locations & Districts",
+    links: [
+      { label: "Best Tech Company Kashmir", href: "/blog/best-tech-company-in-kashmir" },
+      { label: "Best Software Company Kashmir", href: "/software-development-company-in-kashmir" },
+      { label: "Best Tech Company Sopore", href: "/software-development-company-in-sopore" },
+      { label: "Best Tech Company Baramulla", href: "/blog/best-tech-company-in-baramulla" },
+      { label: "Best Tech Company Srinagar", href: "/blog/best-tech-company-in-srinagar" },
+      { label: "Best Tech Company Anantnag", href: "/blog/best-tech-company-in-anantnag-south-kashmir" },
+      { label: "Custom ERP Systems Kashmir", href: "/custom-erp-software-development-kashmir" },
     ],
   },
   legal: {
-    title: "Security & Legal",
+    title: "Legal",
     links: [
-      { label: "Enterprise Security", href: "/enterprise-security" },
-      { label: "Ultra-Fast Architecture", href: "/ultra-fast-speed" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
+      { label: "Cookie Policy", href: "/cookies" },
     ],
   },
 };

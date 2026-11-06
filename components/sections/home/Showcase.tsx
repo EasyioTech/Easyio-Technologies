@@ -1,5 +1,6 @@
 'use client';
 
+import { m } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,15 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
+
+interface Project {
+  id: string;
+  title: string;
+  image: string;
+  tags: string[];
+  summary?: string;
+  url?: string;
+}
 
 export default function Showcase({ initialProjects = [] }: { initialProjects?: any[] }) {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
@@ -99,44 +109,47 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
   }, [carouselApi]);
 
   return (
-    <section className="py-16 md:py-28 relative overflow-hidden bg-transparent mobile-section-content" id="work">
+    <section className="pt-14 pb-20 md:pt-24 md:pb-32 relative overflow-hidden bg-transparent mobile-section-content" id="work">
+      {/* Hero-style Gradient Backdrop - desktop only */}
+      <div className="hidden md:block absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] h-full bg-[radial-gradient(circle_at_50%_100%,#FEF9C3_0%,transparent_50%)] opacity-20" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
-        <div className="mb-10 flex flex-col justify-between md:mb-16 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col justify-between md:mb-20 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-white border border-zinc-200/80 px-3.5 py-1.5 rounded-full mb-4 shadow-2xs">
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-xs font-semibold text-zinc-700">Selected Case Studies</span>
+            <div className="inline-flex items-center gap-2 bg-zinc-100 px-3 py-1 rounded-full mb-4 md:mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Our Portfolio</span>
             </div>
             <PremiumHeading 
               text="Recent Work"
               highlightWords={["Work"]}
               as="h2"
-              className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-950 mb-3"
+              className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-3 md:mb-6"
             />
-            <p className="text-zinc-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg">
-              Explore how we help modern teams build and scale their operations with custom software.
+            <p className="text-zinc-500 text-sm sm:text-base md:text-lg font-medium leading-relaxed max-w-lg">
+              Explore how we help modern teams build and scale their ideas with custom software.
             </p>
           </div>
-          <div className="mt-6 md:mt-0 flex shrink-0 items-center justify-start gap-3">
+          <div className="mt-6 md:mt-8 flex shrink-0 items-center justify-start gap-3 md:gap-4">
             <Button
               size="icon"
               variant="outline"
-              aria-label="Previous project"
               onClick={() => carouselApi?.scrollPrev()}
               disabled={!mounted || !canScrollPrev}
-              className="w-11 h-11 md:w-12 md:h-12 rounded-full border-zinc-200 bg-white hover:bg-zinc-950 hover:text-white hover:border-zinc-950 transition-all disabled:opacity-35 flex items-center justify-center p-0"
+              className="w-10 h-10 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
             >
-              <ArrowLeft className="size-4 md:size-5" />
+              <ArrowLeft className="size-4 md:size-6" />
             </Button>
             <Button
               size="icon"
               variant="outline"
-              aria-label="Next project"
               onClick={() => carouselApi?.scrollNext()}
               disabled={!mounted || !canScrollNext}
-              className="w-11 h-11 md:w-12 md:h-12 rounded-full border-zinc-200 bg-white hover:bg-zinc-950 hover:text-white hover:border-zinc-950 transition-all disabled:opacity-35 flex items-center justify-center p-0"
+              className="w-10 h-10 md:w-14 md:h-14 rounded-full border-zinc-200 hover:bg-white hover:border-zinc-950 transition-all disabled:opacity-30 flex items-center justify-center p-0"
             >
-              <ArrowRight className="size-4 md:size-5" />
+              <ArrowRight className="size-4 md:size-6" />
             </Button>
           </div>
         </div>
@@ -153,49 +166,53 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
           plugins={[WheelGesturesPlugin()]}
           className="relative lg:left-[calc((100vw-1280px)/2)]"
         >
-          <CarouselContent className="-ml-4 md:-ml-6 cursor-grab active:cursor-grabbing">
+          <CarouselContent className="-ml-3 md:-ml-8 cursor-grab active:cursor-grabbing">
             {displayProjects.map((project) => (
-              <CarouselItem key={project.id} className="pl-4 md:pl-6 basis-[88%] sm:basis-[68%] md:basis-[460px]">
-                <div className="group relative flex flex-col bg-white border border-zinc-200/90 hover:border-zinc-950 rounded-3xl p-4 sm:p-5 transition-all hover:shadow-xl hover:shadow-zinc-200/40 h-full">
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-5 bg-zinc-100 border border-zinc-100">
+              <CarouselItem key={project.id} className="pl-3 md:pl-8 basis-[85%] sm:basis-[70%] md:basis-[520px]">
+                <div 
+                  className="group relative flex flex-col bg-white border border-zinc-100/50 rounded-[2rem] md:rounded-[3rem] p-4 sm:p-5 md:p-6 transition-all hover:shadow-xl hover:shadow-zinc-200/50 h-full"
+                >
+                  <div className="relative aspect-[16/11] overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] mb-4 md:mb-8">
                     <Image
                       src={project.image}
                       alt={project.title}
                       className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                       fill 
                     />
-                    <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-20">
+                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-wrap gap-1.5 z-20">
                       {project.tags.map((tag: string) => (
-                        <span key={tag} className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-zinc-900 bg-white/95 backdrop-blur-md rounded-full shadow-xs">
+                        <span key={tag} className="px-2.5 py-0.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-zinc-900 bg-white/90 backdrop-blur-md rounded-full shadow-sm">
                           {tag}
                         </span>
                       ))}
                     </div>
                     {project.metric && (
-                      <div className="absolute top-3 right-3 z-20">
-                        <span className="px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-950 bg-emerald-300/95 backdrop-blur-md rounded-full shadow-xs">
+                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
+                        <span className="px-2.5 py-0.5 text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-900 bg-emerald-300/90 backdrop-blur-md rounded-full shadow-sm">
                           {project.metric}
                         </span>
                       </div>
                     )}
                   </div>
                   
-                  <div className="px-1 sm:px-2 flex flex-col flex-grow">
-                    <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 mb-2 tracking-tight group-hover:text-emerald-700 transition-colors">
+                  <div className="px-1 md:px-4 flex flex-col flex-grow">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-950 mb-2 md:mb-4 tracking-tight group-hover:text-emerald-600 transition-colors">
                       {project.title}
                     </h3>
                     
-                    <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-6 line-clamp-2">
+                    <p className="text-xs sm:text-sm md:text-base text-zinc-500 leading-relaxed mb-4 md:mb-8 line-clamp-2 md:line-clamp-3">
                       {project.summary}
                     </p>
                     
                     <div className="mt-auto">
                       <Link 
                         href={project.url}
-                        className="inline-flex items-center justify-between w-full py-3 px-4 rounded-2xl bg-zinc-50 group-hover:bg-zinc-950 text-xs font-bold tracking-wider text-zinc-900 group-hover:text-white uppercase transition-colors border border-zinc-200/70 group-hover:border-zinc-950"
+                        className="inline-flex items-center justify-between w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-zinc-50 text-[11px] sm:text-xs font-black tracking-widest text-zinc-950 uppercase transition-all group-hover:bg-zinc-100 cursor-pointer relative z-50 border border-zinc-100"
                       >
-                        <span>Explore Case Study</span>
-                        <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        Explore Case Study
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center border border-zinc-200 group-hover:border-zinc-400">
+                          <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:text-zinc-950 group-hover:rotate-45 transition-all" />
+                        </div>
                       </Link>
                     </div>
                   </div>
@@ -207,20 +224,20 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
       </div>
 
       {/* Bottom Showcase CTA */}
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-zinc-200/70">
-        <p className="text-xs sm:text-sm font-medium text-zinc-600">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-zinc-100">
+        <p className="text-xs font-medium text-zinc-500">
           Want a similar high-performance system engineered for your operations?
         </p>
         <div className="flex items-center gap-3">
           <Link
             href="/case-studies"
-            className="px-5 py-2.5 rounded-full border border-zinc-200 bg-white text-xs font-bold uppercase tracking-wider text-zinc-800 hover:bg-zinc-50 transition-all"
+            className="px-5 py-2.5 rounded-full border border-zinc-200 text-xs font-bold uppercase tracking-wider text-zinc-800 hover:bg-zinc-50 transition-all"
           >
             All Case Studies
           </Link>
           <Link
             href="/project-estimator"
-            className="px-5 py-2.5 rounded-full bg-zinc-950 text-white text-xs font-bold uppercase tracking-wider hover:bg-emerald-600 transition-all shadow-sm"
+            className="px-5 py-2.5 rounded-full bg-zinc-950 text-white text-xs font-bold uppercase tracking-wider hover:bg-emerald-600 transition-all shadow-md"
           >
             Calculate System Cost &rarr;
           </Link>

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { Plus, Minus, Search, ArrowDown } from 'lucide-react';
+import { FadeIn, TextReveal } from "@/components/shared/Animations";
 import { PremiumHeading } from "@/components/shared/PremiumHeading";
 import { m, AnimatePresence } from "framer-motion";
 
@@ -12,23 +13,23 @@ const faqs = [
     category: "Recognition"
   },
   {
-    question: "Do you offer support after the project is launched?",
-    answer: "Yes, every deployment includes a complimentary 30-day bug-free warranty plus 3 months of priority launch support. We also offer dedicated long-term SLA maintenance plans as your user base grows.",
+    question: "Do you offer support after the project is done?",
+    answer: "Yes, we provide 3 months of priority support once your project is live. This ensures everything runs smoothly during the launch. We also offer long-term maintenance plans if you need ongoing help.",
     category: "Support"
   },
   {
-    question: "How long does a typical software project take?",
-    answer: "Most projects take between 4 and 10 weeks, structured in transparent two-week milestone sprints. You test live staging previews at the end of every sprint before moving to the next phase.",
+    question: "How long does a typical project take?",
+    answer: "Most projects take between 4 and 12 weeks. We move fast to hit your deadlines but we never cut corners on quality or security.",
     category: "Timeline"
   },
   {
-    question: "Can you integrate with our existing internal engineering team?",
-    answer: "Absolutely. Our senior engineers can embed directly into your Slack, GitHub, and Linear/Jira workflows to accelerate complex feature delivery and modernize system architecture.",
+    question: "Can you work with our existing team?",
+    answer: "Absolutely. We can join your internal developers as a specialized team to help finish complex features faster and improve your overall system design.",
     category: "Collaboration"
   },
   {
-    question: "How do you protect our intellectual property and sensitive data?",
-    answer: "We sign a legally binding mutual NDA before any technical discovery, enforce role-based access control and encryption, and push 100% of code directly to your private repository.",
+    question: "How do you keep our data secure?",
+    answer: "We use modern security standards, including advanced encryption and secure access controls, to make sure your sensitive information is always protected.",
     category: "Security"
   }
 ];
@@ -37,97 +38,71 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-16 md:py-28 bg-transparent relative overflow-hidden mobile-section-content" id="faq">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
+    <section className="py-14 md:py-32 bg-transparent relative overflow-hidden mobile-section-content" id="faq">
+      <div className="max-w-[1600px] mx-auto px-5 sm:px-6 relative z-10">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-24">
           
           {/* Header */}
           <div className="lg:col-span-5">
-            <div className="lg:sticky lg:top-32">
-              <div className="flex items-center gap-2.5 mb-3">
-                <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">Answers &amp; Clarity</span>
-              </div>
-              <PremiumHeading 
-                text="Frequently Asked Questions."
-                highlightWords={["Questions."]}
-                as="h2"
-                className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-950 leading-tight mb-4"
-              />
-              <p className="text-sm sm:text-base md:text-lg text-zinc-600 max-w-sm leading-relaxed">
-                Clear answers about our engineering process, timelines, IP ownership, and post-launch support.
-              </p>
-            </div>
+             <div className="lg:sticky lg:top-40">
+                <div className="flex items-center gap-3 mb-4 md:mb-8">
+                  <div className="w-1.5 h-1.5 rounded-full bg-zinc-950" />
+                  <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] md:tracking-[0.3em] text-zinc-500">Infrastructure Support</span>
+                </div>
+                <PremiumHeading 
+                  text="Frequently Asked."
+                  highlightWords={["Asked."]}
+                  as="h2"
+                  className="text-3xl sm:text-5xl md:text-8xl font-bold tracking-tighter text-zinc-950 leading-tight md:leading-[0.8] mb-4 md:mb-10"
+                />
+                <p className="text-sm sm:text-base md:text-xl text-zinc-500 max-w-sm leading-relaxed border-l-2 border-zinc-100 pl-4 md:pl-8 font-medium">
+                   Technical parameters and operational protocols for our high-velocity engineering deployments. 
+                </p>
+             </div>
           </div>
 
-          {/* Accordion List */}
-          <div className="lg:col-span-7 space-y-3.5">
-            {faqs.map((faq, i) => {
-              const isOpen = openIndex === i;
-              const panelId = `faq-panel-${i}`;
-              const buttonId = `faq-button-${i}`;
-              return (
-                <div 
-                  key={i} 
-                  className={`rounded-2xl sm:rounded-3xl border transition-all duration-200 overflow-hidden ${
-                    isOpen
-                      ? 'bg-white border-zinc-950 shadow-lg shadow-zinc-200/50'
-                      : 'bg-white/80 border-zinc-200/90 hover:border-zinc-300'
-                  }`}
-                >
-                  <h3>
-                    <button 
-                      id={buttonId}
-                      type="button"
-                      aria-expanded={isOpen}
-                      aria-controls={panelId}
-                      onClick={() => setOpenIndex(isOpen ? null : i)}
-                      className="w-full py-5 sm:py-6 px-5 sm:px-7 text-left flex items-center justify-between gap-4 group"
-                    >
-                      <div className="flex items-start sm:items-center gap-4 sm:gap-5">
-                        <span className="text-xs font-mono text-emerald-700 font-bold pt-1 sm:pt-0">
-                          0{i + 1}
-                        </span>
-                        <span className="text-base sm:text-lg font-bold tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors leading-snug">
-                          {faq.question}
-                        </span>
-                      </div>
-                      <div
-                        className={`w-8 h-8 sm:w-9 sm:h-9 flex-shrink-0 rounded-full border flex items-center justify-center transition-all duration-200 ${
-                          isOpen
-                            ? 'bg-zinc-950 border-zinc-950 text-white rotate-180'
-                            : 'bg-zinc-50 border-zinc-200 text-zinc-600 group-hover:border-zinc-300'
-                        }`}
-                      >
-                        <ChevronDown className="w-4 h-4" />
-                      </div>
-                    </button>
-                  </h3>
+          {/* List */}
+          <div className="lg:col-span-7 space-y-2">
+             {faqs.map((faq, i) => (
+               <div 
+                 key={i} 
+                 className={`rounded-[1.5rem] md:rounded-[2.5rem] transition-all duration-300 overflow-hidden ${openIndex === i ? 'bg-[#FEF9C3]/80 border-transparent shadow-xl md:shadow-2xl shadow-yellow-200/20' : 'bg-transparent border-transparent hover:bg-[#D1FAE5]/30'}`}
+               >
+                  <button 
+                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                    className="w-full py-5 sm:py-8 md:py-12 px-4 sm:px-6 md:px-10 text-left flex items-center justify-between gap-4 group"
+                  >
+                     <div className="flex items-center gap-4 sm:gap-6 md:gap-10">
+                        <span className="text-[10px] md:text-xs font-mono text-zinc-300 font-bold">0{i+1}</span>
+                        <h3 className="text-base sm:text-lg md:text-2xl font-bold tracking-tight text-zinc-950 group-hover:text-zinc-600 transition-colors leading-snug">
+                           {faq.question}
+                        </h3>
+                     </div>
+                     <div className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex-shrink-0 rounded-full border flex items-center justify-center transition-all duration-300 ${openIndex === i ? 'bg-[#D1FAE5] border-[#D1FAE5] text-zinc-950 rotate-180' : 'bg-white border-zinc-100 text-zinc-400 group-hover:border-zinc-200'}`}>
+                        <ArrowDown className="w-4 h-4 md:w-5 md:h-5" />
+                     </div>
+                  </button>
 
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
+                  <AnimatePresence>
+                    {openIndex === i && (
                       <m.div 
-                        id={panelId}
-                        role="region"
-                        aria-labelledby={buttonId}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="px-5 sm:px-7 pb-6 sm:pb-7 pl-12 sm:pl-16">
-                          <p className="text-sm sm:text-base text-zinc-600 leading-relaxed max-w-2xl">
-                            {faq.answer}
-                          </p>
-                        </div>
+                         <div className="px-4 sm:px-6 md:px-10 pb-6 sm:pb-10 md:pb-12 pl-12 sm:pl-[calc(24px+2.5rem)] md:pl-[calc(40px+4.5rem)]">
+                            <p className="text-sm sm:text-base md:text-xl text-zinc-600 leading-relaxed max-w-2xl">
+                               {faq.answer}
+                            </p>
+                         </div>
                       </m.div>
                     )}
                   </AnimatePresence>
-                </div>
-              );
-            })}
+               </div>
+             ))}
           </div>
 
         </div>
