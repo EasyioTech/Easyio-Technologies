@@ -38,28 +38,22 @@ export const PremiumHeading: React.FC<PremiumHeadingProps> = ({
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
       transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-        duration: 0.8
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1]
       },
     },
     hidden: {
       opacity: 0,
-      y: 40,
-      rotateX: 45,
+      y: 16,
       transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
+        duration: 0.4
       },
     },
   };
 
   return (
-    <Tag className={`${className} perspective-1000`}>
+    <Tag className={className}>
       {/* Mobile rendering path: Direct rendered text to eliminate 20+ Framer Motion spring listeners on phone screens */}
       <span className="block md:hidden">
         {words.map((word, index) => {

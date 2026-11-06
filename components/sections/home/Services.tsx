@@ -131,8 +131,13 @@ export default function Services() {
             GET STARTED <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
           </Link>
 
-          {/* Animated Background Decor */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 blur-[120px] -mr-48 -mt-48 group-hover:bg-emerald-500/20 transition-colors" />
+          {/* Lightweight Background Decor */}
+          <div 
+            className="absolute top-0 right-0 w-96 h-96 -mr-48 -mt-48 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%)'
+            }}
+          />
         </div>
 
         {/* Footer Note */}

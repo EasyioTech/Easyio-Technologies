@@ -42,11 +42,16 @@ export default function GlobalAdvantage() {
 
   return (
     <section className="py-20 md:py-32 bg-gradient-to-b from-white via-zinc-50/40 to-white text-zinc-950 relative overflow-hidden mobile-section-content" id="global-advantage">
-      {/* Soft Ambient Mesh Background (Matching Homepage Hero) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-emerald-100/25 blur-[120px] rounded-full" />
-        <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-yellow-100/25 blur-[100px] rounded-full" />
-      </div>
+      {/* Soft Ambient Mesh Background (High-Performance GPU Radial) */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 55% 45% at 50% 35%, rgba(209, 250, 229, 0.2), transparent 70%),
+            radial-gradient(ellipse 45% 35% at 85% 85%, rgba(254, 249, 195, 0.25), transparent 70%)
+          `
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 relative z-10">
         

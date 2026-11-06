@@ -16,11 +16,16 @@ export default function CTA() {
         <div 
           className="relative rounded-[2rem] md:rounded-[3rem] p-6 sm:p-10 md:p-16 lg:p-20 overflow-hidden group border border-zinc-200/90 shadow-xl shadow-zinc-200/40 bg-zinc-50/70"
         >
-          {/* Subtle Warm Gradient Accent - desktop only */}
-          <div className="hidden md:block absolute inset-0 transition-opacity duration-1000">
-            <div className="absolute -top-[30%] -left-[10%] w-[60%] h-[80%] bg-zinc-200/40 blur-[100px] rounded-full" />
-            <div className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[80%] bg-zinc-200/30 blur-[100px] rounded-full" />
-          </div>
+          {/* Subtle Warm Gradient Accent - High-performance GPU layer */}
+          <div 
+            className="hidden md:block absolute inset-0 pointer-events-none"
+            style={{
+              background: `
+                radial-gradient(ellipse 60% 60% at 10% 10%, rgba(228, 228, 231, 0.4), transparent 70%),
+                radial-gradient(ellipse 60% 60% at 90% 90%, rgba(228, 228, 231, 0.3), transparent 70%)
+              `
+            }}
+          />
           
           <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center text-center">
              

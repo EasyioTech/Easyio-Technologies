@@ -10,11 +10,11 @@ import { PremiumHeading, PremiumSubheading } from "@/components/shared/PremiumHe
 export default function Hero() {
   return (
     <section className="relative pt-32 pb-14 md:pt-56 md:pb-32 overflow-hidden flex flex-col items-center justify-center">
-      {/* Enhanced Mesh Gradient Background - Desktop only to save mobile GPU */}
+      {/* High-Performance Mesh Gradient Background - GPU friendly */}
       <div className="hidden md:block absolute inset-0 pointer-events-none">
-        <div className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] bg-emerald-100/30 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '10s' }} />
-        <div className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[70%] bg-yellow-100/30 blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '12s', animationDelay: '3s' }} />
-        <div className="absolute top-1/4 left-1/4 w-[50%] h-[50%] bg-white/40 blur-[100px] rounded-full" />
+        <div className="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] bg-emerald-100/30 blur-[100px] rounded-full will-change-transform" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[60%] h-[60%] bg-yellow-100/30 blur-[100px] rounded-full will-change-transform" />
+        <div className="absolute top-1/4 left-1/4 w-[40%] h-[40%] bg-white/40 blur-[80px] rounded-full" />
       </div>
       
       <div className="max-w-[1440px] mx-auto px-5 sm:px-6 relative z-10 text-center">

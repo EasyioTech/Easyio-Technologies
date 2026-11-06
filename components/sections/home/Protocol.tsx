@@ -121,39 +121,25 @@ const stages: Stage[] = [
 
 export default function Protocol() {
   const [activeStep, setActiveStep] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Auto-progress stages every 6.5s when idle
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % stages.length);
-    }, 6500);
-    return () => clearInterval(timer);
-  }, [isPaused]);
 
   const currentStage = stages[activeStep];
 
   return (
     <section 
-      className="py-16 md:py-36 relative overflow-hidden mobile-section-content" 
+      className="py-16 md:py-32 relative overflow-hidden mobile-section-content" 
       id="process"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Signature Hero-Style Soft Mesh Gradients (Warm Butter & Soft Mint) */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div 
-          className="absolute -top-[10%] -left-[10%] w-[65%] h-[65%] bg-emerald-100/30 blur-[130px] rounded-full" 
-        />
-        <div 
-          className="absolute -bottom-[10%] -right-[10%] w-[65%] h-[65%] bg-yellow-100/35 blur-[130px] rounded-full" 
-        />
-        <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[50%] bg-white/70 blur-[100px] rounded-full" 
-        />
-
-        {/* Soft, non-intrusive micro dot pattern */}
+      {/* High-Performance Lightweight Ambient Mesh (Single GPU Layer) */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 60% 50% at 20% 20%, rgba(209, 250, 229, 0.25), transparent 70%),
+            radial-gradient(ellipse 60% 50% at 80% 80%, rgba(254, 249, 195, 0.3), transparent 70%)
+          `
+        }}
+      >
+        {/* Soft dot pattern */}
         <div 
           className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -162,36 +148,17 @@ export default function Protocol() {
           }}
         />
 
-        {/* Crisp, Gentle Architectural Lines (Subtle zinc with soft emerald pulses) */}
-        <svg className="w-full h-full absolute inset-0 opacity-50 hidden md:block" viewBox="0 0 1440 900" fill="none">
-          <defs>
-            <linearGradient id="softTraceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#10B981" stopOpacity="0" />
-              <stop offset="50%" stopColor="#059669" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#10B981" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-
-          {/* Master Circuit Track */}
+        {/* Crisp Architectural Track Lines (Zero CPU Repaint) */}
+        <svg className="w-full h-full absolute inset-0 opacity-40 hidden md:block" viewBox="0 0 1440 900" fill="none">
+          {/* Master Horizontal Track */}
           <path 
             d="M 120 280 L 1320 280" 
             stroke="#E4E4E7" 
             strokeWidth="1.5" 
             strokeDasharray="4 6" 
           />
-          
-          {/* Subtle light pulse along track */}
-          <m.path 
-            d="M 120 280 L 1320 280" 
-            stroke="url(#softTraceGrad)" 
-            strokeWidth="2" 
-            strokeLinecap="round"
-            initial={{ strokeDashoffset: 1200, strokeDasharray: "160 1200" }}
-            animate={{ strokeDashoffset: -1200 }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          />
 
-          {/* Connector Drops into content stages */}
+          {/* Connected Stage Drops */}
           {[270, 570, 870, 1170].map((x, idx) => (
             <g key={idx}>
               <line 
@@ -201,14 +168,14 @@ export default function Protocol() {
                 y2={330} 
                 stroke={activeStep === idx ? "#059669" : "#E4E4E7"} 
                 strokeWidth={activeStep === idx ? "2" : "1"}
-                className="transition-colors duration-500"
+                className="transition-colors duration-200"
               />
               <circle 
                 cx={x} 
                 cy={280} 
                 r={activeStep === idx ? 4.5 : 3} 
                 fill={activeStep === idx ? "#059669" : "#D4D4D8"} 
-                className="transition-all duration-500"
+                className="transition-all duration-200"
               />
             </g>
           ))}
@@ -307,8 +274,8 @@ export default function Protocol() {
           </div>
         </div>
 
-        {/* 2. Master Architectural Stage Inspector (Clean Light Studio Deck) */}
-        <div className="relative rounded-[2rem] md:rounded-[3rem] border border-zinc-200/90 bg-white/90 backdrop-blur-xl shadow-xl shadow-zinc-950/5 overflow-hidden">
+        {/* 2. Master Architectural Stage Inspector (Clean Light Studio Deck - High Performance) */}
+        <div className="relative rounded-[2rem] md:rounded-[3rem] border border-zinc-200/90 bg-white shadow-xl shadow-zinc-950/5 overflow-hidden">
           {/* Studio Bar Header */}
           <div className="px-6 py-4 border-b border-zinc-100 bg-gradient-to-r from-emerald-50/40 via-yellow-50/30 to-white flex items-center justify-between">
             <div className="flex items-center gap-2">
