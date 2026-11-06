@@ -13,7 +13,6 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 
 interface Project {
   id: string;
@@ -163,7 +162,6 @@ export default function Showcase({ initialProjects = [] }: { initialProjects?: a
             loop: false,
             dragFree: true,
           }}
-          plugins={[WheelGesturesPlugin()]}
           className="relative lg:left-[calc((100vw-1280px)/2)]"
         >
           <CarouselContent className="-ml-3 md:-ml-8 cursor-grab active:cursor-grabbing">

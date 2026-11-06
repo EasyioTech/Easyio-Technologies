@@ -33,8 +33,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  html {
+  html,
+  body {
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    scroll-behavior: auto !important;
   }
 
   nav {

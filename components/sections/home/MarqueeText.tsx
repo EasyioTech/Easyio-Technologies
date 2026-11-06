@@ -1,49 +1,15 @@
 'use client';
 
-import React, { useRef } from "react";
-import { m, useScroll, useTransform, useSpring } from "framer-motion";
+import React from "react";
 
 export default function MarqueeText() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const x1 = useTransform(scrollYProgress, [0, 1], [0, -500]);
-  const x2 = useTransform(scrollYProgress, [0, 1], [-500, 0]);
-  
-  const springX1 = useSpring(x1, { stiffness: 100, damping: 30, restDelta: 0.001 });
-  const springX2 = useSpring(x2, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
   return (
-    <section ref={containerRef} className="relative bg-transparent overflow-hidden py-8 md:py-24 border-y border-zinc-100/60 mobile-section-content">
-      {/* Mobile view: Ultra-smooth CSS Marquee (zero main-thread JS scroll calculation) */}
-      <div className="flex md:hidden flex-col gap-4">
-        <div className="flex overflow-hidden">
-          <div className="flex animate-marquee whitespace-nowrap gpu-layer">
-            <MarqueeItem text="Engineering" italicText="Excellence" color="text-zinc-950" />
-            <MarqueeItem text="Technical" italicText="Sovereignty" color="text-zinc-950" />
-            <MarqueeItem text="Mission" italicText="Critical" color="text-zinc-950" />
-            <MarqueeItem text="Industrial" italicText="Architecture" color="text-zinc-950" />
-          </div>
-        </div>
-        <div className="flex overflow-hidden">
-          <div className="flex animate-marquee whitespace-nowrap gpu-layer" style={{ animationDirection: 'reverse' }}>
-            <MarqueeItem text="Resilient" italicText="Infrastructure" color="text-zinc-400" />
-            <MarqueeItem text="Adaptive" italicText="Protocols" color="text-zinc-400" />
-            <MarqueeItem text="Future" italicText="Proof" color="text-zinc-400" />
-            <MarqueeItem text="Atomic" italicText="Consistency" color="text-zinc-400" />
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop view: Interactive scroll-spring marquee */}
-      <div className="hidden md:flex flex-col gap-8">
+    <section className="relative bg-transparent overflow-hidden py-8 md:py-24 border-y border-zinc-100/60 mobile-section-content">
+      <div className="flex flex-col gap-4 md:gap-8">
         
-        {/* Row 1 - High Contrast Professional */}
+        {/* Row 1 - High Contrast Professional (100% Native CSS GPU Marquee) */}
         <div className="flex overflow-hidden">
-          <m.div style={{ x: springX1 }} className="flex whitespace-nowrap">
+          <div className="flex animate-marquee whitespace-nowrap will-change-transform">
             <MarqueeItem text="Engineering" italicText="Excellence" color="text-zinc-950" />
             <MarqueeItem text="Technical" italicText="Sovereignty" color="text-zinc-950" />
             <MarqueeItem text="Mission" italicText="Critical" color="text-zinc-950" />
@@ -52,12 +18,12 @@ export default function MarqueeText() {
             <MarqueeItem text="Technical" italicText="Sovereignty" color="text-zinc-950" />
             <MarqueeItem text="Mission" italicText="Critical" color="text-zinc-950" />
             <MarqueeItem text="Industrial" italicText="Architecture" color="text-zinc-950" />
-          </m.div>
+          </div>
         </div>
 
-        {/* Row 2 - Subtle Support */}
+        {/* Row 2 - Subtle Support (Reverse Direction) */}
         <div className="flex overflow-hidden">
-          <m.div style={{ x: springX2 }} className="flex whitespace-nowrap">
+          <div className="flex animate-marquee whitespace-nowrap will-change-transform" style={{ animationDirection: 'reverse' }}>
             <MarqueeItem text="Resilient" italicText="Infrastructure" color="text-zinc-400" />
             <MarqueeItem text="Adaptive" italicText="Protocols" color="text-zinc-400" />
             <MarqueeItem text="Future" italicText="Proof" color="text-zinc-400" />
@@ -66,7 +32,7 @@ export default function MarqueeText() {
             <MarqueeItem text="Adaptive" italicText="Protocols" color="text-zinc-400" />
             <MarqueeItem text="Future" italicText="Proof" color="text-zinc-400" />
             <MarqueeItem text="Atomic" italicText="Consistency" color="text-zinc-400" />
-          </m.div>
+          </div>
         </div>
 
       </div>
@@ -76,7 +42,7 @@ export default function MarqueeText() {
 
 function MarqueeItem({ text, italicText, color }: { text: string; italicText: string; color: string }) {
   return (
-    <div className={`flex items-center gap-6 md:gap-10 px-8 md:px-16 select-none`}>
+    <div className="flex items-center gap-6 md:gap-10 px-8 md:px-16 select-none">
       <span className={`text-4xl md:text-9xl font-bold tracking-tighter ${color}`}>
         {text} <span className="font-serif italic font-medium opacity-90">{italicText}</span>
       </span>

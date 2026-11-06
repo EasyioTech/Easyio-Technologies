@@ -26,7 +26,7 @@ export const TestimonialsColumn = (props: {
           repeat: Infinity,
           ease: "linear",
         }}
-        className="flex flex-col gap-6 pb-6"
+        className="flex flex-col gap-6 pb-6 will-change-transform transform-gpu"
       >
         {[...props.testimonials, ...props.testimonials, ...props.testimonials].map(({ text, image, name, role }, i) => (
           <div className="p-10 rounded-3xl border border-zinc-100 bg-white shadow-xl shadow-zinc-950/5 max-w-xs w-full" key={i}>
